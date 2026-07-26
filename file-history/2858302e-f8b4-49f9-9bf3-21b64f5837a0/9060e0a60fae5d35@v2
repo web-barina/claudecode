@@ -1,0 +1,73 @@
+import os, re, json, time, hashlib
+import urllib.request
+import urllib.parse
+
+BASE = "https://td-group.test-page.site"
+OUT_DIR = "/private/tmp/claude-501/-Users-rina--claude/2858302e-f8b4-49f9-9bf3-21b64f5837a0/scratchpad/pages"
+
+urls = [
+"/voice/",
+"/voice/340/",
+"/voice/402/",
+"/voice/もっと早く来ればよかった！/",
+"/voice/家族で通いたい整骨院/",
+"/voice/腰痛を気にせず踊れる！/",
+"/clinic-area/chiba/",
+"/clinic-area/tokyo/",
+"/menu-category/小顔矯正/",
+"/menu-category/整体/",
+"/menu-category/柔整マッサージ/",
+"/menu-category/産後骨盤矯正/",
+"/menu-category/骨盤矯正・姿勢矯正/",
+"/symptoms-category/手・足の症状/",
+"/symptoms-category/背中・腰の症状/",
+"/symptoms-category/頭・首・肩の症状/",
+"/case/page/2/",
+"/case/page/3/",
+# store x symptom combos - sample across multiple stores/symptoms
+"/kanamachi/symptoms/zutsu/",
+"/kanamachi/symptoms/katakori/",
+"/yakuendai/symptoms/kubi/",
+"/usui/symptoms/koshi-herunia/",
+"/enokido/symptoms/gikkurigoshi/",
+"/sakasai/symptoms/seitai/",
+"/mikawashima/symptoms/massaji/",
+"/kitasenju/symptoms/hiza/",
+"/akiyama-ekimae/symptoms/ago/",
+# 404 test
+"/this-page-should-not-exist-404-test/",
+]
+
+results = {}
+manifest_path = os.path.join(OUT_DIR, "_manifest.json")
+existing = json.load(open(manifest_path, encoding="utf-8"))
+
+for u in urls:
+    full = BASE + urllib.parse.quote(u)
+    ascii_part = re.sub(r'[^a-zA-Z0-9]+', '_', u)[:40]
+    h = hashlib.md5(u.encode('utf-8')).hexdigest()[:10]
+    fname = f"{ascii_part}_{h}.html"
+    path = os.path.join(OUT_DIR, fname)
+    try:
+        req = urllib.request.Request(full, headers={"User-Agent": "Mozilla/5.0 (compatible; QABot/1.0)"})
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            status = resp.status
+            content = resp.read()
+            with open(path, "wb") as f:
+                f.write(content)
+            results[u] = {"status": status, "file": fname, "size": len(content), "final_url": resp.geturl()}
+    except urllib.error.HTTPError as e:
+        content = e.read()
+        with open(path, "wb") as f:
+            f.write(content)
+        results[u] = {"status": e.code, "file": fname, "size": len(content), "error": str(e)}
+    except Exception as e:
+        results[u] = {"status": None, "file": None, "size": 0, "error": str(e)}
+    time.sleep(0.15)
+
+existing.update(results)
+with open(manifest_path, "w", encoding="utf-8") as f:
+    json.dump(existing, f, ensure_ascii=False, indent=2)
+
+for u, r in results.items():
+    print(r.get("status"), u, r.get("size"))

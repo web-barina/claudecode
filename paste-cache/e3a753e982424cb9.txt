@@ -1,0 +1,234 @@
+▼ header.php 追記用コード（完全版）
+<!-- ==============================================
+     1. Metaタグ（title / description）の実装
+     =============================================== -->
+<?php
+// ※SEOプラグインで出力する場合は以下は不要です
+// 【要件】titleはキーワード前方配置。descriptionは120文字程度・重複なし・過剰KWなし
+?>
+<title><?php wp_title('|', true, 'right'); bloginfo('name'); ?></title>
+<meta name="description" content="<?php
+if (is_front_page() || is_home()) {
+    // TOPページ固有のディスクリプション
+    echo esc_attr('東京・千葉で整体・整骨院をお探しなら、根本改善を目指すT&Dグループへ。国家資格を持つ専門家がオーダーメイド施術を提供します。平日20時半まで受付。');
+
+} elseif (is_single() || is_singular() || is_page()) {
+    // 個別記事・カスタム投稿・固定ページの場合は
+    // 抜粋または本文の冒頭120文字を動的に出力し重複を回避
+    $excerpt = strip_tags(get_the_excerpt());
+    if (empty($excerpt)) {
+        $excerpt = wp_trim_words(strip_tags(get_post()->post_content), 60, '...'); // 日本語で約120文字目安
+    }
+    echo esc_attr($excerpt);
+
+} else {
+    bloginfo('description');
+}
+?>">
+
+
+<!-- ==============================================
+     2. 構造化データ（JSON-LD）の実装
+     =============================================== -->
+<?php
+$schema_data = array();
+
+// ① WebSite：TOPページのみ
+if (is_front_page() || is_home()) {
+    $schema_data[] = array(
+        "@context" => "https://schema.org",
+        "@type"    => "WebSite",
+        "url"      => home_url('/'),
+        "name"     => get_bloginfo('name')
+    );
+}
+
+// ② Organization：TOPとabout(会社概要やアクセス)ページのみ
+if (is_front_page() || is_home() || is_page(array('about', 'access', 'company'))) {
+    $schema_data[] = array(
+        "@context" => "https://schema.org",
+        "@type"    => "Organization",
+        "name"     => "株式会社T&Dグループ",
+        "url"      => home_url('/'),
+        "logo"     => get_template_directory_uri() . "/assets/img/logo.png"
+    );
+}
+
+// ③ LocalBusiness（HealthAndBeautyBusiness）：各店舗ページ（動的取得）
+if (is_singular('shop')) { // ※カスタム投稿スラッグを実際のものに変更してください
+    // ※ 住所や電話番号などは、ACFなどのカスタムフィールドから取得する想定です
+    $tel              = get_field('telephone')      ? get_field('telephone')      : '';
+    $postal_code      = get_field('postal_code')     ? get_field('postal_code')     : '';
+    $address_region   = get_field('address_region')  ? get_field('address_region')  : '';
+    $address_locality = get_field('address_locality')? get_field('address_locality'): '';
+    $street_address   = get_field('street_address')  ? get_field('street_address')  : '';
+
+    $schema_data[] = array(
+        "@context"    => "https://schema.org",
+        "@type"       => "HealthAndBeautyBusiness",
+        "name"        => get_the_title(), // 自動で「秋山駅前整骨院」などの店舗名が入ります
+        "url"         => get_permalink(),
+        "image"       => has_post_thumbnail() ? get_the_post_thumbnail_url() : '',
+        "telephone"   => $tel,
+        "address"     => array(
+            "@type"           => "PostalAddress",
+            "postalCode"      => $postal_code,
+            "addressRegion"   => $address_region,
+            "addressLocality" => $address_locality,
+            "streetAddress"   => $street_address,
+            "addressCountry"  => "JP"
+        ),
+        // ※営業時間も店舗ごとに異なる場合はカスタムフィールドからの取得を推奨
+        "openingHoursSpecification" => array(
+            array(
+                "@type"     => "OpeningHoursSpecification",
+                "dayOfWeek" => array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday"),
+                "opens"     => "09:00",
+                "closes"    => "20:30"
+            ),
+            array(
+                "@type"     => "OpeningHoursSpecification",
+                "dayOfWeek" => array("Saturday", "PublicHolidays"),
+                "opens"     => "09:00",
+                "closes"    => "17:30"
+            )
+        )
+    );
+}
+
+// ⑤ ContactPage：お問い合わせページのみ
+if (is_page('contact')) {
+    $schema_data[] = array(
+        "@context" => "https://schema.org",
+        "@type"    => "ContactPage",
+        "url"      => get_permalink()
+    );
+}
+
+// ⑥ BreadcrumbList（パンくずリスト）：TOPページ以外全ページ
+if (!is_front_page() && !is_home()) {
+    // ※以下は静的例です。実際はカテゴリや親ページなどパンくずの階層をループで動的に取得してください。
+    $schema_data[] = array(
+        "@context"        => "https://schema.org",
+        "@type"           => "BreadcrumbList",
+        "itemListElement" => array(
+            array(
+                "@type"    => "ListItem",
+                "position" => 1,
+                "name"     => "トップページ",
+                "item"     => home_url('/')
+            ),
+            array(
+                "@type"    => "ListItem",
+                "position" => 2,
+                "name"     => get_the_title(),
+                "item"     => get_permalink()
+            )
+        )
+    );
+}
+
+// ⑦ Article：各お悩みページ、コラム、症例報告、お知らせの個別記事（動的取得）
+if (is_singular(array('post', 'symptom', 'column', 'case', 'news'))) { // ※実際のスラッグに変更してください
+    $schema_data[] = array(
+        "@context"      => "https://schema.org",
+        "@type"         => "Article",
+        "headline"      => get_the_title(), // 自動で「腰痛」などの記事タイトルが入ります
+        "url"           => get_permalink(),
+        "image"         => has_post_thumbnail() ? get_the_post_thumbnail_url() : '',
+        "datePublished" => get_the_date('c'),
+        "dateModified"  => get_the_modified_date('c'),
+        "author"        => array(
+            "@type" => "Organization",
+            "name"  => "株式会社T&Dグループ"
+        ),
+        "publisher"     => array(
+            "@type" => "Organization",
+            "name"  => "株式会社T&Dグループ",
+            "logo"  => array(
+                "@type" => "ImageObject",
+                "url"   => get_template_directory_uri() . "/assets/img/logo.png"
+            )
+        )
+    );
+}
+
+// ⑧ ProfilePage / Person：人物情報の記載があるページのみ（院長・スタッフ紹介など）
+if (is_page('staff') || is_singular('staff')) { // ※実際のスラッグに変更してください
+    $schema_data[] = array(
+        "@context"   => "https://schema.org",
+        "@type"      => "ProfilePage",
+        "mainEntity" => array(
+            "@type"    => "Person",
+            "name"     => get_the_title(), // 人物名
+            "worksFor" => array(
+                "@type" => "Organization",
+                "name"  => "株式会社T&Dグループ"
+            )
+        )
+    );
+}
+
+// ⑨ FAQPage：よくある質問の記載があるページのみ
+if (is_page('faq')) {
+    // ※以下は静的例です。実際はACF等からQ&Aの内容をループ処理で取得・出力してください
+    $schema_data[] = array(
+        "@context"   => "https://schema.org",
+        "@type"      => "FAQPage",
+        "mainEntity" => array(
+            array(
+                "@type"          => "Question",
+                "name"           => "整骨院ってどんなところですか?",
+                "acceptedAnswer" => array(
+                    "@type" => "Answer",
+                    "text"  => "整骨院・接骨院とは、日本古来の伝統医療を受け継いだ、徒手療法を施す施術院です。解剖学・生理学・運動学を学び、国家資格である「柔道整復師」免許を持っているスタッフが、捻挫・打撲・肉離れ・スポーツ障害など筋肉・腱・関節に対してアプローチします。"
+                )
+            ),
+            array(
+                "@type"          => "Question",
+                "name"           => "鍼施術は癖になると聞いたのですが?",
+                "acceptedAnswer" => array(
+                    "@type" => "Answer",
+                    "text"  => "（回答内容）"
+                )
+            )
+            // 追加のQ&Aループ
+        )
+    );
+}
+
+// ⑩ JobPosting：採用情報の記載があるページのみ
+if (is_page('recruit') || is_singular('recruit')) { // ※実際のスラッグに変更してください
+    $schema_data[] = array(
+        "@context"          => "https://schema.org",
+        "@type"             => "JobPosting",
+        "title"             => "柔道整復師(正社員)", // ※get_the_title()等で動的出力推奨
+        "description"       => get_the_excerpt(),
+        "datePosted"        => get_the_date('Y-m-d'),
+        "employmentType"    => "FULL_TIME",
+        "hiringOrganization" => array(
+            "@type" => "Organization",
+            "name"  => "株式会社T&Dグループ",
+            "sameAs" => home_url('/'),
+            "logo"  => get_template_directory_uri() . "/assets/img/logo.png"
+        ),
+        "jobLocation"       => array(
+            "@type"   => "Place",
+            "address" => array(
+                "@type"          => "PostalAddress",
+                "addressRegion"  => "東京都・千葉県",
+                "addressCountry" => "JP"
+            )
+        )
+    );
+}
+
+// まとめてJSON-LDを出力
+if (!empty($schema_data)) {
+    foreach ($schema_data as $data) {
+        echo '<script type="application/ld+json">'
+            . json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)
+            . '</script>' . "\n";
+    }
+}
+?>

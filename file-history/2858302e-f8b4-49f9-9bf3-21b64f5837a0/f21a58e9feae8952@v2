@@ -1,0 +1,121 @@
+import os, re, json, time, hashlib
+import urllib.request
+import urllib.parse
+
+BASE = "https://td-group.test-page.site"
+OUT_DIR = "/private/tmp/claude-501/-Users-rina--claude/2858302e-f8b4-49f9-9bf3-21b64f5837a0/scratchpad/pages"
+os.makedirs(OUT_DIR, exist_ok=True)
+
+urls = [
+"/",
+"/flow/",
+"/content-policy/",
+"/sitepolicy/",
+"/privacy/",
+"/koutuu/",
+"/rousai/",
+"/faq/",
+"/recruit/",
+"/first/",
+"/column/",
+"/カテゴリーを複数入れた場合/",
+"/コラムタイトルコラムタイトルコラムタイトルコ/",
+"/アイキャッチ画像を入れていない場合/",
+"/news/",
+"/news/お知らせタイトル/",
+"/news/サイトリニューアルしました/",
+"/news/お知らせテスト/",
+"/clinic/",
+"/kanamachi/",
+"/yakuendai/",
+"/usui/",
+"/enokido/",
+"/sakasai/",
+"/mikawashima/",
+"/kitasenju/",
+"/akiyama-ekimae/",
+"/symptoms/",
+"/symptoms/seitai/",
+"/symptoms/koshi-herunia/",
+"/symptoms/kubi/",
+"/symptoms/ganseihiro/",
+"/symptoms/muchiuchi/",
+"/symptoms/kubi-hernia/",
+"/symptoms/katakori/",
+"/symptoms/makigata/",
+"/symptoms/ago/",
+"/symptoms/zutsu/",
+"/symptoms/kokansetsu/",
+"/symptoms/zakotsu/",
+"/symptoms/sorigoshi/",
+"/symptoms/youtuu/",
+"/symptoms/gikkurigoshi/",
+"/symptoms/nancho/",
+"/symptoms/nekoze/",
+"/symptoms/hizi/",
+"/symptoms/hiza/",
+"/symptoms/ashi/",
+"/symptoms/mukumi/",
+"/symptoms/okyaku/",
+"/symptoms/kenshoen/",
+"/symptoms/kogao/",
+"/symptoms/bikyaku/",
+"/symptoms/sangokotsuban/",
+"/symptoms/kotsuban/",
+"/symptoms/massaji/",
+"/case/",
+"/case/股関節と腰の痛み軽減/",
+"/sakasai/背中と肩の不調改善事例　※画像なし/",
+"/enokido/アキレス腱断裂後　※タイトルなし/",
+"/sakasai/腰の不調改善事例/",
+"/akiyama-ekimae/チアリーディングダンス中に発生していた腰痛の/",
+"/usui/仕事中の腰の痛みの改善/",
+"/akiyama-ekimae/姿勢改善による背中の不調の改善事例/",
+"/akiyama-ekimae/慢性的な背中の痛みと足の痛みの改善事例/",
+"/sakasai/五十肩の不調改善事例/",
+"/usui/シビレと痛みの軽減により睡眠の質向上！/",
+"/enokido/左肩関節周囲炎（五十肩）に伴う痛みと動作制限/",
+"/enokido/首肩の慢性的な凝りと眼精疲労および足のむくみ/",
+"/clinic-menu/",
+"/clinic-menu/骨盤はがし/",
+"/clinic-menu/肩甲骨はがし/",
+"/clinic-menu/産後マタニティ矯正/",
+"/clinic-menu/全調整鍼/",
+"/clinic-menu/美容鍼/",
+"/clinic-menu/足の極み/",
+"/clinic-menu/骨盤ほぐし/",
+"/clinic-menu/ストレッチ/",
+"/clinic-menu/ドライヘッドマッサージ/",
+"/clinic-menu/オーダーメイド鍼/",
+"/clinic-menu/92/",
+"/category/category01/",
+"/category/症状/",
+"/category/整体/",
+]
+
+results = {}
+for u in urls:
+    full = BASE + urllib.parse.quote(u)
+    ascii_part = re.sub(r'[^a-zA-Z0-9]+', '_', u)[:40]
+    h = hashlib.md5(u.encode('utf-8')).hexdigest()[:10]
+    fname = f"{ascii_part}_{h}.html"
+    path = os.path.join(OUT_DIR, fname)
+    try:
+        req = urllib.request.Request(full, headers={"User-Agent": "Mozilla/5.0 (compatible; QABot/1.0)"})
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            status = resp.status
+            content = resp.read()
+            with open(path, "wb") as f:
+                f.write(content)
+            results[u] = {"status": status, "file": fname, "size": len(content), "final_url": resp.geturl()}
+    except urllib.error.HTTPError as e:
+        results[u] = {"status": e.code, "file": None, "size": 0, "error": str(e)}
+    except Exception as e:
+        results[u] = {"status": None, "file": None, "size": 0, "error": str(e)}
+    time.sleep(0.15)
+
+with open(os.path.join(OUT_DIR, "_manifest.json"), "w", encoding="utf-8") as f:
+    json.dump(results, f, ensure_ascii=False, indent=2)
+
+for u, r in results.items():
+    print(r.get("status"), u, r.get("size"))

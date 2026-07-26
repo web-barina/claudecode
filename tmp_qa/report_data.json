@@ -1,0 +1,168 @@
+{
+  "url": "https://100xmarketing.jp/ai-article/",
+  "datetime": "2026-07-14 10:48",
+  "summary": {
+    "SEO": {
+      "high": 0,
+      "mid": 5,
+      "low": 0
+    },
+    "レスポンシブ": {
+      "high": 0,
+      "mid": 0,
+      "low": 0
+    },
+    "UI/UX": {
+      "high": 1,
+      "mid": 2,
+      "low": 0
+    },
+    "フォーム": {
+      "high": 0,
+      "mid": 0,
+      "low": 0
+    },
+    "パフォーマンス": {
+      "high": 0,
+      "mid": 1,
+      "low": 1
+    },
+    "構造化データ": {
+      "high": 0,
+      "mid": 2,
+      "low": 0
+    },
+    "コンテンツ": {
+      "high": 0,
+      "mid": 0,
+      "low": 0
+    },
+    "CMS": {
+      "high": 0,
+      "mid": 1,
+      "low": 0
+    }
+  },
+  "issues": {
+    "high": [
+      {
+        "cat": "UI/UX",
+        "title": "width: 100vw が使用されています",
+        "problem": "スクロールバー分だけ横スクロールが発生する場合があります",
+        "fix": "width: 100% に変更、または overflow-x: hidden を親に設定"
+      }
+    ],
+    "mid": [
+      {
+        "cat": "SEO",
+        "title": "alt空文字の画像が8件あります",
+        "confirm": "装飾画像ならOK。情報画像は固有名称＋説明を設定",
+        "current": "p/wp-content/uploads/2026/06/img_system_block.webp, p/wp-content/uploads/2026/06/img_system_block.webp, jp/wp-content/uploads/2026/06/img_system_1_pc.webp, jp/wp-content/uploads/2026/06/img_system_2_pc.webp, jp/wp-content/uploads/2026/06/img_system_3_pc.webp"
+      },
+      {
+        "cat": "SEO",
+        "title": "alt内容が重複している画像があります（1種）",
+        "current": "株式会社100X"
+      },
+      {
+        "cat": "SEO",
+        "title": "ロゴのaltがページ内で統一されていません",
+        "current": "{'株式会社100X', '100X'}"
+      },
+      {
+        "cat": "パフォーマンス",
+        "title": "width/height未指定の画像が2/35件（CLS防止）",
+        "current": ".jp/wp-content/uploads/2026/07/img_price_left.webp, jp/wp-content/uploads/2026/07/img_price_right.webp"
+      },
+      {
+        "cat": "SEO",
+        "title": "パンくずリストが見つかりません",
+        "confirm": "下層ページにはBreadcrumbListの実装を推奨"
+      },
+      {
+        "cat": "SEO",
+        "title": "電話番号らしき表記がありますが tel: リンクがありません",
+        "confirm": "モバイルでタップ発番できるか確認",
+        "current": "020381, 000000, 099973144"
+      },
+      {
+        "cat": "UI/UX",
+        "title": "ホバーアクション設定が未確認です",
+        "confirm": "ヘッダーロゴ・フッターリンク・バナー画像・TOPへ戻るボタンにホバーが当たっているか目視確認してください"
+      },
+      {
+        "cat": "UI/UX",
+        "title": "コンテンツ少ない場合のフッター最下部配置",
+        "confirm": "目視確認（min-height / flex sticky footer）"
+      },
+      {
+        "cat": "構造化データ",
+        "title": "BreadcrumbList が未実装（TOP以外のページで推奨）",
+        "fix": "パンくずのJSON-LDを追加"
+      },
+      {
+        "cat": "構造化データ",
+        "title": "FAQセクションがあるが FAQPage 構造化データが未実装",
+        "fix": "FAQPageのJSON-LDを追加"
+      },
+      {
+        "cat": "CMS",
+        "title": "コピーライトの西暦が静的記述の可能性（年の自動切替か確認）",
+        "current": "© 2026 100X. All rights reserved."
+      }
+    ],
+    "low": [
+      {
+        "cat": "パフォーマンス",
+        "title": "WebP化されていない画像が8件あります",
+        "fix": "可能ならWebPへ変換"
+      }
+    ],
+    "ok": [
+      "title: OK（38文字）「AI活用のSEO記事制作代行なら100X-SEO | 1記事5,000円から」",
+      "meta description: OK（90文字）",
+      "OGP og:title: OK",
+      "OGP og:description: OK",
+      "OGP og:image: OK",
+      "OGP og:url: OK",
+      "canonical: OK（https://100xmarketing.jp/ai-article/）",
+      "viewport meta: OK（width=device-width, initial-scale=1.0）",
+      "ファビコン: OK（3件）",
+      "robots: OK（max-image-preview:large）",
+      "h1タグ: 1個（正常）「最高品質を業界最安水準で！ 1記事5,000円のSEO記事作成」",
+      "heading構造: 正常（h1×1 h2×10 h3×12）",
+      "alt属性: 全35画像に存在",
+      "loading=lazy: 32/35件",
+      "リンク実装: HTML <a href> ベース OK",
+      "外部リンク: 新タブ設定 OK（または外部リンクなし）",
+      "発リンク数: 30（200以内）",
+      "hover CSSルール: 120件検出",
+      "追従要素（fixed/sticky）: CSS上で検出",
+      "テキスト省略（line-clamp）: CSS上で検出",
+      "object-fit: CSS上で検出",
+      "横スクロール関連ライブラリ/CSS: 検出",
+      "Google Fonts display=swap: OK",
+      "fonts.gstatic.com preconnect: OK",
+      "head内外部script: async/defer または無し OK",
+      "GTM遅延読み込み: 検出",
+      "JSON-LDブロック: 1件 / types: ['Service']",
+      "プライバシーポリシー導線: OK",
+      "住所表記: OK",
+      "コピーライト表記: OK",
+      "お問い合わせ導線: OK",
+      "URL構造: /ai-article/ （内容が分かる名称）OK",
+      "当ページにform要素なし（CTA→外部/contact遷移と推定）",
+      "お問い合わせ導線リンク: 9件 → /contact/"
+    ]
+  },
+  "children": 0,
+  "h1": [
+    [
+      1,
+      "最高品質を業界最安水準で！ 1記事5,000円のSEO記事作成",
+      24250
+    ]
+  ],
+  "title": "AI活用のSEO記事制作代行なら100X-SEO | 1記事5,000円から",
+  "desc": "【1記事5,000円～】日本トップクラスのAI開発力で、最高品質のSEO記事を業界最安水準でご提供します。初回無料でお試し記事をプレゼント中ですので、まずはお気軽にご相談ください。"
+}

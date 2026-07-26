@@ -1,0 +1,183 @@
+# -*- coding: utf-8 -*-
+import json, re, os
+from bs4 import BeautifulSoup
+from urllib.parse import urljoin, urlparse
+from collections import defaultdict
+
+PAGES_DIR = "/private/tmp/claude-501/-Users-rina--claude/2858302e-f8b4-49f9-9bf3-21b64f5837a0/scratchpad/pages"
+BASE = "https://td-group.test-page.site"
+
+manifest = json.load(open(os.path.join(PAGES_DIR, "_manifest.json"), encoding="utf-8"))
+
+page_data = {}
+all_internal_links = defaultdict(set)  # target_path -> set of source urls
+
+for url, info in manifest.items():
+    if not info.get("file"):
+        page_data[url] = {"error": info.get("error", "fetch failed")}
+        continue
+    path = os.path.join(PAGES_DIR, info["file"])
+    html = open(path, encoding="utf-8", errors="replace").read()
+    soup = BeautifulSoup(html, "html.parser")
+
+    d = {}
+    title_tag = soup.find("title")
+    d["title"] = title_tag.get_text(strip=True) if title_tag else None
+    d["title_len"] = len(d["title"]) if d["title"] else 0
+
+    desc = soup.find("meta", attrs={"name": "description"})
+    d["description"] = desc["content"].strip() if desc and desc.get("content") else None
+    d["description_len"] = len(d["description"]) if d["description"] else 0
+
+    canonical = soup.find("link", attrs={"rel": "canonical"})
+    d["canonical"] = canonical["href"] if canonical and canonical.get("href") else None
+
+    viewport = soup.find("meta", attrs={"name": "viewport"})
+    d["viewport"] = viewport["content"] if viewport and viewport.get("content") else None
+
+    favicon = soup.find("link", rel=lambda x: x and "icon" in x.lower()) if soup.find("link", rel=True) else None
+    favicons = soup.find_all("link", rel=lambda x: x and "icon" in " ".join(x if isinstance(x, list) else [x]).lower())
+    d["favicon"] = bool(favicons)
+
+    # OGP
+    ogp = {}
+    for prop in ["og:title", "og:description", "og:image", "og:url", "og:type"]:
+        tag = soup.find("meta", property=prop)
+        ogp[prop] = tag["content"] if tag and tag.get("content") else None
+    d["ogp"] = ogp
+
+    # Headings
+    headings = []
+    for tag in soup.find_all(re.compile(r"^h[1-6]$")):
+        txt = tag.get_text(strip=True)
+        headings.append((tag.name, txt))
+    d["headings"] = headings
+    d["h1_list"] = [t for n, t in headings if n == "h1"]
+    d["h1_count"] = len(d["h1_list"])
+
+    # heading hierarchy skip check (only considering h1-h4 mainly)
+    levels = [int(n[1]) for n, t in headings]
+    skips = []
+    prev = 0
+    for lv in levels:
+        if prev and lv > prev + 1:
+            skips.append((prev, lv))
+        prev = lv
+    d["heading_skips"] = skips
+
+    # images
+    imgs = soup.find_all("img")
+    img_info = []
+    for img in imgs:
+        src = img.get("src") or img.get("data-src") or ""
+        alt = img.get("alt")
+        loading = img.get("loading")
+        width = img.get("width")
+        height = img.get("height")
+        img_info.append({
+            "src": src, "alt": alt, "loading": loading,
+            "has_wh": bool(width and height),
+            "is_webp": ".webp" in src.lower()
+        })
+    d["images_total"] = len(img_info)
+    d["images_missing_alt"] = sum(1 for i in img_info if i["alt"] is None)
+    d["images_empty_alt"] = sum(1 for i in img_info if i["alt"] == "")
+    d["images_no_wh"] = sum(1 for i in img_info if not i["has_wh"])
+    d["images_no_lazy"] = sum(1 for i in img_info if i["loading"] != "lazy")
+    d["images_webp"] = sum(1 for i in img_info if i["is_webp"])
+    d["images_non_webp_samples"] = [i["src"] for i in img_info if not i["is_webp"] and i["src"] and not i["src"].startswith("data:")][:5]
+
+    # links
+    links = soup.find_all("a")
+    internal = 0
+    external_no_blank = []
+    empty_href = 0
+    hash_href = 0
+    for a in links:
+        href = a.get("href")
+        text = a.get_text(strip=True)
+        if href is None:
+            empty_href += 1
+            continue
+        if href.strip() in ("", "#"):
+            hash_href += 1
+            continue
+        full = urljoin(BASE + url, href)
+        p = urlparse(full)
+        if p.netloc == "td-group.test-page.site":
+            internal += 1
+            target = p.path
+            all_internal_links[target].add(url)
+        elif p.scheme in ("http", "https"):
+            target_bl = a.get("target")
+            if target_bl != "_blank" and "line.me" not in p.netloc and "td-group.jp" not in p.netloc:
+                external_no_blank.append((text[:30], href[:60]))
+            elif target_bl != "_blank":
+                external_no_blank.append((text[:30], href[:60]))
+    d["links_total"] = len(links)
+    d["links_internal"] = internal
+    d["links_empty_href"] = empty_href
+    d["links_hash_href"] = hash_href
+    d["external_links_no_blank"] = external_no_blank[:10]
+
+    # tel links
+    tel_links = [a["href"] for a in links if a.get("href", "").startswith("tel:")]
+    d["tel_links"] = tel_links
+
+    # schema.org JSON-LD
+    schema_types = []
+    for script in soup.find_all("script", type="application/ld+json"):
+        try:
+            data = json.loads(script.string)
+            items = data if isinstance(data, list) else [data]
+            for item in items:
+                t = item.get("@type")
+                if t:
+                    schema_types.append(t)
+        except Exception as e:
+            schema_types.append(f"PARSE_ERROR")
+    d["schema_types"] = schema_types
+
+    # GTM / fonts / render blocking
+    html_lower = html.lower()
+    d["has_gtm"] = "googletagmanager.com/gtm.js" in html_lower
+    d["gtm_deferred"] = bool(re.search(r'gtm\.js[^"]*"\s*[^>]*(defer|async)', html_lower)) or "gtm-" in html_lower
+    d["google_fonts_no_swap"] = ("fonts.googleapis.com" in html) and ("display=swap" not in html)
+    d["fonts_preconnect"] = "fonts.gstatic.com" in html and 'rel="preconnect"' in html and "fonts.gstatic.com" in html
+
+    head = soup.find("head")
+    blocking_scripts = []
+    if head:
+        for s in head.find_all("script", src=True):
+            if not s.get("async") and not s.get("defer"):
+                blocking_scripts.append(s["src"][:80])
+    d["blocking_scripts_in_head"] = blocking_scripts[:10]
+
+    page_data[url] = d
+
+# duplicate title/description detection
+titles = defaultdict(list)
+descs = defaultdict(list)
+for url, d in page_data.items():
+    if "error" in d:
+        continue
+    if d.get("title"):
+        titles[d["title"]].append(url)
+    if d.get("description"):
+        descs[d["description"]].append(url)
+
+dup_titles = {t: urls for t, urls in titles.items() if len(urls) > 1}
+dup_descs = {t: urls for t, urls in descs.items() if len(urls) > 1}
+
+output = {
+    "page_data": page_data,
+    "dup_titles": dup_titles,
+    "dup_descs": dup_descs,
+}
+
+with open(os.path.join(PAGES_DIR, "_analysis.json"), "w", encoding="utf-8") as f:
+    json.dump(output, f, ensure_ascii=False, indent=2)
+
+print("Analysis complete. Pages analyzed:", len([1 for d in page_data.values() if "error" not in d]))
+print("Duplicate titles:", len(dup_titles))
+print("Duplicate descriptions:", len(dup_descs))
