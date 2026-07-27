@@ -65,7 +65,14 @@
       "Bash(pip3 list *)",
       "Bash(pip3 install *)",
       "Bash(cat)",
-      "Bash(python3 crop.py)"
+      "Bash(python3 crop.py)",
+      "Bash(mkdir -p final_images)",
+      "Bash(python3 batch_crop.py)",
+      "Bash(mkdir -p \"/Users/rina/Downloads/CMS操作マニュアル_HTML/images\")",
+      "Bash(cp /private/tmp/claude-501/-Users-rina--claude/a1800f82-0ef2-4232-9e2f-6941aea7e298/scratchpad/cms_manual/final_images/*.png \"/Users/rina/Downloads/CMS操作マニュアル_HTML/images/\")",
+      "Bash(which google-chrome chromium chromium-browser \"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" 2>/dev/null *)",
+      "Read(//Applications/Google Chrome.app/Contents/MacOS/**)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --no-sandbox --screenshot=shot_top.png --window-size=1400,2200 file:///Users/rina/Downloads/CMS操作マニュアル_HTML/index.html)"
     ]
   }
 }

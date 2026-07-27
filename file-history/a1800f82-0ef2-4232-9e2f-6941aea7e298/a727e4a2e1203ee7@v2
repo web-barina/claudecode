@@ -1,0 +1,2188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMS操作マニュアル｜登記情報提供サービス</title>
+<style>
+  :root{
+    --navy:#292f61;
+    --navy-light:#8592c9;
+    --teal:#0a8388;
+    --teal-light:#7bb2b2;
+    --gray-header:#d0d0d0;
+    --gray-header-2:#c9c9c9;
+    --border:#dcdde3;
+    --border-soft:#ececef;
+    --bg:#f5f6f9;
+    --card-bg:#ffffff;
+    --text:#22252f;
+    --text-soft:#565a68;
+    --orange:#e8622c;
+    --link:#2454b8;
+    --radius:10px;
+    --maxw:1320px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",-apple-system,BlinkMacSystemFont,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.7;
+    font-size:15px;
+  }
+  a{color:var(--link);}
+  img{max-width:100%;display:block;}
+
+  /* ---------- masthead ---------- */
+  .masthead{
+    background:linear-gradient(135deg,var(--navy),#3a4380);
+    color:#fff;
+    padding:36px 24px 28px;
+  }
+  .masthead .tag{
+    display:inline-block;
+    background:rgba(255,255,255,.16);
+    padding:4px 12px;
+    border-radius:999px;
+    font-size:12px;
+    letter-spacing:.05em;
+    margin-bottom:10px;
+  }
+  .masthead h1{margin:0 0 10px;font-size:clamp(24px,4vw,34px);}
+  .masthead .meta{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:13px;color:#d8dcf5;}
+  .masthead .meta b{color:#fff;font-weight:600;}
+
+  /* ---------- layout ---------- */
+  .layout{
+    max-width:var(--maxw);
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:250px 1fr;
+    gap:28px;
+    padding:28px 20px 80px;
+    align-items:start;
+  }
+  @media (max-width:900px){
+    .layout{grid-template-columns:1fr;}
+  }
+
+  /* ---------- TOC ---------- */
+  .toc{
+    position:sticky;
+    top:16px;
+    background:var(--card-bg);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:14px 6px;
+    max-height:calc(100vh - 32px);
+    overflow-y:auto;
+  }
+  .toc h2{
+    font-size:12px;
+    letter-spacing:.08em;
+    color:var(--text-soft);
+    margin:4px 14px 8px;
+    text-transform:uppercase;
+  }
+  .toc ul{list-style:none;margin:0;padding:0;}
+  .toc > ul > li{margin-bottom:2px;}
+  .toc a{
+    display:block;
+    padding:7px 14px;
+    border-radius:6px;
+    color:var(--text);
+    text-decoration:none;
+    font-size:13.5px;
+  }
+  .toc a:hover{background:var(--border-soft);}
+  .toc a.active{background:var(--navy);color:#fff;}
+  .toc .sub{list-style:none;margin:0 0 6px;padding:0 0 0 14px;}
+  .toc .sub a{font-size:12.5px;color:var(--text-soft);padding:5px 12px;}
+  .toc .num{
+    display:inline-block;
+    min-width:20px;
+    font-size:11px;
+    color:var(--teal);
+    font-weight:700;
+    margin-right:2px;
+  }
+
+  /* ---------- main content ---------- */
+  main{min-width:0;}
+
+  .section{
+    background:var(--card-bg);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    margin-bottom:22px;
+    overflow:hidden;
+    scroll-margin-top:16px;
+  }
+  .section-head{
+    background:var(--navy);
+    color:#fff;
+    padding:14px 22px;
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .section-head .no{
+    font-size:12px;
+    font-weight:700;
+    background:rgba(255,255,255,.18);
+    padding:2px 9px;
+    border-radius:5px;
+    letter-spacing:.04em;
+  }
+  .section-head h2{margin:0;font-size:19px;font-weight:700;}
+  .section-body{padding:22px;}
+
+  .subsection{margin-bottom:34px;}
+  .subsection:last-child{margin-bottom:0;}
+  .subsection-head{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    border-bottom:2px solid var(--teal);
+    padding-bottom:6px;
+    margin-bottom:16px;
+    flex-wrap:wrap;
+  }
+  .subsection-head .no{font-size:12px;color:var(--teal);font-weight:700;}
+  .subsection-head h3{margin:0;font-size:16px;}
+  .subsection-head .role-badges{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;}
+
+  .note-block{
+    background:#f4f6fb;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:10px 14px;
+    font-size:13.5px;
+    color:var(--text-soft);
+    margin:0 0 16px;
+  }
+  .note-block strong{color:var(--text);}
+
+  /* ---------- role badges ---------- */
+  .badge{
+    display:inline-block;
+    font-size:11.5px;
+    font-weight:700;
+    padding:3px 10px;
+    border-radius:5px;
+    color:#fff;
+    white-space:nowrap;
+  }
+  .badge.editor{background:#e8622c;}
+  .badge.primary{background:#e8622c;}
+  .badge.publisher{background:#e8622c;}
+  .badge.admin{background:#e8622c;}
+  .badge.common{background:#0a8388;}
+
+  /* ---------- shot-row: image + description ---------- */
+  .row{
+    display:flex;
+    gap:22px;
+    padding:16px 0;
+    border-top:1px solid var(--border-soft);
+    align-items:flex-start;
+  }
+  .row:first-of-type{border-top:none;padding-top:0;}
+  .row .shot{
+    flex:0 0 46%;
+    max-width:46%;
+    background:#f0f1f4;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:6px;
+  }
+  .row .shot img{border-radius:4px;}
+  .row .shot figcaption{
+    font-size:11.5px;
+    color:var(--text-soft);
+    text-align:center;
+    padding-top:4px;
+  }
+  .row .desc{flex:1;min-width:0;}
+  .row .desc h4{margin:0 0 8px;font-size:14.5px;}
+  .row.stack{flex-direction:column;}
+  .row.stack .shot{max-width:100%;flex-basis:auto;}
+  .row.no-shot .desc{flex:1;}
+  @media (max-width:760px){
+    .row{flex-direction:column;}
+    .row .shot{max-width:100%;flex-basis:auto;}
+  }
+
+  .desc ol.callouts{margin:0 0 10px;padding-left:1.3em;}
+  .desc ol.callouts > li{margin-bottom:6px;}
+  .desc ul.plain{margin:0 0 10px;padding-left:1.3em;}
+  .desc ul.plain > li{margin-bottom:4px;}
+  .desc p{margin:0 0 10px;}
+  .desc p:last-child{margin-bottom:0;}
+  .desc .sub-label{
+    display:inline-block;
+    font-weight:700;
+    font-size:12.5px;
+    background:var(--teal-light);
+    color:#06393b;
+    padding:1px 8px;
+    border-radius:4px;
+    margin:10px 0 6px;
+  }
+
+  /* ---------- generic tables ---------- */
+  .table-wrap{overflow-x:auto;margin-bottom:16px;}
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+  }
+  table caption{text-align:left;font-weight:700;margin-bottom:6px;}
+  th,td{
+    border:1px solid var(--border);
+    padding:8px 10px;
+    text-align:left;
+    vertical-align:top;
+  }
+  thead th{
+    background:var(--navy);
+    color:#fff;
+    font-weight:600;
+    white-space:nowrap;
+  }
+  tbody tr:nth-child(even){background:#f7f8fb;}
+  table.compact td, table.compact th{padding:6px 8px;font-size:12.8px;}
+  td ol.compact-list{margin:8px 0 0;padding-left:1.2em;font-size:12.5px;}
+  td ol.compact-list > li{margin-bottom:3px;}
+
+  /* revision history */
+  table.revision td:first-child, table.revision th:first-child{text-align:center;white-space:nowrap;}
+  table.revision td:nth-child(2){white-space:nowrap;}
+
+  /* parts catalog */
+  .parts-group{margin-bottom:30px;}
+  .parts-group:last-child{margin-bottom:0;}
+  .parts-group-title{
+    background:var(--teal);
+    color:#fff;
+    padding:8px 16px;
+    border-radius:6px 6px 0 0;
+    font-weight:700;
+    font-size:14px;
+  }
+  .part-card{
+    border:1px solid var(--border);
+    border-top:none;
+    padding:16px;
+  }
+  .parts-group .part-card:last-child{border-radius:0 0 8px 8px;}
+  .part-card .part-head{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:10px;
+  }
+  .part-card .part-icon{
+    font-size:11px;
+    font-weight:700;
+    background:var(--navy);
+    color:#fff;
+    padding:3px 9px;
+    border-radius:4px;
+  }
+  .part-card .part-name{font-weight:700;font-size:14.5px;}
+  .part-card .part-sub{color:var(--text-soft);font-size:12.5px;}
+  .part-card .includes{
+    margin-top:10px;
+    font-size:12.8px;
+    background:#f4f6fb;
+    border-radius:6px;
+    padding:8px 12px;
+  }
+  .part-card .includes b{display:block;margin-bottom:3px;}
+
+  /* TOC page anchor targets get a little top margin for sticky offset */
+  .anchor-target{scroll-margin-top:14px;}
+
+  footer.page-footer{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 20px 60px;
+    color:var(--text-soft);
+    font-size:12.5px;
+  }
+
+  .maint-note{
+    background:#fff7e8;
+    border:1px solid #f0d59a;
+    color:#6b4c00;
+    border-radius:8px;
+    padding:12px 16px;
+    font-size:13px;
+    margin-bottom:20px;
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <span class="tag">登記情報提供サービス</span>
+  <h1>CMS操作マニュアル</h1>
+  <div class="meta">
+    <span>作成者：<b>株式会社Jストリーム・株式会社readytowork</b></span>
+    <span>作成日：<b>2026年1月30日</b></span>
+    <span>現在のバージョン：<b id="doc-version">6</b></span>
+    <span>最終更新日：<b id="doc-updated">2026年6月29日</b></span>
+  </div>
+</header>
+
+<div class="layout">
+<!-- TOC:START -->
+<nav class="toc" aria-label="目次">
+  <h2>目次</h2>
+  <ul id="toc-list">
+    <li><a href="#revision"><span class="num">-</span>更新履歴</a></li>
+    <li><a href="#s01"><span class="num">01</span>ログイン</a>
+      <ul class="sub"><li><a href="#s01-01">01-01 パスワードを忘れたら</a></li></ul>
+    </li>
+    <li><a href="#s02"><span class="num">02</span>ダッシュボード</a></li>
+    <li><a href="#s03"><span class="num">03</span>更新</a>
+      <ul class="sub"><li><a href="#s03-01">03-01 サイト設定</a></li></ul>
+    </li>
+    <li><a href="#s04"><span class="num">04</span>お知らせ作成の流れ</a>
+      <ul class="sub"><li><a href="#s04-01">04-01 パーツ一覧</a></li></ul>
+    </li>
+    <li><a href="#s05"><span class="num">05</span>共通仕様について</a></li>
+    <li><a href="#s06"><span class="num">06</span>固定ページ作成の流れ</a></li>
+    <li><a href="#s07"><span class="num">07</span>メディアライブラリ</a></li>
+    <li><a href="#s08"><span class="num">08</span>外観</a></li>
+    <li><a href="#s09"><span class="num">09</span>プラグイン</a></li>
+    <li><a href="#s10"><span class="num">10</span>ユーザー一覧</a>
+      <ul class="sub">
+        <li><a href="#s10-01">10-01 プロフィール</a></li>
+        <li><a href="#s10-02">10-02 ユーザーの追加の仕方</a></li>
+      </ul>
+    </li>
+    <li><a href="#s11"><span class="num">11</span>設定</a>
+      <ul class="sub">
+        <li><a href="#s11-01">11-01 投稿設定・表示設定</a></li>
+        <li><a href="#s11-02">11-02 ディスカッション</a></li>
+        <li><a href="#s11-03">11-03 メディア・パーマリンク</a></li>
+      </ul>
+    </li>
+    <li><a href="#s12"><span class="num">12</span>エラー対処</a></li>
+    <li><a href="#s13"><span class="num">13</span>WP制御一覧</a></li>
+  </ul>
+</nav>
+<!-- TOC:END -->
+
+<main>
+<section class="section anchor-target" id="revision">
+  <div class="section-head"><span class="no">履歴</span><h2>更新履歴</h2></div>
+  <div class="section-body">
+    <div class="maint-note">改修のたびに、この表の一番下に行を追加してください（バージョン番号は連番、発行日は改修日）。</div>
+    <div class="table-wrap">
+      <table class="revision">
+        <thead><tr><th>Ver.</th><th>発行日</th><th>更新内容</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>2026年1月30日</td><td>初稿</td></tr>
+          <tr><td>2</td><td>2026年2月5日</td><td>
+            03-01サイト設定｜ログインボタンの表示<br>
+            04-01 パーツ一覧｜テーブルパーツの仕様追記
+          </td></tr>
+          <tr><td>3</td><td>2026年2月18日</td><td>
+            04-01パーツ一覧｜画像-Gutenbergの仕様と公開時は本来の画像サイズで出力される旨を追記<br>
+            04-01パーツ一覧｜リスト-誤字修正<br>
+            05 お知らせと固定ページの共通仕様｜リビジョン機能の説明を追記
+          </td></tr>
+          <tr><td>4</td><td>2026年5月22日</td><td>
+            04-01 パーツ一覧｜リストパーツの太字・下線の変更を追記<br>
+            04-01 パーツ一覧｜テーブルパーツの機能追加と修正を追記<br>
+            04-01 パーツ一覧｜画像サイズ制御UIの削除に伴う記載の削除<br>
+            07 メディア｜メディアファイルの削除制限ルールの追記<br>
+            13 WP制御一覧ページを追加
+          </td></tr>
+          <tr><td>5</td><td>2026年6月3日</td><td>表紙｜現在の版番と更新日の記載を追記</td></tr>
+          <tr><td>6</td><td>2026年6月29日</td><td>
+            03-01サイト設定｜レイアウト指定(左寄せ、中央寄せ、右寄せ)について追記<br>
+            04-01パーツ一覧｜テーブルパーツの仕様追記（リリース日未確定）
+          </td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section anchor-target" id="s01">
+  <div class="section-head"><span class="no">01</span><h2>ログイン</h2></div>
+  <div class="section-body">
+    <div class="row">
+      <figure class="shot"><img src="images/p004.png" alt="ログイン画面"></figure>
+      <div class="desc">
+        <h4>ログイン方法</h4>
+        <ol class="callouts">
+          <li>登録されているユーザー名またはメールアドレスを入力してください。</li>
+          <li>登録されているパスワードを入力してください。<br>
+            ※目のマークを押すと入力しているパスワードが確認できます。もう一度目のマークを押すとパスワードが隠れます。</li>
+          <li>「ログイン状態を保存する」にチェックを入れると、ユーザー名（もしくはメールアドレス）とパスワードが2週間保存されます。ログインが簡単になります。</li>
+          <li>ログインボタンです。ユーザー名（もしくはメールアドレス）とパスワードが合っていれば管理画面に入れます。</li>
+          <li>パスワードをお忘れの際は、こちらをクリックして手続きを行ってください。→ <a href="#s01-01">01-01 パスワードを忘れたら</a> を参照。</li>
+          <li>サイトのトップページへ戻ります。</li>
+          <li>日本語と英語の切り替えができます。</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section anchor-target" id="s01-01">
+  <div class="section-head"><span class="no">01-01</span><h2>パスワードを忘れたら</h2></div>
+  <div class="section-body">
+    <div class="row">
+      <figure class="shot"><img src="images/p005.png" alt="パスワードを忘れたら画面"></figure>
+      <div class="desc">
+        <h4>パスワード設定の仕方</h4>
+        <ol class="callouts">
+          <li>登録しているユーザー名、またはメールアドレスを入力してください。</li>
+          <li>「新しいパスワードを取得」をクリックすると、登録しているメールアドレスに、パスワード再登録の通知が届きます。</li>
+        </ol>
+        <p>メールの内容に従って、パスワードの再設定を行ってください。</p>
+        <p class="sub-label">その他説明</p>
+        <ol class="callouts" start="4">
+          <li>ログイン画面に戻ります。</li>
+          <li>サイトを表示します。</li>
+          <li>日本語と英語の切り替えができます。</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section anchor-target" id="s02">
+  <div class="section-head"><span class="no">02</span><h2>ダッシュボード</h2></div>
+  <div class="section-body">
+    <div class="row">
+      <figure class="shot"><img src="images/p006.png" alt="ダッシュボード画面"></figure>
+      <div class="desc">
+        <p class="sub-label">① ビルドサーバーの健全性ステータス</p>
+        <p>サイトを稼働させている仮想サーバーの状態を確認できます。本システムは、以下のサーバー／ミドルウェア上で動作しています。</p>
+        <ul class="plain"><li>Express.js</li><li>PM2</li><li>Next.js</li></ul>
+        <p>いずれかのサーバーの稼働状況が<strong>無効</strong>となった場合は、システム開発会社へご連絡ください。</p>
+        <ul class="plain">
+          <li>最終確認日時：最後にサーバーの状態を確認した時刻</li>
+          <li>次回確認日時：次にサーバーの状態を確認する予定時刻</li>
+        </ul>
+        <p><strong>【使い方】</strong><br>
+        ・「再確認」ボタン：今すぐサーバーの状態を確認したい時に押します<br>
+        ・「サイト全体を再構築」ボタン：サイトに問題が発生した時に、サイト全体を作り直します<br>
+        ※「サイト全体を再構築」は、サイトに不具合がある時以外は押さないでください。</p>
+        <p class="sub-label">② 最新のイベント（wp activity log）</p>
+        <p>各ユーザーの動きが表示されます。（ログイン状況、お知らせの編集状況など）</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <figure class="shot"><img src="images/p007.png" alt="権限ごとのサイドバー比較"></figure>
+      <div class="desc">
+        <h4>サイドバー（権限別の表示）</h4>
+        <p>サイドバーは権限により、表示されるものが変わります（編集者／一次承認者／公開承認者／運用管理者）。</p>
+        <ul class="plain">
+          <li><strong>更新</strong>：プラグインの更新について確認ができます</li>
+          <li><strong>サイト設定</strong>：サイト設定へ移動</li>
+          <li><strong>お知らせ</strong>：お知らせを投稿する際に使います</li>
+          <li><strong>メディア</strong>：画像やファイルの保管場所です</li>
+          <li><strong>固定ページ</strong>：サイトの見た目の設定です。編集する必要はありません</li>
+          <li><strong>外観</strong>：サイトの見た目の設定です。編集する必要はありません</li>
+          <li><strong>プラグイン</strong>：使用されているプラグインを確認できます</li>
+          <li><strong>ユーザー</strong>：ユーザーの編集、追加、削除の際に使います</li>
+          <li><strong>設定</strong>：サイトの設定を確認できます</li>
+          <li><strong>メニューを閉じる</strong>：サイドバーを閉じることができます。もう一度クリックすると開くことができます</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section anchor-target" id="s03">
+  <div class="section-head"><span class="no">03</span><h2>更新</h2></div>
+  <div class="section-body">
+    <div class="row">
+      <figure class="shot"><img src="images/p008.png" alt="WordPressの更新画面"></figure>
+      <div class="desc">
+        <p>WordPressの更新を管理するページです。</p>
+        <p>特に編集する必要はございません。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section anchor-target" id="s03-01">
+  <div class="section-head"><span class="no">03-01</span><h2>サイト設定</h2></div>
+  <div class="section-body">
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">サイト設定</span><h3>メンテナンス日時の登録</h3></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p009.png" alt="サイト設定 メンテナンス日時登録"></figure>
+        <div class="desc">
+          <p>メンテナンスの日時を設定できます。</p>
+          <ol class="callouts">
+            <li>「行を追加」をクリックします。</li>
+            <li>追加された行に、メンテナンス開始日時、終了日時を入力します。備考はWeb上に公開されます。サービスを利用できない時間帯に伴う備考テキストの自由入力欄も追加できます。</li>
+            <li>左寄せ、中央寄せ、右寄せを選択すると、それぞれ反映されます。デフォルトは左寄せです。</li>
+            <li>更新ボタンをクリックします。</li>
+          </ol>
+          <p>設定した時間外はサイト側の「ログイン」ボタン、「同意」ボタンが無効化されます。</p>
+          <p><strong>【サイトでの表示】</strong>メンテナンス情報のページに、管理画面で登録した時間が表示されます。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">サイトでの表示</span><h3>ログインボタンの表示（メンテナンス時間・営業時間との関係）</h3></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p010.png" alt="トップバナー下・各申し込みページの表示"></figure>
+        <div class="desc">
+          <p><strong>・トップバナーの下</strong><br>
+          「法人・公共機関向け 請求書WEB配信サービス」のログインボタンはメンテナンス時間や営業時間に影響することがございません。こちらのログインボタンは24時間有効のままで、いつでも利用することができます。</p>
+          <p><strong>・各申し込みページ</strong><br>
+          時間外では、各申し込みボタンが「利用時間外」に変わり、申し込みができなくなります。ログインボタンは有効のままで、ログインすることができます。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">サイト設定</span><h3>サービスを利用できない登記情報</h3></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p011.png" alt="サービスを利用できない登記情報の設定"></figure>
+        <div class="desc">
+          <p>サービスを利用できない登記情報の開始日時から終了日時を設定できます。</p>
+          <ol class="callouts">
+            <li>「行を追加」をクリックします。</li>
+            <li>追加された行に、開始日時、終了日時を入力します。</li>
+            <li>サービスを利用できない登記情報を入力します。</li>
+            <li>左寄せ、中央寄せ、右寄せを選択すると、それぞれ反映されます。デフォルトは左寄せです。</li>
+          </ol>
+          <p>画面右上の更新ボタンをクリックして入力内容を保存します。<br>※ログイン制御の設定ではありません。</p>
+          <p><strong>【サイトでの表示】</strong>設定をすると、サイト上のメンテナンスページに追加された情報が表示されます。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">サイト設定</span><h3>TOPページ設定（メインビジュアル）</h3></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p012.png" alt="TOPページ設定 メインビジュアル"></figure>
+        <div class="desc">
+          <p><strong>【サイトでの表示】</strong>トップのバナー自体を削除することはできません。初期設定は既定の画像になります。</p>
+          <ol class="callouts">
+            <li>「画像を追加」ボタンをクリックし、画像を追加します。</li>
+            <li>リンク先：リンクを設定する場合は、URLを入力してください。画像のみ表示の場合、URLは不要です。</li>
+            <li>自動再生秒数：初期設定は3秒です。画像ごとに表示時間を設定することができます。任意の時間を入力することで、時間の調整を行えます。入力はmsでお願いします。（例：5秒表示→5000と入力）</li>
+            <li>altテキスト：画像の説明のテキストを入力してください。</li>
+            <li>ステータス：表示・非表示を選択してください。表示を選択した画像のみ表示されます。</li>
+            <li>行を追加：画像を追加する時にクリックします。</li>
+            <li>「＋」「－」マーク：「＋」は⑥と同様に新規行が追加される。「－」は選択した画像を削除することができます。</li>
+            <li>複製マーク：表の上にカーソルを合わせ、シフトキーを押すと、複製マークが表示される。選択した画像を複製することができます。</li>
+            <li>更新をクリックすると、保存されます。</li>
+          </ol>
+        </div>
+      </div>
+      <div class="row">
+        <figure class="shot"><img src="images/p013.png" alt="サイトでのメインビジュアル表示"></figure>
+        <div class="desc">
+          <p><strong>【サイトでの表示】</strong></p>
+          <ol class="callouts">
+            <li>登録した画像の枚数が表示されます。1行8つまで表示され、9つ目以降は2行目に表示されます。</li>
+            <li>スライダー再生・停止ボタン：初期設定では自動で画像が切り替わります。ボタンを押すことで停止できます。</li>
+            <li>前の画像に切り替わります。</li>
+            <li>次の画像に切り替わります。</li>
+          </ol>
+          <p>画像が1枚のみ登録されている時は固定表示、2枚以上登録されている時はスライダーで表示されます。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">サイト設定</span><h3>関連サイト登録の仕方 / オプションページ</h3></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p014.png" alt="関連サイト登録の仕方・オプションページ"></figure>
+        <div class="desc">
+          <p class="sub-label">関連サイト登録の仕方</p>
+          <ol class="callouts">
+            <li>「行を追加」をクリックします。</li>
+            <li>「画像を追加」をクリックし、画像を追加します。</li>
+            <li>「リンク先」にリンクを入力してください。</li>
+            <li>「altテキスト」には、リンク先のタイトルを入力してください。※画面右上の「更新」をクリックし、反映させてください。</li>
+            <li>左寄せ、中央寄せ、右寄せを選択すると、それぞれ反映されます。デフォルトは左寄せです。</li>
+          </ol>
+          <p><strong>【サイトでの表示】</strong>1行5つまで横並びで表示されます。6つ目以降は2行目に表示されます。</p>
+          <p class="sub-label">オプションページ</p>
+          <ol class="callouts">
+            <li>トークンの有効期限：固定ページとお知らせのプレビューリンクの有効期限を設定することができます。初期設定は発行してから2日間(2,880分)です。任意の時間を入力し、更新ボタン（③）をクリックすることで変更できます。時間の変更後に発行されたプレビューリンクから、時間が反映されます。</li>
+            <li>お知らせ一覧件数/ページ：サイトの表示件数に反映されます。任意の数字を入力し、更新ボタン（③）をクリックしてください。</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section anchor-target" id="s04">
+  <div class="section-head"><span class="no">04</span><h2>お知らせ作成の流れ</h2></div>
+  <div class="section-body">
+
+    <div class="subsection">
+      <div class="subsection-head">
+        <span class="no">1. 画面名：お知らせ一覧</span><h3>お知らせ一覧の基本操作</h3>
+        <div class="role-badges"><span class="badge common">共通項目</span></div>
+      </div>
+      <div class="row">
+        <figure class="shot"><img src="images/p015.png" alt="お知らせ一覧画面"></figure>
+        <div class="desc">
+          <ol class="callouts">
+            <li>左メニューの「お知らせ」をクリックすると、お知らせ一覧画面が表示されます。</li>
+            <li>「投稿を追加」をクリックすると、新しいお知らせ作成画面へ遷移します。</li>
+            <li>検索ボックスにキーワードを入力し、「投稿を検索」をクリックすると、お知らせを検索することができます。</li>
+            <li>「すべて」はデフォルト表示となっており、「すべてのお知らせ」が一覧表示されます。</li>
+            <li>「公開済み」をクリックすると、公開済みのお知らせを一覧表示することができます。</li>
+            <li>「下書き」をクリックすると、下書き状態のお知らせを一覧表示します。</li>
+            <li>「一次承認待ち」をクリックすると、一次承認待ちのお知らせを一覧表示します。</li>
+            <li>「ゴミ箱」をクリックすると、削除済みのお知らせを一覧表示します。</li>
+            <li>「公開承認待ち」をクリックすると、公開承認待ちのお知らせを一覧表示します。</li>
+            <li>「公開待ち」をクリックすると、公開待ち状態のお知らせを一覧表示します。</li>
+            <li>「編集中」をクリックすると、公開中のページに対して次回更新用の下書き（V2）が作成中の一覧を表示します。</li>
+          </ol>
+          <p>※④〜⑪の状態について、該当する状態のお知らせが存在しない場合は、該当項目は表示されません。</p>
+        </div>
+      </div>
+      <div class="row">
+        <figure class="shot"><img src="images/p016.png" alt="お知らせ一覧の状態欄・操作メニュー"></figure>
+        <div class="desc">
+          <ol class="callouts">
+            <li>「すべての日付」を選択すると、日付条件を指定してお知らせを検索することができます。</li>
+            <li>お知らせをチェックボックスで選択すると、一括操作（ゴミ箱へ移動等）を行えます。</li>
+            <li>お知らせタイトルにマウスを合わせると、編集・ゴミ箱へ移動（所有者かつ未公開の場合のみ）・複製・公開前プレビューの操作を選択できます。</li>
+            <li>お知らせカテゴリを選択すると、カテゴリ別にお知らせを検索することができます。</li>
+            <li>「絞り込み」ボタンをクリックして、日付・カテゴリの検索条件を適用します。</li>
+            <li>状態欄では、お知らせの現在の状態（下書き保存中、差し戻し、公開中／V2下書き保存中）を確認することができます。</li>
+            <li>「差し戻し」は、承認者から修正依頼が返されている状態を示します。</li>
+            <li>「下書き保存中」は、編集者が作成中で承認依頼前の状態を示します。</li>
+            <li>「公開中／V2下書き保存中」は、公開中のお知らせに次回更新用の下書きが存在する状態を示します。</li>
+            <li>一次承認の状態欄では、一次承認者による承認・差し戻し状況および日時を確認します。</li>
+            <li>公開承認の状態欄では、公開承認者による承認状況および更新日時を確認します。</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head">
+        <span class="no">2. 画面名：お知らせ作成画面</span><h3>お知らせの新規作成</h3>
+        <div class="role-badges"><span class="badge editor">編集者</span></div>
+      </div>
+      <div class="row">
+        <figure class="shot"><img src="images/p017.png" alt="お知らせ作成画面"></figure>
+        <div class="desc">
+          <ol class="callouts">
+            <li>クリックすると本文に各種パーツを挿入できます。※使用可能なパーツの詳細は <a href="#s04-01">「パーツ一覧」</a> をご参照ください。</li>
+            <li>お知らせのカテゴリを選択します。未選択の場合は「通常のお知らせ/カテゴリーなし」として登録されます。※「緊急」「重要」「メンテナンス」も選択できます。<br>
+              ※カテゴリに「メンテナンス」を設定した場合でも、承認までの流れは「通常のお知らせ」と同一です。ただし、ホームページのトップページまたはお知らせ一覧で該当のお知らせタイトルをクリックすると、メンテナンス画面へ遷移します。</li>
+            <li>お知らせの公開申請に関する補足・コメントエリアです。※下書き保存前に入力してもテキストは保存できません。</li>
+            <li>お知らせの公開日時（日時・時刻）を設定します。過去または未来の日時を指定できます。未来の日時を指定した場合は、予約投稿として扱われ、公開承認後、指定した日時に自動で公開されます。</li>
+            <li>お知らせページのスラッグを指定することができます。※自動的に投稿IDが付与されるため、基本的に変更の必要はございません。</li>
+            <li>タイトルおよび本文を入力すると、「下書き保存」ボタンが有効になります。</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head">
+        <span class="no">2.1 画面名：お知らせ作成・編集・承認申請</span><h3>下書き保存後の操作</h3>
+        <div class="role-badges"><span class="badge editor">編集者</span></div>
+      </div>
+      <div class="row">
+        <figure class="shot"><img src="images/p018.png" alt="お知らせ作成・編集・承認申請画面"></figure>
+        <div class="desc">
+          <p>「下書き保存」ボタンクリック後に行える操作は以下のとおりです。</p>
+          <ol class="callouts">
+            <li>「プレビュー」をクリックすると、作成中のお知らせを新しいタブで確認します。</li>
+            <li>承認依頼コメントを入力します。</li>
+            <li>「レビューを依頼」をクリックすると承認依頼を送信します。※カテゴリが「緊急」の場合は、一次承認者を経由せず、直接「公開承認者」へ送信されます。※依頼処理が完了すると次の承認者（該当する権限者全員）にメールにてお知らせします。</li>
+            <li>「保存」をクリックすると、レビュー依頼を行わず下書きとして保存します。</li>
+            <li>「ゴミ箱へ移動」をクリックすると、WordPress標準のゴミ箱機能によりゴミ箱に移動します。</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head">
+        <span class="no">3. 画面名：一次承認者お知らせ承認待ち一覧</span><h3>承認待ち一覧</h3>
+        <div class="role-badges"><span class="badge primary">一次承認者</span></div>
+      </div>
+      <div class="row">
+        <figure class="shot"><img src="images/p019.png" alt="一次承認者お知らせ承認待ち一覧"></figure>
+        <div class="desc">
+          <ol class="callouts">
+            <li>一次承認者でログインし、一次承認待ちのお知らせが存在する場合、一覧画面には「一次承認待ち」のお知らせがデフォルトで表示されます。</li>
+            <li>お知らせタイトルにマウスを合わせると、編集、複製、プレビューの操作が表示されます。</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head">
+        <span class="no">3.1 画面名：一次承認者お知らせ承認画面</span><h3>承認・差し戻し操作</h3>
+        <div class="role-badges"><span class="badge primary">一次承認者</span></div>
+      </div>
+      <div class="row">
+        <figure class="shot"><img src="images/p020.png" alt="一次承認者お知らせ承認画面"></figure>
+        <div class="desc">
+          <ol class="callouts">
+            <li>お知らせの内容を確認し、必要に応じて内容を直接一次承認者が修正するか、差し戻しを行うか、承認するかの判断をします。</li>
+            <li>次の承認者（公開承認者）へのレビュー依頼メッセージ、または編集者への差し戻し理由を入力します。</li>
+            <li>公開日時を確認・変更・設定します。</li>
+            <li>お知らせのプレビュー画面を表示します。</li>
+            <li>内容修正が必要な場合、「差し戻し」をクリックして編集者へ戻します。※クリック後、処理が正常に完了しますと、編集者宛にメール通知されます。</li>
+            <li>内容を承認し、「公開承認者」へ承認依頼を送信します。※クリック後、処理が正常に完了しますと、承認依頼について公開承認者宛にメール通知されます。</li>
+            <li>承認履歴を展開し、作成履歴、承認依頼/却下メモ、状態更新日時を確認します。</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head">
+        <span class="no">4. 画面名：公開承認者お知らせ承認待ち一覧</span><h3>承認待ち一覧</h3>
+        <div class="role-badges"><span class="badge publisher">公開承認者</span></div>
+      </div>
+      <div class="row">
+        <figure class="shot"><img src="images/p021.png" alt="公開承認者お知らせ承認待ち一覧"></figure>
+        <div class="desc">
+          <ol class="callouts">
+            <li>公開承認者でログインし、公開承認待ちのお知らせが存在する場合、一覧画面には「公開承認待ち」のお知らせがデフォルトで表示されます。</li>
+            <li>お知らせタイトルにマウスを合わせると、編集、複製、ゴミ箱へ移動（所有者かつ未公開の場合のみ）、プレビューの操作が表示されます。</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head">
+        <span class="no">4.1 公開承認者お知らせ詳細承認画面</span><h3>公開承認・差し戻し操作</h3>
+        <div class="role-badges"><span class="badge publisher">公開承認者</span></div>
+      </div>
+      <div class="row">
+        <figure class="shot"><img src="images/p022.png" alt="公開承認者お知らせ詳細承認画面"></figure>
+        <div class="desc">
+          <ol class="callouts">
+            <li>お知らせの内容を確認し、必要に応じて内容を直接公開承認者が修正するか、差し戻しを行うか、承認するか、いずれかの判断を行ってください。</li>
+            <li>差し戻し発生時、一次承認者への差し戻し理由を入力します。</li>
+            <li>公開日時を確認・変更・設定します。</li>
+            <li>お知らせのプレビュー画面を表示します。</li>
+            <li>内容の修正が必要な場合、「差し戻し」をクリックして一次承認者へ戻します。※クリック後、処理が正常に完了しますと、一次承認者宛に差し戻しのメールが通知されます。</li>
+            <li>内容を承認し、「公開待ち」から「公開」として本番公開ができる状態にします。※クリック後、処理が正常に完了しますと、公開ステータスについて、記事の作成者宛にメール通知されます。</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section anchor-target" id="s04-01">
+  <div class="section-head"><span class="no">04-01</span><h2>パーツ一覧</h2></div>
+  <div class="section-body">
+    <div class="maint-note">パーツを追加・仕様変更したら、対応する <span class="part-icon" style="background:var(--teal)">グループ</span> の中に <code>.part-card</code> を1枚追加するだけで表として揃います。新しいグループを作る場合は <code>.parts-group-title</code> ブロックごと複製してください。</div>
+
+    <div class="parts-group" id="parts-heading">
+      <div class="parts-group-title">見出し</div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p023.png" alt="見出しパーツ H1〜H4"></figure>
+          <div class="desc">
+            <div class="part-head"><span class="part-icon">H1</span><span class="part-name">h1（大見出し）</span></div>
+            <p><strong>【使い方】</strong>「タイトルを入力してください」を一度クリックした後に、入力してください。</p>
+            <div class="part-head"><span class="part-icon">H2</span><span class="part-name">h2（中見出し）</span></div>
+            <p><strong>【使い方】</strong>「h2(中見出し)」を一度クリックした後に、入力してください。</p>
+            <div class="part-head"><span class="part-icon">H3</span><span class="part-name">h3（小見出し）</span></div>
+            <p><strong>【使い方】</strong>「タイトルを入力してください」を一度クリックした後に、入力してください。</p>
+            <div class="part-head"><span class="part-icon">H4</span><span class="part-name">h4（小々見出し）</span></div>
+            <p><strong>【使い方】</strong>「タイトルを入力してください」を一度クリックした後に、入力してください。</p>
+            <div class="includes"><b>このパーツの中に入れられるパーツ</b>追加できるパーツはございません（H1〜H4 共通）。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="parts-group" id="parts-media">
+      <div class="parts-group-title">メディア</div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p024.png" alt="画像パーツ"></figure>
+          <div class="desc">
+            <div class="part-head"><span class="part-icon">画像</span><span class="part-name">画像</span></div>
+            <ol class="callouts">
+              <li>画像をアップロードします。「アップロード」…デバイス内にある画像を選択します／「メディアライブラリ」…WordPressのメディアに入っている画像から選択します／「URLから挿入」…画像のURLを入力すると反映されます。<br>
+                ※外部サイトの画像URLを登録する場合は、外部サイトの画像が削除されるなど予期せぬリンク切れが起こる可能性があるため、十分にご注意ください。<br>
+                ※公開時は画像の本来サイズ（width／height）で出力。※Gutenberg上でのサイズ変更はできません。尚、画像の横幅の最大値は「max-width 700px」となります。</li>
+              <li>画像が反映された後、リンクボタンをクリックします。</li>
+            </ol>
+            <div class="includes"><b>このパーツの中に入れられるパーツ</b>追加できるパーツはございません。</div>
+          </div>
+        </div>
+      </div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p025.png" alt="リンク付き画像パーツ"></figure>
+          <div class="desc">
+            <div class="part-head"><span class="part-icon">リンク付き画像</span><span class="part-name">リンク付き画像</span></div>
+            <ol class="callouts">
+              <li>画像をアップロードします。「アップロード」…パソコンにある画像を選択します／「メディアライブラリ」…WordPressのメディアに入っている画像から選択します／「URLから挿入」…画像のURLを入力すると反映されます。※外部サイトの画像URLを登録する場合は、予期せぬリンク切れが起こる可能性があるため十分にご注意ください。</li>
+              <li>画像が反映された後、リンクボタンをクリックします。</li>
+              <li>「URLをペーストまたは入力して検索」の枠にURLを入力します。</li>
+            </ol>
+            <div class="includes"><b>このパーツの中に入れられるパーツ</b>追加できるパーツはございません。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="parts-group" id="parts-list">
+      <div class="parts-group-title">リスト</div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p026.png" alt="リストの使い方（共通）"></figure>
+          <div class="desc">
+            <p class="sub-label">使い方｜リスト共通</p>
+            <p><strong>ー同階層にリストを作る場合ー</strong></p>
+            <ol class="callouts">
+              <li>リストの外側(グレーの線)をクリックすると右側に「＋」マークが表示されます。</li>
+              <li>すぐ下に同じマークのリストが追加されます。(数字の場合は連番)</li>
+              <li>「リスト項目のテキスト」を一度クリックした後に、テキストを入力してください。3つ目以降も同様の手順です。</li>
+            </ol>
+            <p><strong>ーリストの中にリストを作る場合ー</strong></p>
+            <ol class="callouts">
+              <li>「リスト項目のテキスト」をクリックすると下に「＋」マークが表示されます。</li>
+              <li>「＋」マークをクリックすると、リスト一覧が出てくるので、使いたいリストを選択します。</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p027.png" alt="番号リストで途中の番号から使いたい場合"></figure>
+          <div class="desc">
+            <p><strong>ー番号リストで途中の番号から使いたい場合ー</strong></p>
+            <p>対象のパーツ：リスト「（１）」、リスト「1.」、リスト「※1」、リスト「ア」、リスト「※1・」</p>
+            <ol class="callouts">
+              <li>リストの外側(グレーの線)をクリックすると右側に「＋」マークが表示されます。</li>
+              <li>すぐ下に同じマークのリストが追加されます。※表示させたい番号のリストにテキストを入力してください。※2つ目から入力すると2番から表示されます。</li>
+              <li>サイトでは入力された番号のみ表示されます。</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p028.png" alt="余白調整・色の変換／リストの装飾"></figure>
+          <div class="desc">
+            <p><strong>ー余白調整・色の変換ー</strong></p>
+            <ol class="callouts">
+              <li>リストの外側(グレーの線)をクリックし、画面右側の「ブロック」をクリックすると、設定パネルが表示されます。</li>
+              <li>ブロック上部余白：リストの上部の余白を選択できます。</li>
+              <li>行間余白：リスト同士の余白を選択できます。</li>
+              <li>リスト色：リストのテキストの色を変更できます。初期状態は黒です。選択すると、赤色に変更することができます。</li>
+            </ol>
+            <p><strong>ーリストの装飾ー</strong></p>
+            <ol class="callouts">
+              <li>テキストを入力し、テキストをドラッグして選択します。</li>
+              <li>太字：クリックすると、太字になります。</li>
+              <li>下線：テキスト下部に線が入り、下線が表示されます。こちらはリストの番号まで線が入りません。また、選択した一部分のテキストのみに下線・太字の装飾も可能です。</li>
+              <li>打ち消し線：テキスト中心に線が入り、打ち消し線が表示されます。こちらはリストの番号まで線が入りません。</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p029.png" alt="右側ブロックでの下線・太字設定"></figure>
+          <div class="desc">
+            <p>右側ブロックでも下線と太字の設定ができます。</p>
+            <ul class="plain">
+              <li>下線設定の項目：なし／項目全体に下線をつける</li>
+              <li>太字設定の項目：なし／項目全体を太字にする</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p030.png" alt="リスト「※」「※1」「・」「ア」"></figure>
+          <div class="desc">
+            <p><span class="part-icon">リスト「※」</span> 実際に表示：※リスト※が入ります</p>
+            <p><span class="part-icon">リスト「※1」</span> 実際に表示：※1 リスト※1が入ります</p>
+            <p><span class="part-icon">リスト「・」</span> 実際に表示：・リスト・が入ります</p>
+            <p><span class="part-icon">リスト「ア」</span> 実際に表示：ア リストアが入ります</p>
+            <div class="includes"><b>このパーツの中に入れられるパーツ</b>リスト「※」「※1」「・」「・15px」「（１）」「①」「ア」「※1・」の中から、自分自身を除いた組み合わせを入れられます。</div>
+          </div>
+        </div>
+      </div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p031.png" alt="リスト「1.」「(1)」「・15px」「※1・」"></figure>
+          <div class="desc">
+            <p><span class="part-icon">リスト「1.」</span> 実際に表示：1. リスト1.が入ります</p>
+            <p><span class="part-icon">リスト「(1)」</span> 実際に表示：(1) リスト(1)が入ります</p>
+            <p><span class="part-icon">リスト「・15px」</span> 実際に表示：・リスト・15pxが入ります　※備考：リスト「・」よりも文字の大きさが小さいです。(15px)</p>
+            <p><span class="part-icon">リスト「※1・」</span> 実際に表示：※1 リスト※1・が入ります</p>
+            <div class="includes"><b>このパーツの中に入れられるパーツ</b>他のリストパーツ（自分自身を除く）を入れられます。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="parts-group" id="parts-button">
+      <div class="parts-group-title">ボタン</div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p032.png" alt="プライマリボタン・セカンダリボタン"></figure>
+          <div class="desc">
+            <div class="part-head"><span class="part-icon">プライマリボタン</span></div>
+            <p><strong>【使い方】</strong>「入力してください」をクリックした後に、テキストを入力してください。</p>
+            <div class="part-head"><span class="part-icon">セカンダリボタン</span></div>
+            <p><strong>【使い方】</strong>「テキストをここに入力してください」をクリックした後に、テキストを入力してください。</p>
+            <div class="includes"><b>このパーツの中に入れられるパーツ</b>追加できるパーツはございません。</div>
+          </div>
+        </div>
+      </div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p033.png" alt="セカンダリボタン「外部リンク」「PDF」"></figure>
+          <div class="desc">
+            <div class="part-head"><span class="part-icon">外部リンク</span><span class="part-name">セカンダリボタン「外部リンク」</span></div>
+            <div class="part-head"><span class="part-icon">PDF</span><span class="part-name">セカンダリボタン「PDF」</span></div>
+            <ol class="callouts">
+              <li>「リンクとテキストを入力してください」をクリックする</li>
+              <li>リンクマークをクリックし、「検索またはURLを入力」にURLを入力またはリンクさせたいページを選択してください。</li>
+              <li>テキストを編集してください。ページを選択した場合、ページ名が自動で入力されます。必要に応じて、テキストを編集してください。</li>
+            </ol>
+            <p>このボタンは、初期設定で新規タブでページが開くようになっています。</p>
+            <div class="includes"><b>このパーツの中に入れられるパーツ</b>追加できるパーツはございません。</div>
+          </div>
+        </div>
+      </div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p034.png" alt="ターシャリボタン／ターシャリボタン「外部リンク」"></figure>
+          <div class="desc">
+            <div class="part-head"><span class="part-icon">ターシャリボタン</span></div>
+            <div class="part-head"><span class="part-icon">外部リンク</span><span class="part-name">ターシャリボタン「外部リンク」</span></div>
+            <ol class="callouts">
+              <li>「リンクとテキストを入力してください」をクリックする</li>
+              <li>リンクマークをクリックし、「検索またはURLを入力」にURLを入力またはリンクさせたいページを選択してください。</li>
+              <li>テキストを編集してください。ページを選択した場合、ページ名が自動で入力されます。必要に応じて、テキストを編集してください。</li>
+            </ol>
+            <div class="includes"><b>このパーツの中に入れられるパーツ</b>追加できるパーツはございません。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="parts-group" id="parts-step">
+      <div class="parts-group-title">ステップアイコン</div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p035.png" alt="見出し型「オレンジ」「ネイビー」"></figure>
+          <div class="desc">
+            <div class="part-head"><span class="part-icon">見出し型</span><span class="part-name">見出し型「オレンジ」／「ネイビー」</span></div>
+            <p><strong>【使い方】</strong>「入力してください」をクリックした後に、テキストを入力してください。</p>
+            <div class="includes"><b>このパーツの中に入れられるパーツ</b>アコーディオン_Bタイプ、画像、ボタン型、各種リストパーツ（「※」「※1」「・」「・15px」「（１）」「①」「ア」「※1・」）</div>
+          </div>
+        </div>
+      </div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p036.png" alt="本文型「オレンジ」「ネイビー」"></figure>
+          <div class="desc">
+            <div class="part-head"><span class="part-icon">本文型</span><span class="part-name">本文型「オレンジ」／「ネイビー」</span></div>
+            <p><strong>【使い方】</strong>「入力してください」をクリックした後に、テキストを入力してください。</p>
+            <div class="includes"><b>このパーツの中に入れられるパーツ</b>画像、ボタン型、各種リストパーツ（「※」「※1」「・」「・15px」「（１）」「①」「ア」「※1・」）</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="parts-group" id="parts-table">
+      <div class="parts-group-title">テーブル</div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p037.png" alt="テーブルビルダー"></figure>
+          <div class="desc">
+            <div class="part-head"><span class="part-icon">テーブル</span></div>
+            <ul class="plain">
+              <li>「行数」…枠内に数字を入れると、その数字の行が作成されます。</li>
+              <li>「列数」…枠内に数字を入れると、その数字の列が作成されます。</li>
+              <li>「キャプションを含む」…表の上にテキストを入れることができます。</li>
+              <li>「ヘッダ行を含む」…ヘッダを入れることができます。</li>
+              <li>「最初のセルの背景をグレーに設定」…最初の列の背景を設定できます。背景色はグレーで固定です。</li>
+              <li>「奇数番目のセルにのみ背景色を適用する」…奇数行に背景色をつけるか設定できます。背景色は薄い青色で固定です。</li>
+              <li>「１行目のテキストを中央寄せに設定する」…中央寄せにしたい場合は、チェックをつけてください。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p038.png" alt="行・列の追加削除、セルの結合"></figure>
+          <div class="desc">
+            <p>※すべてチェックを入れると画像のようになります。</p>
+            <ol class="callouts">
+              <li>選択した行の上に追加ができます</li>
+              <li>選択した行の下に追加ができます</li>
+              <li>選択した行の削除ができます</li>
+              <li>選択した列の左に列を追加できます</li>
+              <li>選択した列の右に列を追加できます</li>
+              <li>選択した列の削除ができます</li>
+            </ol>
+            <p><strong>セルの結合のやり方（⑦⑧のボタン）</strong></p>
+            <ol class="callouts">
+              <li>シフトキーを押しながら結合させたいセルを選択。選択すると、⑦のマークがクリックできるようになります。</li>
+              <li>⑦のマークをクリックすると結合されます。</li>
+              <li>結合を解除するときは⑧で解除できます。</li>
+            </ol>
+            <p>※すでに結合されているセルを、さらに隣のセルと結合することはできません。その場合は、一度結合を解除し、結合したいすべてのセルを再選択した上で、再度結合してください。</p>
+          </div>
+        </div>
+      </div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p039.png" alt="最右列の配置設定"></figure>
+          <div class="desc">
+            <p>画面右にあるテーブルの設定パネルから『最右列の配置』を左揃え・中央揃え・右揃えに変更することができます。デフォルトは左揃えです。セルが結合されていても、最右列の配置が反映されます。</p>
+            <div class="includes"><b>このパーツの中に入れられるパーツ</b>追加できるパーツはございません。</div>
+          </div>
+        </div>
+      </div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p040.png" alt="テーブル「ボタン付き」"></figure>
+          <div class="desc">
+            <div class="part-head"><span class="part-icon">テーブル「ボタン付き」</span></div>
+            <p><strong>【使い方】</strong>「入力してください」にテキストを入力してください。行・列の追加削除は他のテーブルと同様（①〜⑥）。※このパーツは行の結合ができます。</p>
+            <p><strong>【ダウンロードボタンの使い方】</strong></p>
+            <ol class="callouts">
+              <li>「入力してください」をクリックしテキストを入力</li>
+              <li>リンクマークをクリックします。</li>
+              <li>「検索またはURLを入力」にファイルのURLを入力してください。</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p041.png" alt="テーブル「ボタン付き」表示・可変タイプ"></figure>
+          <div class="desc">
+            <p>【ダウンロードボタン】ボタンをクリックすると、入力されたファイルがダウンロードされます。</p>
+            <div class="part-head"><span class="part-icon">可変</span><span class="part-name">テーブル「ボタン付き」可変</span></div>
+            <ol class="callouts">
+              <li>選択した行の上／下に追加ができます／削除ができます</li>
+              <li>選択した列の左／右に列を追加できます／削除ができます</li>
+            </ol>
+            <p><strong>セルの結合のやり方（⑦⑧のボタン）</strong>：縦方向の結合はできますが、横方向の結合はできません。それ以外の操作は他のテーブルと同様です。</p>
+          </div>
+        </div>
+      </div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p042.png" alt="テーブル「ボタン付き」可変 ボタンの使い方"></figure>
+          <div class="desc">
+            <p><strong>【ボタンの使い方】</strong></p>
+            <ol class="callouts">
+              <li>「入力してください」をクリックし、テキストを入力</li>
+              <li>リンクマークをクリックします。</li>
+              <li>「検索またはURLを入力」にファイルのURLを入力してください。</li>
+            </ol>
+            <div class="includes"><b>このパーツの中に入れられるパーツ</b>追加できるパーツはございません。【ダウンロードボタン】ボタンをクリックすると、入力されたファイルがダウンロードされます。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="parts-group" id="parts-divider">
+      <div class="parts-group-title">区切り線</div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p043.png" alt="区切り線 実線・点線"></figure>
+          <div class="desc">
+            <div class="part-head"><span class="part-icon">実線</span></div>
+            <p><strong>【使い方】</strong>アイコンをクリックすると、実線が挿入されます。</p>
+            <div class="part-head"><span class="part-icon">点線</span></div>
+            <p><strong>【使い方】</strong>アイコンをクリックすると、点線が挿入されます。</p>
+            <div class="includes"><b>このパーツの中に入れられるパーツ</b>追加できるパーツはございません（共通）。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="parts-group" id="parts-accordion">
+      <div class="parts-group-title">アコーディオン</div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p044.png" alt="説明文アコーディオン"></figure>
+          <div class="desc">
+            <div class="part-head"><span class="part-icon">説明文</span></div>
+            <ol class="callouts">
+              <li>「テキストをここに入力してください」をクリックした後に、テキストを入力してください。</li>
+              <li>画面右側の「ブロック」をクリックするとバリエーションを選択できます。SP…スマホ表示のみ適用／PC…パソコン表示のみ適用／both…両方に適用</li>
+            </ol>
+            <div class="includes"><b>このパーツの中に入れられるパーツ</b>追加できるパーツはございません。</div>
+          </div>
+        </div>
+      </div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p045.png" alt="h2見出し型「スマホのみ適用」／ボタン型／ボタン型「アイコン付き」"></figure>
+          <div class="desc">
+            <div class="part-head"><span class="part-icon">h2見出し型</span><span class="part-name">h2見出し型「スマホのみ適用」</span></div>
+            <p>スマホのみアコーディオンになるパーツです。</p>
+            <ol class="callouts">
+              <li>「h2見出し型「スマホのみ適用」」「コンテンツを入力してください」にテキストを入力してください。</li>
+              <li>パーツの設定をする。パーツの上部の余白は6pxと12pxの2段階で調節できます。アコーディオンの状態はTrueだと開いた状態、Falseだと閉じた状態に設定できます。</li>
+            </ol>
+            <div class="part-head"><span class="part-icon">ボタン型</span></div>
+            <p><strong>【使い方】</strong>「タイトルを入力してください」にテキストを入力してください。</p>
+            <div class="part-head"><span class="part-icon">アイコン付き</span><span class="part-name">ボタン型「アイコン付き」</span></div>
+            <p><strong>【使い方】</strong>「タイトルを入力してください」にテキストを入力してください。</p>
+            <div class="includes"><b>このパーツの中に入れられるパーツ</b>本文コンテンツ内には、すべてのパーツを入れることができます（3種とも共通）。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="parts-group" id="parts-box">
+      <div class="parts-group-title">ボックス</div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p046.png" alt="標準型／ターシャリボタン付き／郵便先"></figure>
+          <div class="desc">
+            <div class="part-head"><span class="part-icon">標準型</span></div>
+            <p><strong>【使い方】</strong>「入力してください」にテキストを入力してください。</p>
+            <div class="part-head"><span class="part-icon">ターシャリボタン付き</span></div>
+            <p><strong>【リンクの設定】</strong>「入力してください」をクリックしテキストを入力 → リンクマークをクリック → 「検索またはURLを入力」にURLまたは遷移させたいページを入力してください。</p>
+            <div class="part-head"><span class="part-icon">郵便先</span></div>
+            <p><strong>【使い方】</strong>「ここにメールアドレスを入力してください」にテキストを入力してください。</p>
+          </div>
+        </div>
+      </div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p047.png" alt="絞り込み条件／番号付きリスト"></figure>
+          <div class="desc">
+            <div class="part-head"><span class="part-icon">絞り込み条件</span></div>
+            <p><strong>【使い方】</strong>「ここにメールアドレスを入力してください」にテキストを入力してください。</p>
+            <div class="part-head"><span class="part-icon">番号付きリスト</span></div>
+            <p><strong>【使い方】</strong>「入力してください」にテキストを入力してください。このパーツはリストの中にリストを作成することはできません。</p>
+            <p><strong>ー2番以降の作り方ー</strong></p>
+            <ol class="callouts">
+              <li>リストの外側(グレーの線)をクリックすると右側に「＋」マークが表示されます。</li>
+              <li>すぐ下にリストが追加されます。</li>
+              <li>「リスト項目のテキスト」を一度クリックした後に、テキストを入力してください。3つ目以降も同様の手順です。</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p048.png" alt="ボックス表示例2／2(B)"></figure>
+          <div class="desc">
+            <div class="part-head"><span class="part-icon">ボックス表示例2</span></div>
+            <div class="part-head"><span class="part-icon">ボックス表示例2(B)</span></div>
+            <p><strong>【使い方】</strong>「入力してください」にテキストを入力してください。</p>
+            <p><strong>【リンクの設定】</strong>「入力してください」をクリックしテキストを入力 → リンクマークをクリック → 「検索またはURLを入力」にURLまたは遷移させたいページを入力してください。</p>
+            <div class="includes"><b>このパーツの中に入れられるパーツ</b>追加できるパーツはございません（ボックス各種共通）。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="parts-group" id="parts-layout">
+      <div class="parts-group-title">レイアウト</div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p049.png" alt="横並びボックス"></figure>
+          <div class="desc">
+            <div class="part-head"><span class="part-icon">横並びボックス</span></div>
+            <ol class="callouts">
+              <li>タイトルを表示をチェックを入れると、ボックスのタイトルを入れることができます。不要の場合はチェックを外してください。</li>
+              <li>カラム数(ボックスの数)を入力してください。</li>
+              <li>レイアウトを作成するボタンを押してください。</li>
+              <li>タイトルに表示にチェックを入れると「ここにタイトルを入力」が表示されるので、タイトルを入力してください。</li>
+              <li>「ここにテキストを入力」にテキストを入力してください。</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p050.png" alt="横並びボックス ボタンのリンク設定"></figure>
+          <div class="desc">
+            <p><strong>【ボタンのリンク設定】</strong></p>
+            <ol class="callouts">
+              <li>ボタンの「入力してください」をクリック</li>
+              <li>リンクマークをクリック</li>
+              <li>URLを入力、またはページを選択するとリンクが設定されます。</li>
+            </ol>
+            <div class="includes"><b>このパーツの中に入れられるパーツ</b>追加できるパーツはございません。</div>
+          </div>
+        </div>
+      </div>
+      <div class="part-card">
+        <div class="row">
+          <figure class="shot"><img src="images/p051.png" alt="中央寄せエリア／インデント"></figure>
+          <div class="desc">
+            <div class="part-head"><span class="part-icon">中央寄せエリア</span></div>
+            <p><strong>【使い方】</strong>記事の中央に表示させたいテキストを入れると、公開時に中央寄せで表示させることができます。<br>
+            <b>このパーツの中に入れられるパーツ：</b>すべてのパーツを入れることができます。</p>
+            <div class="part-head"><span class="part-icon">インデント</span></div>
+            <p><strong>【使い方】</strong>アイコンをクリックすると、インデントが追加されます。(行頭にスペースができます。)<br>
+            <b>このパーツの中に入れられるパーツ：</b>追加できるパーツはございません。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="parts-group" id="parts-template">
+      <div class="parts-group-title">定型文</div>
+      <div class="note-block">共通の使い方：アイコンをクリックした後に、適宜テキストを編集してください。タイトルも自動的に入力されます。【このパーツの中に入れられるパーツ】追加できるパーツはございません（定型文シリーズ共通）。</div>
+
+      <div class="part-card">
+        <div class="part-head"><span class="part-icon">緊急報（一律）</span></div>
+        <div class="row"><figure class="shot"><img src="images/p052.png" alt="緊急報（一律）管理画面と表示例"></figure>
+          <div class="desc"><p>タイトル例：「【緊急】登記情報提供サービスで発生している不具合について」。本文には発生時刻・状況・お詫び文が定型で入ります。</p></div>
+        </div>
+      </div>
+
+      <div class="part-card">
+        <div class="part-head"><span class="part-icon">緊急報　第一報</span></div>
+        <div class="row"><figure class="shot"><img src="images/p053.png" alt="緊急報 第一報 管理画面"></figure>
+          <div class="desc"><p>タイトル例：「【重要】登記情報提供サービスで発生している不具合について（令和〇年〇月〇日（〇）〇〇時〇〇分現在）」。不具合状況（①〜⑪の症状一覧）と対応依頼文が定型で入ります。</p></div>
+        </div>
+        <div class="row"><figure class="shot"><img src="images/p054.png" alt="緊急報 第一報 表示例"></figure>
+          <div class="desc"><p>実際に表示されるもの（サイト公開時のレイアウト）。</p></div>
+        </div>
+      </div>
+
+      <div class="part-card">
+        <div class="part-head"><span class="part-icon">緊急報　続報</span></div>
+        <div class="row"><figure class="shot"><img src="images/p055.png" alt="緊急報 続報 管理画面"></figure>
+          <div class="desc"><p>タイトル例：「【続報〇】登記情報提供サービスで発生している不具合について（令和〇年〇月〇日（〇）〇〇時〇〇分現在）」。復旧作業中である旨の定型文が入ります。</p></div>
+        </div>
+        <div class="row"><figure class="shot"><img src="images/p056.png" alt="緊急報 続報 表示例"></figure>
+          <div class="desc"><p>実際に表示されるもの。</p></div>
+        </div>
+      </div>
+
+      <div class="part-card">
+        <div class="part-head"><span class="part-icon">緊急報　復旧</span></div>
+        <div class="row"><figure class="shot"><img src="images/p057.png" alt="緊急報 復旧 管理画面"></figure>
+          <div class="desc"><p>復旧日時とお詫び文が定型で入ります。アイコンをクリックすると、タイトルとテキストが自動的に反映されます。</p></div>
+        </div>
+        <div class="row"><figure class="shot"><img src="images/p058.png" alt="緊急報 復旧 表示例"></figure>
+          <div class="desc"><p>実際に表示されるもの。</p></div>
+        </div>
+      </div>
+
+      <div class="part-card">
+        <div class="part-head"><span class="part-icon">地震報　第一報</span></div>
+        <div class="row"><figure class="shot"><img src="images/p058.png" alt="地震報 第一報 管理画面"></figure>
+          <div class="desc"><p>タイトル例：「【続報〇】登記情報提供サービスで発生している不具合について（令和〇年〇月〇日（〇）〇〇時〇〇分現在）」。地震影響を調査中である旨の定型文が入ります（同一ページの下部に配置）。</p></div>
+        </div>
+        <div class="row"><figure class="shot"><img src="images/p059.png" alt="地震報 第一報 表示例"></figure>
+          <div class="desc"><p>実際に表示されるもの。</p></div>
+        </div>
+      </div>
+
+      <div class="part-card">
+        <div class="part-head"><span class="part-icon">地震報　続報1</span></div>
+        <div class="row"><figure class="shot"><img src="images/p059.png" alt="地震報 続報1 管理画面"></figure>
+          <div class="desc"><p>登記情報提供サービス／地番検索サービス／ヘルプデスクへの影響を①②の稼働状況リストで記載する定型文です。</p></div>
+        </div>
+        <div class="row"><figure class="shot"><img src="images/p060.png" alt="地震報 続報1 表示例"></figure>
+          <div class="desc"><p>実際に表示されるもの。</p></div>
+        </div>
+      </div>
+
+      <div class="part-card">
+        <div class="part-head"><span class="part-icon">地震報　続報2</span></div>
+        <div class="row"><figure class="shot"><img src="images/p061.png" alt="地震報 続報2 管理画面"></figure>
+          <div class="desc"><p>タイトル例：「【重要】令和〇年〇月〇日（〇）〇〇時〇〇分頃に〇〇県△△部において発生した地震の影響について」。影響なし・通常稼働の定型文です。</p></div>
+        </div>
+        <div class="row"><figure class="shot"><img src="images/p062.png" alt="地震報 続報2 表示例"></figure>
+          <div class="desc"><p>実際に表示されるもの。</p></div>
+        </div>
+      </div>
+
+      <div class="part-card">
+        <div class="part-head"><span class="part-icon">地震報　復旧</span></div>
+        <div class="row"><figure class="shot"><img src="images/p062.png" alt="地震報 復旧 管理画面"></figure>
+          <div class="desc"><p>復旧日時と、影響のあったサービス一覧（①登記情報提供サービス／②地番検索サービス／③ヘルプデスク）が定型で入ります（同一ページの下部に配置）。</p></div>
+        </div>
+        <div class="row"><figure class="shot"><img src="images/p063.png" alt="地震報 復旧 表示例"></figure>
+          <div class="desc"><p>実際に表示されるもの。</p></div>
+        </div>
+      </div>
+
+      <div class="part-card">
+        <div class="part-head"><span class="part-icon">利用時間</span></div>
+        <div class="row"><figure class="shot"><img src="images/p063.png" alt="利用時間 定型文"></figure>
+          <div class="desc"><p>登記情報提供サービスの利用時間【平日】午前8時30分〜午後11時まで／【土日祝日】午前8時30分〜午後6時まで（地図及び図面情報は平日午前8時30分〜午後9時まで）、休業日：年末年始(12月29日〜1月3日)が定型文として入ります。</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section anchor-target" id="s05">
+  <div class="section-head"><span class="no">05</span><h2>お知らせと固定ページの共通仕様について</h2></div>
+  <div class="section-body">
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">1. 差し戻し後の対応流れ</span><h3>差し戻し通知〜再申請まで</h3><div class="role-badges"><span class="badge common">共通項目</span></div></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p064.png" alt="差し戻し後の対応流れ"></figure>
+        <div class="desc">
+          <p>各該当画面の操作マニュアルに記載している「差し戻し」操作後の挙動について説明します。</p>
+          <ol class="callouts">
+            <li>差し戻しが行われると、直前の操作担当者へ差し戻し通知メールが送信されます。メールには、差し戻しコメント（任意コメント）および対象ページのURLが記載されます。</li>
+            <li>対象ページのURLをクリックすると、新しいタブで編集画面が開きます。</li>
+            <li>差し戻し後のステータスは以下のとおり変更されます。<br>・一次承認者 → 編集者：下書き<br>・公開承認者 → 一次承認者：一次承認待ち</li>
+            <li>修正完了後、「レビューを依頼」をクリックすると、再度承認フローが開始されます。</li>
+          </ol>
+          <p>※ 差し戻し状態は、お知らせ一覧または固定ページ一覧からも確認、編集することができます。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">2. バージョン2</span><h3>現在公開中のコンテンツに次回更新用のバージョンを作成</h3><div class="role-badges"><span class="badge common">共通項目</span></div></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p065.png" alt="バージョン2の作成"></figure>
+        <div class="desc">
+          <p>公開中のコンテンツを一覧から編集をクリックした際に表示される画面での操作です。</p>
+          <ol class="callouts">
+            <li>公開中の場合、ステータスは公開済みを表示します。</li>
+            <li>コンテンツの変更作業を行います。</li>
+            <li>変更作業が完了した後、「公開中／V2下書き保存する」をクリックするとV2下書きが作成されます。※V2下書きは、公開中のページに対して次回更新用の下書きバージョンになり、現在公開中のコンテンツには影響ございません。</li>
+            <li>V2が作成され、ステータスが「編集中」に変更されます。</li>
+            <li>V2レビュー依頼せずに下書きとして保存しておくことも可能です。保存した後、一覧画面の「編集中」の一覧から確認することができます。</li>
+            <li>「レビューを依頼」をすると、通常のレビューの流れが開始されます。※レビュー中の差し戻しや修正は現在公開中のバージョンに影響を与えることはありません。</li>
+            <li>バージョン2の下書きとして保存やレビュー依頼が不要な場合、「バージョン２を削除」をクリックして、バージョン２のみ削除することができます。※「編集中」一覧から該当タイトルにマウスを合わせて削除することもできます。</li>
+          </ol>
+          <p>※ 編集者が公開日時を変更しない限り、バージョン2の公開日時は変更されません。<br>
+          ※ 現在公開中（V1）のお知らせや固定ページに対して、次回更新用の下書き（V2）を作成して画像を差し替えた場合でも、V2が公開されるまでの間は、V1（現在公開中）で使用されているメディアファイルは削除できません。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">3. 公開中ページの非公開・削除方法</span><h3></h3><div class="role-badges"><span class="badge publisher">公開承認者</span><span class="badge admin">運用管理者</span></div></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p066.png" alt="公開中ページの非公開・削除方法"></figure>
+        <div class="desc">
+          <p>公開中のお知らせまたは固定ページを、非公開（下書き保存）または削除することができるのは、「公開承認者」および「運用管理者」権限のみです。該当ページの編集画面を開き、以下の操作を行います。</p>
+          <ol class="callouts">
+            <li>「非公開にする」をクリックすると、ステータスが公開前の状態に変更され、ページは即時に非公開となります。</li>
+            <li>非公開処理完了後、「ゴミ箱に移動」ボタンが表示されます。クリックすると、ゴミ箱へ移動します。</li>
+          </ol>
+          <p>※ 公開日が未来日付で、現在のステータスが「予約済み」の場合も、非公開・削除の操作方法は同一です。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">4. リビジョン機能</span><h3></h3><div class="role-badges"><span class="badge common">共通項目</span></div></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p067.png" alt="リビジョン機能"></figure>
+        <div class="desc">
+          <ol class="callouts">
+            <li>お知らせまたは固定ページを2回以上保存すると、リビジョン機能が表示されます。※ 公開中の状態ではリビジョン機能は表示されません。</li>
+            <li>「リビジョン」をクリックすると、変更履歴画面が表示されます。「前へ」「次へ」をクリックすることで、過去の変更履歴を順に確認できます。</li>
+            <li>閲覧中のバージョンについて、変更者および変更内容を確認できます。削除された内容は左側に、追加された内容は右側に表示されます。</li>
+            <li>「このリビジョンを復元」をクリックすると、閲覧中のバージョンが採用され、編集画面に遷移します。その後、通常のレビュー承認フローが開始されます。</li>
+          </ol>
+          <p>※ 別のバージョンを公開したい場合は、①から再度操作を行ってください。</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section anchor-target" id="s06">
+  <div class="section-head"><span class="no">06</span><h2>固定ページ作成の流れ</h2></div>
+  <div class="section-body">
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">1. 画面名：固定ページ一覧</span><h3>固定ページ一覧の基本操作</h3><div class="role-badges"><span class="badge common">共通項目</span></div></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p068.png" alt="固定ページ一覧画面"></figure>
+        <div class="desc">
+          <ol class="callouts">
+            <li>左メニューの「固定ページ」をクリックすると、固定ページ一覧画面が表示されます。</li>
+            <li>「固定ページを追加」をクリックすると、新しい固定ページ作成画面へ遷移します。</li>
+            <li>検索ボックスにキーワードを入力し、「固定ページを検索」をクリックすると、固定ページを検索します。</li>
+            <li>「すべて」はデフォルト表示となっており、すべての固定ページを一覧表示します。</li>
+            <li>「所有」をクリックすると、ログイン中のユーザーが作成した固定ページのみを一覧表示することができます。</li>
+            <li>「公開済み」をクリックすると、公開済みの固定ページを一覧表示します。</li>
+            <li>「公開予約」をクリックすると、公開承認が完了しており、未来の公開日時が設定されている固定ページを一覧表示します。</li>
+            <li>「下書き」をクリックすると、下書き保存されている固定ページを一覧表示します。※ 同一ユーザー、または権限上作成可能なユーザーの固定ページが対象です。</li>
+            <li>「一次承認待ち」をクリックすると、一次承認者による確認待ちの固定ページを一覧表示します。</li>
+            <li>「ゴミ箱」をクリックすると、ゴミ箱に移動された固定ページを一覧表示します。※ゴミ箱内の固定ページは、一覧へ復元できます。</li>
+            <li>「公開承認待ち」をクリックすると、公開承認者による確認待ちの固定ページを一覧表示します。</li>
+            <li>「公開待ち」をクリックすると、承認が完了し、公開操作待ちの状態の固定ページを一覧表示します。</li>
+            <li>「編集中」をクリックすると、公開中の固定ページに対して、次回更新用のV2下書きが作成中の固定ページを一覧表示します。</li>
+          </ol>
+        </div>
+      </div>
+      <div class="row">
+        <figure class="shot"><img src="images/p069.png" alt="固定ページ一覧の状態欄・操作メニュー"></figure>
+        <div class="desc">
+          <ol class="callouts">
+            <li>「すべての日付」を選択すると、日付条件を指定して固定ページを検索することができます。</li>
+            <li>固定ページをチェックボックスで選択すると、一括操作（ゴミ箱へ移動）を行えます。</li>
+            <li>固定ページタイトルにマウスを合わせると、編集、ゴミ箱へ移動（所有者かつ未公開の場合のみ）、複製、公開前プレビューの操作を選択できます。</li>
+            <li>「絞り込み」ボタンをクリックすると、日付条件を適用して固定ページを表示することができます。</li>
+            <li>状態欄では、固定ページの現在の状態（差し戻し、下書き保存中）を確認することができます。</li>
+            <li>「差し戻し」は、承認者から修正依頼が返されている状態を示します。</li>
+            <li>「下書き保存中」は、編集者が作成中の状態、次の承認待ちの状態、公開予約が設定されている状態、または公開待ちの状態であることを示します。</li>
+            <li>「－」は、公開済みの固定ページに表示されます。</li>
+            <li>「公開中／V2下書き保存中」は、公開中の固定ページに対して、次回更新用の下書き（V2）が作成中である状態を示します。</li>
+            <li>一次承認の状態欄では、一次承認者による承認・差し戻しの状況および日時を確認します。</li>
+            <li>公開承認の状態欄では、公開承認者による承認状況および更新日時を確認します。</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">2. 画面名：固定ページ作成画面</span><h3></h3><div class="role-badges"><span class="badge editor">編集者</span></div></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p070.png" alt="固定ページ作成画面"></figure>
+        <div class="desc">
+          <ol class="callouts">
+            <li>クリックすると本文に、各種パーツを挿入することができます。※使用可能なパーツの詳細は <a href="#s04-01">「パーツ一覧」</a> をご参照ください。</li>
+            <li>固定ページの公開申請に関する補足・コメントを入力します。</li>
+            <li>固定ページの公開日時（日付・時刻）を設定します。過去または未来の日時を指定できます。未来の日時を指定した場合は予約投稿として扱われ、公開承認後、指定した日時に自動で公開されます。</li>
+            <li>作成するページの親ページを設定します。※ページの親子関係とは、ページ同士を階層で整理する仕組みのことです（例：/operate/temporary-use → operate が親、temporary-use が子）。</li>
+            <li>固定ページのスラッグ（ページID）を指定します。</li>
+            <li>タイトルおよび本文を入力すると、「下書き保存」ボタンが有効になります。</li>
+            <li>SEOメタディスクリプションを設定します（50文字以内）。入力内容は、固定文言と「｜」で連結されて表示されます。※「｜」以降の文言は固定です。変更する場合はシステム管理者へお問い合わせください。</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">2.1 画面名：固定ページ作成・編集・承認申請</span><h3></h3><div class="role-badges"><span class="badge editor">編集者</span></div></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p071.png" alt="固定ページ作成・編集・承認申請、一次承認者承認待ち一覧"></figure>
+        <div class="desc">
+          <p>「下書き保存」ボタンクリック後に行える操作は以下のとおりです。</p>
+          <ol class="callouts">
+            <li>「プレビュー」をクリックすると、作成中の固定ページを新しいタブで確認することができます。</li>
+            <li>「レビューを依頼」をクリックすると、承認依頼を送信します。</li>
+            <li>「保存」をクリックすると、レビュー依頼を行わずに、下書きとして保存されます。</li>
+            <li>「ゴミ箱へ移動」をクリックすると、WordPress標準のゴミ箱機能により削除されます。</li>
+          </ol>
+          <p class="sub-label">3. 画面名：一次承認者固定ページ承認待ち一覧（一次承認者）</p>
+          <ol class="callouts">
+            <li>一次承認者でログインし、承認待ちの固定ページが存在する場合、一覧画面には「承認待ち」の固定ページがデフォルトで表示されます。</li>
+            <li>固定ページタイトルにマウスを合わせると、編集、複製、プレビューの操作が表示されます。</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">3.1 画面名：一次承認者固定ページ承認画面</span><h3></h3><div class="role-badges"><span class="badge primary">一次承認者</span></div></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p072.png" alt="一次承認者固定ページ承認画面"></figure>
+        <div class="desc">
+          <ol class="callouts">
+            <li>固定ページの内容を確認し、必要に応じて内容を直接一次承認者が修正するか、差し戻しを行うか、承認するかの判断を行ってください。</li>
+            <li>次の承認者（公開承認者）へのレビュー依頼メッセージ、または編集者への差し戻し理由を入力します。</li>
+            <li>固定ページのプレビュー画面を表示します。</li>
+            <li>内容修正が必要な場合、「差し戻し」をクリックして編集者へ戻します。※クリック後、処理が正常に完了すると、編集者へ固定ページの差戻し通知がメールで送信されます。</li>
+            <li>内容を承認し、「公開承認者」へ承認依頼を送信します。※クリック後、処理が正常に完了すると、承認依頼について公開承認者へメールで通知されます。</li>
+            <li>承認履歴を展開し、作成履歴、承認依頼/却下メモ、状態更新日時を確認することができます。</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">4 / 4.1 公開承認者固定ページ承認待ち一覧・詳細承認画面</span><h3></h3><div class="role-badges"><span class="badge publisher">公開承認者</span></div></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p073.png" alt="公開承認者固定ページ承認待ち一覧・詳細承認画面"></figure>
+        <div class="desc">
+          <ol class="callouts">
+            <li>公開承認者でログインし、公開承認待ちの固定ページが存在する場合、一覧画面には「公開承認待ち」の固定ページがデフォルトで表示されます。</li>
+            <li>固定ページタイトルにマウスを合わせると、編集、複製、ゴミ箱へ移動（所有者かつ未公開の場合のみ）、プレビューの操作が表示されます。</li>
+            <li>固定ページの内容を確認し、必要に応じて内容を修正します。</li>
+            <li>差し戻しが発生した場合、一次承認者への差し戻し理由を入力します。</li>
+            <li>固定ページのプレビュー画面を表示します。</li>
+            <li>内容の修正が必要な場合、「差し戻し」をクリックして、一次承認者へ戻します。※クリック後、処理が正常に完了すると、一次承認者へ差し戻しについてメールで通知されます。</li>
+            <li>内容を承認し、「公開待ち」から「公開」として本番環境に公開できる状態にします。※クリック後、処理が正常に完了すると、公開ステータスについて固定ページの作成者へメールで通知されます。</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section anchor-target" id="s07">
+  <div class="section-head"><span class="no">07</span><h2>メディアライブラリ</h2></div>
+  <div class="section-body">
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">概要</span><h3>メディアライブラリの表示</h3></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p074.png" alt="メディアライブラリ画面"></figure>
+        <div class="desc">
+          <p>サイトに保存されている画像の一覧を確認することができます。リスト型かパネル型で、画像一覧の表示を切り替えることができます（A：リスト型／B：パネル型）。</p>
+          <p>※お知らせや固定ページからアップロードされた画像は、このメディアライブラリに保存されています。<br>
+          ※現在公開中（V1）のお知らせや固定ページに対して、次回更新用の下書き（V2）を作成して画像を差し替えた場合でも、V2が公開されるまでの間は、V1で使用されているメディアファイルは削除できません。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">検索</span><h3>メディアファイルの検索</h3></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p075.png" alt="リスト型の表示・メディアファイルの検索"></figure>
+        <div class="desc">
+          <p class="sub-label">リスト型の表示</p>
+          <ul class="plain">
+            <li>投稿者：画像をアップロードした方の名前が表示されます。</li>
+            <li>日付：画像をアップロードした日時が表示されます。</li>
+            <li>アップロード先：画像が使われている場所が表示されます。「－」の表示はどこにも使われていません。</li>
+          </ul>
+          <p class="sub-label">メディアファイルの検索</p>
+          <ol class="callouts">
+            <li>メディアの種類を絞って表示することができます（すべてのメディア・画像・音声ファイル・動画・ドキュメント・スプレッドシート・アーカイブ・未開封・所有）。</li>
+            <li>登録した月ごとに絞って表示することができます。</li>
+            <li>使用中または未使用で絞ることができます。</li>
+            <li>「絞り込み」を押すと、選択した条件で絞り込み表示を行うことができます。</li>
+            <li>ファイル名を入力して「メディアを検索」をクリックすると、画像を検索することが可能です。未使用の画像も検索できます。</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">追加</span><h3>メディアファイルの追加方法</h3></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p076.png" alt="メディアファイルの追加方法"></figure>
+        <div class="desc">
+          <ol class="callouts">
+            <li>「メディアファイルを追加」をクリックする</li>
+            <li>「ファイルを選択」をクリックし、追加したいファイルを選択する</li>
+            <li>「アップロード」をクリックすると、メディアのアップロードが可能</li>
+          </ol>
+        </div>
+      </div>
+      <div class="row">
+        <figure class="shot"><img src="images/p077.png" alt="サイドバーからの追加・パーツ一覧からの追加"></figure>
+        <div class="desc">
+          <p>画面左の「メディアファイルを追加」をクリックしても、同じ画面が表示されます（操作は同じです）。</p>
+          <p>パーツ一覧の「画像」からも同じようにアップロードすることができます。※詳細は <a href="#s04-01">パーツ一覧ページの「画像」</a> の説明をご参照ください。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">詳細変更</span><h3>メディアファイルの詳細変更（名前など）</h3></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p078.png" alt="メディアファイルの詳細変更（名前など）"></figure>
+        <div class="desc">
+          <p>変更したいファイルをクリックすると、詳細画面が表示されます。</p>
+          <ol class="callouts">
+            <li>このファイルの情報です。</li>
+            <li>代替テキスト…画像が表示されない時に、何の画像かを説明するテキストです。また、画像パーツで画像を呼び出した際、自動的にaltが入力されます。</li>
+            <li>タイトル…画像検索の結果や、画像を拡大した際に、タイトルとして上部に表示されます。※入力をしない場合には、画像ファイル名が自動的に入力されます。</li>
+            <li>キャプション…画像下に画像の説明文を表示したい場合、こちらの欄に入力してください。空白の場合は、何も表示されません。</li>
+            <li>説明…自分用の画像メモとしてお使いください。</li>
+            <li>ファイルのURL…ファイルのURLです。PDFデータなど、ボタンをクリックして表示させたい場合、このURLが必要です。</li>
+          </ol>
+          <p>ここで変更されたものは自動で保存されます。そのため、保存ボタンなどはございません。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">画像編集</span><h3>切り抜き・伸縮・回転・復元</h3></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p079.png" alt="画像編集の共通操作"></figure>
+        <div class="desc">
+          <p class="sub-label">編集中に行う操作</p>
+          <ul class="plain">
+            <li>元に戻す…一つ前の操作に戻ります。</li>
+            <li>やり直す…一つ後の操作に戻ります。</li>
+            <li>編集をキャンセル…それまで編集していた内容をすべてキャンセルし、元の画像の状態に戻ります。</li>
+          </ul>
+          <p class="sub-label">編集した画像を復元する場合</p>
+          <ol class="callouts"><li>「元の画像を復元」をクリック</li><li>「画像を復元」をクリック（ここで画像が保存されます）</li></ol>
+        </div>
+      </div>
+      <div class="row">
+        <figure class="shot"><img src="images/p080.png" alt="メディアファイルの切り抜き"></figure>
+        <div class="desc">
+          <p class="sub-label">切り抜き</p>
+          <ol class="callouts">
+            <li>「切り抜き」をクリック</li>
+            <li>「？」をクリックすると説明が表示されます。</li>
+            <li>画像をクリック後、ドラッグして切り抜く範囲を選択します。数字を入れて切り抜くことも可能。「切り抜きをクリア」をクリックすると、入力した数字が消去されます。</li>
+            <li>「切り抜きを適用」をクリックすると、画像が切り抜かれます。</li>
+            <li>「編集を保存」をクリックして保存する</li>
+          </ol>
+        </div>
+      </div>
+      <div class="row">
+        <figure class="shot"><img src="images/p081.png" alt="メディアファイルの縮小"></figure>
+        <div class="desc">
+          <p class="sub-label">伸縮（縮小）</p>
+          <ol class="callouts">
+            <li>「画像の編集」をクリックします。</li>
+            <li>「伸縮」をクリック</li>
+            <li>「？」で説明表示：元の画像のサイズ比率を保ったまま、縮尺を変更することができます。縮小のみ可能で、拡大することはできません。</li>
+            <li>縮小したいサイズを入力</li>
+            <li>「伸縮」ボタンをクリック（ここで画像が保存されます）</li>
+          </ol>
+        </div>
+      </div>
+      <div class="row">
+        <figure class="shot"><img src="images/p082.png" alt="メディアファイルの回転"></figure>
+        <div class="desc">
+          <p class="sub-label">回転</p>
+          <ol class="callouts">
+            <li>「画像の編集」をクリックします。</li>
+            <li>「画像の回転」をクリック</li>
+            <li>回転方向を選択してクリック（回転した画像がプレビューされます）</li>
+            <li>「編集を保存」をクリック（ここで画像が保存されます）</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section anchor-target" id="s08">
+  <div class="section-head"><span class="no">08</span><h2>外観</h2></div>
+  <div class="section-body">
+    <div class="row">
+      <figure class="shot"><img src="images/p083.png" alt="外観画面"></figure>
+      <div class="desc">
+        <p>Touki Infoがテーマとして設定されていることを表しています。</p>
+        <p>変更したい場合は、システム管理者までお問い合わせください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section anchor-target" id="s09">
+  <div class="section-head"><span class="no">09</span><h2>プラグイン</h2></div>
+  <div class="section-body">
+    <div class="row">
+      <figure class="shot"><img src="images/p084.png" alt="プラグイン画面"></figure>
+      <div class="desc">
+        <p>このサイトで使われているプラグインを確認することができます。</p>
+        <p>編集者権限では、このページは表示されません。一次承認者・公開承認者・運用管理者は<strong>"閲覧のみ"</strong>可能です。</p>
+        <p>変更したい場合は、システム管理者までお問い合わせください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section anchor-target" id="s10">
+  <div class="section-head"><span class="no">10</span><h2>ユーザー一覧</h2></div>
+  <div class="section-body">
+    <div class="row">
+      <figure class="shot"><img src="images/p085.png" alt="ユーザー一覧画面（追加・フィルタ・検索）"></figure>
+      <div class="desc">
+        <ol class="callouts">
+          <li>新しいユーザーを追加する（運用管理者のみ）：画面上部の「ユーザーを追加」ボタンをクリックすると、新規ユーザー登録画面に移動します。ユーザー名、メールアドレス、パスワード、権限グループなどを設定し、登録を行ってください。</li>
+          <li>権限グループでフィルタリングする：画面上部のリンク（「編集者」「一次承認者」など）をクリックするか、フィルタードロップダウンから権限グループを選択して「変更」ボタンをクリックすると、特定の権限グループのユーザーのみを表示することができます。</li>
+          <li>ユーザーを検索する：画面右上の検索ボックスにユーザー名やメールアドレスを入力し、「ユーザーを検索」ボタンをクリックすると、該当するユーザーを絞り込むことができます。</li>
+        </ol>
+      </div>
+    </div>
+    <div class="row">
+      <figure class="shot"><img src="images/p086.png" alt="ユーザー情報の編集・削除・パスワードリセット"></figure>
+      <div class="desc">
+        <ol class="callouts" start="4">
+          <li>ユーザー情報を編集する：編集したいユーザーのユーザー名をクリックすると、そのユーザーのプロフィール編集画面に移動します。ここでは名前、メールアドレス、パスワード、権限グループなどを変更することができます。※運用管理者はすべてのユーザー情報を編集することが可能です。</li>
+          <li>ユーザーを削除する（運用管理者のみ）：選択したユーザーを削除することができます。</li>
+          <li>パスワードリセット送信（運用管理者のみ）：特定のユーザーがパスワードを忘れてしまった場合など、パスワードをリセットして、再設定メールを送信することができます。</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section anchor-target" id="s10-01">
+  <div class="section-head"><span class="no">10-01</span><h2>プロフィール</h2></div>
+  <div class="section-body">
+    <div class="row">
+      <figure class="shot"><img src="images/p087.png" alt="プロフィール設定 前半"></figure>
+      <div class="desc">
+        <ol class="callouts">
+          <li>管理カラースキーム：WordPress管理画面の色を変更することができます（全部で9種類）。色を選ぶと、管理画面の色がすぐに変わります。※作業しやすい色を選んでください。</li>
+          <li>キーボードショートカット：チェックを入れると、コメント管理でキーボードショートカットが使えるようになります。</li>
+          <li>ツールバー：こちらはチェックを入れても表示されないようになっています。ツールバーが表示されなくても、サイト運用においての支障はございません。</li>
+          <li>言語：サイトで使用する言語を選択することができます。※通常は「サイトデフォルト」のままで問題ございません。</li>
+          <li>ユーザー名：こちらはログイン時に使用する名前となります。ユーザー名は一度設定すると、変更することはできません。</li>
+          <li>名：名(ファーストネーム)を入力します。例：太郎　※入力しなくても問題ありませんが、極力入れてください。</li>
+        </ol>
+      </div>
+    </div>
+    <div class="row">
+      <figure class="shot"><img src="images/p088.png" alt="プロフィール設定 姓・ニックネーム・表示名"></figure>
+      <div class="desc">
+        <ol class="callouts" start="7">
+          <li>姓：あなたの姓(ラストネーム)を入力します。例：山田　※入力しなくても問題ありませんが、極力入れてください。※「名 → 姓」の入力順になっていますが、表示は「姓→名」に設定可能です。</li>
+          <li>ニックネーム(必須)：サイト上で表示されるニックネームを入力します。※必須項目のため、空欄にするとエラー表示されます。</li>
+          <li>ブログ上の表示名：記事の投稿者名として表示される名前を選択します。名、姓、ニックネームを入力すると、選択肢が増えます。例：「山田太郎」「太郎 山田」など　※デフォルトのままでも問題ございません。</li>
+        </ol>
+      </div>
+    </div>
+    <div class="row">
+      <figure class="shot"><img src="images/p089.png" alt="プロフィール設定 メール・パスワード・セッション"></figure>
+      <div class="desc">
+        <ol class="callouts" start="10">
+          <li>メール(必須)：登録されているメールアドレスが表示されます。</li>
+          <li>プロフィール情報：自己紹介や経歴を入力します。※未入力のままでも問題ありません。</li>
+          <li>プロフィール写真：デフォルトのアバター画像が表示されます。「Gravatarでプロフィール画像の変更が可能です。」のリンクをクリックすると、Gravatarのサイトで画像を設定することができます。</li>
+          <li>新しいパスワード：「新しいパスワードを設定」ボタンをクリック → 新しいパスワードの入力欄が表示 → 強力なパスワードを入力 → 確認のためもう一度同じパスワードを入力。※パスワードを再設定する際、複雑なパスワードが自動生成されます。</li>
+          <li>セッション：現在ログインしている場所(パソコン、タブレット、スマホなど)が表示されます。「他のすべての場所でログアウト」ボタンをクリックすると、今使っているパソコン以外のすべてのログイン状態を解除することができます。※他の人が勝手にログインしていないか心配な時に、ご使用ください。</li>
+        </ol>
+      </div>
+    </div>
+    <div class="row">
+      <figure class="shot"><img src="images/p090.png" alt="プロフィール設定 アプリケーションパスワード・更新"></figure>
+      <div class="desc">
+        <ol class="callouts" start="15">
+          <li>アプリケーションパスワード：こちらは使用しません。【注意】アプリケーションパスワードは生成時に一度だけ表示されます。必ずコピーして保存してください。後から確認することはできません。</li>
+          <li>プロフィールを更新：すべての変更を入力したら、画面下部の「プロフィールを更新」ボタンをクリックして保存します。※このボタンを押さないと、変更内容は保存されません。</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section anchor-target" id="s10-02">
+  <div class="section-head"><span class="no">10-02</span><h2>ユーザーの追加の仕方</h2></div>
+  <div class="section-body">
+    <div class="row">
+      <figure class="shot"><img src="images/p091.png" alt="ユーザー追加画面 前半"></figure>
+      <div class="desc">
+        <div class="role-badges" style="margin-bottom:10px;"><span class="badge admin">運用管理者</span></div>
+        <p>ユーザーの追加は「運用管理者」のみ行うことができます。</p>
+        <ol class="callouts">
+          <li>ユーザー名(必須)：ユーザー名を入力してください。</li>
+          <li>メール(必須)：お知らせを受け取るメールアドレスを入力してください。</li>
+          <li>名、姓：ユーザー名以外で表示させたい名前がございましたら、入力してください。未入力のままでも問題ありません。</li>
+          <li>言語：サイトデフォルトが日本語になっています。英語と日本語で切り替えることができます。</li>
+        </ol>
+      </div>
+    </div>
+    <div class="row">
+      <figure class="shot"><img src="images/p092.png" alt="ユーザー追加画面 パスワード・権限グループ"></figure>
+      <div class="desc">
+        <ol class="callouts" start="5">
+          <li>パスワード：使用するパスワードを入力してください。「パスワードを生成」を押すと、強力なパスワードがランダムで生成されます。</li>
+          <li>ユーザーに通知を送信：新規ユーザーへアカウントに関するメールを送信する場合は、チェックをつけてください。</li>
+          <li>権限グループ：権限を選択してください。
+            <ul class="plain">
+              <li>編集者…記事の作成を行うことができます。</li>
+              <li>一次承認者…記事の作成、編集者が作成した記事の承認を行うことができます。</li>
+              <li>公開承認者…記事の作成、一次承認者が確認した記事の承認と公開を行うことができます。</li>
+              <li>運用管理者…公開承認者の権限に加え、ユーザー追加、サイトの設定を編集することができます。</li>
+            </ul>
+          </li>
+          <li>ユーザーを追加：①〜⑦を入力し、追加ボタンを押すと、ユーザーが追加されます。</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section anchor-target" id="s11">
+  <div class="section-head"><span class="no">11</span><h2>設定</h2></div>
+  <div class="section-body">
+    <div class="note-block">基本的に設定変更はシステム管理者にて対応いたしますので、変更ご希望の場合はご相談ください。<span class="badge admin" style="margin-left:8px;">運用管理者</span></div>
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">一般設定</span><h3></h3></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p093.png" alt="設定 一般（前半）"></figure>
+        <div class="desc">
+          <ol class="callouts">
+            <li>サイトのタイトル：サイトの正式名称「登記情報提供サービス」を入力します。</li>
+            <li>キャッチフレーズ：サイトの簡単な説明文を入力します。※今回はキャッチフレーズは使用しません。</li>
+            <li>WordPress アドレス（URL）：WordPressのシステムファイルが保管されている場所のアドレスです。※編集できないようになっています。</li>
+            <li>サイトアドレス（URL）：訪問者がサイトにアクセスする際に使用するアドレスです。※編集できないようになっています。</li>
+            <li>管理者メールアドレス：サイトの管理に関する重要な通知が送られるメールアドレスです。</li>
+            <li>メンバーシップ：だれでもユーザー登録ができるようにするチェックボックスです。本サイトではチェックを外してください。</li>
+            <li>新規ユーザーのデフォルト権限グループ：新しくユーザーが登録された際、自動的に割り当てられる権限を設定します。</li>
+            <li>サイトの言語：サイトの管理画面で使用する言語を選択します。</li>
+          </ol>
+        </div>
+      </div>
+      <div class="row">
+        <figure class="shot"><img src="images/p094.png" alt="設定 一般（後半）"></figure>
+        <div class="desc">
+          <ol class="callouts" start="9">
+            <li>タイムゾーン：サイトで使用する標準時間を設定します。</li>
+            <li>日付形式：サイト上で日付を表示する際のフォーマットを選択します。</li>
+            <li>時刻形式：サイト上で時刻を表示する際のフォーマットを選択します。</li>
+            <li>週の始まり：カレンダーウィジェットなどを使用する際に、週の最初の曜日を設定します。</li>
+            <li>変更の保存：すべての項目を確認・入力し終えたら、ページ下部にある「変更を保存」ボタンをクリックします。</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">11-01</span><h3 id="s11-01">投稿設定・表示設定</h3></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p095.png" alt="投稿設定"></figure>
+        <div class="desc">
+          <p class="sub-label">投稿設定</p>
+          <ol class="callouts">
+            <li>投稿用カテゴリーの初期設定：新しい記事を作成する際に、自動的に割り当てられるカテゴリーを選択します。通常は「未分類」が設定されています。</li>
+            <li>デフォルトの投稿フォーマット：新しい記事を作成する際のフォーマットを選択します。※メールでの投稿はご使用になれません。</li>
+            <li>メールサーバー／ポート／ログイン名／パスワード：メール投稿機能用の設定項目です（本サイトでは未使用）。</li>
+            <li>メール投稿用カテゴリーの初期設定：メール経由で投稿された記事に、自動的に割り当てられるカテゴリーを選択します。</li>
+            <li>更新情報サービス：新しい記事を公開すると、WordPressは指定したサイト更新通知サービスに、自動的に通知します。複数のサービスのURLを改行で区切って入力することができます。</li>
+            <li>設定の保存方法：すべての項目を確認・入力し終えたら、ページ下部にある「変更を保存」ボタンをクリックします。</li>
+          </ol>
+        </div>
+      </div>
+      <div class="row">
+        <figure class="shot"><img src="images/p096.png" alt="表示設定"></figure>
+        <div class="desc">
+          <p class="sub-label">表示設定</p>
+          <ol class="callouts">
+            <li>ホームページの表示：最新の投稿 ／ 固定ページ（ホームページ・投稿ページを個別に選択）。</li>
+            <li>1ページに表示する最大投稿数：記事一覧ページに表示する記事の件数ですが、<a href="#s03-01">オプションページ</a>の表示件数が優先されるため、こちらは変更の必要はありません。</li>
+            <li>RSS/Atom フィードで表示する最新の投稿数：RSSフィードで配信する記事の件数を入力します。</li>
+            <li>フィードの各投稿に含める内容：「全文を表示」または「抜粋」から選べます。</li>
+            <li>検索エンジンでの表示：<strong>※チェックは入れない！</strong> チェックを入れると、検索結果にサイトが表示されなくなってしまうので、絶対にチェックを入れないでください。</li>
+            <li>変更を保存：すべての項目を確認・入力し終えたら、ページ下部にある「変更を保存」ボタンをクリックします。</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">11-02</span><h3 id="s11-02">ディスカッション</h3></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p097.png" alt="ディスカッション デフォルトの投稿設定"></figure>
+        <div class="desc">
+          <p class="sub-label">① デフォルトの投稿設定</p>
+          <ol class="callouts">
+            <li>投稿中からリンクしたすべてのブログへの通知を試みる：記事内で他のブログへリンクを張った際に、相手に通知を送るかどうかを設定します。</li>
+            <li>新しい投稿に対し、他のブログからの通知（ピンバック・トラックバック）を受け付ける：スパムが増える可能性もあるため注意が必要です。</li>
+            <li>新しい投稿へのコメントを許可：記事に対してコメントを受け付けるかどうかを設定します。※本サイトではコメント機能は使用しません。</li>
+          </ol>
+        </div>
+      </div>
+      <div class="row">
+        <figure class="shot"><img src="images/p098.png" alt="ディスカッション 他のコメント設定"></figure>
+        <div class="desc">
+          <p class="sub-label">② 他のコメント設定</p>
+          <ol class="callouts">
+            <li>コメントの投稿者の名前とメールアドレスの入力を必須にする：スパム対策として有効です。</li>
+            <li>ユーザー登録してログインしたユーザーのみ、コメントをつけられるようにする：一般的なブログでは使用しないことが多い設定です。</li>
+            <li>古い投稿のコメントを自動的に閉じる：指定した日数が経過した記事のコメントを自動的に受け付けなくすることができます。</li>
+            <li>投稿からコメントを有効にするまでの日数：例えば14日と設定すると、14日経過した記事はコメントできなくなります。</li>
+            <li>コメント投稿者が Cookie を使用できるようにする：Cookie オプトイン用チェックボックスを表示します。</li>
+            <li>コメントをスレッド（入れ子）形式にする：チェックを入れると会話形式のコメント表示が可能になります。</li>
+            <li>スレッド（入れ子）にするコメントの階層数：5階層に設定すると、5段階まで入れ子形式で表示されます。</li>
+          </ol>
+        </div>
+      </div>
+      <div class="row">
+        <figure class="shot"><img src="images/p099.png" alt="ディスカッション コメントのページ送り・自分宛のメール通知"></figure>
+        <div class="desc">
+          <p class="sub-label">③ コメントのページ送り</p>
+          <ol class="callouts">
+            <li>コメントを複数ページに分割する：コメント数が多い記事で、コメントをページ分けして表示するかどうかを設定します。</li>
+            <li>ページごとのトップレベルのコメント：1ページに表示するコメントの数を入力します。</li>
+            <li>デフォルトで表示されるコメントページ：最初のページ／最後のページ（最新のコメント）を選択します。</li>
+            <li>各ページの上部に表示するコメント：古い順／新しい順を選択します。</li>
+          </ol>
+          <p class="sub-label">④ 自分宛のメール通知</p>
+          <ol class="callouts" start="1">
+            <li>コメントが投稿されたとき：誰かがコメントを投稿した際に、管理者メールアドレスに通知を送るかどうかを設定します。</li>
+            <li>コメントがモデレーションのために保留されたとき：コメントの承認制を使用する場合に便利です。</li>
+            <li>誰でもノートを投稿する：記事や固定ページにノート(メモ機能)が追加された場合、通知を受け取るかどうかを設定します。</li>
+          </ol>
+        </div>
+      </div>
+      <div class="row">
+        <figure class="shot"><img src="images/p100.png" alt="ディスカッション コメント表示条件・モデレーション"></figure>
+        <div class="desc">
+          <p class="sub-label">⑤ コメント表示条件</p>
+          <ol class="callouts">
+            <li>コメントの手動承認を必須にする：スパムを完全に防ぐことができます。</li>
+            <li>すでに承認されたコメントの投稿者のコメントを許可し、それ以外のコメントを承認待ちにする：便利で安全なバランスの取れた設定です。</li>
+          </ol>
+          <p class="sub-label">⑥ コメントモデレーション</p>
+          <ol class="callouts">
+            <li>指定した数以上のリンクを含むコメントを自動的に承認待ちにします。</li>
+            <li>枠内に特定の単語やフレーズを含むコメントを自動的に承認待ちにします。</li>
+          </ol>
+          <p class="sub-label">⑦ コメント内で許可されないキーワード</p>
+          <p>枠内に悪質なスパムワードを登録することで、完全にブロックできます。</p>
+        </div>
+      </div>
+      <div class="row">
+        <figure class="shot"><img src="images/p101.png" alt="ディスカッション アバター"></figure>
+        <div class="desc">
+          <p class="sub-label">⑧ アバター</p>
+          <ol class="callouts">
+            <li>アバターの表示：コメント欄にアバター（ユーザーのアイコン画像）を表示するかどうかを設定します。</li>
+            <li>評価による制限：表示するアバターの年齢制限レベルを設定します。※本サイトでは制限を設けていないため、設定不要。</li>
+          </ol>
+          <p class="sub-label">⑨ デフォルトのアバター</p>
+          <p>アバターを登録していないユーザーに表示されるデフォルト画像を選択します。</p>
+          <p class="sub-label">⑩ 変更を保存</p>
+          <p>すべての項目を確認・入力し終えたら、ページ下部にある「変更を保存」ボタンをクリックします。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">11-03</span><h3 id="s11-03">メディア・パーマリンク</h3></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p102.png" alt="設定 メディア"></figure>
+        <div class="desc">
+          <p class="sub-label">メディア設定</p>
+          <ol class="callouts">
+            <li>サムネイルのサイズ：幅／高さ（デフォルトは150ピクセル）。「サムネイルを実寸法に切り抜く」にチェックを入れると指定サイズぴったりに切り抜きます。</li>
+            <li>中サイズ：幅の上限／高さの上限（デフォルト300ピクセル）。</li>
+            <li>大サイズ：幅の上限／高さの上限（デフォルト1024ピクセル）。</li>
+            <li>ファイルアップロード：チェックを入れると、アップロードした画像が年月ごとのフォルダに自動的に振り分けられます。</li>
+            <li>変更を保存：すべての項目を確認・入力したら、ページ下部にある「変更を保存」ボタンをクリックします。</li>
+          </ol>
+        </div>
+      </div>
+      <div class="row">
+        <figure class="shot"><img src="images/p103.png" alt="設定 パーマリンク"></figure>
+        <div class="desc">
+          <p class="sub-label">パーマリンク設定</p>
+          <p>パーマリンク設定はサイト公開後に変更すると、既存のURLがすべて変わってしまい、外部からのリンクが切れたり、検索エンジンの評価が失われたりする可能性がございます。変更を希望する場合は、システム管理者まで連絡をお願いいたします。</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section anchor-target" id="s12">
+  <div class="section-head"><span class="no">12</span><h2>エラー対処</h2></div>
+  <div class="section-body">
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">ビルドエラー</span><h3>ホームページ／メンテナンスページビルドエラー</h3></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p104.png" alt="ホームページ／メンテナンスページ ビルドエラー"></figure>
+        <div class="desc">
+          <p><strong>エラーメッセージ：</strong>「フロントエンドのビルド中にエラーが発生しました。再度保存してください。」</p>
+          <p><strong>対処方法：</strong>ダッシュボードの「サイト全体を再構築」ボタンを押してください。※下記【サーバーダウンエラー】も参照。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">プレビュー／公開エラー</span><h3>お知らせのプレビュー・公開時エラー</h3></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p105.png" alt="お知らせ プレビューエラー・公開時の処理エラー"></figure>
+        <div class="desc">
+          <p><strong>【プレビューエラー】</strong>「プレビュー時に処理エラーが発生しました。再構築ボタンをクリックしてください。」→ 「プレビュー再構築」ボタンを押してください。</p>
+          <p><strong>【公開時の処理エラー】</strong>「公開時に処理エラーが発生しました。再構築ボタンをクリックしてください。」→ 「再構築」ボタンを押してください。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">オプション／固定ページエラー</span><h3>オプション設定のエラー・固定ページのプレビューエラー</h3></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p106.png" alt="オプション設定のエラー・固定ページ プレビューエラー"></figure>
+        <div class="desc">
+          <p><strong>【オプション設定のエラー】</strong>「フロントエンドのビルド中にエラーが発生しました。再度保存してください。」→ ダッシュボードの「サイト全体を再構築」ボタンを押してください。※下記【サーバーダウンエラー】も参照。</p>
+          <p><strong>【プレビューエラー（固定ページ）】</strong>「プレビュー時に処理エラーが発生しました。再構築ボタンをクリックしてください。」→ 「プレビュー再構築」ボタンをクリックしてください。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">公開処理・サーバーエラー</span><h3>公開処理エラー（共通）・サーバーダウンエラー</h3></div>
+      <div class="row">
+        <figure class="shot"><img src="images/p107.png" alt="公開処理エラー（共通）・サーバーダウンエラー"></figure>
+        <div class="desc">
+          <p><strong>【公開処理エラー（共通）】</strong>「公開時に処理エラーが発生しました。再構築ボタンをクリックしてください。」→ 「プレビュー再構築」ボタンをクリックしてください。</p>
+          <p><strong>【サーバーダウンエラー】</strong>ダッシュボード画面の「ビルドサーバーの健全性ステータス」に表示される仮想サーバーの稼働状況が「無効」になるエラーです。<strong>→ システム管理者にお問い合わせください。</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-head"><span class="no">メール通知</span><h3>エラー対処メール通知一覧</h3></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>No.</th><th>エラー種別 / 原因</th><th>エラー内容（メール）</th><th>処理方法</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>タイムアウトエラー<br>（処理に1分以上発生した場合）</td><td>処理中タイムアウトが発生しました。</td><td>編集画面の「プレビュー再構築」ボタンをクリックしてください。または、ダッシュボード画面の「サイト全体を再構築」ボタンを押してください。</td></tr>
+            <tr><td>2</td><td>Express / Nextjs サーバーダウン</td><td>サーバーへの接続時に失敗しました。</td><td><strong>システム管理者にお問い合わせください。</strong></td></tr>
+            <tr><td>3</td><td>ビルドエラー（アップロード）</td><td>
+              エラー原因が同一であっても、メールで通知されるエラー内容は以下のいずれかとなります。
+              <ol class="callouts compact-list">
+                <li>ページのアップロードに失敗しました</li>
+                <li>お知らせ一覧の更新に失敗しました</li>
+                <li>緊急お知らせの更新に失敗しました</li>
+                <li>ビルダーがランディングページの生成に失敗しました</li>
+                <li>S3へのアップロードに失敗しました</li>
+                <li>ランディングページのアップロードに失敗しました</li>
+                <li>ビルダーがお知らせ一覧ページの生成に失敗しました</li>
+                <li>お知らせ一覧ページのアップロードに失敗しました</li>
+                <li>スラッグが未指定、または無効です</li>
+                <li>ビルダーがお知らせ詳細ページの生成に失敗しました</li>
+                <li>お知らせ詳細ページのアップロードに失敗しました</li>
+                <li>ビルダーがプレビュー用お知らせ詳細ページの生成に失敗しました</li>
+                <li>プレビュー用お知らせ詳細ページのアップロードに失敗しました</li>
+                <li>ビルダーが静的ページの生成に失敗しました</li>
+                <li>静的ページのアップロードに失敗しました</li>
+                <li>ビルダーが静的プレビューページの生成に失敗しました</li>
+                <li>静的プレビューページのアップロードに失敗しました</li>
+              </ol>
+            </td><td>編集画面の「プレビュー再構築」ボタンをクリックしてください。または、ダッシュボード画面の「サイト全体を再構築」ボタンを押してください。</td></tr>
+            <tr><td>4</td><td>ビルドエラー（設定エラー）</td><td>
+              エラー原因が同一であっても、メールで通知されるエラー内容は以下のいずれかとなります。
+              <ol class="callouts compact-list">
+                <li>フロントエンドのビルド中にエラーが発生しました</li>
+                <li>オプション設定の更新に失敗しました</li>
+                <li>メニューの更新に失敗しました</li>
+                <li>ビルダーがメンテナンスページの生成に失敗しました</li>
+                <li>メンテナンスページのアップロードに失敗しました</li>
+                <li>サイトマップの生成に失敗しました</li>
+              </ol>
+            </td><td>編集画面の「プレビュー再構築」ボタンをクリックしてください。または、ダッシュボード画面の「サイト全体を再構築」ボタンを押してください。</td></tr>
+            <tr><td>5</td><td>削除処理エラー</td><td>
+              エラー原因が同一であっても、メールで通知されるエラー内容は以下のいずれかとなります。
+              <ol class="callouts compact-list">
+                <li>ページの削除に失敗しました</li>
+                <li>削除中に予期しないエラーが発生しました</li>
+                <li>お知らせ詳細ページの削除に失敗しました</li>
+                <li>削除するパスが指定されていません</li>
+              </ol>
+            </td><td>編集画面の「プレビュー再構築」ボタンをクリックしてください。または、ダッシュボード画面の「サイト全体を再構築」ボタンを押してください。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="color:#b3261e;font-weight:700;">※上記以外のエラーが発生した場合、システム管理者にお問い合わせください。</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="section anchor-target" id="s13">
+  <div class="section-head"><span class="no">13</span><h2>WP制御一覧</h2></div>
+  <div class="section-body">
+    <div class="maint-note">新しい制御仕様を追加する場合は、表の一番下に <code>&lt;tr&gt;</code> を1行追加してください（No.は連番）。</div>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>No.</th><th>区分</th><th>項目</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>カスタム</td><td>保存制御</td><td>タイトルまたは本文が未入力の場合、ニュース・固定ページは保存不可</td></tr>
+          <tr><td>2</td><td>カスタム</td><td>スラッグ制御</td><td>スラッグは空欄不可</td></tr>
+          <tr><td>3</td><td>カスタム</td><td>スラッグ制御</td><td>英語以外の言語は使用不可</td></tr>
+          <tr><td>4</td><td>カスタム</td><td>スラッグ制御</td><td>大文字は使用不可</td></tr>
+          <tr><td>5</td><td>カスタム</td><td>スラッグ制御</td><td>使用可能記号は「-」「_」のみ</td></tr>
+          <tr><td>6</td><td>WPデフォルト</td><td>スラッグ制御</td><td>予約語は使用不可</td></tr>
+          <tr><td>7</td><td>WPデフォルト</td><td>スラッグ重複</td><td>重複時は末尾に番号を自動付与</td></tr>
+          <tr><td>8</td><td>カスタム</td><td>スラッグ編集制御</td><td>公開後はスラッグ編集不可</td></tr>
+          <tr><td>9</td><td>カスタム</td><td>確認メッセージ制御</td><td>異常フロー時に確認メッセージ表示「このコンテンツは作業中のようです。進めてもよろしいでしょうか？」</td></tr>
+          <tr><td>10</td><td>カスタム</td><td>更新権限制御</td><td>ロールおよびステータスに応じて更新ボタンを制御</td></tr>
+          <tr><td>11</td><td>カスタム</td><td>更新権限制御</td><td>一次承認待ちの時はレビュー解除のみ可能</td></tr>
+          <tr><td>12</td><td>カスタム</td><td>更新権限制御</td><td>権限がない場合はエラーメッセージ表示「この操作を行う権限がありません」</td></tr>
+          <tr><td>13</td><td>WPデフォルト</td><td>削除制御</td><td>ゴミ箱移動時は確認なし</td></tr>
+          <tr><td>14</td><td>カスタム</td><td>削除制御</td><td>V2削除時は確認ダイアログ表示</td></tr>
+          <tr><td>15</td><td>カスタム</td><td>公開期間制御</td><td>公開終了日は公開開始日より前に設定不可（重要・緊急カテゴリ）</td></tr>
+          <tr><td>16</td><td>カスタム</td><td>スケジュール制御</td><td>重要・緊急カテゴリはデフォルト公開日時非表示</td></tr>
+          <tr><td>17</td><td>カスタム</td><td>スケジュール制御</td><td>公開開始日入力時、デフォルトスケジュールに自動反映</td></tr>
+          <tr><td>18</td><td>カスタム</td><td>コンテンツ制御</td><td>メンテナンスカテゴリは本文入力欄非表示</td></tr>
+          <tr><td>19</td><td>カスタム</td><td>リビジョン制御</td><td>下書き以外はリビジョン非表示</td></tr>
+          <tr><td>20</td><td>カスタム</td><td>作成者制御</td><td>作成者は手動変更不可</td></tr>
+          <tr><td>21</td><td>カスタム</td><td>作成者制御</td><td>V2は新規作成者として扱う</td></tr>
+          <tr><td>22</td><td>カスタム</td><td>プレビュー制御</td><td>プレビューリンクはカスタムURLに置換</td></tr>
+          <tr><td>23</td><td>カスタム</td><td>更新メッセージ制御</td><td>WP標準のプレビューリンク付きメッセージは非表示</td></tr>
+          <tr><td>24</td><td>カスタム</td><td>メディア制御</td><td>削除ボタンはロールおよび投稿者に応じて表示制御</td></tr>
+          <tr><td>25</td><td>カスタム</td><td>メディア制御</td><td>メディア一覧の削除ボタンはカスタムの使用状況判定に基づき無効化される</td></tr>
+          <tr><td>26</td><td>カスタム</td><td>Gutenberg制御</td><td>ニュース・固定ページのGutenberg由来の画像リサイズオプションは非表示</td></tr>
+          <tr><td>27</td><td>カスタム</td><td>エラー通知制御</td><td>WP外部でのプレビュー／公開エラーは編集画面上にエラーメッセージとして表示される</td></tr>
+          <tr><td>28</td><td>カスタム</td><td>トップページ設定制御</td><td>必須項目が未入力の場合、トップページ設定は保存不可</td></tr>
+          <tr><td>29</td><td>カスタム</td><td>ビルドエラー制御</td><td>トップページ更新後、フロント側のビルドに失敗した場合は同画面上にエラーを表示し再更新を促す</td></tr>
+          <tr><td>30</td><td>カスタム</td><td>ビルドトリガー制御</td><td>トップページ設定に変更がない場合、フロントのビルドは実行されない</td></tr>
+          <tr><td>31</td><td>カスタム</td><td>ビルド制御</td><td>CMS上の全体ビルドボタンは、誰かが実行中の場合は全ユーザーに対して無効化される</td></tr>
+          <tr><td>32</td><td>カスタム</td><td>ビルド制御</td><td>ビルド完了コールバック受信、または10分経過後にボタンが再度有効化される</td></tr>
+          <tr><td>33</td><td>カスタム</td><td>ファイルアップロード制御</td><td>アップロードファイルサイズは最大50MBまで</td></tr>
+          <tr><td>34</td><td>カスタム</td><td>ファイル形式制御</td><td>アップロード可能ファイル形式</td></tr>
+          <tr><td>35</td><td>カスタム</td><td>テーマ制御</td><td>テーマ切替機能は制限されている</td></tr>
+          <tr><td>36</td><td>カスタム</td><td>アップデート制御</td><td>プラグインおよびWordPressの更新画面は閲覧可能だが、更新実行は制限されている</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 新しいセクションを追加する場合は、この直前に <section class="section anchor-target" id="..."> ブロックを追加し、上の <nav class="toc"> にもリンクを1行追加してください。 -->
+</main>
+</div>
+
+<footer class="page-footer">
+  このページは社内向けCMS操作マニュアルです。仕様変更があった場合は該当セクションの表・行を追加/編集してください。
+</footer>
+
+<script>
+  // 現在表示中のセクションをTOCでハイライト
+  const links = Array.from(document.querySelectorAll('.toc a[href^="#"]'));
+  const targets = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = '#' + entry.target.id;
+      const link = links.find(a => a.getAttribute('href') === id);
+      if (!link) return;
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -70% 0px' });
+  targets.forEach(t => io.observe(t));
+</script>
+</body>
+</html>
