@@ -47,7 +47,25 @@
       "Bash(python3 fetch_all.py)",
       "Bash(python3 -)",
       "Bash(python3 fetch_extra.py)",
-      "Bash(mkdir *)"
+      "Bash(mkdir *)",
+      "Bash(mkdir -p /tmp/qa_site && cd /tmp/qa_site && curl -s -L -A \"Mozilla/5.0 \\(compatible; QABot/1.0\\)\" \"https://td-group.test-page.site/\" -o top.html -w \"HTTP:%{http_code} SIZE:%{size_download}\\\\n\" *)",
+      "Bash(xargs -P 8 '-I{}' bash -c ' *)",
+      "Bash(awk \"{print \\\\$1}\")",
+      "Bash(rm -f pages/test.html)",
+      "Bash(timeout 90 bash -c 'cat page_urls.txt | xargs -P 8 -I{} ./fetch_one.sh {} > fetch_status.txt 2>&1')",
+      "Bash(echo \"exit:$?\")",
+      "Bash(xargs -P 8 -I{} ./fetch_one.sh {})",
+      "Bash(awk '{print $1}' fetch_status.txt)",
+      "Bash(grep -oE \"gtag\\\\\\(|G-[A-Z0-9]{6,}|analytics\\\\.js|gtag/js\" pages/__TOP__.html)",
+      "Bash(grep -o \"<noscript>.\\\\{0,200\\\\}\" pages/__TOP__.html)",
+      "Bash(grep -oE '<link[^>]+rel=[\"\\\\]stylesheet[\\\\'\\\\''][^>]*>'\\\\'' pages/__TOP__.html *)",
+      "Read(//Users/rina/Downloads/**)",
+      "Read(//Users/rina/**)",
+      "Bash(python3 -c \"import fitz; print\\('pymupdf ok'\\)\")",
+      "Bash(pip3 list *)",
+      "Bash(pip3 install *)",
+      "Bash(cat)",
+      "Bash(python3 crop.py)"
     ]
   }
 }
