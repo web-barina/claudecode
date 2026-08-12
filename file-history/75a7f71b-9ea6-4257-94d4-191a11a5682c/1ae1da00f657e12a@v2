@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import FirstView from "../components/sections/FirstView.astro";
+import About from "../components/sections/About.astro";
+import WhatIDo from "../components/sections/WhatIDo.astro";
+import Strength from "../components/sections/Strength.astro";
+import Works from "../components/sections/Works.astro";
+import Process from "../components/sections/Process.astro";
+import Career from "../components/sections/Career.astro";
+import NowNext from "../components/sections/NowNext.astro";
+import Contact from "../components/sections/Contact.astro";
+import { siteConfig } from "../data/config";
+---
+
+<BaseLayout title={siteConfig.siteTitle} description={siteConfig.siteDescription}>
+  <FirstView />
+  <About />
+  <WhatIDo />
+  <Strength />
+  <Works />
+  <Process />
+  <Career />
+  <NowNext />
+  <Contact />
+</BaseLayout>

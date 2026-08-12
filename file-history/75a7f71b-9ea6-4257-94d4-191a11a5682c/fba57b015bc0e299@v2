@@ -1,0 +1,211 @@
+---
+import { personalLinks, siteConfig, socialLinks } from "../data/config";
+
+const indexLinks = [
+  { label: "About", href: "#about" },
+  { label: "What I Do", href: "#what-i-do" },
+  { label: "Strength", href: "#strength" },
+  { label: "Works", href: "#works" },
+  { label: "Process", href: "#process" },
+  { label: "Career", href: "#career" },
+  { label: "Now & Next", href: "#now-next" },
+  { label: "Contact", href: "#contact" },
+];
+---
+
+<div id="site-menu" class="menu-panel" data-menu-panel role="dialog" aria-modal="true" aria-label="サイトメニュー">
+  <div class="menu-panel__inner">
+    <div class="menu-panel__top">
+      <span class="menu-panel__brand">{siteConfig.name}</span>
+      <button type="button" class="menu-panel__close" data-menu-close aria-label="メニューを閉じる">
+        <span aria-hidden="true">CLOSE</span>
+      </button>
+    </div>
+
+    <div class="menu-panel__body">
+      <nav class="menu-col menu-col--index" aria-label="ページ内リンク">
+        <p class="menu-col__title">INDEX</p>
+        <ul>
+          {
+            indexLinks.map((item) => (
+              <li>
+                <a href={item.href} data-menu-close class="menu-link menu-link--small">
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <nav class="menu-col" aria-label="SNSリンク">
+        <p class="menu-col__title">SOCIAL</p>
+        <ul>
+          <li>
+            <a href={socialLinks.instagram} class="menu-link" target="_blank" rel="noopener noreferrer">
+              Instagram
+            </a>
+          </li>
+          <li>
+            <a href={socialLinks.x} class="menu-link" target="_blank" rel="noopener noreferrer">
+              X
+            </a>
+          </li>
+          <li>
+            <a href={socialLinks.note} class="menu-link" target="_blank" rel="noopener noreferrer">
+              note
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <nav class="menu-col" aria-label="パーソナルコンテンツ">
+        <p class="menu-col__title">PERSONAL</p>
+        <ul>
+          <li>
+            <a href={personalLinks.pianist} class="menu-link" data-menu-close>
+              Pianist
+            </a>
+          </li>
+          <li>
+            <a href={personalLinks.horror} class="menu-link" data-menu-close>
+              Horror
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <p class="menu-panel__foot">整理して、つないで、ちゃんと前に進める。</p>
+  </div>
+</div>
+
+<style>
+  .menu-panel {
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+    background: var(--color-ink);
+    color: var(--color-inverse);
+    clip-path: circle(2.4% at calc(100% - 2.6rem) 2.6rem);
+    transition: clip-path var(--dur-slow) var(--ease-in-out);
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  .menu-panel[data-open] {
+    clip-path: circle(150% at calc(100% - 2.6rem) 2.6rem);
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .menu-panel {
+      transition: none;
+      clip-path: none;
+      opacity: 0;
+      display: none;
+    }
+    .menu-panel[data-open] {
+      clip-path: none;
+      opacity: 1;
+      display: block;
+    }
+  }
+
+  .menu-panel__inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(1.1rem, 2.4vw, 1.6rem) clamp(1.25rem, 4vw, 2.75rem) clamp(2rem, 4vw, 3rem);
+  }
+
+  .menu-panel__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .menu-panel__brand {
+    font-family: var(--font-label);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    opacity: 0.7;
+  }
+
+  .menu-panel__close {
+    font-family: var(--font-label);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    color: var(--color-inverse);
+    padding: 0.9em 1.1em;
+  }
+
+  .menu-panel__body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: clamp(2rem, 6vw, 4rem);
+    align-content: center;
+    padding-block: 2rem;
+  }
+
+  .menu-col__title {
+    font-family: var(--font-label);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    color: color-mix(in srgb, var(--color-inverse) 55%, transparent);
+    margin-bottom: 1.4em;
+  }
+
+  .menu-col ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35em;
+  }
+
+  .menu-link {
+    display: inline-block;
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 3vw, 2.1rem);
+    font-weight: 700;
+    padding: 0.22em 0;
+    transition: opacity var(--dur-fast) var(--ease-out),
+      transform var(--dur-fast) var(--ease-out);
+  }
+
+  .menu-link:hover,
+  .menu-link:focus-visible {
+    opacity: 0.6;
+    transform: translateX(6px);
+  }
+
+  .menu-link--small {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 500;
+    opacity: 0.85;
+  }
+
+  .menu-col--index ul {
+    gap: 0.55em;
+  }
+
+  .menu-panel__foot {
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    opacity: 0.5;
+  }
+
+  @media (max-width: 760px) {
+    .menu-panel__body {
+      grid-template-columns: 1fr;
+      align-content: start;
+      overflow-y: auto;
+      gap: 2.2rem;
+    }
+  }
+</style>

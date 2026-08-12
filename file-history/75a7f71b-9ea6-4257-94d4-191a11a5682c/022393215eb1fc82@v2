@@ -1,0 +1,73 @@
+# RINA OBA Portfolio
+
+Web Director / Planner RINA OBA のポートフォリオサイト。
+Astro + TypeScript で構築した静的サイトです。
+
+## コンセプト
+
+**整理して、つないで、ちゃんと前に進める。**
+
+Webディレクターとしての考え方・仕事の進め方・人柄が伝わることを目的とした個人ブランドサイト。
+
+## 技術スタック
+
+- [Astro](https://astro.build/)（静的サイト生成 / TypeScript strict）
+- Vanilla CSS（デザイントークンは `src/styles/global.css` で一元管理）
+- ビルド出力は完全な静的HTML。サーバーやアダプター不要で Cloudflare Pages にそのままデプロイできます。
+
+## プロジェクト構成
+
+```
+src/
+├── components/
+│   ├── sections/       # メインLPの各セクション（FirstView, About, WhatIDo...）
+│   ├── Header.astro    # 固定ヘッダー（ハンバーガーボタン）
+│   ├── MenuOverlay.astro
+│   ├── Footer.astro
+│   └── PlaceholderArt.astro  # 仮画像プレースホルダー
+├── data/
+│   ├── config.ts        # サイト名・SNSリンク・メール等（差し替えはここ）
+│   ├── works.ts          # WORKS仮データ
+│   └── horror.ts         # HORROR作品仮データ
+├── layouts/
+│   └── BaseLayout.astro  # 共通レイアウト（メタタグ・フォント・ページ遷移）
+├── pages/
+│   ├── index.astro       # メインLP
+│   ├── pianist/index.astro
+│   └── horror/index.astro
+├── scripts/               # ハンバーガーメニュー・スクロールreveal
+└── styles/global.css      # デザイントークン・タイポグラフィ・共通クラス
+```
+
+## よく差し替える設定
+
+すべて `src/data/config.ts` に集約しています。
+
+- `siteConfig.email` / `siteConfig.contactFormUrl` — 問い合わせ先
+- `siteConfig.siteUrl` — 本番URL（Cloudflare Pagesのドメインに変更）
+- `socialLinks` — Instagram / X / note の実URL
+- `personalLinks` — PIANIST / HORROR のリンク先
+
+WORKSの実績は `src/data/works.ts`、画像は `src/components/PlaceholderArt.astro` の
+呼び出し箇所を `<img>` に差し替えてください。
+
+## コマンド
+
+| コマンド | 内容 |
+| :--- | :--- |
+| `npm install` | 依存関係のインストール |
+| `npm run dev` | 開発サーバー起動（`localhost:4321`） |
+| `npm run build` | 本番ビルド（`./dist/` に出力） |
+| `npm run preview` | ビルド結果をローカルでプレビュー |
+
+## Cloudflare Pages へのデプロイ
+
+1. このリポジトリを GitHub に push する
+2. Cloudflare Pages で「Git に接続」からこのリポジトリを選択
+3. ビルド設定
+   - フレームワークプリセット: `Astro`
+   - ビルドコマンド: `npm run build`
+   - 出力ディレクトリ: `dist`
+4. 以後は `main` ブランチに push するたびに自動デプロイされます
+
+静的出力のみで完結しているため、サーバーアダプターの追加設定は不要です。

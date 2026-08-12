@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PIANIST — RINA OBA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;1,400&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #DDE5EF; color: #12243F; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: #D2661F; }
+  @keyframes fadeup { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+</style>
+</helmet>
+
+<div class="base-14">
+
+<header class="base-15">
+  <a class="header-2" href="Portfolio.dc.html">← RINA OBA</a>
+  <span class="header-3">PERSONAL / 01</span>
+</header>
+
+<main>
+  <section class="main-9">
+    <div class="main-10">
+      <h1 class="main-11">PIANIST</h1>
+      <p class="main-12">Web Director × Pianist</p>
+      <div class="main-13">
+        <div class="main-14">
+          <p class="about-8">Web制作の仕事をしながら、<br>ときどきピアノを弾いています。</p>
+          <p class="about-8">音楽教育を学び、<br>音楽に関わる仕事をしてきた経験もあり、<br>現在もピアノを中心に音楽活動を続けています。</p>
+        </div>
+        <div class="main-15" role="img" aria-label="演奏写真のプレースホルダー">
+          <span class="main-16">piano photo</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="main-17">
+    <div class="main-18">
+      <p class="main-19">COMING CONTENTS</p>
+      <ul class="main-20">
+        <li class="main-21"><p class="main-22">01</p><p class="main-23">演奏動画</p><p class="main-24">埋め込み動画をここに追加できます。</p></li>
+        <li class="main-21"><p class="main-22">02</p><p class="main-23">写真</p><p class="main-24">演奏・練習風景のギャラリー。</p></li>
+        <li class="main-21"><p class="main-22">03</p><p class="main-23">活動歴</p><p class="main-24">年表として追記していきます。</p></li>
+        <li class="main-21"><p class="main-22">04</p><p class="main-23">出演情報</p><p class="main-24">日程・会場を掲載できます。</p></li>
+        <li class="main-21"><p class="main-22">05</p><p class="main-23">音源</p><p class="main-24">音声プレーヤーを設置予定。</p></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="base-16">
+  <a href="Portfolio.dc.html">← BACK TO MAIN</a>
+  <span>© RINA OBA</span>
+</footer>
+
+</div>
+
+</x-dc>
+</body>
+</html>

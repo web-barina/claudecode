@@ -1,0 +1,122 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { siteConfig } from "../../data/config";
+
+const categories = [
+  { label: "Performance Videos", ja: "演奏動画", note: "近日公開予定。動画を追加していきます。" },
+  { label: "Photos", ja: "写真", note: "活動の様子を写真で紹介予定です。" },
+  { label: "History", ja: "活動歴", note: "これまでの活動をまとめて掲載予定です。" },
+  { label: "Appearances", ja: "出演情報", note: "出演・イベント情報を随時更新予定です。" },
+  { label: "Sound", ja: "音源", note: "音源の公開を準備中です。" },
+];
+---
+
+<BaseLayout
+  title={`PIANIST | ${siteConfig.name}`}
+  description="Web Director × Pianist。Web制作の仕事をしながら、ときどきピアノを弾いています。"
+  bodyClass="page-pianist"
+>
+  <section class="p-hero section">
+    <div class="section-inner">
+      <p class="eyebrow reveal">Personal / 01</p>
+      <h1 class="p-hero__title reveal" style="--reveal-delay:0.08s">PIANIST</h1>
+      <p class="p-hero__copy reveal" style="--reveal-delay:0.16s">Web Director × Pianist</p>
+      <p class="section-lede reveal" style="--reveal-delay:0.22s">
+        Web制作の仕事をしながら、ときどきピアノを弾いています。<br /><br />
+        音楽教育を学び、音楽に関わる仕事をしてきた経験もあり、
+        現在もピアノを中心に音楽活動を続けています。
+      </p>
+    </div>
+  </section>
+
+  <section class="p-archive section">
+    <div class="section-inner">
+      <p class="eyebrow reveal">Coming Soon</p>
+      <h2 class="section-heading reveal" style="--reveal-delay:0.08s">ARCHIVE</h2>
+      <ul class="p-archive__list">
+        {
+          categories.map((c, i) => (
+            <li class="p-archive__item reveal" style={`--reveal-delay:${0.06 * i}s`}>
+              <span class="p-archive__label">{c.label}</span>
+              <span class="p-archive__ja">{c.ja}</span>
+              <p class="p-archive__note">{c.note}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <div class="p-back section-inner">
+    <a href="/" class="link-underline">← BACK TO TOP</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .p-hero {
+    padding-top: clamp(7rem, 14vw, 10rem);
+  }
+
+  .p-hero__title {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: clamp(3rem, 9vw, 6.5rem);
+    line-height: 1;
+    margin-top: 0.4em;
+  }
+
+  .p-hero__copy {
+    margin-top: 0.8em;
+    font-family: var(--font-label);
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    color: var(--color-ink-faint);
+  }
+
+  .p-archive__list {
+    margin-top: clamp(2.5rem, 6vw, 4rem);
+    border-top: 1px solid var(--color-line-strong);
+  }
+
+  .p-archive__item {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    gap: 1rem 2rem;
+    align-items: baseline;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .p-archive__label {
+    font-family: var(--font-label);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-ink-faint);
+  }
+
+  .p-archive__ja {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .p-archive__note {
+    color: var(--color-ink-soft);
+    font-size: 0.85rem;
+  }
+
+  .p-back {
+    padding-block: clamp(2rem, 5vw, 3rem);
+    font-family: var(--font-label);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 700px) {
+    .p-archive__item {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+    }
+  }
+</style>

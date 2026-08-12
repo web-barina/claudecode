@@ -1,0 +1,125 @@
+---
+const stages = [
+  {
+    label: "Education",
+    title: "教育の仕事から、\nWebの世界へ。",
+    body: "人に伝えること、相手の理解に合わせて整理すること。",
+  },
+  {
+    label: "Management / Quality",
+    title: "進行と品質を\n見る経験。",
+    body: "スケジュールや品質、周囲との連携を意識する経験を重ねました。",
+  },
+  {
+    label: "Web Production",
+    title: "Web制作の\n現場へ。",
+    body: "Webサイト制作に携わり、コーディングや実装への理解も深めました。",
+  },
+  {
+    label: "Web Director",
+    title: "そして、\nWebディレクターへ。",
+    body: "現在は、要件整理から制作進行、クライアント対応、品質管理まで、Web制作全体を見ながら仕事をしています。",
+  },
+];
+---
+
+<section id="career" class="section career">
+  <div class="section-inner">
+    <p class="eyebrow reveal">07 / Career</p>
+    <h2 class="section-heading reveal" style="--reveal-delay:0.08s">CAREER</h2>
+    <p class="section-copy reveal" style="--reveal-delay:0.14s">Webディレクターになるまで。</p>
+
+    <ol class="career__timeline">
+      {
+        stages.map((stage, i) => (
+          <li class="career__stage reveal" style={`--reveal-delay:${0.08 * i}s`}>
+            <div class="career__marker" aria-hidden="true">
+              <span class="career__dot" />
+            </div>
+            <span class="career__label">{stage.label}</span>
+            <h3 class="career__title">
+              {stage.title.split("\n").map((line) => (
+                <span class="career__title-line">{line}</span>
+              ))}
+            </h3>
+            <p class="career__body">{stage.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .career__timeline {
+    margin-top: clamp(3rem, 7vw, 4.5rem);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .career__stage {
+    position: relative;
+    padding-right: clamp(1rem, 2vw, 1.75rem);
+    border-left: 1px solid var(--color-line);
+    padding-left: clamp(1rem, 2vw, 1.75rem);
+  }
+
+  .career__marker {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.6rem;
+  }
+
+  .career__dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--color-accent);
+  }
+
+  .career__label {
+    display: block;
+    font-family: var(--font-label);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink-faint);
+    min-height: 2.4em;
+  }
+
+  .career__title {
+    margin-top: 0.9em;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: clamp(1.15rem, 1.9vw, 1.45rem);
+    line-height: 1.4;
+  }
+
+  .career__title-line {
+    display: block;
+  }
+
+  .career__body {
+    margin-top: 1em;
+    color: var(--color-ink-soft);
+    font-size: 0.88rem;
+    line-height: 1.9;
+  }
+
+  @media (max-width: 860px) {
+    .career__timeline {
+      grid-template-columns: 1fr;
+      gap: 2.25rem;
+    }
+    .career__stage {
+      border-left: none;
+      border-top: 1px solid var(--color-line);
+      padding-left: 0;
+      padding-top: 1.75rem;
+    }
+    .career__marker {
+      display: none;
+    }
+  }
+</style>

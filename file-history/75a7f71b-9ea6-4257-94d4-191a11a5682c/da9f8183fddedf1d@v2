@@ -1,0 +1,121 @@
+---
+const steps = [
+  { num: "01", en: "Hearing", ja: "ヒアリング", body: "目的や課題、実現したいことを整理します。" },
+  {
+    num: "02",
+    en: "Planning",
+    ja: "情報整理・設計",
+    body: "必要な情報を整理し、サイト構成やページの方向性を考えます。",
+  },
+  {
+    num: "03",
+    en: "Direction",
+    ja: "制作ディレクション",
+    body: "デザイナー・コーダーと連携し、制作を進めます。",
+  },
+  {
+    num: "04",
+    en: "Check",
+    ja: "確認・品質管理",
+    body: "デザインや実装を確認し、必要な修正を整理します。",
+  },
+  { num: "05", en: "Release", ja: "公開", body: "最後まで確認を行い、公開までプロジェクトを進めます。" },
+];
+---
+
+<section id="process" class="section process">
+  <div class="section-inner">
+    <p class="eyebrow reveal">06 / Process</p>
+    <h2 class="section-heading reveal" style="--reveal-delay:0.08s">PROCESS</h2>
+    <p class="section-copy reveal" style="--reveal-delay:0.14s">
+      制作を、<br />
+      ひとつずつ前に進めていく。
+    </p>
+
+    <ol class="process__list">
+      {
+        steps.map((step, i) => (
+          <li class="process__step reveal" style={`--reveal-delay:${0.08 * i}s`}>
+            <div class="process__node">
+              <span class="process__num">{step.num}</span>
+            </div>
+            <div class="process__body">
+              <span class="process__en">{step.en}</span>
+              <h3 class="process__ja">{step.ja}</h3>
+              <p class="process__desc">{step.body}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .process__list {
+    position: relative;
+    margin-top: clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .process__list::before {
+    content: "";
+    position: absolute;
+    top: 1.5rem;
+    bottom: 1.5rem;
+    left: calc(clamp(2.6rem, 5vw, 3.2rem) / 2 - 0.5px);
+    width: 1px;
+    background: var(--color-line);
+  }
+
+  .process__step {
+    position: relative;
+    display: grid;
+    grid-template-columns: clamp(2.6rem, 5vw, 3.2rem) 1fr;
+    gap: clamp(1.25rem, 3vw, 2.5rem);
+    padding: clamp(1.6rem, 3vw, 2.1rem) 0;
+  }
+
+  .process__node {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(2.6rem, 5vw, 3.2rem);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--color-bg);
+    border: 1px solid var(--color-line-strong);
+  }
+
+  .process__num {
+    font-family: var(--font-label);
+    font-size: 0.78rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .process__en {
+    font-family: var(--font-label);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .process__ja {
+    margin-top: 0.35em;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  }
+
+  .process__desc {
+    margin-top: 0.6em;
+    max-width: 46ch;
+    color: var(--color-ink-soft);
+    font-size: 0.95rem;
+    line-height: 1.9;
+  }
+</style>

@@ -1,0 +1,136 @@
+---
+import PlaceholderArt from "../PlaceholderArt.astro";
+import { works } from "../../data/works";
+---
+
+<section id="works" class="section works">
+  <div class="section-inner">
+    <p class="eyebrow reveal">05 / Works</p>
+    <h2 class="section-heading reveal" style="--reveal-delay:0.08s">WORKS</h2>
+    <p class="section-copy reveal" style="--reveal-delay:0.14s">
+      どんなサイトを作ったか。<br />
+      そして、どう進めたか。
+    </p>
+
+    <ul class="works__list">
+      {
+        works.map((work, i) => (
+          <li class="works__item reveal" style={`--reveal-delay:${0.08 * i}s`}>
+            <a href={work.href} class="works__card">
+              <div class="works__media">
+                <PlaceholderArt label={work.category} tone={work.tone} />
+              </div>
+              <div class="works__meta">
+                <div class="works__meta-top">
+                  <span class="works__number num-index">{work.number}</span>
+                  <span class="works__category">{work.category}</span>
+                </div>
+                <h3 class="works__title">{work.title}</h3>
+                <ul class="works__roles">
+                  {work.roles.map((role) => (
+                    <li>{role}</li>
+                  ))}
+                </ul>
+                <span class="works__link link-underline">
+                  VIEW PROJECT <span aria-hidden="true">→</span>
+                </span>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .works__list {
+    margin-top: clamp(2.75rem, 6vw, 4.5rem);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  .works__item:nth-child(2) {
+    margin-top: clamp(0px, 6vw, 3.5rem);
+  }
+
+  .works__card {
+    display: block;
+    height: 100%;
+  }
+
+  .works__media {
+    overflow: hidden;
+  }
+
+  .works__media :global(.placeholder) {
+    transition: transform var(--dur-med) var(--ease-out);
+  }
+
+  .works__card:hover .works__media :global(.placeholder),
+  .works__card:focus-visible .works__media :global(.placeholder) {
+    transform: scale(1.045);
+  }
+
+  .works__meta {
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--color-line-strong);
+    margin-top: 1.4rem;
+  }
+
+  .works__meta-top {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9em;
+  }
+
+  .works__category {
+    font-family: var(--font-label);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-ink-faint);
+  }
+
+  .works__title {
+    margin-top: 0.5em;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+  }
+
+  .works__roles {
+    margin-top: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em 0.7em;
+  }
+
+  .works__roles li {
+    font-size: 0.72rem;
+    color: var(--color-ink-soft);
+    padding: 0.4em 0.75em;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+  }
+
+  .works__link {
+    display: inline-block;
+    margin-top: 1.5em;
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 900px) {
+    .works__list {
+      grid-template-columns: 1fr;
+      gap: 2.75rem;
+    }
+    .works__item:nth-child(2) {
+      margin-top: 0;
+    }
+  }
+</style>

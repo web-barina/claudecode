@@ -1,0 +1,26 @@
+/**
+ * HORROR ページの作品一覧（仮データ）。
+ * 作品が増えたらこの配列に追加する。
+ */
+
+export type HorrorWork = {
+  number: string;
+  title: string;
+  year: string;
+  note: string;
+};
+
+export const horrorWorks: HorrorWork[] = [
+  {
+    number: "EP.01",
+    title: "Untitled",
+    year: "Coming Soon",
+    note: "制作中の作品です。準備が整い次第公開します。",
+  },
+  {
+    number: "EP.02",
+    title: "???",
+    year: "TBA",
+    note: "次回作を構想中です。",
+  },
+];

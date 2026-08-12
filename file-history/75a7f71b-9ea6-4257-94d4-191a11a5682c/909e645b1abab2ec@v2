@@ -1,0 +1,57 @@
+/**
+ * WORKS セクションの仮データ。
+ * 実案件が確定したら title / category / roles / image / href を差し替える。
+ */
+
+export type Work = {
+  number: string;
+  title: string;
+  category: string;
+  roles: string[];
+  href: string;
+  tone: "a" | "b" | "c";
+};
+
+export const works: Work[] = [
+  {
+    number: "01",
+    title: "Web Site Renewal",
+    category: "Corporate Site",
+    roles: [
+      "Web Direction",
+      "Requirement Definition",
+      "Progress Management",
+      "Client Communication",
+      "Quality Control",
+    ],
+    href: "#",
+    tone: "a",
+  },
+  {
+    number: "02",
+    title: "Landing Page",
+    category: "LP Production",
+    roles: [
+      "Direction",
+      "Wireframe",
+      "Client Communication",
+      "Progress Management",
+      "Quality Control",
+    ],
+    href: "#",
+    tone: "b",
+  },
+  {
+    number: "03",
+    title: "WordPress Renewal",
+    category: "WordPress",
+    roles: [
+      "Requirement Definition",
+      "Content Management",
+      "Direction",
+      "Quality Control",
+    ],
+    href: "#",
+    tone: "c",
+  },
+];

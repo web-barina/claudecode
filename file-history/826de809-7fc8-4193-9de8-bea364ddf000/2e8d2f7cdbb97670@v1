@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HORROR — RINA OBA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #07070A; color: #D6D2CB; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: #9B2C22; }
+  @keyframes flick { 0%,100% { opacity: .85; } 47% { opacity: .85; } 48% { opacity: .35; } 52% { opacity: .9; } 70% { opacity: .6; } }
+  @keyframes slowfade { from { opacity: 0; } to { opacity: 1; } }
+</style>
+</helmet>
+
+<div class="base-17">
+
+<div style="{{ gateStyle }}">
+  <p class="base-18">WARNING</p>
+  <p class="base-19">THIS PAGE CONTAINS<br>SOMETHING I MADE<br>JUST FOR FUN.</p>
+  <button class="base-20" type="button" onClick="{{ enter }}">ENTER?</button>
+  <a class="base-21" href="Portfolio.dc.html">NO, GO BACK</a>
+</div>
+
+<div style="{{ pageStyle }}">
+  <header class="base-22">
+    <a class="header-2" href="Portfolio.dc.html">← RINA OBA</a>
+    <span>PERSONAL / 02</span>
+  </header>
+
+  <main>
+    <section class="main-25">
+      <div class="main-18">
+        <h1 class="main-26">HORROR</h1>
+        <p class="main-27">趣味で制作している<br>ホラーアニメーションや作品を掲載できるページ。</p>
+      </div>
+    </section>
+
+    <section class="main-28">
+      <div class="main-18">
+        <p class="main-29">WORKS / ARCHIVE</p>
+        <ul class="main-30">
+          <li><div class="main-31" role="img" aria-label="ホラー作品のサムネイル（未公開）"><span class="main-32">work still</span></div><p class="main-33">NO.01</p><p class="main-34">UNTITLED</p></li>
+          <li><div class="main-31" role="img" aria-label="ホラー作品のサムネイル（未公開）"><span class="main-32">work still</span></div><p class="main-33">NO.02</p><p class="main-34">UNTITLED</p></li>
+          <li><div class="main-31" role="img" aria-label="ホラー作品のサムネイル（未公開）"><span class="main-32">work still</span></div><p class="main-33">NO.03</p><p class="main-34">UNTITLED</p></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="base-23">
+    <a href="Portfolio.dc.html">← BACK TO MAIN</a>
+    <span>© RINA OBA</span>
+  </footer>
+</div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { entered: false };
+  renderVals() {
+    const e = this.state.entered;
+    return {
+      enter: () => this.setState({ entered: true }),
+      gateStyle:
+        "position:fixed;top:0;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,430px);z-index:50;background:#0B0B0C;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(24px,6cqw,80px);" +
+        "transition:opacity .9s ease,visibility .9s ease;" +
+        (e ? "opacity:0;visibility:hidden;pointer-events:none" : "opacity:1;visibility:visible"),
+      pageStyle: e
+        ? "animation:slowfade 1.2s ease both"
+        : "opacity:0;height:100svh;overflow:hidden"
+    };
+  }
+}
+
+</script>
+</body>
+</html>

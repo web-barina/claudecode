@@ -1,0 +1,27 @@
+/**
+ * サイト全体の設定値をまとめたファイル。
+ * SNSリンク・連絡先・下層ページの情報など、後から差し替えたい値はここで管理する。
+ */
+
+export const siteConfig = {
+  name: "RINA OBA",
+  role: "Web Director / Planner",
+  siteTitle: "RINA OBA | Web Director",
+  siteDescription:
+    "整理して、つないで、ちゃんと前に進める。Web制作の現場で「つくる人」と「つくりたい人」の間に立つWebディレクター、RINA OBAのポートフォリオサイト。",
+  // 本番公開URL（Cloudflare Pages のURLに差し替える）
+  siteUrl: "https://rina-portfolio.pages.dev",
+  email: "hello@example.com",
+  contactFormUrl: "#contact",
+};
+
+export const socialLinks = {
+  instagram: "https://www.instagram.com/",
+  x: "https://x.com/",
+  note: "https://note.com/",
+};
+
+export const personalLinks = {
+  pianist: "/pianist/",
+  horror: "/horror/",
+};

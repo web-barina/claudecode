@@ -72,7 +72,33 @@
       "Bash(cp /private/tmp/claude-501/-Users-rina--claude/a1800f82-0ef2-4232-9e2f-6941aea7e298/scratchpad/cms_manual/final_images/*.png \"/Users/rina/Downloads/CMS操作マニュアル_HTML/images/\")",
       "Bash(which google-chrome chromium chromium-browser \"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" 2>/dev/null *)",
       "Read(//Applications/Google Chrome.app/Contents/MacOS/**)",
-      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --no-sandbox --screenshot=shot_top.png --window-size=1400,2200 file:///Users/rina/Downloads/CMS操作マニュアル_HTML/index.html)"
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --no-sandbox --screenshot=shot_top.png --window-size=1400,2200 file:///Users/rina/Downloads/CMS操作マニュアル_HTML/index.html)",
+      "Bash(mkdir -p /tmp/qa_css *)",
+      "WebFetch(domain:www.softbank.jp)",
+      "WebSearch",
+      "Bash(npm -v)",
+      "Bash(gh --version)",
+      "Bash(gh auth *)",
+      "Bash(brew list *)",
+      "Read(//opt/homebrew/bin/**)",
+      "Read(//usr/local/bin/**)",
+      "Bash(mkdir -p ~/Desktop/rina-portfolio)",
+      "Bash(npm create *)",
+      "Bash(npm install *)",
+      "Bash(cd ~/Desktop/rina-portfolio && mkdir -p src/data src/layouts src/components src/components/sections src/scripts src/styles src/pages/pianist src/pages/horror && ls -R src)",
+      "Bash(node -e \"console.log\\(require\\('astro/package.json'\\).version\\)\")",
+      "Bash(node -e \"const m=require\\('astro'\\); console.log\\(Object.keys\\(m\\)\\)\")",
+      "Bash(npx astro *)",
+      "Bash(find / -maxdepth 6 -iname \"*chromium-cli*\")",
+      "Bash(find / -maxdepth 8 -iname \"chromium-cli\")",
+      "Bash(cp /private/tmp/claude-501/-Users-rina--claude/826de809-7fc8-4193-9de8-bea364ddf000/scratchpad/barina-code-backup/*.dc.html /Users/rina/.claude/barina-code/)",
+      "Bash(rm -f /Users/rina/.claude/barina-code/_generated_component_rules.css)",
+      "Bash(python3 *)",
+      "Bash(tail -n +2 _generated_component_rules.css)",
+      "Bash(rm _generated_component_rules.css)"
+    ],
+    "additionalDirectories": [
+      "/tmp"
     ]
   }
 }

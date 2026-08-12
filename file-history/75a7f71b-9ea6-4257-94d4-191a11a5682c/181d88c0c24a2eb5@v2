@@ -1,0 +1,92 @@
+import { chromium } from "playwright";
+import fs from "node:fs";
+
+const outDir = "/private/tmp/claude-501/-Users-rina--claude/75a7f71b-9ea6-4257-94d4-191a11a5682c/scratchpad/shots";
+fs.mkdirSync(outDir, { recursive: true });
+
+const browser = await chromium.launch();
+const consoleErrors = [];
+
+async function shot(url, name, viewport) {
+  const page = await browser.newPage({ viewport });
+  page.on("console", (msg) => {
+    if (msg.type() === "error") consoleErrors.push(`[${name}] ${msg.text()}`);
+  });
+  page.on("pageerror", (err) => consoleErrors.push(`[${name}] pageerror: ${err.message}`));
+  await page.goto(url, { waitUntil: "networkidle" });
+  await page.waitForTimeout(600);
+  await page.screenshot({ path: `${outDir}/${name}.png`, fullPage: true });
+  return page;
+}
+
+// Desktop
+await (await shot("http://localhost:4321/", "top-desktop", { width: 1440, height: 900 })).close();
+await (await shot("http://localhost:4321/pianist/", "pianist-desktop", { width: 1440, height: 900 })).close();
+
+// Horror desktop: capture gate, then click ENTER, then capture content
+{
+  const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  page.on("console", (msg) => {
+    if (msg.type() === "error") consoleErrors.push(`[horror-desktop] ${msg.text()}`);
+  });
+  page.on("pageerror", (err) => consoleErrors.push(`[horror-desktop] pageerror: ${err.message}`));
+  await page.goto("http://localhost:4321/horror/", { waitUntil: "networkidle" });
+  await page.waitForTimeout(500);
+  await page.screenshot({ path: `${outDir}/horror-gate-desktop.png` });
+  await page.click("[data-horror-enter]");
+  await page.waitForTimeout(900);
+  await page.screenshot({ path: `${outDir}/horror-entered-desktop.png`, fullPage: true });
+  await page.close();
+}
+
+// Mobile 375px
+await (await shot("http://localhost:4321/", "top-mobile", { width: 375, height: 812 })).close();
+await (await shot("http://localhost:4321/pianist/", "pianist-mobile", { width: 375, height: 812 })).close();
+
+{
+  const page = await browser.newPage({ viewport: { width: 375, height: 812 } });
+  await page.goto("http://localhost:4321/horror/", { waitUntil: "networkidle" });
+  await page.waitForTimeout(400);
+  await page.screenshot({ path: `${outDir}/horror-gate-mobile.png` });
+  await page.close();
+}
+
+// Hamburger menu open — desktop
+{
+  const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  page.on("console", (msg) => {
+    if (msg.type() === "error") consoleErrors.push(`[menu-desktop] ${msg.text()}`);
+  });
+  await page.goto("http://localhost:4321/", { waitUntil: "networkidle" });
+  await page.click("[data-menu-toggle]");
+  await page.waitForTimeout(900);
+  await page.screenshot({ path: `${outDir}/menu-open-desktop.png` });
+  await page.close();
+}
+
+// Hamburger menu open — mobile
+{
+  const page = await browser.newPage({ viewport: { width: 375, height: 812 } });
+  await page.goto("http://localhost:4321/", { waitUntil: "networkidle" });
+  await page.click("[data-menu-toggle]");
+  await page.waitForTimeout(900);
+  await page.screenshot({ path: `${outDir}/menu-open-mobile.png` });
+  await page.close();
+}
+
+// Works section crop — desktop
+{
+  const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  await page.goto("http://localhost:4321/", { waitUntil: "networkidle" });
+  const works = page.locator("#works");
+  await works.scrollIntoViewIfNeeded();
+  await page.waitForTimeout(700);
+  await works.screenshot({ path: `${outDir}/works-desktop.png` });
+  await page.close();
+}
+
+await browser.close();
+
+fs.writeFileSync(`${outDir}/console-errors.txt`, consoleErrors.join("\n") || "(no console errors)");
+console.log("DONE");
+console.log("Console errors:\n" + (consoleErrors.join("\n") || "(none)"));

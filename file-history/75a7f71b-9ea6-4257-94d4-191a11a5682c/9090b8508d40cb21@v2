@@ -1,0 +1,146 @@
+---
+---
+
+<section class="fv" aria-label="トップ">
+  <p class="fv__ghost" aria-hidden="true">DIRECTION</p>
+
+  <div class="fv__frame container">
+    <p class="fv__kicker eyebrow reveal">WEB DIRECTOR — RINA OBA</p>
+
+    <h1 class="fv__title">
+      <span class="fv__line reveal" style="--reveal-delay:0.08s">整理して、つないで、</span>
+      <span class="fv__line reveal" style="--reveal-delay:0.2s">ちゃんと前に進める。</span>
+    </h1>
+
+    <p class="fv__desc reveal" style="--reveal-delay:0.34s">
+      Web制作の現場で、<br />
+      「つくる人」と「つくりたい人」の間に立つ<br />
+      Webディレクターです。
+    </p>
+  </div>
+
+  <a href="#about" class="fv__scroll" aria-label="ABOUTセクションまでスクロール">
+    <span class="fv__scroll-label">SCROLL</span>
+    <span class="fv__scroll-line" aria-hidden="true"></span>
+  </a>
+</section>
+
+<style>
+  .fv {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+    overflow: hidden;
+  }
+
+  .fv__ghost {
+    position: absolute;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-label);
+    font-weight: 800;
+    font-size: min(26vw, 20rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--color-line);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+
+  .fv__frame {
+    position: relative;
+    z-index: 1;
+  }
+
+  .fv__kicker {
+    margin-bottom: 1.6em;
+  }
+
+  .fv__title {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: clamp(1.6rem, 8.6vw, 7.2rem);
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+  }
+
+  .fv__line {
+    display: block;
+  }
+
+  .fv__desc {
+    margin-top: 2.4em;
+    max-width: 34ch;
+    font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+    line-height: 2;
+    color: var(--color-ink-soft);
+  }
+
+  .fv__scroll {
+    position: absolute;
+    left: clamp(1.25rem, 4vw, 2.75rem);
+    bottom: clamp(1.5rem, 4vw, 2.5rem);
+    display: flex;
+    align-items: center;
+    gap: 0.9em;
+    z-index: 1;
+  }
+
+  .fv__scroll-label {
+    font-family: var(--font-label);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    color: var(--color-ink-faint);
+  }
+
+  .fv__scroll-line {
+    position: relative;
+    width: 1px;
+    height: 46px;
+    background: var(--color-line);
+    overflow: hidden;
+  }
+
+  .fv__scroll-line::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-accent);
+    transform: translateY(-100%);
+    animation: scroll-drip 2.2s var(--ease-in-out) infinite;
+  }
+
+  @keyframes scroll-drip {
+    0% {
+      transform: translateY(-100%);
+    }
+    60% {
+      transform: translateY(0%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fv__scroll-line::after {
+      animation: none;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 700px) {
+    .fv__ghost {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,93 @@
+---
+const profile = [
+  { label: "NAME", value: "RINA OBA" },
+  { label: "JOB", value: "Web Director / Planner" },
+  { label: "LOCATION", value: "JAPAN" },
+  { label: "BACKGROUND", value: "教育・音楽・Web制作" },
+];
+---
+
+<section id="about" class="section about">
+  <div class="section-inner about__grid">
+    <div class="about__main">
+      <p class="eyebrow reveal">02 / About Me</p>
+      <h2 class="section-heading reveal" style="--reveal-delay:0.08s">ABOUT ME</h2>
+      <p class="section-copy reveal" style="--reveal-delay:0.14s">
+        Webだけじゃない経験が、<br />
+        私のディレクションをつくっています。
+      </p>
+      <p class="section-lede reveal" style="--reveal-delay:0.2s">
+        Webディレクターとして、クライアントとの打ち合わせや要件整理、
+        ワイヤーフレーム、制作進行、品質チェックなど、
+        Webサイト制作の上流から公開まで携わっています。
+      </p>
+      <p class="section-lede reveal" style="--reveal-delay:0.26s">
+        これまで、Web制作だけでなく、教育・音楽・進行管理・品質管理など、
+        さまざまな経験をしてきました。<br /><br />
+        だからこそ、目の前の「Webサイト」だけを見るのではなく、
+        その背景にある目的や課題まで考えながら、
+        プロジェクトを前に進めることを大切にしています。
+      </p>
+    </div>
+
+    <dl class="about__profile reveal" style="--reveal-delay:0.3s">
+      {
+        profile.map((item) => (
+          <div class="about__profile-row">
+            <dt>{item.label}</dt>
+            <dd>{item.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<style>
+  .about__grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: clamp(2.5rem, 6vw, 5rem);
+  }
+
+  .about__profile {
+    align-self: start;
+    margin-top: clamp(3rem, 8vw, 4.5rem);
+    border-top: 1px solid var(--color-line-strong);
+  }
+
+  .about__profile-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 1.3em 0;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .about__profile-row dt {
+    font-family: var(--font-label);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: var(--color-ink-faint);
+    white-space: nowrap;
+  }
+
+  .about__profile-row dd {
+    margin: 0;
+    text-align: right;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1.02rem;
+  }
+
+  @media (max-width: 860px) {
+    .about__grid {
+      grid-template-columns: 1fr;
+    }
+    .about__profile {
+      margin-top: 1rem;
+    }
+  }
+</style>

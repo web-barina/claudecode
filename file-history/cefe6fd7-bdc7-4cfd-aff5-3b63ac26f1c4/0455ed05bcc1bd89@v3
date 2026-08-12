@@ -1,0 +1,479 @@
+<title>T&Dグループ meta description 個別提案</title>
+<style>
+  :root {
+    --paper: #F1F3F1;
+    --paper-raised: #FFFFFF;
+    --ink: #1B2422;
+    --ink-soft: #45524D;
+    --muted: #8D948E;
+    --line: #D8DCD7;
+    --accent: #146357;
+    --accent-ink: #0D4038;
+    --accent-soft: #DEEAE6;
+    --bad-soft: #F3E7DE;
+    --bad-ink: #8A4A26;
+  }
+  :root[data-theme="dark"] {
+    --paper: #12716B10;
+    --paper: #121715;
+    --paper-raised: #182420;
+    --ink: #E7ECE9;
+    --ink-soft: #B7C0BB;
+    --muted: #7C8985;
+    --line: #2B3733;
+    --accent: #4FBFA0;
+    --accent-ink: #8ADCC4;
+    --accent-soft: #1C3733;
+    --bad-soft: #2E241B;
+    --bad-ink: #D2A279;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #121715;
+      --paper-raised: #182420;
+      --ink: #E7ECE9;
+      --ink-soft: #B7C0BB;
+      --muted: #7C8985;
+      --line: #2B3733;
+      --accent: #4FBFA0;
+      --accent-ink: #8ADCC4;
+      --accent-soft: #1C3733;
+      --bad-soft: #2E241B;
+      --bad-ink: #D2A279;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 4rem 1.5rem 6rem; }
+
+  h1, h2, .eyebrow-title {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    text-wrap: balance;
+  }
+
+  header.masthead {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 2.25rem;
+    margin-bottom: 2.5rem;
+  }
+  .kicker {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  h1 {
+    font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.35rem);
+    font-weight: 600;
+    margin: 0.5rem 0 0.75rem;
+    color: var(--ink);
+  }
+  .lede {
+    color: var(--ink-soft);
+    font-size: 1rem;
+    max-width: 62ch;
+    margin: 0 0 1.5rem;
+  }
+  .problem-quote {
+    background: var(--bad-soft);
+    border: 1px solid color-mix(in srgb, var(--bad-ink) 25%, transparent);
+    border-radius: 6px;
+    padding: 0.9rem 1.1rem;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    max-width: 62ch;
+  }
+  .problem-quote b { color: var(--bad-ink); font-weight: 600; }
+
+  .stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.75rem;
+    flex-wrap: wrap;
+  }
+  .stat .n {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 1.6rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+  }
+  .stat .l { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; }
+
+  nav.jump {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+    position: sticky;
+    top: 0.75rem;
+    z-index: 5;
+  }
+  nav.jump a {
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    text-decoration: none;
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    padding: 0.4rem 0.85rem;
+    border-radius: 100px;
+    backdrop-filter: blur(6px);
+  }
+  nav.jump a:hover { border-color: var(--accent); color: var(--accent-ink); }
+
+  section.group { margin-bottom: 3.5rem; scroll-margin-top: 1rem; }
+  .group-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.6rem;
+  }
+  .group-head h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  .group-head .count {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .cards { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  @media (min-width: 720px) {
+    .cards { grid-template-columns: 1fr 1fr; }
+  }
+
+  .card {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 1.1rem 1.2rem 1.15rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+  .card-head .name { font-weight: 600; font-size: 0.98rem; }
+  .card-head .url {
+    font-size: 0.7rem;
+    color: var(--muted);
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .before, .after { font-size: 0.84rem; }
+  .before {
+    color: var(--muted);
+  }
+  .before .lbl {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--bad-ink);
+    margin-bottom: 0.2rem;
+    font-weight: 600;
+  }
+  .after {
+    color: var(--ink);
+    background: var(--accent-soft);
+    border-radius: 6px;
+    padding: 0.55rem 0.7rem;
+  }
+  .after .lbl {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+  }
+  .after .lbl .count {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent-ink);
+    letter-spacing: 0;
+    text-transform: none;
+    font-weight: 500;
+  }
+  .note {
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    border-top: 1px dashed var(--line);
+    padding-top: 0.55rem;
+  }
+  .note b { color: var(--ink); font-weight: 600; }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .card { transition: border-color 0.15s ease; }
+    .card:hover { border-color: var(--accent); }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="kicker">T&amp;Dグループ &middot; td-group.test-page.site</div>
+    <h1>meta description 個別作成のご提案</h1>
+    <p class="lede">現状、店舗ページ・症状ページとも「同じ定型文に固有名詞だけを差し込む」テンプレート運用になっています。検索結果での見え方が横並びで似通ってしまい、ページごとの独自性も伝わりにくい状態です。全30ページ、それぞれの本文から固有情報を拾い、1本ずつ書き起こしました。</p>
+    <div class="problem-quote">
+      <b>現行テンプレート（症状ページ・共通）</b><br>
+      「〇〇でお悩みの方へ。あなたの状態を丁寧に見極め、オーダーメイドプランをご提案。東京・千葉を中心に展開。お気軽にご相談ください。お子様連れ歓迎。24時間WEB予約・LINE予約受付中。」— 症状名以外は22ページ全て同一文面
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="n">30</div><div class="l">対象ページ</div></div>
+      <div class="stat"><div class="n">8</div><div class="l">店舗ページ</div></div>
+      <div class="stat"><div class="n">22</div><div class="l">症状ページ</div></div>
+      <div class="stat"><div class="n">104–121</div><div class="l">文字数レンジ</div></div>
+    </div>
+  </header>
+
+  <nav class="jump">
+    <a href="#stores">店舗ページ (8)</a>
+    <a href="#head-neck">頭・首・肩 (9)</a>
+    <a href="#back-waist">背中・腰 (7)</a>
+    <a href="#hand-leg">手・足 (6)</a>
+  </nav>
+
+  <section class="group" id="stores">
+    <div class="group-head"><h2>店舗ページ</h2><span class="count">8件</span></div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-head"><span class="name">北千住駅前 整骨院</span><span class="url">/kitasenju/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">121字</span></div>北千住駅前整骨院は「北千住駅」西口から徒歩4分、きたろーど1010商店街沿いにある整骨院です。交通事故施術・労災保険施術にも対応し、土曜・祝日も営業。仕事帰りや買い物のついでに立ち寄りやすく、腰痛や坐骨神経痛など幅広いお悩みに対応しています。</div>
+        <div class="note"><b>反映した固有情報：</b>商店街沿いという立地、交通事故・労災施術への対応、土曜祝日営業。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">三河島鍼灸整骨院</span><span class="url">/mikawashima/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">109字</span></div>三河島鍼灸整骨院はJR常磐線「三河島駅」から徒歩1分、荒川区荒川エリアで通いやすい鍼灸整骨院です。鍼灸師が在籍し、長年の難聴や坐骨神経痛など幅広い症状に鍼治療でアプローチ。日曜定休で、平日は夜21時まで受付しています。</div>
+        <div class="note"><b>反映した固有情報：</b>駅徒歩1分の好アクセス、鍼灸師在籍・鍼治療という施術特徴。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">金町南口整骨院</span><span class="url">/kanamachi/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">115字</span></div>金町南口整骨院はJR金町駅・京成金町駅から徒歩5分、青い看板と黄色い風船看板が目印です。自転車での通院も可能で、デスクワークによる腰痛や慢性的な肩こり、姿勢の崩れまで幅広いお悩みに対応。日曜定休、平日は夜21時まで受付しています。</div>
+        <div class="note"><b>反映した固有情報：</b>看板というアクセス目印、自転車通院可という設備面。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">榎戸接骨院</span><span class="url">/enokido/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">121字</span></div>榎戸接骨院はJR総武本線・榎戸駅から徒歩3分、駐車場18台完備で車での通院にも便利な八街市の接骨院です。交通事故施術・労災保険施術にも対応し、五十肩や眼精疲労、足のむくみなど幅広い症状のご相談を受け付けており、地域の方に長く親しまれています。</div>
+        <div class="note"><b>反映した固有情報：</b>駐車場18台完備という車利用者向けの強み。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">逆井駅前整骨院</span><span class="url">/sakasai/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">111字</span></div>逆井駅前整骨院は東武野田線「逆井駅」から徒歩1分、駅前で通いやすい柏市の整骨院です。近隣に駐車場もあり自転車での通院も可能。腰痛や肩こりだけでなく、体全体のバランスを整える施術で美容面のお悩みまで幅広くご相談いただけます。</div>
+        <div class="note"><b>反映した固有情報：</b>駅前立地・駐車場/自転車通院可、美容面まで対応する施術の幅。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">秋山駅前整骨院</span><span class="url">/akiyama-ekimae/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">106字</span></div>秋山駅前整骨院は北総線「秋山駅」ロータリー内、駅から徒歩10秒という松戸市の好立地にある整骨院です。ダンスやスポーツで生じる腰痛、猫背による背中の不調など幅広い症状に対応。日曜定休で、土曜・祝日も営業しています。</div>
+        <div class="note"><b>反映した固有情報：</b>駅ロータリー内・徒歩10秒という圧倒的な近さ、スポーツ由来の症例。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">臼井接骨院</span><span class="url">/usui/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">104字</span></div>臼井接骨院は京成本線「京成臼井駅」から徒歩6分、敷地内に無料駐車場を完備した佐倉市王子台の接骨院です。自転車での通院も可能で、デスクワークによる首の痛みや股関節の不調まで、幅広い症状のご相談に対応しています。</div>
+        <div class="note"><b>反映した固有情報：</b>敷地内無料駐車場・自転車通院可という設備面。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">薬園台駅東口接骨院</span><span class="url">/yakuendai/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">106字</span></div>薬園台駅東口接骨院は「薬園台駅」東口から徒歩1分、店舗専用駐車場もある船橋市薬円台の接骨院です。交通事故の後遺症による腰痛にも対応し、お子様連れでも通いやすいと好評。駅近で用事のついでにも立ち寄りやすい立地です。</div>
+        <div class="note"><b>反映した固有情報：</b>店舗専用駐車場、交通事故後遺症への対応、子連れ利用しやすいという口コミ内容。</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="group" id="head-neck">
+    <div class="group-head"><h2>症状ページ — 頭・首・肩</h2><span class="count">9件</span></div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-head"><span class="name">頭痛</span><span class="url">/symptoms/zutsu/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">121字</span></div>東京・千葉で頭痛にお悩みの方へ。首のカーブの乱れや肩の筋緊張、骨盤のゆがみが頭部の血流・神経に影響する根本原因を見極め、薬に頼らず痛みが起きにくい体づくりを施術とセルフケア指導の両面からサポートします。24時間WEB予約・LINE予約受付中。</div>
+        <div class="note"><b>反映した固有情報：</b>首・肩・骨盤と頭部血流の関係、薬に頼らない非薬物アプローチ。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">顎の痛み</span><span class="url">/symptoms/ago/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">116字</span></div>東京・千葉で顎のカクカク音や食いしばりにお悩みの方へ。顎関節だけでなく首のカーブの乱れや肩の緊張との関連に着目し、繊細な部位のため負担の少ないやさしい施術で根本原因にアプローチします。お子様連れも歓迎です。24時間WEB予約受付中。</div>
+        <div class="note"><b>反映した固有情報：</b>食いしばり・歯ぎしりと首肩の緊張の関連、顎への繊細な施術方針。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">巻き肩</span><span class="url">/symptoms/makigata/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">118字</span></div>東京・千葉で巻き肩にお悩みの方へ。肩が前に出るのは意識の問題ではなく、骨盤や背骨のバランスの崩れが原因のことも。縮こまった胸の筋肉をゆるめ、肩こりや呼吸の浅さにもつながる巻き肩が戻りにくい体づくりを目指します。24時間WEB予約受付中。</div>
+        <div class="note"><b>反映した固有情報：</b>肩こりとの違い（肩関節が前方に出た状態）と呼吸の浅さへの影響。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">肩こり</span><span class="url">/symptoms/katakori/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">118字</span></div>東京・千葉で肩こりにお悩みの方へ。もんでも翌日には戻るのは姿勢や骨盤・背骨のバランスの乱れが原因のことも。頭痛や眼精疲労を伴う肩こりも根本原因を見極め、強さや方法もあなたに合わせたオーダーメイド施術を行います。24時間WEB予約受付中。</div>
+        <div class="note"><b>反映した固有情報：</b>「もんでも戻る」現象の原因と、頭痛・眼精疲労併発への言及。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">頚椎椎間板ヘルニア</span><span class="url">/symptoms/kubi-hernia/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">114字</span></div>東京・千葉で頚椎椎間板ヘルニアによる首・腕のしびれにお悩みの方へ。頭が前に出る姿勢による首への負担増加やしびれの原因を丁寧に見極め、強い刺激を避けた慎重な施術で症状の軽減をサポートします。24時間WEB予約・LINE予約受付中。</div>
+        <div class="note"><b>反映した固有情報：</b>前頭位による椎間板への圧力増加、慎重な施術方針。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">むちうち</span><span class="url">/symptoms/muchiuchi/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">112字</span></div>東京・千葉で交通事故によるむちうちにお悩みの方へ。画像検査で異常なしでも軟部組織の損傷が原因のことがあり、頭痛やめまいを伴うことも。急性期から回復期まで段階に合わせた施術で後遺症を残さない回復をサポート。保険対応も可能です。</div>
+        <div class="note"><b>反映した固有情報：</b>画像に映らない軟部組織損傷、急性期〜回復期の段階的施術、保険対応。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">眼精疲労</span><span class="url">/symptoms/ganseihiro/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">119字</span></div>東京・千葉で眼精疲労にお悩みの方へ。目の使いすぎだけでなく、首こりによる血流低下や自律神経の乱れが関係することも。目まわりへの直接施術は行わず、首・肩から整えるアプローチで根本原因にサポートします。24時間WEB予約・LINE予約受付中。</div>
+        <div class="note"><b>反映した固有情報：</b>首こりとの連動、目への直接施術を行わない方針。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">首の痛み</span><span class="url">/symptoms/kubi/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">121字</span></div>東京・千葉で首の痛みにお悩みの方へ。約4〜6kgの頭を支える首は、頭が前に出るだけで負担が数倍に。頭痛やめまいにもつながるストレートネックを、背骨全体のバランスから根本改善を目指してやさしく施術します。24時間WEB予約・LINE予約受付中。</div>
+        <div class="note"><b>反映した固有情報：</b>頭部4〜6kgを支える構造的負担と、ストレートネックとの関連。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">難聴</span><span class="url">/symptoms/nancho/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">114字</span></div>東京・千葉で耳鳴り・難聴にお悩みの方へ。内耳への血流低下や自律神経の乱れ、首・肩・顎の筋緊張との関連に着目し、検査で異常なしでも耳への直接施術は行わず体全体から整えるアプローチを行います。24時間WEB予約・LINE予約受付中。</div>
+        <div class="note"><b>反映した固有情報：</b>内耳血流・自律神経・顎の食いしばりとの連動。</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="group" id="back-waist">
+    <div class="group-head"><h2>症状ページ — 背中・腰</h2><span class="count">7件</span></div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-head"><span class="name">猫背</span><span class="url">/symptoms/nekoze/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">116字</span></div>猫背は骨盤の後傾から背中・首まで連鎖的に丸まるのが原因。放置すると肩こりや頭痛、呼吸の浅さにもつながることも。東京・千葉のT&amp;Dグループは骨盤・背骨のバランスから根本改善へ導き、強い矯正なしで整えます。まずはお気軽にご相談ください。</div>
+        <div class="note"><b>反映した固有情報：</b>骨盤後傾による連鎖的な丸まりと、呼吸の浅さへの影響。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">ぎっくり腰</span><span class="url">/symptoms/gikkurigoshi/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">110字</span></div>ぎっくり腰は日頃の負担蓄積が引き金に。急性期は炎症を抑える処置を、回復期はくしゃみや前かがみも怖くない体づくりを段階的に行い「また起きるかも」という不安の解消も目指します。東京・千葉で店舗展開、LINE予約も受付中です。</div>
+        <div class="note"><b>反映した固有情報：</b>急性期／回復期で施術を変える段階的アプローチと再発不安への対応。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">腰痛</span><span class="url">/symptoms/youtuu/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">119字</span></div>腰痛の多くは姿勢のクセが原因と考え、東京・千葉のT&amp;Dグループでは硬くなった筋肉を柔らかいまま保つ施術で「施術後すぐ戻る腰痛」を防止。「痛くないか不安」という声にも配慮し、柔整マッサージや矯正などオーダーメイド施術で根本改善を目指します。</div>
+        <div class="note"><b>反映した固有情報：</b>「施術後すぐ戻る」を防ぐアプローチと、施術への不安への配慮。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">反り腰</span><span class="url">/symptoms/sorigoshi/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">112字</span></div>反り腰は骨盤の過剰な前傾と、お腹の筋力低下・腰まわりの緊張のアンバランスが原因。ハイヒールやデスクワークの習慣も影響します。東京・千葉のT&amp;Dグループは骨盤バランスを無理なく整え、立ち姿勢やお腹まわりの変化もサポートします。</div>
+        <div class="note"><b>反映した固有情報：</b>骨盤前傾過剰と腹筋低下のアンバランス、ハイヒール・デスクワークという誘因。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">坐骨神経痛</span><span class="url">/symptoms/zakotsu/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">113字</span></div>坐骨神経痛による太ももや足のしびれは、腰椎・仙骨・梨状筋など圧迫される部位によって原因が異なり、椎間板ヘルニアや脊柱管狭窄症が背景にあることも。東京・千葉のT&amp;Dグループは圧迫箇所を見極め、神経への負担を減らす施術を行います。</div>
+        <div class="note"><b>反映した固有情報：</b>圧迫部位（腰椎・仙骨・梨状筋）によって原因が異なる点。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">股関節の不調</span><span class="url">/symptoms/kokansetsu/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">114字</span></div>股関節の不調は骨盤のゆがみや左右の筋力差が原因になりやすく、腰痛・膝痛とも連動します。変形性股関節症の進行が心配な方にも、東京・千葉のT&amp;Dグループは骨盤・股関節・膝を合わせて整え、階段や長歩きが楽になる体づくりをご提案します。</div>
+        <div class="note"><b>反映した固有情報：</b>腰痛・膝痛との連動と、変形性股関節症の進行予防という視点。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">腰椎椎間板ヘルニア</span><span class="url">/symptoms/koshi-herunia/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">113字</span></div>腰椎椎間板ヘルニアは「診断＝即手術」とは限らず、保存的なケアで負担軽減を図れるケースもあります。東京・千葉のT&amp;Dグループは姿勢・骨盤バランスを整えながら、前かがみ姿勢や荷物の持ち方など日常動作の見直しも含めてサポートします。</div>
+        <div class="note"><b>反映した固有情報：</b>「必ず手術ではない」という保存療法の考え方、日常動作の見直し支援。</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="group" id="hand-leg">
+    <div class="group-head"><h2>症状ページ — 手・足</h2><span class="count">6件</span></div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-head"><span class="name">腱鞘炎</span><span class="url">/symptoms/kenshoen/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">108字</span></div>東京・千葉で腱鞘炎にお悩みの方へ。手首や指の使いすぎだけでなく、腕・肩まわりの筋緊張のバランスまで確認し、炎症期は無理な刺激を避けながら原因を見極めます。再発を防ぐ手の使い方のアドバイスも行い、根本改善を目指します。</div>
+        <div class="note"><b>反映した固有情報：</b>腕・肩の筋緊張バランスという視点と、再発防止の使い方指導。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">O脚</span><span class="url">/symptoms/okyaku/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">116字</span></div>東京・千葉でO脚にお悩みの方へ。骨盤のゆがみや股関節の外旋、足裏の重心バランスの崩れといった根本原因を分析し、膝への負担増加も見据えたオーダーメイド施術をご提案。歩き方のクセも整え、戻りにくい美しい脚のラインを一緒に目指しましょう。</div>
+        <div class="note"><b>反映した固有情報：</b>骨盤ゆがみ・股関節外旋・足裏重心という根本原因の分析。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">足のむくみ</span><span class="url">/symptoms/mukumi/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">115字</span></div>東京・千葉で足のむくみにお悩みの方へ。骨盤のゆがみによる鼠径部リンパ節の圧迫や、冷えと血流悪化の悪循環に着目し、骨盤・太もも・ふくらはぎからリンパと血流の流れを促す施術をご提案。夕方まで靴が楽に履ける軽い足を一緒に目指しましょう。</div>
+        <div class="note"><b>反映した固有情報：</b>鼠径部リンパ節の圧迫という独自の原因分析。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">足の痛み</span><span class="url">/symptoms/ashi/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">117字</span></div>東京・千葉で足の痛みにお悩みの方へ。足は体全体を支える土台であり、アーチの崩れや捻挫後の足首の不安定感が膝・骨盤にまで連鎖することも。全身のバランスを確認しながら、再受傷しにくい足づくりをサポートするオーダーメイド施術をご提案します。</div>
+        <div class="note"><b>反映した固有情報：</b>「足は体全体の土台」という考え方と、捻挫後の不安定感の放置リスク。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">膝の痛み</span><span class="url">/symptoms/hiza/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">113字</span></div>東京・千葉で膝の痛みにお悩みの方へ。股関節・骨盤・足首のバランスの乱れが膝に負担を集中させる「上下からの影響」に着目し、痛いからと動かさないのではなく、変形が進む前の早めのケアで階段や正座への不安を和らげる施術をご提案します。</div>
+        <div class="note"><b>反映した固有情報：</b>股関節・足首からの「上下からの影響」という独自メカニズム。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="name">肘の痛み</span><span class="url">/symptoms/hizi/</span></div>
+        <div class="after"><div class="lbl">提案 <span class="count">114字</span></div>東京・千葉で肘の痛みにお悩みの方へ。テニス肘・ゴルフ肘は前腕の使いすぎだけでなく、肩まわりの緊張や姿勢のゆがみが負担を増幅させることも。急性期は炎症を、回復期は再発予防を意識したオーダーメイド施術で、思いきり動ける腕へ導きます。</div>
+        <div class="note"><b>反映した固有情報：</b>肩・姿勢による負担増幅と、急性期／回復期での施術方針の違い。</div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    各案は110〜121文字（最大140文字以内）、冒頭付近に店舗名・症状名＋エリア／駅名を配置しSEOキーワードを自然に含めています。誇大表現・断定的な医療表現は使用していません。実際の反映には各ページの &lt;meta name="description"&gt;（および og:description / twitter:description）の差し替えが必要です。
+  </footer>
+
+</div>

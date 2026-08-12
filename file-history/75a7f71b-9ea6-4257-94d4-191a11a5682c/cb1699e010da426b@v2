@@ -1,0 +1,122 @@
+---
+const items = [
+  {
+    num: "01",
+    en: "Requirement Definition",
+    ja: "要件整理",
+    body: "「何をつくるか」だけではなく、「なぜつくるのか」を整理します。",
+  },
+  {
+    num: "02",
+    en: "Direction",
+    ja: "Webディレクション",
+    body: "クライアントの要望を整理し、デザイナーやコーダーに伝わる形へ。",
+  },
+  {
+    num: "03",
+    en: "Project Management",
+    ja: "進行管理",
+    body: "スケジュールやタスク、確認事項を整理しながら進行します。",
+  },
+  {
+    num: "04",
+    en: "Client Communication",
+    ja: "クライアント対応",
+    body: "曖昧なご要望も、一つずつ整理して、具体的な制作内容へ落とし込みます。",
+  },
+  {
+    num: "05",
+    en: "Quality Control",
+    ja: "品質管理",
+    body: "デザインや実装のチェック、ブラウザチェック、修正確認など、公開前の品質まで確認します。",
+  },
+];
+---
+
+<section id="what-i-do" class="section whatido">
+  <div class="section-inner">
+    <p class="eyebrow reveal">03 / What I Do</p>
+    <h2 class="section-heading reveal" style="--reveal-delay:0.08s">WHAT I DO</h2>
+    <p class="section-copy reveal" style="--reveal-delay:0.14s">
+      Web制作を、<br />
+      「つくる」だけで終わらせない。
+    </p>
+
+    <ul class="whatido__list">
+      {
+        items.map((item, i) => (
+          <li class="whatido__row reveal" style={`--reveal-delay:${0.06 * i}s`}>
+            <span class="whatido__num num-index">{item.num}</span>
+            <span class="whatido__titles">
+              <span class="whatido__en">{item.en}</span>
+              <span class="whatido__ja">{item.ja}</span>
+            </span>
+            <span class="whatido__body">{item.body}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .whatido__list {
+    margin-top: clamp(2.5rem, 6vw, 4rem);
+    border-top: 1px solid var(--color-line-strong);
+  }
+
+  .whatido__row {
+    display: grid;
+    grid-template-columns: 4rem minmax(0, 1.3fr) minmax(0, 1.7fr);
+    align-items: baseline;
+    gap: clamp(1rem, 3vw, 2.5rem);
+    padding: clamp(1.5rem, 3.4vw, 2.1rem) 0.75rem;
+    border-bottom: 1px solid var(--color-line);
+    transition: background var(--dur-fast) var(--ease-out);
+  }
+
+  .whatido__row:hover {
+    background: var(--color-surface);
+  }
+
+  .whatido__num {
+    font-size: 1.05rem;
+  }
+
+  .whatido__titles {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+  }
+
+  .whatido__en {
+    font-family: var(--font-label);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink-faint);
+  }
+
+  .whatido__ja {
+    font-family: var(--font-serif);
+    font-size: clamp(1.15rem, 2vw, 1.4rem);
+    font-weight: 700;
+  }
+
+  .whatido__body {
+    color: var(--color-ink-soft);
+    font-size: 0.95rem;
+    line-height: 1.9;
+  }
+
+  @media (max-width: 720px) {
+    .whatido__row {
+      grid-template-columns: 2.4rem 1fr;
+    }
+    .whatido__body {
+      grid-column: 1 / -1;
+      padding-left: calc(2.4rem + 0px);
+    }
+  }
+</style>

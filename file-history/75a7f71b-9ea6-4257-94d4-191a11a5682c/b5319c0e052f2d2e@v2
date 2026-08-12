@@ -1,0 +1,77 @@
+---
+import { siteConfig, socialLinks } from "../data/config";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__brand">
+      <p class="site-footer__name">{siteConfig.name}</p>
+      <p class="site-footer__role">{siteConfig.role}</p>
+    </div>
+
+    <nav class="site-footer__social" aria-label="SNSリンク">
+      <a href={socialLinks.instagram} class="link-underline" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href={socialLinks.x} class="link-underline" target="_blank" rel="noopener noreferrer">X</a>
+      <a href={socialLinks.note} class="link-underline" target="_blank" rel="noopener noreferrer">note</a>
+    </nav>
+
+    <a href="#top" class="site-footer__top link-underline">TOP ↑</a>
+  </div>
+  <p class="site-footer__copy">© {year} {siteConfig.name}</p>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-ink);
+    color: var(--color-inverse);
+    padding: clamp(2.75rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2.75rem) 1.75rem;
+  }
+
+  .site-footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-bottom: clamp(2rem, 5vw, 3rem);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-inverse) 20%, transparent);
+  }
+
+  .site-footer__name {
+    font-family: var(--font-serif);
+    font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+    font-weight: 700;
+  }
+
+  .site-footer__role {
+    margin-top: 0.4em;
+    font-family: var(--font-label);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    color: color-mix(in srgb, var(--color-inverse) 60%, transparent);
+  }
+
+  .site-footer__social {
+    display: flex;
+    gap: clamp(1.25rem, 3vw, 2.25rem);
+    font-family: var(--font-label);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+
+  .site-footer__top {
+    font-family: var(--font-label);
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+  }
+
+  .site-footer__copy {
+    margin-top: 1.75rem;
+    font-family: var(--font-label);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: color-mix(in srgb, var(--color-inverse) 60%, transparent);
+  }
+</style>

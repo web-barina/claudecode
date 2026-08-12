@@ -1,0 +1,114 @@
+---
+const milestones = [
+  {
+    year: "2026",
+    title: "Direction × Marketing",
+    body: "ディレクションとマーケティングの両方からWebを考える。",
+  },
+  {
+    year: "2027",
+    title: "New Challenge",
+    body: "新しいサービスのスタートに向けて、準備を進めています。",
+  },
+];
+---
+
+<section id="now-next" class="section nownext">
+  <div class="section-inner nownext__grid">
+    <div class="nownext__main">
+      <p class="eyebrow reveal">08 / Now &amp; Next</p>
+      <h2 class="section-heading reveal" style="--reveal-delay:0.08s">NOW &amp; NEXT</h2>
+      <p class="section-copy reveal" style="--reveal-delay:0.14s">
+        制作だけではなく、<br />
+        その先まで見られるディレクターへ。
+      </p>
+      <p class="section-lede reveal" style="--reveal-delay:0.2s">
+        現在はWebディレクションに加えて、マーケティングやWeb解析についても学んでいます。
+        「きれいなサイトをつくる」だけではなく、そのサイトが誰に届き、
+        何を生み出すのかまで考えられる人へ。
+      </p>
+      <p class="section-lede reveal" style="--reveal-delay:0.26s">
+        さらに、プロジェクトマネジメントの知識も深めながら、
+        より大きな視点でWeb制作に関わっていきたいと考えています。
+      </p>
+    </div>
+
+    <ul class="nownext__milestones">
+      {
+        milestones.map((m, i) => (
+          <li class="nownext__milestone reveal" style={`--reveal-delay:${0.3 + i * 0.1}s`}>
+            <span class="nownext__year">{m.year}</span>
+            <span class="nownext__title">{m.title}</span>
+            <p class="nownext__body">{m.body}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .nownext__grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: clamp(2.5rem, 6vw, 5rem);
+  }
+
+  .nownext__milestones {
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    margin-top: clamp(3rem, 8vw, 4.5rem);
+  }
+
+  .nownext__milestone {
+    padding: clamp(1.75rem, 3vw, 2.25rem);
+    border: 1px solid var(--color-line);
+    transition: border-color var(--dur-fast) var(--ease-out);
+  }
+
+  .nownext__milestone:hover {
+    border-color: var(--color-line-strong);
+  }
+
+  .nownext__year {
+    display: block;
+    font-family: var(--font-label);
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    color: var(--color-accent);
+    line-height: 1;
+  }
+
+  .nownext__title {
+    display: block;
+    margin-top: 0.7em;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 1.15rem;
+  }
+
+  .nownext__body {
+    margin-top: 0.6em;
+    color: var(--color-ink-soft);
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 860px) {
+    .nownext__grid {
+      grid-template-columns: 1fr;
+    }
+    .nownext__milestones {
+      margin-top: 1rem;
+      flex-direction: row;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .nownext__milestones {
+      flex-direction: column;
+    }
+  }
+</style>

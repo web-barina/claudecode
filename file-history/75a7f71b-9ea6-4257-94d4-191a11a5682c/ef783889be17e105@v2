@@ -1,0 +1,119 @@
+---
+const items = [
+  {
+    num: "01",
+    title: "「なんとなく」を\nそのままにしない。",
+    body: "「こんな感じにしたい」「もう少し見やすくしたい」。そんな曖昧な言葉の中には、本当の課題が隠れていることがあります。その背景や目的を確認しながら、言葉になっていない部分まで整理します。",
+  },
+  {
+    num: "02",
+    title: "伝わる指示に\n変換する。",
+    body: "クライアントの言葉をそのまま伝えるだけでは、制作はスムーズに進みません。誰が見ても判断しやすいように、必要な情報を整理し、具体的な指示へ変換します。",
+  },
+  {
+    num: "03",
+    title: "チームで、\nちゃんと前に進める。",
+    body: "Web制作は、一人ですべてを完結する仕事ではありません。クライアント、デザイナー、コーダー、それぞれの役割を理解しながら、お互いが動きやすい状態をつくります。",
+  },
+];
+---
+
+<section id="strength" class="section strength">
+  <div class="section-inner">
+    <p class="eyebrow reveal">04 / Strength</p>
+    <h2 class="section-heading reveal" style="--reveal-delay:0.08s">STRENGTH</h2>
+    <p class="section-copy reveal" style="--reveal-delay:0.14s">私が大切にしている、3つのこと。</p>
+
+    <ol class="strength__list">
+      {
+        items.map((item, i) => (
+          <li class={`strength__item strength__item--${i % 2 === 0 ? "a" : "b"} reveal`}>
+            <span class="strength__num" aria-hidden="true">{item.num}</span>
+            <div class="strength__content">
+              <h3 class="strength__title">
+                {item.title.split("\n").map((line) => (
+                  <span class="strength__title-line">{line}</span>
+                ))}
+              </h3>
+              <p class="strength__body">{item.body}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .strength__list {
+    margin-top: clamp(3rem, 7vw, 5rem);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2.5rem, 6vw, 3.5rem);
+  }
+
+  .strength__item {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(6rem, 0.5fr) 1fr;
+    align-items: start;
+    gap: clamp(1rem, 4vw, 3rem);
+    padding-bottom: clamp(2.5rem, 6vw, 3.5rem);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .strength__item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .strength__item--b {
+    grid-template-columns: minmax(6rem, 0.5fr) 1fr;
+  }
+
+  .strength__item--b .strength__content {
+    margin-left: auto;
+    max-width: 56ch;
+  }
+
+  .strength__num {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--color-line-strong);
+  }
+
+  .strength__title {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: clamp(1.6rem, 3.6vw, 2.6rem);
+    line-height: 1.35;
+  }
+
+  .strength__title-line {
+    display: block;
+  }
+
+  .strength__body {
+    margin-top: 1.1em;
+    max-width: 52ch;
+    color: var(--color-ink-soft);
+    font-size: 0.98rem;
+    line-height: 1.95;
+  }
+
+  @media (max-width: 720px) {
+    .strength__item,
+    .strength__item--b {
+      grid-template-columns: 3.6rem 1fr;
+    }
+    .strength__item--b .strength__content {
+      margin-left: 0;
+    }
+    .strength__num {
+      font-size: 2.6rem;
+    }
+  }
+</style>

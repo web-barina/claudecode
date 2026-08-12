@@ -1,0 +1,94 @@
+<title>メディエントランス様 title/description案</title>
+<style>
+:root{color-scheme:light dark;--fg:#1a1a1a;--bg:#fff;--sub:#666;--card:#f7f7f8;--accent:#2563eb;--border:#e4e4e7;}
+@media (prefers-color-scheme: dark){:root{--fg:#e8e8ea;--bg:#161616;--sub:#a1a1aa;--card:#1f1f22;--accent:#6ea8fe;--border:#2c2c30;}}
+:root[data-theme="dark"]{--fg:#e8e8ea;--bg:#161616;--sub:#a1a1aa;--card:#1f1f22;--accent:#6ea8fe;--border:#2c2c30;}
+:root[data-theme="light"]{--fg:#1a1a1a;--bg:#fff;--sub:#666;--card:#f7f7f8;--accent:#2563eb;--border:#e4e4e7;}
+*{box-sizing:border-box;}
+body{background:var(--bg);color:var(--fg);font-family:"Hiragino Sans","Yu Gothic",system-ui,sans-serif;max-width:900px;margin:0 auto;padding:32px 20px 80px;line-height:1.7;}
+h1{font-size:1.4rem;margin-bottom:4px;}
+.lead{color:var(--sub);font-size:0.9rem;margin-bottom:28px;}
+.page{border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:16px;background:var(--card);}
+.page h2{font-size:1rem;margin:0 0 12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.path{font-size:0.75rem;font-weight:400;color:var(--sub);background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:2px 8px;}
+.row{margin-bottom:8px;}
+.label{font-size:0.72rem;color:var(--sub);letter-spacing:.02em;display:flex;justify-content:space-between;}
+.count{font-variant-numeric:tabular-nums;}
+.value{font-size:0.95rem;padding:6px 0;word-break:break-word;}
+.value.title{color:var(--accent);font-weight:600;}
+hr.sep{border:none;border-top:1px dashed var(--border);margin:10px 0;}
+@media (max-width:480px){body{padding:20px 14px 60px;}}
+</style>
+
+<h1>各ページ title / description 案</h1>
+<p class="lead">対象: https://test-previewsite.com/ahead-medi-entrance/wp/（Basic認証エリア）。既存ページは title のみ設定・description は概ね未設定だったため、全ページ分を新規作成しました。文字数は全角換算。</p>
+
+<div class="page">
+  <h2>① トップページ <span class="path">/</span></h2>
+  <div class="row"><div class="label"><span>title</span><span class="count">32字</span></div><div class="value title">医療機関向け医療用品の通販・カタログ｜メディエントランス株式会社</div></div>
+  <hr class="sep">
+  <div class="row"><div class="label"><span>description</span><span class="count">96字</span></div><div class="value">メディエントランスは、全国70,000以上の医療機関に医療機器・医療用品をオンラインショップとカタログで届ける医療流通企業です。70,000点以上の商品を当日出荷率90%で迅速にお届けします。</div></div>
+</div>
+
+<div class="page">
+  <h2>② 会社情報 <span class="path">/about/</span></h2>
+  <div class="row"><div class="label"><span>title</span><span class="count">21字</span></div><div class="value title">会社情報・沿革｜メディエントランス株式会社</div></div>
+  <hr class="sep">
+  <div class="row"><div class="label"><span>description</span><span class="count">85字</span></div><div class="value">メディエントランス株式会社の会社概要・沿革・代表挨拶をご紹介。2008年創業、大阪府箕面市に本社を置き、全国70,000以上の医療機関へ医療用品を届ける医療流通企業です。</div></div>
+</div>
+
+<div class="page">
+  <h2>③ サービス <span class="path">/service/</span></h2>
+  <div class="row"><div class="label"><span>title</span><span class="count">32字</span></div><div class="value title">オンラインショップ・カタログのご案内｜メディエントランス株式会社</div></div>
+  <hr class="sep">
+  <div class="row"><div class="label"><span>description</span><span class="count">100字</span></div><div class="value">医療機関・介護施設向けオンラインショップ「MEDICAL SUPPLY GooDs」と医療用品カタログをご紹介。医療機器・材料・医薬品70,000点を取り扱い、必要な製品をスピーディーにお届けします。</div></div>
+</div>
+
+<div class="page">
+  <h2>④ 採用情報 <span class="path">/recruit/</span></h2>
+  <div class="row"><div class="label"><span>title</span><span class="count">18字</span></div><div class="value title">採用情報｜メディエントランス株式会社</div></div>
+  <hr class="sep">
+  <div class="row"><div class="label"><span>description</span><span class="count">78字</span></div><div class="value">メディエントランス株式会社の採用情報ページ。年間休日120日以上、有給取得率90%など働きやすい環境で、医療現場を支えるやりがいのある仕事を募集しています。</div></div>
+</div>
+
+<div class="page">
+  <h2>⑤ お客様の声 <span class="path">/interview/</span></h2>
+  <div class="row"><div class="label"><span>title</span><span class="count">24字</span></div><div class="value title">導入事例・お客様の声｜メディエントランス株式会社</div></div>
+  <hr class="sep">
+  <div class="row"><div class="label"><span>description</span><span class="count">85字</span></div><div class="value">クリニックや医療法人など、MEDICAL SUPPLY GooDsをご利用いただいたお客様のインタビューをご紹介。開業準備や在宅医療の現場での活用事例をご覧いただけます。</div></div>
+</div>
+
+<div class="page">
+  <h2>⑥ 物流センター <span class="path">/logistics-center/</span></h2>
+  <div class="row"><div class="label"><span>title</span><span class="count">24字</span></div><div class="value title">物流センターのご紹介｜メディエントランス株式会社</div></div>
+  <hr class="sep">
+  <div class="row"><div class="label"><span>description</span><span class="count">75字</span></div><div class="value">86台のロボットが24時間稼働する次世代物流センターをご紹介。高いBCP対応力と自動化技術で、全国の医療現場へ迅速かつ確実な製品供給を実現しています。</div></div>
+</div>
+
+<div class="page">
+  <h2>⑦ セキュリティ <span class="path">/security/</span></h2>
+  <div class="row"><div class="label"><span>title</span><span class="count">28字</span></div><div class="value title">情報セキュリティへの取り組み｜メディエントランス株式会社</div></div>
+  <hr class="sep">
+  <div class="row"><div class="label"><span>description</span><span class="count">83字</span></div><div class="value">メディエントランス株式会社の情報セキュリティ・IT-BCPへの取り組みをご紹介。AIによる24時間監視体制と強固なデータセンター基盤で、医療の安定供給を支えています。</div></div>
+</div>
+
+<div class="page">
+  <h2>⑧ お知らせ一覧 <span class="path">/news/</span></h2>
+  <div class="row"><div class="label"><span>title</span><span class="count">18字</span></div><div class="value title">お知らせ｜メディエントランス株式会社</div></div>
+  <hr class="sep">
+  <div class="row"><div class="label"><span>description</span><span class="count">70字</span></div><div class="value">メディエントランス株式会社からの最新のお知らせ・ニュースを掲載しています。カタログ発刊情報やサイトの更新情報など、最新の情報をお届けします。</div></div>
+</div>
+
+<div class="page">
+  <h2>⑨ お問い合わせ <span class="path">/contact/</span></h2>
+  <div class="row"><div class="label"><span>title</span><span class="count">27字</span></div><div class="value title">お問い合わせ・カタログ請求｜メディエントランス株式会社</div></div>
+  <hr class="sep">
+  <div class="row"><div class="label"><span>description</span><span class="count">84字</span></div><div class="value">メディエントランス株式会社へのお問い合わせ・カタログ請求はこちらから。医療用品オンラインショップMEDICAL SUPPLY GooDsに関するご質問も承っております。</div></div>
+</div>
+
+<div class="page">
+  <h2>⑩ 個人情報保護基本方針 <span class="path">/privacy-policy/</span></h2>
+  <div class="row"><div class="label"><span>title</span><span class="count">24字</span></div><div class="value title">個人情報保護基本方針｜メディエントランス株式会社</div></div>
+  <hr class="sep">
+  <div class="row"><div class="label"><span>description</span><span class="count">75字</span></div><div class="value">メディエントランス株式会社の個人情報保護基本方針を掲載しています。お客様の個人情報の適正な取得・利用・管理に関する当社の取り組みをご確認いただけます。</div></div>
+</div>
