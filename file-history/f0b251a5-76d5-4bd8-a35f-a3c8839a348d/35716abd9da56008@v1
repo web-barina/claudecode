@@ -1,0 +1,398 @@
+/* ============================================
+   共通リセット
+   ============================================ */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: "Zen Kaku Gothic New", "Archivo", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+
+/* ページテーマ（body class="page-xxx"） */
+body.page-portfolio { background: #E6F1FA; color: #123C5E; }
+body.page-pianist,
+body.page-privacy { background: #DDE5EF; color: #12243F; }
+body.page-portfolio a:hover { color: #2089D2; }
+body.page-pianist a:hover,
+body.page-privacy a:hover { color: #D2661F; }
+body.page-portfolio ::selection { background: #123C5E; color: #F0F7FC; }
+
+body.page-horror { background: #07070A; color: #D6D2CB; }
+body.page-horror a:hover { color: #9B2C22; }
+
+/* ============================================
+   キーフレームアニメーション
+   ============================================ */
+@keyframes scrollcue { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
+@keyframes fadeup { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes flick { 0%,100% { opacity: .85; } 47% { opacity: .85; } 48% { opacity: .35; } 52% { opacity: .9; } 70% { opacity: .6; } }
+@keyframes slowfade { from { opacity: 0; } to { opacity: 1; } }
+
+/* ============================================
+   共通ユーティリティ（複数ブロックで使い回すパーツ）
+   ============================================ */
+.container { max-width: 1280px; margin: 0 auto; }
+.sub-container { max-width: 1180px; margin: 0 auto; }
+.text-block { margin: 0; }
+
+.eyebrow { font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.26em; color: #2089D2; margin: 0 0 28px; }
+.eyebrow--tight { margin-bottom: 24px; }
+
+.section { padding: clamp(90px,11cqw,170px) clamp(20px,6cqw,80px); }
+.section--bordered { border-bottom: 1px solid #C9E4F5; }
+.section--gradient { background: linear-gradient(180deg,#F0F7FC 0%,#DFEEF8 18%,#DFEEF8 82%,#F0F7FC 100%); }
+.section--dark { background: #123C5E; color: #F0F7FC; }
+.section__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: clamp(16px,4cqw,56px); margin-bottom: clamp(48px,6cqw,88px); }
+.section__eyebrow { font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.26em; color: #2089D2; margin: 0; }
+.section__heading { margin: 0; font-weight: 500; font-size: clamp(22px,3.6cqw,46px); line-height: 1.5; }
+.section__intro { margin-bottom: clamp(48px,6cqw,96px); }
+
+.wave-divider { line-height: 0; }
+.wave-divider--to-light { background: #F0F7FC; margin-top: -1px; }
+.wave-divider--to-dark { background: #123C5E; }
+.wave-divider__svg { display: block; width: 100%; height: clamp(38px,6cqw,84px); }
+
+/* ============================================
+   shell（各ページ共通の外枠カード）
+   ============================================ */
+.shell {
+  container-type: inline-size;
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100svh;
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #F5F8FC;
+  box-shadow: 0 0 80px rgba(18,36,63,0.16);
+}
+.shell--muted { background: #F0F5FA; }
+.shell--dark { background: #0B0B0C; box-shadow: 0 0 80px rgba(0,0,0,0.5); }
+
+.skip-link { position: absolute; left: -9999px; top: 0; background: #12243F; color: #F5F8FC; padding: 12px 18px; z-index: 200; }
+.skip-link:focus { left: 12px; top: 12px; }
+
+/* ============================================
+   hero-nav（TOPページ固定ヘッダー）
+   ============================================ */
+.hero-nav__veil {
+  position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+  width: min(100%,430px); height: 84px; z-index: 89; pointer-events: none;
+  backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%);
+  background: rgba(240,247,252,0.28);
+  -webkit-mask-image: linear-gradient(180deg,#000 0%,#000 62%,rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(180deg,#000 0%,#000 62%,rgba(0,0,0,0) 100%);
+}
+.hero-nav {
+  position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+  width: min(100%,430px); z-index: 90; display: flex; align-items: center;
+  justify-content: space-between; padding: 20px clamp(16px,5cqw,48px);
+  pointer-events: none; mix-blend-mode: difference;
+}
+.hero-nav__toggle {
+  pointer-events: auto; width: 44px; height: 44px; display: flex; flex-direction: column;
+  justify-content: center; align-items: flex-end; gap: 7px; background: none; border: none;
+  cursor: pointer; padding: 0;
+}
+
+/* ============================================
+   page-header（下層ページの戻るリンクヘッダー）
+   ============================================ */
+.page-header { padding: 24px clamp(20px,6cqw,80px); display: flex; justify-content: space-between; align-items: center; font-family: Archivo, sans-serif; font-size: 12px; letter-spacing: 0.16em; }
+.page-header--dark { color: #8A8580; }
+.page-header__back { display: inline-flex; align-items: center; gap: 10px; transition: gap .3s ease; }
+.page-header__back:hover { gap: 18px; }
+.page-header__label { color: #7B8DA6; }
+
+/* ============================================
+   page-footer（下層ページ共通フッター）
+   ============================================ */
+.page-footer { padding: clamp(40px,5cqw,72px) clamp(20px,6cqw,80px); border-top: 1px solid #D3DEEB; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.16em; color: #7B8DA6; margin-top: auto; }
+.page-footer--dark { border-top-color: #1E1D1D; color: #5A5652; }
+
+/* ============================================
+   menu（ハンバーガーで開くサブメニュー）
+   ============================================ */
+.menu__groups { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: clamp(32px,6cqw,90px); width: 100%; }
+.menu__group-title { font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.24em; color: #5E8CAE; margin: 0 0 22px; }
+.menu__nav-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-family: Archivo, sans-serif; font-size: 15px; letter-spacing: 0.1em; color: #E4F2FC; }
+.menu__social-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; font-family: Archivo, sans-serif; font-size: clamp(22px,3cqw,32px); color: #F0F7FC; }
+.menu__social-link { display: inline-block; transition: transform .3s ease; }
+.menu__social-link:hover { transform: translateX(10px); color: #7DD3F0; }
+.menu__personal-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; }
+.menu__personal-link { display: block; }
+.menu__personal-link-title { display: block; font-family: Archivo, sans-serif; font-size: clamp(22px,3cqw,32px); color: #F0F7FC; transition: transform .3s ease; }
+.menu__personal-link-desc { display: block; font-size: 12px; color: #5E8CAE; margin-top: 4px; }
+.menu__credit { margin: 40px 0 0; font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.2em; color: #3E6E8F; }
+
+/* ============================================
+   hero（FIRST VIEW）
+   ============================================ */
+.hero { min-height: 100svh; background: #123C5E; color: #F0F7FC; padding: clamp(96px,12cqw,140px) clamp(20px,6cqw,80px) clamp(40px,6cqw,64px); display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+.hero__meta { display: flex; gap: 14px; align-items: baseline; font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.24em; color: #5E8CAE; }
+.hero__meta-line { flex: 1; height: 1px; background: #1E5580; }
+.hero__heading { margin: clamp(32px,6cqw,64px) 0 0; font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 500; font-size: clamp(29px,8.2cqw,124px); line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance; }
+.hero__line { display: block; }
+.hero__highlight { position: relative; display: inline-block; }
+.hero__highlight-mark { position: absolute; left: 0; right: 0; bottom: 0.06em; height: 0.06em; background: #43BDEA; }
+.hero__foot { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: clamp(24px,4cqw,60px); align-items: end; margin-top: clamp(40px,6cqw,80px); }
+.hero__lead { margin: 0; font-size: clamp(14px,1.5cqw,17px); line-height: 2; color: #BEE0F5; max-width: 34ch; }
+.hero__signature { font-family: Archivo, sans-serif; text-align: right; letter-spacing: 0.14em; }
+.hero__signature-label { margin: 0; font-size: 11px; color: #5E8CAE; }
+.hero__signature-name { margin: 6px 0 0; font-size: clamp(19px,2.4cqw,30px); color: #F0F7FC; }
+.hero__scroll { margin-top: clamp(32px,5cqw,56px); display: inline-flex; align-items: center; gap: 14px; font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.24em; color: #5E8CAE; width: fit-content; }
+.hero__scroll-track { display: block; width: 64px; height: 1px; background: #1E5580; overflow: hidden; position: relative; }
+.hero__scroll-bar { position: absolute; inset: 0; background: #43BDEA; animation: scrollcue 2.4s ease-in-out infinite; }
+
+/* ============================================
+   about
+   ============================================ */
+.about__grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: clamp(32px,5cqw,80px); max-width: 1280px; margin: 0 auto; }
+.about__heading { margin: 0; font-weight: 500; font-size: clamp(22px,3.6cqw,46px); line-height: 1.5; letter-spacing: -0.01em; }
+.about__meta { margin: clamp(40px,5cqw,64px) 0 0; display: grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap: 24px 32px; border-top: 1px solid #C9E4F5; padding-top: 28px; }
+.about__meta-label { font-family: Archivo, sans-serif; font-size: 10px; letter-spacing: 0.22em; color: #5E8CAE; }
+.about__meta-value { margin: 8px 0 0; font-size: 15px; }
+.about__body { display: flex; flex-direction: column; gap: 28px; font-size: clamp(14px,1.4cqw,16px); line-height: 2.15; color: #234A66; max-width: 46ch; }
+
+/* ============================================
+   service-list（WHAT I DO）
+   ============================================ */
+.service-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap: clamp(12px,2cqw,18px); }
+.service-list__item { border: 1px solid #C9E4F5; border-radius: 16px; background: #FFFFFF; padding: clamp(20px,3cqw,30px) clamp(16px,2.4cqw,24px); transition: background .3s ease, border-color .3s ease; }
+.service-list__item:hover { background: #DFEEF8; border-color: #9BCDEA; }
+.service-list__number { margin: 0 0 14px; font-family: Archivo, sans-serif; font-size: clamp(26px,3cqw,36px); color: #B8DEF2; line-height: 1; }
+.service-list__label { margin: 0; font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.16em; color: #2089D2; }
+.service-list__title { margin: 8px 0 12px; font-size: 17px; font-weight: 500; }
+.service-list__desc { margin: 0; font-size: 13px; line-height: 1.8; color: #3E6E8F; }
+
+/* ============================================
+   strength
+   ============================================ */
+.strength__heading { margin: 0; font-weight: 500; font-size: clamp(22px,3.8cqw,50px); line-height: 1.5; }
+.strength__list { display: grid; gap: clamp(36px,5cqw,64px); }
+.keyword-card { display: grid; gap: 10px; border-top: 1px solid #B8DEF2; padding-top: clamp(24px,3cqw,40px); }
+.keyword-card__no { margin: 0; font-family: Archivo, sans-serif; font-size: 12px; letter-spacing: 0.22em; color: #9BCDEA; }
+.keyword-card__word { margin: 0; font-weight: 700; font-size: clamp(52px,11cqw,104px); line-height: 1; color: #123C5E; }
+.keyword-card__tag { margin: 0; font-family: Archivo, sans-serif; font-size: clamp(12px,1.4cqw,14px); letter-spacing: 0.06em; color: #2089D2; }
+.keyword-card__desc { margin: 0; font-size: 14px; line-height: 1.9; color: #3E6E8F; max-width: 40ch; }
+
+/* ============================================
+   work-list（WORKS）
+   ============================================ */
+.work-list { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: clamp(32px,4cqw,56px); }
+.work-card { display: flex; flex-direction: column; }
+.work-card__link { display: block; }
+.work-card__thumb { aspect-ratio: 4/3; background-image: repeating-linear-gradient(135deg,#D9ECFA 0 10px,#EAF5FC 10px 20px); border: 1px solid #C9E4F5; display: flex; align-items: center; justify-content: center; transition: opacity .4s ease; }
+.work-card__thumb:hover { opacity: 0.75; }
+.work-card__thumb-label { font-family: ui-monospace,SFMono-Regular,Menlo,monospace; font-size: 11px; letter-spacing: 0.16em; color: #5E8CAE; background: #F0F7FC; padding: 6px 12px; border: 1px solid #C9E4F5; }
+.work-card__no { margin: 22px 0 0; font-family: Archivo, sans-serif; font-size: 10px; letter-spacing: 0.22em; color: #5E8CAE; }
+.work-card__title { margin: 10px 0 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: clamp(20px,2cqw,26px); }
+.work-card__roles-label { margin: 24px 0 8px; font-family: Archivo, sans-serif; font-size: 10px; letter-spacing: 0.22em; color: #5E8CAE; }
+.work-card__roles { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.work-card__role { font-size: 12px; color: #3E6E8F; border: 1px solid #C9E4F5; border-radius: 999px; padding: 5px 12px; }
+.work-card__cta { margin-top: 26px; display: inline-flex; align-items: center; gap: 10px; font-family: Archivo, sans-serif; font-size: 12px; letter-spacing: 0.16em; border-bottom: 1px solid #123C5E; padding-bottom: 6px; width: fit-content; transition: gap .3s ease; }
+.work-card__cta:hover { gap: 18px; border-color: #2089D2; }
+
+/* ============================================
+   process-list
+   ============================================ */
+.process__eyebrow { font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.26em; color: #7DD3F0; margin: 0 0 24px; }
+.process-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: none; }
+.process-list__item { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: clamp(12px,3cqw,48px); border-top: 1px solid #1C4A6E; padding: clamp(24px,3cqw,40px) 0; align-items: baseline; }
+.process-list__item--last { border-bottom: 1px solid #1C4A6E; }
+.process-list__item-head { display: flex; gap: 20px; align-items: baseline; }
+.process-list__item-number { font-family: Archivo, sans-serif; font-size: clamp(28px,3cqw,40px); color: #2F6690; line-height: 1; }
+.process-list__item-number--active { color: #43BDEA; }
+.process-list__item-label { margin: 0; font-family: Archivo, sans-serif; font-size: 13px; letter-spacing: 0.18em; }
+.process-list__item-title { margin: 8px 0 0; font-size: 17px; font-weight: 500; }
+.process-list__item-desc { margin: 0; font-size: 14px; line-height: 2.1; color: #9BCDEA; }
+
+/* ============================================
+   next（NOW & NEXT）
+   ============================================ */
+.next__grid { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: clamp(36px,5cqw,80px); }
+.next__body { display: grid; gap: 26px; margin-top: clamp(32px,4cqw,52px); font-size: 15px; line-height: 2.15; color: #234A66; max-width: 46ch; }
+.next__list { display: grid; gap: 24px; align-content: start; }
+.next__item { border-top: 1px solid #B8DEF2; padding-top: 24px; }
+.next__item-year { margin: 0; font-family: Archivo, sans-serif; font-size: clamp(28px,3cqw,38px); color: #43BDEA; line-height: 1; }
+.next__item-year--muted { color: #9BCDEA; }
+.next__item-title { margin: 16px 0 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 19px; letter-spacing: 0.04em; }
+.next__item-title--wide { letter-spacing: 0.12em; }
+.next__item-desc { margin: 12px 0 0; font-size: 14px; line-height: 2.1; color: #3E6E8F; }
+
+/* ============================================
+   contact + form
+   ============================================ */
+.contact-section { padding: clamp(90px,12cqw,180px) clamp(20px,6cqw,80px); }
+.contact__heading { margin: 0; font-weight: 500; font-size: clamp(23px,4.6cqw,62px); line-height: 1.45; letter-spacing: -0.01em; }
+.contact__intro { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: clamp(32px,5cqw,80px); align-items: end; margin-top: clamp(40px,5cqw,72px); }
+.contact__lead { display: grid; gap: 24px; font-size: 15px; line-height: 2.1; color: #234A66; max-width: 44ch; }
+.contact__frame { display: none; width: 0; height: 0; border: 0; }
+
+.form__eyebrow { margin: 0 0 30px; font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.24em; color: #5E8CAE; }
+.form__fields { display: grid; gap: 26px; }
+.form__field { display: grid; gap: 8px; }
+.form__label { font-size: 13px; font-weight: 500; color: #234A66; }
+.form__required { color: #43BDEA; }
+.form__input { width: 100%; font: inherit; font-size: 16px; color: #123C5E; background: transparent; border: none; border-bottom: 1px solid #B8DEF2; padding: 10px 0; outline: none; transition: border-color .3s ease; }
+.form__input:focus { border-color: #43BDEA; }
+.form__hint { font-size: 12px; color: #3E6E8F; line-height: 1.8; }
+.form__fieldset { margin: 0; padding: 0; border: none; display: grid; gap: 12px; }
+.form__legend { font-size: 13px; font-weight: 500; color: #234A66; padding: 0; margin-bottom: 4px; }
+.form__radio-label { display: flex; align-items: center; gap: 12px; font-size: 15px; color: #234A66; cursor: pointer; }
+.form__radio { accent-color: #43BDEA; width: 18px; height: 18px; }
+.form__textarea { width: 100%; font: inherit; font-size: 16px; color: #123C5E; background: #EAF5FC; border: 1px solid #C9E4F5; padding: 14px; outline: none; resize: vertical; transition: border-color .3s ease; }
+.form__textarea:focus { border-color: #43BDEA; }
+.form__checkbox-label { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: #234A66; line-height: 1.9; cursor: pointer; }
+.form__checkbox { accent-color: #43BDEA; width: 18px; height: 18px; margin-top: 3px; }
+.form__privacy-link { border-bottom: 1px solid #B8DEF2; }
+.form__submit { margin-top: 8px; justify-self: start; display: inline-flex; align-items: center; gap: 16px; background: #123C5E; color: #F0F7FC; font-family: Archivo, sans-serif; font-size: 14px; letter-spacing: 0.16em; padding: 22px 40px; border: none; cursor: pointer; transition: background .3s ease, gap .3s ease; }
+.form__submit:hover { background: #43BDEA; gap: 26px; }
+
+.thanks__eyebrow { margin: 0; font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.24em; color: #2089D2; }
+.thanks__title { margin: 20px 0 0; font-size: 17px; font-weight: 500; color: #123C5E; }
+.thanks__message { margin: 14px 0 0; font-size: 14px; line-height: 2; color: #3E6E8F; }
+
+/* ============================================
+   site-footer（TOPページフッター）
+   ============================================ */
+.site-footer { background: #123C5E; color: #F0F7FC; padding: clamp(56px,7cqw,96px) clamp(20px,6cqw,80px) clamp(28px,3cqw,40px); margin-top: auto; }
+.site-footer__grid { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: clamp(28px,4cqw,64px); align-items: start; }
+.site-footer__name { margin: 0; font-family: Archivo, sans-serif; font-size: clamp(26px,3.4cqw,44px); letter-spacing: 0.02em; }
+.site-footer__role { margin: 12px 0 0; font-size: 13px; color: #5E8CAE; }
+.site-footer__social { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 24px; font-family: Archivo, sans-serif; font-size: 13px; letter-spacing: 0.12em; justify-self: end; }
+.site-footer__social-link { color: #BEE0F5; }
+.site-footer__copyright { max-width: 1280px; margin: clamp(40px,5cqw,72px) auto 0; font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.16em; color: #3E6E8F; }
+
+/* ============================================
+   pull-note（短い要約テキスト／TOPページ各所で使用）
+   ============================================ */
+.pull-note { margin: clamp(28px,4cqw,40px) 0 0; font-size: clamp(15px,1.7cqw,18px); font-weight: 500; line-height: 1.8; color: #123C5E; border-left: 3px solid #43BDEA; padding-left: 18px; }
+
+/* ============================================
+   convert-diagram / compare-grid（ABOUT）
+   ============================================ */
+.convert-diagram { display: grid; gap: 0; margin: 0 0 clamp(28px,4cqw,40px); }
+.convert-diagram__node { border: 1px solid #C9E4F5; border-radius: 16px; background: #FFFFFF; padding: clamp(16px,2.4cqw,24px) clamp(10px,2cqw,18px); text-align: center; }
+.convert-diagram__node--active { border-color: #123C5E; background: #123C5E; }
+.convert-diagram__label { margin: 0; font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.16em; color: #2089D2; }
+.convert-diagram__node--active .convert-diagram__label { color: #7DD3F0; }
+.convert-diagram__role { margin: 8px 0 0; font-size: clamp(14px,1.8cqw,18px); font-weight: 600; color: #123C5E; }
+.convert-diagram__node--active .convert-diagram__role { color: #F0F7FC; }
+.convert-diagram__arrow { display: block; text-align: center; font-size: 20px; line-height: 1; color: #9BCDEA; padding: 10px 0; }
+
+.compare-grid { margin: 0 0 clamp(28px,4cqw,40px); border-top: 1px solid #C9E4F5; }
+.compare-grid__head, .compare-grid__row { display: grid; grid-template-columns: 1fr 20px 1fr; align-items: center; gap: 6px; padding: 13px 0; border-bottom: 1px solid #C9E4F5; }
+.compare-grid__head { font-family: Archivo, sans-serif; font-size: 10px; letter-spacing: 0.14em; color: #5E8CAE; }
+.compare-grid__row { font-size: 13px; color: #234A66; }
+.compare-grid__row span:last-child, .compare-grid__head span:last-child { color: #123C5E; font-weight: 500; text-align: right; }
+.compare-grid__arrow { text-align: center; color: #9BCDEA; font-size: 12px; }
+
+/* ============================================
+   flow-diagram / chip-row / keyword-tags（FOR PRODUCTION PARTNERS）
+   ============================================ */
+.flow-diagram { display: grid; gap: 0; margin: 0 0 clamp(28px,4cqw,40px); }
+.flow-diagram__party { border: 1px solid #C9E4F5; border-radius: 16px; background: #FFFFFF; padding: clamp(18px,2.6cqw,28px) clamp(18px,2.6cqw,28px); text-align: center; }
+.flow-diagram__party--active { border-color: #43BDEA; background: #EAF5FC; }
+.flow-diagram__party--complete { border-color: #123C5E; background: #123C5E; }
+.flow-diagram__role { margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(13px,1.6cqw,16px); letter-spacing: 0.08em; color: #123C5E; }
+.flow-diagram__party--complete .flow-diagram__role { color: #F0F7FC; }
+.flow-diagram__note { margin: 8px 0 0; font-size: 13px; color: #3E6E8F; }
+.flow-diagram__arrow { text-align: center; font-size: 20px; line-height: 1; color: #9BCDEA; padding: 10px 0; }
+
+.chip-row { list-style: none; margin: 16px 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.chip-row__item { font-family: Archivo, sans-serif; font-size: 10px; letter-spacing: 0.08em; background: #DFEEF8; border: 1px solid #B8DEF2; border-radius: 999px; padding: 7px 14px; color: #234A66; }
+
+.keyword-tags { list-style: none; margin: clamp(28px,4cqw,40px) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.keyword-tags li { background: #123C5E; color: #F0F7FC; font-family: Archivo, sans-serif; font-size: 12px; letter-spacing: 0.08em; padding: 10px 18px; border-radius: 999px; }
+
+/* ============================================
+   step-flow（FOR CLIENTS / CAREER 共通の縦フロー）
+   ============================================ */
+.step-flow { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(30px,4cqw,40px); max-width: 420px; }
+.step-flow__item { position: relative; border: 1px solid #C9E4F5; border-radius: 16px; background: #FFFFFF; padding: clamp(18px,2.6cqw,26px) clamp(20px,3cqw,28px); display: flex; align-items: baseline; gap: 16px; transition: background .3s ease, border-color .3s ease, color .3s ease; }
+.step-flow__item:not(:last-child)::after { content: "↓"; position: absolute; left: 24px; bottom: -30px; font-size: 18px; line-height: 1; color: #9BCDEA; }
+.step-flow__no { margin: 0; flex: 0 0 auto; font-family: Archivo, sans-serif; font-weight: 700; font-size: clamp(20px,2.4cqw,26px); color: #B8DEF2; }
+.step-flow__en { display: block; font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.16em; color: #2089D2; }
+.step-flow__ja { display: block; margin-top: 4px; font-size: clamp(16px,1.8cqw,19px); font-weight: 500; color: #123C5E; }
+.step-flow__item--active { border-color: #123C5E; background: #123C5E; }
+.step-flow__item--active .step-flow__no { color: #43BDEA; }
+.step-flow__item--active .step-flow__en { color: #7DD3F0; }
+.step-flow__item--active .step-flow__ja { color: #F0F7FC; font-weight: 600; }
+
+/* ============================================
+   bubble-cards（CONTACT）
+   ============================================ */
+.bubble-cards { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.bubble-cards__item { background: #FFFFFF; border: 1px solid #C9E4F5; border-radius: 14px; padding: 13px 18px; font-size: 14px; color: #234A66; }
+
+/* ============================================
+   sub-hero（PIANISTページ）
+   ============================================ */
+.sub-hero { padding: clamp(60px,10cqw,140px) clamp(20px,6cqw,80px) clamp(60px,8cqw,120px); border-bottom: 1px solid #D3DEEB; }
+.sub-hero__inner { max-width: 1180px; margin: 0 auto; animation: fadeup .9s cubic-bezier(.2,.7,.2,1) both; }
+.sub-hero__title { margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: clamp(48px,13cqw,180px); line-height: 0.92; letter-spacing: -0.03em; }
+.sub-hero__subtitle { margin: clamp(24px,4cqw,44px) 0 0; font-family: Archivo, sans-serif; font-style: italic; font-size: clamp(18px,2.4cqw,30px); color: #D2661F; }
+
+.pianist-intro__grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: clamp(32px,5cqw,80px); margin-top: clamp(40px,6cqw,88px); align-items: start; }
+.pianist-intro__body { display: grid; gap: 24px; font-size: 15px; line-height: 2.2; color: #2A3D5C; max-width: 44ch; }
+.pianist-intro__photo { aspect-ratio: 5/4; background-image: repeating-linear-gradient(135deg,#E2EAF4 0 10px,#EDF2F8 10px 20px); border: 1px solid #D3DEEB; display: flex; align-items: center; justify-content: center; }
+.pianist-intro__photo-label { font-family: ui-monospace,Menlo,monospace; font-size: 11px; letter-spacing: 0.16em; color: #7B8DA6; background: #F0F5FA; padding: 6px 12px; border: 1px solid #D3DEEB; }
+
+.pianist-contents { padding: clamp(60px,8cqw,120px) clamp(20px,6cqw,80px); }
+.pianist-contents__eyebrow { font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.26em; color: #7B8DA6; margin: 0 0 clamp(28px,4cqw,48px); }
+.content-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 1px; background: #D3DEEB; border: 1px solid #D3DEEB; }
+.content-grid__item { background: #F0F5FA; padding: clamp(28px,3cqw,44px); transition: background .4s ease; }
+.content-grid__item:hover { background: #E4EDF7; }
+.content-grid__number { margin: 0; font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.2em; color: #D2661F; }
+.content-grid__title { margin: 14px 0 0; font-size: 17px; font-weight: 500; }
+.content-grid__desc { margin: 10px 0 0; font-size: 13px; line-height: 1.9; color: #4A5D78; }
+
+/* ============================================
+   horror-gate / horror-hero / horror-archive（HORRORページ）
+   ============================================ */
+.horror-gate__warning { margin: 0; font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.42em; color: #9B2C22; animation: flick 5s infinite; }
+.horror-gate__message { margin: clamp(28px,5cqw,52px) 0 0; font-family: Archivo, sans-serif; font-size: clamp(18px,3.2cqw,40px); line-height: 1.7; letter-spacing: 0.08em; color: #CFC9C1; }
+.horror-gate__enter { margin-top: clamp(40px,6cqw,72px); background: none; border: 1px solid #3A3736; color: #D6D2CB; font-family: Archivo, sans-serif; font-size: 13px; letter-spacing: 0.3em; padding: 18px 44px; cursor: pointer; transition: background .4s ease, border-color .4s ease, letter-spacing .4s ease; }
+.horror-gate__enter:hover { background: #9B2C22; border-color: #9B2C22; letter-spacing: 0.42em; }
+.horror-gate__back { margin-top: 28px; font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.2em; color: #5A5652; }
+
+.horror-hero { padding: clamp(60px,10cqw,150px) clamp(20px,6cqw,80px) clamp(50px,7cqw,110px); border-bottom: 1px solid #1E1D1D; }
+.horror-hero__title { margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: clamp(52px,14cqw,190px); line-height: 0.9; letter-spacing: -0.03em; color: #EDE9E3; }
+.horror-hero__desc { margin: clamp(28px,4cqw,52px) 0 0; font-size: 15px; line-height: 2.2; color: #9A948C; max-width: 44ch; }
+
+.horror-archive { padding: clamp(50px,7cqw,110px) clamp(20px,6cqw,80px); }
+.horror-archive__eyebrow { font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.26em; color: #5A5652; margin: 0 0 clamp(28px,4cqw,48px); }
+.horror-archive__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: clamp(24px,3cqw,44px); }
+.horror-archive__thumb { aspect-ratio: 16/10; background-image: repeating-linear-gradient(135deg,#141414 0 10px,#101010 10px 20px); border: 1px solid #1E1D1D; display: flex; align-items: center; justify-content: center; transition: border-color .4s ease; }
+.horror-archive__thumb:hover { border-color: #9B2C22; }
+.horror-archive__thumb-label { font-family: ui-monospace,Menlo,monospace; font-size: 11px; letter-spacing: 0.16em; color: #5A5652; }
+.horror-archive__no { margin: 16px 0 0; font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.2em; color: #5A5652; }
+.horror-archive__title { margin: 8px 0 0; font-size: 15px; color: #C7C2BB; }
+
+/* ============================================
+   policy（PRIVACYページ）
+   ============================================ */
+.policy { padding: clamp(40px,8cqw,110px) clamp(20px,6cqw,80px) clamp(60px,8cqw,120px); }
+.policy__eyebrow { margin: 0; font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.26em; color: #D2661F; }
+.policy__title { margin: 20px 0 0; font-weight: 500; font-size: clamp(24px,4.4cqw,44px); line-height: 1.5; letter-spacing: -0.01em; }
+.policy__intro { margin: 24px 0 0; font-size: 14px; line-height: 2.1; color: #4A5D78; }
+.policy__note { font-family: Archivo, sans-serif; font-size: 12px; letter-spacing: 0.1em; color: #7B8DA6; }
+.policy-list { list-style: none; margin: clamp(40px,6cqw,72px) 0 0; padding: 0; display: grid; gap: clamp(32px,4cqw,52px); }
+.policy-list__item { border-top: 1px solid #D3DEEB; padding-top: 24px; }
+.policy-list__no { margin: 0; font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.2em; color: #7B8DA6; }
+.policy-list__heading { margin: 12px 0 0; font-weight: 500; font-size: 18px; }
+.policy-list__body { margin: 14px 0 0; font-size: 14px; line-height: 2.1; color: #2A3D5C; }
+.policy__updated { margin: clamp(40px,5cqw,64px) 0 0; font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.16em; color: #7B8DA6; }
+.policy__cta { margin-top: clamp(32px,4cqw,48px); display: inline-flex; align-items: center; gap: 16px; background: #12243F; color: #F5F8FC; font-family: Archivo, sans-serif; font-size: 13px; letter-spacing: 0.16em; padding: 20px 34px; transition: background .3s ease, gap .3s ease; }
+.policy__cta:hover { background: #E8722A; gap: 26px; }
+
+/* ============================================
+   error-page（404.html / support.js非依存の静的ページ）
+   ============================================ */
+.error-page { max-width: 430px; margin: 0 auto; background: #F5F8FC; min-height: 100svh; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 20px; padding: clamp(32px,8cqw,80px); box-shadow: 0 0 80px rgba(18,36,63,0.16); }
+.error-page__code { margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: clamp(64px,18cqw,120px); line-height: 1; color: #12243F; }
+.error-page__title { margin: 0; font-size: 18px; font-weight: 500; color: #12243F; }
+.error-page__message { margin: 0; font-size: 14px; line-height: 2; color: #4A5D78; }
+.error-page__back { margin-top: 12px; display: inline-flex; align-items: center; gap: 16px; background: #12243F; color: #F5F8FC; font-family: Archivo, sans-serif; font-size: 13px; letter-spacing: 0.16em; padding: 20px 34px; transition: background .3s ease, gap .3s ease; }
+.error-page__back:hover { background: #E8722A; gap: 26px; }

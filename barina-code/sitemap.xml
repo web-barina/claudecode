@@ -2,7 +2,7 @@
 <!-- 本番ドメインが決まったら https://your-domain.example/ を置換してください -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://your-domain.example/Portfolio.dc.html</loc>
+    <loc>https://your-domain.example/index.html</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>

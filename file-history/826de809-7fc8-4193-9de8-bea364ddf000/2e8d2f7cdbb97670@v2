@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js" defer></script>
+</head>
+<body class="page-horror">
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HORROR — RINA OBA｜個人制作のホラー作品</title>
+<meta name="description" content="Web DirectorのRINA OBAが趣味で制作しているホラーアニメーションや作品を掲載する予定のページです。">
+<link rel="canonical" href="https://your-domain.example/Horror.dc.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HORROR — RINA OBA">
+<meta property="og:description" content="Web DirectorのRINA OBAが趣味で制作しているホラー作品のページです。">
+<meta property="og:url" content="https://your-domain.example/Horror.dc.html">
+<meta property="og:image" content="https://your-domain.example/ogp.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "RINA OBA", "item": "https://your-domain.example/Portfolio.dc.html" },
+    { "@type": "ListItem", "position": 2, "name": "HORROR", "item": "https://your-domain.example/Horror.dc.html" }
+  ]
+}
+</script>
+</helmet>
+
+<div class="base-17">
+
+<div style="{{ gateStyle }}">
+  <p class="base-18">WARNING</p>
+  <p class="base-19">THIS PAGE CONTAINS<br>SOMETHING I MADE<br>JUST FOR FUN.</p>
+  <button class="base-20" type="button" onClick="{{ enter }}">ENTER?</button>
+  <a class="base-21" href="Portfolio.dc.html">NO, GO BACK</a>
+</div>
+
+<div style="{{ pageStyle }}">
+  <header class="base-22">
+    <a class="header-2" href="Portfolio.dc.html">← RINA OBA</a>
+    <span>PERSONAL / 02</span>
+  </header>
+
+  <main>
+    <section class="main-25">
+      <div class="main-18">
+        <h1 class="main-26">HORROR</h1>
+        <p class="main-27">趣味で制作している<br>ホラーアニメーションや作品を掲載できるページ。</p>
+      </div>
+    </section>
+
+    <section class="main-28">
+      <div class="main-18">
+        <p class="main-29">WORKS / ARCHIVE</p>
+        <ul class="main-30">
+          <li><div class="main-31" role="img" aria-label="ホラー作品のサムネイル（未公開）"><span class="main-32">work still</span></div><p class="main-33">NO.01</p><p class="main-34">UNTITLED</p></li>
+          <li><div class="main-31" role="img" aria-label="ホラー作品のサムネイル（未公開）"><span class="main-32">work still</span></div><p class="main-33">NO.02</p><p class="main-34">UNTITLED</p></li>
+          <li><div class="main-31" role="img" aria-label="ホラー作品のサムネイル（未公開）"><span class="main-32">work still</span></div><p class="main-33">NO.03</p><p class="main-34">UNTITLED</p></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="base-23">
+    <a href="Portfolio.dc.html">← BACK TO MAIN</a>
+    <span>© RINA OBA</span>
+  </footer>
+</div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { entered: false };
+  renderVals() {
+    const e = this.state.entered;
+    return {
+      enter: () => this.setState({ entered: true }),
+      gateStyle:
+        "position:fixed;top:0;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,430px);z-index:50;background:#0B0B0C;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(24px,6cqw,80px);" +
+        "transition:opacity .9s ease,visibility .9s ease;" +
+        (e ? "opacity:0;visibility:hidden;pointer-events:none" : "opacity:1;visibility:visible"),
+      pageStyle: "display:flex;flex-direction:column;min-height:100svh;" + (e
+        ? "animation:slowfade 1.2s ease both"
+        : "opacity:0;overflow:hidden")
+    };
+  }
+}
+
+</script>
+</body>
+</html>

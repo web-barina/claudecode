@@ -1,0 +1,138 @@
+import re
+from html.parser import HTMLParser
+
+BASE = "/Users/rina/.claude/barina-code/"
+FILES = ["Portfolio.dc.html", "Pianist.dc.html", "Horror.dc.html", "Privacy.dc.html"]
+
+VOID_TAGS = {"input", "br", "hr", "img", "meta", "link", "area", "base", "col", "embed", "source", "track", "wbr"}
+
+style_map = {}      # (style, hover, focus) -> class name
+counters = {}       # context -> next number
+rules = []           # ordered list of (class, style, hover, focus)
+
+
+def sanitize(name):
+    name = name.strip().lower()
+    name = re.sub(r"&amp;", "and", name)
+    name = re.sub(r"[^a-z0-9]+", "-", name)
+    name = re.sub(r"-+", "-", name).strip("-")
+    return name or "x"
+
+
+class Converter(HTMLParser):
+    def __init__(self, text):
+        super().__init__(convert_charrefs=False)
+        self.text = text
+        self.line_starts = [0]
+        for m in re.finditer("\n", text):
+            self.line_starts.append(m.end())
+        self.edits = []  # (start, end, replacement)
+        self.stack = []  # context name per open element (or None)
+
+    def abs_offset(self):
+        line, col = self.getpos()
+        return self.line_starts[line - 1] + col
+
+    def current_context(self):
+        for c in reversed(self.stack):
+            if c:
+                return c
+        return "base"
+
+    def handle_starttag(self, tag, attrs):
+        raw = self.get_starttag_text()
+        start = self.abs_offset()
+        end = start + len(raw)
+        attrs_d = dict(attrs)
+
+        ctx_name = None
+        if attrs_d.get("id"):
+            ctx_name = sanitize(attrs_d["id"])
+        elif attrs_d.get("data-screen-label"):
+            ctx_name = sanitize(attrs_d["data-screen-label"])
+        elif tag in ("header", "nav", "footer", "form", "fieldset", "main"):
+            ctx_name = tag
+
+        current = self.current_context()
+
+        m_style = re.search(r'\sstyle="([^"]*)"', raw)
+        m_hover = re.search(r'\sstyle-hover="([^"]*)"', raw)
+        m_focus = re.search(r'\sstyle-focus="([^"]*)"', raw)
+
+        new_raw = raw
+        if m_style and "{{" not in m_style.group(1):
+            style_val = m_style.group(1)
+            hover_val = m_hover.group(1) if m_hover else None
+            focus_val = m_focus.group(1) if m_focus else None
+            key = (style_val, hover_val, focus_val)
+            if key in style_map:
+                cls = style_map[key]
+            else:
+                counters[current] = counters.get(current, 0) + 1
+                cls = f"{current}-{counters[current]}"
+                style_map[key] = cls
+                rules.append((cls, style_val, hover_val, focus_val))
+
+            new_raw = new_raw.replace(m_style.group(0), "", 1)
+            if m_hover:
+                new_raw = new_raw.replace(m_hover.group(0), "", 1)
+            if m_focus:
+                new_raw = new_raw.replace(m_focus.group(0), "", 1)
+            new_raw = re.sub(r"^(<[^\s>]+)", r'\1 class="' + cls + '"', new_raw, count=1)
+
+        self.edits.append((start, end, new_raw))
+
+        if tag not in VOID_TAGS and not raw.rstrip().endswith("/>"):
+            self.stack.append(ctx_name)
+
+    def handle_endtag(self, tag):
+        if self.stack:
+            self.stack.pop()
+
+    def apply(self):
+        out = []
+        pos = 0
+        for start, end, repl in self.edits:
+            out.append(self.text[pos:start])
+            out.append(repl)
+            pos = end
+        out.append(self.text[pos:])
+        return "".join(out)
+
+
+for fname in FILES:
+    path = BASE + fname
+    with open(path, encoding="utf-8") as f:
+        text = f.read()
+    conv = Converter(text)
+    conv.feed(text)
+    conv.close()
+    new_text = conv.apply()
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(new_text)
+    print(f"{fname}: {len(conv.edits)} tags scanned")
+
+print(f"Total unique classes: {len(rules)}")
+
+# Write style.css (element-derived rules only; base reset handled separately)
+css_lines = ["/* ==== 自動抽出されたコンポーネントスタイル (extract_css.py) ==== */"]
+for cls, style, hover, focus in rules:
+    decls = style.strip()
+    if decls and not decls.endswith(";"):
+        decls += ";"
+    css_lines.append(f".{cls} {{ {decls} }}")
+    if hover:
+        h = hover.strip()
+        if h and not h.endswith(";"):
+            h += ";"
+        css_lines.append(f".{cls}:hover {{ {h} }}")
+    if focus:
+        fo = focus.strip()
+        if fo and not fo.endswith(";"):
+            fo += ";"
+        css_lines.append(f".{cls}:focus {{ {fo} }}")
+
+with open(BASE + "_generated_component_rules.css", "w", encoding="utf-8") as f:
+    f.write("\n".join(css_lines) + "\n")
+
+print("wrote _generated_component_rules.css")

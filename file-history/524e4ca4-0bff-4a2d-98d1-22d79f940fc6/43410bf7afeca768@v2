@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js" defer></script>
+</head>
+<body class="page-portfolio">
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RINA OBA — Web Director｜Webディレクター</title>
+<meta name="description" content="RINA OBAのポートフォリオサイト。要件整理・制作進行・品質管理までを一気通貫で担うWebディレクターとしての強み、これまでの制作実績、経歴を紹介しています。">
+<link rel="canonical" href="https://your-domain.example/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RINA OBA — Web Director">
+<meta property="og:description" content="要件整理・制作進行・品質管理までを一気通貫で担うWebディレクター、RINA OBAのポートフォリオサイトです。">
+<meta property="og:url" content="https://your-domain.example/index.html">
+<meta property="og:image" content="https://your-domain.example/ogp.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;1,400&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="./site-data.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "RINA OBA — Web Director",
+  "url": "https://your-domain.example/index.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "RINA OBA",
+  "jobTitle": "Web Director",
+  "url": "https://your-domain.example/index.html",
+  "sameAs": [
+    "https://www.instagram.com/barina_code/",
+    "https://x.com/web_nari_selfs",
+    "https://note.com/barina_ccm"
+  ]
+}
+</script>
+</helmet>
+
+<a class="skip-link" href="#first">本文へスキップ</a>
+
+<div class="shell">
+
+<div class="hero-nav__veil" aria-hidden="true"></div>
+
+<header class="hero-nav">
+  <h1 style="margin:0;display:contents"><a href="#first" aria-hidden="{{ menuOpen }}" style="{{ markStyle }}">RINA OBA</a></h1>
+  <button class="hero-nav__toggle" type="button" onClick="{{ toggleMenu }}" aria-label="メニューを開閉する" aria-expanded="{{ menuOpen }}">
+    <span style="{{ barTop }}"></span>
+    <span style="{{ barBottom }}"></span>
+  </button>
+</header>
+
+<nav aria-label="サブメニュー" style="{{ overlayStyle }}">
+  <div class="menu__groups">
+    <div>
+      <p class="menu__group-title">INDEX</p>
+      <ul class="menu__nav-list">
+        <li><a href="#about" onClick="{{ closeMenu }}">ABOUT</a></li>
+        <li><a href="#what" onClick="{{ closeMenu }}">WHAT I DO</a></li>
+        <li><a href="#strength" onClick="{{ closeMenu }}">STRENGTH</a></li>
+        <li><a href="#partners" onClick="{{ closeMenu }}">FOR PARTNERS</a></li>
+        <li><a href="#clients" onClick="{{ closeMenu }}">FOR CLIENTS</a></li>
+        <li><a href="#works" onClick="{{ closeMenu }}">WORKS</a></li>
+        <li><a href="#process" onClick="{{ closeMenu }}">PROCESS</a></li>
+        <li><a href="#career" onClick="{{ closeMenu }}">CAREER</a></li>
+        <li><a href="#next" onClick="{{ closeMenu }}">NOW &amp; NEXT</a></li>
+        <li><a href="#contact" onClick="{{ closeMenu }}">CONTACT</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="menu__group-title">SOCIAL</p>
+      <ul class="menu__social-list">
+        <li><a class="menu__social-link" href="{{ instagram }}" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a class="menu__social-link" href="{{ x }}" target="_blank" rel="noopener">X</a></li>
+        <li><a class="menu__social-link" href="{{ note }}" target="_blank" rel="noopener">note</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="menu__group-title">PERSONAL</p>
+      <ul class="menu__personal-list">
+        <li><a class="menu__personal-link" href="{{ pianistUrl }}"><span class="menu__personal-link-title">PIANIST</span><span class="menu__personal-link-desc">ときどき、ピアノを弾いています。</span></a></li>
+        <li><a class="menu__personal-link" href="{{ horrorUrl }}"><span class="menu__personal-link-title">HORROR</span><span class="menu__personal-link-desc">趣味でつくっている、少し不穏なもの。</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="menu__credit">RINA OBA — WEB DIRECTOR</p>
+</nav>
+
+<main>
+  <!-- FIRST VIEW -->
+  <section class="hero" id="first" data-screen-label="FIRST VIEW">
+    <div class="hero__meta">
+      <span>WEB DIRECTOR</span>
+      <span class="hero__meta-line"></span>
+      <span>2026</span>
+    </div>
+    <h2 class="hero__heading">
+      <span class="hero__line">整理して、つないで、</span>
+      <span class="hero__line">ちゃんと<span class="hero__highlight">前に進める。<span class="hero__highlight-mark"></span></span></span>
+    </h2>
+    <div class="hero__foot">
+      <p class="hero__lead">Web制作の現場で、<br>「つくる人」と「つくりたい人」の間に立つ<br>Webディレクターです。<br><br>教員として、人に伝えることや<br>相手に合わせて情報を整理することを経験してきました。<br><br>現在はその経験を活かし、<br>クライアントとのコミュニケーションから<br>制作チームの進行管理まで、<br>プロジェクトがスムーズに進むための<br>「間」をつくっています。</p>
+      <div class="hero__signature">
+        <p class="hero__signature-label">WEB DIRECTOR</p>
+        <p class="hero__signature-name">RINA OBA</p>
+      </div>
+    </div>
+    <a class="hero__scroll" href="#about">
+      SCROLL
+      <span class="hero__scroll-track"><span class="hero__scroll-bar"></span></span>
+    </a>
+  </section>
+
+  <div class="wave-divider wave-divider--to-light" aria-hidden="true"><svg class="wave-divider__svg" viewBox="0 0 1440 64" preserveAspectRatio="none"><path d="M0,26 C180,58 360,-2 540,26 C720,54 900,-2 1080,26 C1230,48 1350,14 1440,26 L1440,0 L0,0 Z" fill="#123C5E"></path></svg></div>
+
+  <!-- ABOUT -->
+  <section class="section section--bordered" id="about" data-screen-label="ABOUT">
+    <div class="about__grid">
+      <div data-reveal>
+        <p class="eyebrow">ABOUT ME</p>
+        <h2 class="about__heading">教える仕事から、<br>つなぐ仕事へ。</h2>
+        <dl class="about__meta">
+          <div><dt class="about__meta-label">NAME</dt><dd class="about__meta-value">RINA OBA</dd></div>
+          <div><dt class="about__meta-label">JOB</dt><dd class="about__meta-value">Web Director / Planner</dd></div>
+          <div><dt class="about__meta-label">LOCATION</dt><dd class="about__meta-value">JAPAN</dd></div>
+          <div><dt class="about__meta-label">BACKGROUND</dt><dd class="about__meta-value">教育・音楽・Web制作</dd></div>
+        </dl>
+      </div>
+      <div class="about__body" data-reveal>
+        <p class="text-block">私のWebディレクションの土台には、<br>教員としての経験があります。</p>
+        <p class="text-block">教員の仕事では、<br>相手がどこでつまずいているのかを考え、<br>伝え方を変えたり、必要な情報を整理したりしながら、<br>一人ひとりとコミュニケーションを取ってきました。</p>
+        <p class="text-block">また、行事の企画やスケジュール進行など、<br>複数の人と関わりながら物事を進める経験も重ねてきました。</p>
+        <p class="text-block">Web制作も、実はよく似ています。</p>
+        <p class="text-block">クライアントが「こうしたい」と考えていることを聞き、<br>目的や課題を整理する。</p>
+        <p class="text-block">それをデザイナーやコーダーが<br>判断しやすい情報に変換する。</p>
+        <p class="text-block">そして、スケジュールやタスクを整理しながら、<br>関係する人たちと一緒にゴールまで進めていく。</p>
+        <p class="text-block">私は、そんな「人と人の間に立って、<br>物事を前に進めること」を得意としています。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT I DO -->
+  <section class="section section--bordered" id="what" data-screen-label="WHAT I DO">
+    <div class="container">
+      <div class="section__head" data-reveal>
+        <p class="section__eyebrow">WHAT I DO</p>
+        <h2 class="section__heading">Web制作を、<br>「つくる」だけで終わらせない。</h2>
+      </div>
+      <ol class="service-list">
+        <li class="service-list__item" data-reveal>
+          <p class="service-list__number">01</p>
+          <h3 class="service-list__label">REQUIREMENT DEFINITION</h3>
+          <p class="service-list__title">要件整理</p>
+          <p class="service-list__desc">「何をつくるか」だけではなく、<br>「なぜつくるのか」を整理します。</p>
+        </li>
+        <li class="service-list__item" data-reveal>
+          <p class="service-list__number">02</p>
+          <h3 class="service-list__label">DIRECTION</h3>
+          <p class="service-list__title">Webディレクション</p>
+          <p class="service-list__desc">クライアントの要望を整理し、<br>デザイナーやコーダーに伝わる形へ。</p>
+        </li>
+        <li class="service-list__item" data-reveal>
+          <p class="service-list__number">03</p>
+          <h3 class="service-list__label">PROJECT MANAGEMENT</h3>
+          <p class="service-list__title">進行管理</p>
+          <p class="service-list__desc">スケジュールやタスク、<br>確認事項を整理しながら進行します。</p>
+        </li>
+        <li class="service-list__item" data-reveal>
+          <p class="service-list__number">04</p>
+          <h3 class="service-list__label">CLIENT COMMUNICATION</h3>
+          <p class="service-list__title">クライアント対応</p>
+          <p class="service-list__desc">曖昧なご要望も、一つずつ整理して、<br>具体的な制作内容へ落とし込みます。</p>
+        </li>
+        <li class="service-list__item" data-reveal>
+          <p class="service-list__number">05</p>
+          <h3 class="service-list__label">QUALITY CONTROL</h3>
+          <p class="service-list__title">品質管理</p>
+          <p class="service-list__desc">デザインや実装のチェック、<br>ブラウザチェック、修正確認など、<br>公開前の品質まで確認します。</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- STRENGTH -->
+  <section class="section section--gradient" id="strength" data-screen-label="STRENGTH">
+    <div class="container">
+      <div class="section__intro" data-reveal>
+        <p class="eyebrow eyebrow--tight">STRENGTH</p>
+        <h2 class="strength__heading">私が大切にしている、3つのこと。</h2>
+      </div>
+      <div class="strength__list">
+        <article class="strength__item" data-reveal>
+          <div class="strength__item-head">
+            <span class="strength__item-number">01</span>
+            <h3 class="strength__item-title">相手の「言葉にならない」を<br>整理する。</h3>
+          </div>
+          <div class="strength__item-body">
+            <p class="text-block">「なんとなく、もう少し見やすくしたい」<br>「いい感じのサイトにしたい」</p>
+            <p class="text-block">そんな言葉も、まずはそのまま受け止めます。</p>
+            <p class="text-block">そのうえで、<br>「何を実現したいのか」<br>「誰に届けたいのか」<br>「今、何に困っているのか」を一つずつ確認。</p>
+            <p class="text-block">曖昧なご要望を、<br>制作チームが動ける情報へ整理します。</p>
+          </div>
+        </article>
+        <article class="strength__item" data-reveal>
+          <div class="strength__item-head">
+            <span class="strength__item-number">02</span>
+            <h3 class="strength__item-title">伝える相手に合わせて、<br>情報を変換する。</h3>
+          </div>
+          <div class="strength__item-body">
+            <p class="text-block">教員時代に身につけたのは、<br>「自分が伝えたいこと」ではなく、<br>「相手が理解できる伝え方」を考える姿勢です。</p>
+            <p class="text-block">Web制作でも、<br>クライアントには専門用語を噛み砕いて伝え、<br>制作メンバーには必要な情報を具体的に伝える。</p>
+            <p class="text-block">同じ内容でも、相手によって伝え方を変える。</p>
+            <p class="text-block">それが、プロジェクトをスムーズに進めるための<br>大切なコミュニケーションだと考えています。</p>
+          </div>
+        </article>
+        <article class="strength__item" data-reveal>
+          <div class="strength__item-head">
+            <span class="strength__item-number">03</span>
+            <h3 class="strength__item-title">人が動きやすい<br>状態をつくる。</h3>
+          </div>
+          <div class="strength__item-body">
+            <p class="text-block">Web制作は、<br>一人で完結する仕事ではありません。</p>
+            <p class="text-block">クライアント、ディレクター、デザイナー、コーダー。<br>それぞれが自分の役割に集中できるように、<br>確認事項・期限・タスクを整理します。</p>
+            <p class="text-block">「次に誰が、何をすればいいのか」が<br>見える状態をつくる。</p>
+            <p class="text-block">それが、私の考える進行管理です。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR PRODUCTION PARTNERS -->
+  <section class="section section--bordered" id="partners" data-screen-label="FOR PRODUCTION PARTNERS">
+    <div class="container">
+      <div class="section__intro" data-reveal>
+        <p class="section__eyebrow">FOR PRODUCTION PARTNERS</p>
+        <h2 class="section__heading">制作チームが、<br>制作に集中できるディレクションを。</h2>
+      </div>
+      <div class="about__body" data-reveal>
+        <p class="text-block">制作会社・制作チームの皆さまには、<br>クライアントとの間に立つディレクターとして<br>お力になれればと考えています。</p>
+        <p class="text-block">ヒアリングした内容を整理し、<br>確認事項やタスクを明確にする。</p>
+        <p class="text-block">クライアントとの認識をすり合わせ、<br>デザイナー・コーダーへ必要な情報を渡す。</p>
+        <p class="text-block">そして、スケジュールを見ながら<br>「次に何を進めるか」を整理する。</p>
+        <p class="text-block">制作メンバーが迷わず動ける状態をつくり、<br>プロジェクトを一つずつ前に進めます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR CLIENTS -->
+  <section class="section section--gradient" id="clients" data-screen-label="FOR CLIENTS">
+    <div class="container">
+      <div class="section__intro" data-reveal>
+        <p class="section__eyebrow">FOR CLIENTS</p>
+        <h2 class="section__heading">「何を相談したらいいかわからない」<br>からでも大丈夫です。</h2>
+      </div>
+      <div class="about__body" data-reveal>
+        <p class="text-block">Webサイトをつくりたいと思っても、<br>最初から要望がすべて整理されている必要はありません。</p>
+        <p class="text-block">「こんなサイトにしたい」<br>「今のサイトをどうにかしたい」<br>「そもそも何から考えればいいかわからない」</p>
+        <p class="text-block">そんな段階からでも、<br>お話を伺いながら目的や課題を整理していきます。</p>
+        <p class="text-block">つくることだけを急ぐのではなく、<br>「なぜつくるのか」から一緒に考える。</p>
+        <p class="text-block">その先にある、<br>納得できるWebサイトづくりをサポートします。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKS -->
+  <section class="section section--bordered" id="works" data-screen-label="WORKS">
+    <div class="container">
+      <div class="section__head" data-reveal>
+        <p class="section__eyebrow">WORKS</p>
+        <h2 class="section__heading">どんなサイトを作ったか。<br>そして、どう進めたか。</h2>
+      </div>
+      <div class="work-list">
+        <sc-for list="{{ works }}" as="w" hint-placeholder-count="3">
+          <article class="work-card" data-reveal>
+            <a class="work-card__link" href="{{ w.url }}">
+              <div class="work-card__thumb" role="img" aria-label="{{ w.title }} のプロジェクト画像（差し替え予定のプレースホルダー）">
+                <span class="work-card__thumb-label">project image</span>
+              </div>
+              <p class="work-card__no">{{ w.no }}</p>
+              <h3 class="work-card__title">{{ w.title }}</h3>
+            </a>
+            <p class="work-card__roles-label">ROLE</p>
+            <ul class="work-card__roles">
+              <sc-for list="{{ w.roles }}" as="r" hint-placeholder-count="4">
+                <li class="work-card__role">{{ r }}</li>
+              </sc-for>
+            </ul>
+            <a class="work-card__cta" href="{{ w.url }}">VIEW PROJECT →</a>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave-divider wave-divider--to-dark" aria-hidden="true"><svg class="wave-divider__svg" viewBox="0 0 1440 64" preserveAspectRatio="none"><path d="M0,38 C180,6 360,66 540,38 C720,10 900,66 1080,38 C1230,16 1350,50 1440,38 L1440,0 L0,0 Z" fill="#F0F7FC"></path></svg></div>
+
+  <!-- PROCESS -->
+  <section class="section section--dark" id="process" data-screen-label="PROCESS">
+    <div class="container">
+      <div class="section__intro" data-reveal>
+        <p class="process__eyebrow">PROCESS</p>
+        <h2 class="section__heading">制作を、<br>ひとつずつ前に進めていく。</h2>
+      </div>
+      <ol class="process-list">
+        <li class="process-list__item" data-reveal>
+          <div class="process-list__item-head"><span class="process-list__item-number">01</span><div><p class="process-list__item-label">HEARING</p><p class="process-list__item-title">ヒアリング</p></div></div>
+          <p class="process-list__item-desc">目的や課題、<br>実現したいことを整理します。</p>
+        </li>
+        <li class="process-list__item" data-reveal>
+          <div class="process-list__item-head"><span class="process-list__item-number">02</span><div><p class="process-list__item-label">PLANNING</p><p class="process-list__item-title">情報整理・設計</p></div></div>
+          <p class="process-list__item-desc">必要な情報を整理し、<br>サイト構成やページの方向性を考えます。</p>
+        </li>
+        <li class="process-list__item" data-reveal>
+          <div class="process-list__item-head"><span class="process-list__item-number">03</span><div><p class="process-list__item-label">DIRECTION</p><p class="process-list__item-title">制作ディレクション</p></div></div>
+          <p class="process-list__item-desc">デザイナー・コーダーと連携し、<br>制作を進めます。</p>
+        </li>
+        <li class="process-list__item" data-reveal>
+          <div class="process-list__item-head"><span class="process-list__item-number">04</span><div><p class="process-list__item-label">CHECK</p><p class="process-list__item-title">確認・品質管理</p></div></div>
+          <p class="process-list__item-desc">デザインや実装を確認し、<br>必要な修正を整理します。</p>
+        </li>
+        <li class="process-list__item process-list__item--last" data-reveal>
+          <div class="process-list__item-head"><span class="process-list__item-number process-list__item-number--active">05</span><div><p class="process-list__item-label">RELEASE</p><p class="process-list__item-title">公開</p></div></div>
+          <p class="process-list__item-desc">最後まで確認を行い、<br>公開までプロジェクトを進めます。</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="wave-divider wave-divider--to-light" aria-hidden="true"><svg class="wave-divider__svg" viewBox="0 0 1440 64" preserveAspectRatio="none"><path d="M0,26 C180,58 360,-2 540,26 C720,54 900,-2 1080,26 C1230,48 1350,14 1440,26 L1440,0 L0,0 Z" fill="#123C5E"></path></svg></div>
+
+  <!-- CAREER -->
+  <section class="section section--bordered" id="career" data-screen-label="CAREER">
+    <div class="container">
+      <div class="section__intro" data-reveal>
+        <p class="eyebrow eyebrow--tight">CAREER</p>
+        <h2 class="section__heading">教える経験が、<br>今のディレクションにつながっている。</h2>
+      </div>
+      <ol class="timeline">
+        <li class="timeline__item" data-reveal>
+          <span class="timeline__dot"></span>
+          <p class="timeline__label">EDUCATION</p>
+          <h3 class="timeline__title">人に伝えること、<br>相手の理解に合わせて情報を整理すること。</h3>
+        </li>
+        <li class="timeline__item" data-reveal>
+          <span class="timeline__dot"></span>
+          <p class="timeline__label">EVENT / MANAGEMENT</p>
+          <h3 class="timeline__title">行事の企画やスケジュール進行など、<br>複数の人と関わりながら物事を進めること。</h3>
+        </li>
+        <li class="timeline__item" data-reveal>
+          <span class="timeline__dot"></span>
+          <p class="timeline__label">WEB PRODUCTION</p>
+          <h3 class="timeline__title">Web制作の現場で、<br>コーディングや実装への理解を深めること。</h3>
+        </li>
+        <li class="timeline__item" data-reveal>
+          <span class="timeline__dot timeline__dot--active"></span>
+          <p class="timeline__label timeline__label--active">WEB DIRECTOR</p>
+          <h3 class="timeline__title">現在は、これまでの経験を組み合わせながら、<br>要件整理・クライアント対応・制作進行・品質管理まで、<br>Web制作全体を見てプロジェクトを進めています。</h3>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- NOW & NEXT -->
+  <section class="section section--gradient" id="next" data-screen-label="NOW &amp; NEXT">
+    <div class="next__grid">
+      <div data-reveal>
+        <p class="eyebrow eyebrow--tight">NOW &amp; NEXT</p>
+        <h2 class="section__heading">「つくる」だけでなく、<br>「成果につなげる」ディレクターへ。</h2>
+        <div class="next__body">
+          <p class="text-block">現在はWebディレクションに加えて、<br>マーケティングやWeb解析についても学んでいます。</p>
+          <p class="text-block">サイトを完成させることをゴールにするのではなく、<br>そのサイトが誰に届き、<br>どんな行動や成果につながるのかまで考えられる。</p>
+          <p class="text-block">そんなWebディレクターを目指しています。</p>
+          <p class="text-block">これからも、<br>制作・コミュニケーション・進行管理という強みを磨きながら、<br>より上流からプロジェクトに関われる力を身につけていきます。</p>
+        </div>
+      </div>
+      <div class="next__list">
+        <div class="next__item" data-reveal>
+          <p class="next__item-year">2026</p>
+          <h3 class="next__item-title">Direction × Marketing</h3>
+          <p class="next__item-desc">ディレクションとマーケティングの<br>両方からWebを考える。</p>
+        </div>
+        <div class="next__item" data-reveal>
+          <p class="next__item-year next__item-year--muted">2027</p>
+          <h3 class="next__item-title next__item-title--wide">NEW CHALLENGE</h3>
+          <p class="next__item-desc">新しいサービスのスタートに向けて、<br>準備を進めています。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact" data-screen-label="CONTACT">
+    <div class="container" data-reveal>
+      <p class="eyebrow">CONTACT</p>
+      <h2 class="contact__heading">Webサイト制作について、<br>まずはお話を聞かせてください。</h2>
+      <div class="contact__intro">
+        <div class="contact__lead">
+          <p class="text-block">「こんなサイトをつくりたい」<br>「何から考えればいいかわからない」<br>「制作をスムーズに進めたい」</p>
+          <p class="text-block">そんな段階からでも大丈夫です。</p>
+          <p class="text-block">現在の状況やお困りごとを伺い、<br>必要なことを一緒に整理します。</p>
+        </div>
+      </div>
+
+      <iframe class="contact__frame" name="gform_target" title="送信処理"></iframe>
+
+      <form action="{{ gAction }}" method="POST" target="gform_target" onSubmit="{{ onSubmit }}" style="{{ formStyle }}">
+        <p class="form__eyebrow">CONTACT FORM</p>
+
+        <div class="form__fields">
+          <label class="form__field">
+            <span class="form__label">お名前 <span class="form__required">*</span></span>
+            <input class="form__input" type="text" name="{{ fName }}" required="required" autoComplete="name" />
+          </label>
+
+          <label class="form__field">
+            <span class="form__label">ふりがな <span class="form__required">*</span></span>
+            <input class="form__input" type="text" name="{{ fKana }}" required="required" />
+          </label>
+
+          <label class="form__field">
+            <span class="form__label">メールアドレス <span class="form__required">*</span></span>
+            <span class="form__hint">こちらにご入力いただいたメールアドレスに返信いたします。</span>
+            <input class="form__input" type="email" name="{{ fEmail }}" required="required" autoComplete="email" />
+          </label>
+
+          <fieldset class="form__fieldset">
+            <legend class="form__legend">お問い合わせジャンル <span class="form__required">*</span></legend>
+            <label class="form__radio-label">
+              <input class="form__radio" type="radio" name="{{ fGenre }}" value="Web制作について" required="required" onChange="{{ pickGenre }}" />
+              Web制作について
+            </label>
+            <label class="form__radio-label">
+              <input class="form__radio" type="radio" name="{{ fGenre }}" value="ピアノ演奏について" onChange="{{ pickGenre }}" />
+              ピアノ演奏について
+            </label>
+            <label class="form__radio-label">
+              <input class="form__radio" type="radio" name="{{ fGenre }}" value="__other_option__" onChange="{{ pickOther }}" />
+              その他
+            </label>
+            <input type="text" name="{{ fGenreOther }}" aria-label="その他の内容" placeholder="その他の内容" style="{{ otherStyle }}" />
+          </fieldset>
+
+          <label class="form__field">
+            <span class="form__label">お問い合わせ詳細 <span class="form__required">*</span></span>
+            <span class="form__hint">詳細に書いていただけますと、こちらも回答しやすいです。</span>
+            <textarea class="form__textarea" name="{{ fMessage }}" required="required" rows="5"></textarea>
+          </label>
+
+          <label class="form__checkbox-label">
+            <input class="form__checkbox" type="checkbox" name="{{ fPrivacy }}" value="同意します" required="required" />
+            <span><a class="form__privacy-link" href="{{ privacyUrl }}" target="_blank" rel="noopener">プライバシーポリシー</a>に同意します</span>
+          </label>
+
+          <button class="form__submit" type="submit">SEND →</button>
+        </div>
+      </form>
+
+      <div style="{{ thanksStyle }}" role="status">
+        <p class="thanks__eyebrow">THANK YOU</p>
+        <p class="thanks__title">お問い合わせありがとうございます。</p>
+        <p class="thanks__message">1週間を目処にご返信いたします。<br>内容によってはお時間をいただく場合があります。</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="wave-divider wave-divider--to-dark" aria-hidden="true"><svg class="wave-divider__svg" viewBox="0 0 1440 64" preserveAspectRatio="none"><path d="M0,38 C180,6 360,66 540,38 C720,10 900,66 1080,38 C1230,16 1350,50 1440,38 L1440,0 L0,0 Z" fill="#F0F7FC"></path></svg></div>
+
+<footer class="site-footer">
+  <div class="site-footer__grid">
+    <div>
+      <p class="site-footer__name">RINA OBA</p>
+      <p class="site-footer__role">Web Director / Planner</p>
+    </div>
+    <ul class="site-footer__social">
+      <li><a class="site-footer__social-link" href="{{ instagram }}" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a class="site-footer__social-link" href="{{ x }}" target="_blank" rel="noopener">X</a></li>
+      <li><a class="site-footer__social-link" href="{{ note }}" target="_blank" rel="noopener">note</a></li>
+    </ul>
+  </div>
+  <p class="site-footer__copyright">© RINA OBA</p>
+</footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { menu: false, other: false, sent: false };
+
+  componentDidMount() {
+    this._onKey = (e) => { if (e.key === "Escape" && this.state.menu) this.setState({ menu: false }); };
+    document.addEventListener("keydown", this._onKey);
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        en.target.style.opacity = "1";
+        en.target.style.transform = "none";
+        io.unobserve(en.target);
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+    this._io = io;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const scan = () => document.querySelectorAll("[data-reveal]:not([data-revealed])").forEach((el, i) => {
+      el.setAttribute("data-revealed", "1");
+      if (reduce) return;
+      el.style.opacity = "0";
+      el.style.transform = "translateY(20px)";
+      el.style.transition = "opacity .9s cubic-bezier(.2,.7,.2,1) " + ((i % 4) * 60) + "ms, transform .9s cubic-bezier(.2,.7,.2,1) " + ((i % 4) * 60) + "ms";
+      io.observe(el);
+    });
+    const revealAll = () => document.querySelectorAll("[data-reveal]").forEach((el) => {
+      el.style.opacity = "1";
+      el.style.transform = "none";
+    });
+    scan();
+    this._scan = setInterval(scan, 400);
+    const de = document.documentElement;
+    // rect polling: works even when the host never emits scroll events
+    this._poll = setInterval(() => {
+      document.querySelectorAll("[data-reveal]").forEach((el) => {
+        if (el.style.opacity === "1") return;
+        if (el.getBoundingClientRect().top < window.innerHeight * 1.15) {
+          el.style.opacity = "1";
+          el.style.transform = "none";
+        }
+      });
+    }, 250);
+    // hard fail-safe: content is never allowed to stay hidden
+    this._fallback = setTimeout(revealAll, 4000);
+    void de;
+    setTimeout(() => clearInterval(this._scan), 6000);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this._onKey);
+    if (this._io) this._io.disconnect();
+    clearInterval(this._poll);
+    clearTimeout(this._fallback);
+    clearInterval(this._scan);
+  }
+
+  renderVals() {
+    const S = (typeof window !== "undefined" && window.SITE) || {};
+    const social = S.social || {}, pages = S.pages || {}, contact = S.contact || {};
+    const g = contact.gform || {};
+    const open = this.state.menu;
+    const bar = "display:block;width:26px;height:1px;background:#F0F7FC;transition:transform .4s cubic-bezier(.2,.7,.2,1),width .4s ease";
+    return {
+      menuOpen: open,
+      toggleMenu: () => this.setState((s) => ({ menu: !s.menu })),
+      closeMenu: () => this.setState({ menu: false }),
+      markStyle:
+        "pointer-events:auto;font-family:Archivo,sans-serif;font-size:13px;letter-spacing:0.16em;color:#F0F7FC;transition:opacity .3s ease;" +
+        (open ? "opacity:0;pointer-events:none" : "opacity:1"),
+      barTop: bar + (open ? ";transform:translateY(4px) rotate(15deg)" : ""),
+      barBottom: bar + (open ? ";width:26px;transform:translateY(-4px) rotate(-15deg)" : ";width:18px"),
+      overlayStyle:
+        "position:fixed;top:0;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,430px);z-index:80;background:#0C2C46;display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:88px clamp(20px,6cqw,80px) 40px;" +
+        "transition:opacity .5s ease,visibility .5s ease,clip-path .7s cubic-bezier(.2,.7,.2,1);" +
+        (open
+          ? "opacity:1;visibility:visible;clip-path:inset(0 0 0% 0);pointer-events:auto"
+          : "opacity:0;visibility:hidden;clip-path:inset(0 0 100% 0);pointer-events:none"),
+      works: S.works || [],
+      instagram: social.instagram || "#",
+      x: social.x || "#",
+      note: social.note || "#",
+      pianistUrl: pages.pianist || "Pianist.dc.html",
+      horrorUrl: pages.horror || "Horror.dc.html",
+      formUrl: contact.formUrl || "#",
+      gAction: g.action || "",
+      fName: g.name || "",
+      fKana: g.kana || "",
+      fEmail: g.email || "",
+      fGenre: g.genre || "",
+      fGenreOther: g.genreOther || "",
+      fMessage: g.message || "",
+      fPrivacy: g.privacy || "",
+      privacyUrl: g.privacyUrl || "#",
+      pickGenre: () => { if (this.state.other) this.setState({ other: false }); },
+      pickOther: () => this.setState({ other: true }),
+      otherStyle:
+        "width:100%;font:inherit;font-size:16px;color:#123C5E;background:transparent;border:none;border-bottom:1px solid #B8DEF2;padding:8px 0;outline:none;margin-left:30px;max-width:calc(100% - 30px);transition:border-color .3s ease;" +
+        (this.state.other ? "display:block" : "display:none"),
+      onSubmit: () => { setTimeout(() => this.setState({ sent: true }), 400); },
+      formStyle: "margin-top:clamp(40px,6cqw,72px);border-top:1px solid #C9E4F5;padding-top:clamp(32px,4cqw,48px);" + (this.state.sent ? "display:none" : "display:block"),
+      thanksStyle: "margin-top:clamp(40px,6cqw,72px);border-top:1px solid #C9E4F5;padding-top:clamp(32px,4cqw,48px);" + (this.state.sent ? "display:block" : "display:none")
+    };
+  }
+}
+
+</script>
+</body>
+</html>
