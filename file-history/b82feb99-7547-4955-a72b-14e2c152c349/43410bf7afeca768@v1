@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RINA OBA — Web Director｜Webディレクター</title>
+<meta name="description" content="RINA OBAのポートフォリオサイト。要件整理・制作進行・品質管理までを一気通貫で担うWebディレクターとしての強み、これまでの制作実績、経歴を紹介しています。">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<script src="./site-data.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; word-break: auto-phrase; line-break: strict; hanging-punctuation: allow-end; overflow-wrap: break-word; text-wrap: pretty; background: #EAF6FB; color: #10485F; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: #B57E00; }
+  ::selection { background: #FFE79A; color: #10485F; }
+  html { scroll-behavior: smooth; }
+  @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+  @keyframes floatY2 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+  @keyframes cue { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
+  @keyframes sway { 0%,100% { transform: translateX(0); } 50% { transform: translateX(-40px); } }
+  @keyframes meshDrift { 0% { background-position: 0 0, 0 0; } 100% { background-position: 68px 40px, -68px 40px; } }
+  @keyframes nodeGlow { 0%,100% { box-shadow: 0 0 0 0 rgba(255,199,44,0); } 50% { box-shadow: 0 0 0 7px rgba(255,199,44,0.16); } }
+  @keyframes pulseRing { 0% { transform: scale(1); opacity: .55; } 70% { transform: scale(2.1); opacity: 0; } 100% { transform: scale(2.1); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; } }
+</style>
+</helmet>
+
+<a href="#first" style="position:absolute;left:-9999px;top:0;background:#10485F;color:#F4FBFE;padding:12px 18px;z-index:200">本文へスキップ</a>
+
+<div lang="ja" style="container-type:inline-size;max-width:375px;margin:0 auto;min-height:100svh;position:relative;overflow-x:clip;display:flex;flex-direction:column;background:linear-gradient(180deg,#F4FBFE 0%,#EAF7FC 14%,#DCF1F9 34%,#E9F7FC 52%,#DDF2F9 72%,#F1FAFD 100%);box-shadow:0 0 90px rgba(16,72,95,0.16)">
+
+  <div aria-hidden="true" style="position:absolute;left:0;right:0;top:92svh;bottom:120px;z-index:0;pointer-events:none">
+    <svg viewBox="0 0 100 1000" preserveAspectRatio="none" style="display:block;width:100%;height:100%;overflow:visible">
+      <defs>
+        <linearGradient id="spineGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#A6DDEF" stop-opacity="0.30"></stop>
+          <stop offset="0.55" stop-color="#7FCBE4" stop-opacity="0.34"></stop>
+          <stop offset="1" stop-color="#FFC72C" stop-opacity="0.40"></stop>
+        </linearGradient>
+      </defs>
+      <path data-draw="" d="M50,0 C-40,60 140,150 50,228 C-40,306 140,396 50,474 C-40,552 140,642 50,720 C-40,798 140,888 50,960 C20,984 50,990 50,1000" fill="none" stroke="url(#spineGrad)" stroke-width="30" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
+    </svg>
+  </div>
+
+  <div aria-hidden="true" style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:min(100%,375px);height:88px;z-index:89;pointer-events:none;backdrop-filter:blur(14px) saturate(150%);-webkit-backdrop-filter:blur(14px) saturate(150%);background:linear-gradient(180deg,rgba(244,251,254,0.72),rgba(244,251,254,0));-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 58%,rgba(0,0,0,0) 100%);mask-image:linear-gradient(180deg,#000 0%,#000 58%,rgba(0,0,0,0) 100%)"></div>
+
+  <header style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:min(100%,375px);z-index:90;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(18px,5cqw,48px);pointer-events:none">
+    <h1 style="margin:0;display:contents"><a href="#first" aria-hidden="{{ menuOpen }}" style="{{ markStyle }}">RINA OBA</a></h1>
+    <button type="button" onClick="{{ toggleMenu }}" aria-label="メニューを開閉する" aria-expanded="{{ menuOpen }}" style="pointer-events:auto;width:44px;height:44px;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;gap:7px;background:none;border:none;cursor:pointer;padding:0">
+      <span style="{{ barTop }}"></span>
+      <span style="{{ barBottom }}"></span>
+    </button>
+  </header>
+
+  <!-- スクロール進行レール（アイコンがスクロールに合わせて移動） -->
+  <div aria-hidden="true" style="position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,375px);height:3px;z-index:70;pointer-events:none">
+    <div style="position:absolute;inset:0;background:rgba(79,195,232,0.22)"></div>
+    <div id="flow-fill" style="position:absolute;left:0;bottom:0;height:3px;width:0%;background:linear-gradient(90deg,#4FC3E8,#FFC72C);border-radius:3px"></div>
+    <div id="flow-rider" style="position:absolute;left:17px;bottom:7px;transform:translate(-50%,0);width:30px;height:30px;border-radius:50%;background:#FFFFFF;box-shadow:0 4px 16px rgba(16,72,95,0.22);display:flex;align-items:center;justify-content:center">
+      <span style="position:absolute;inset:0;border-radius:50%;background:rgba(255,199,44,0.45);animation:pulseRing 2.8s ease-out infinite"></span>
+      <img id="flow-icon" src="icons/icon-direction.svg" alt="" style="position:relative;width:17px;height:17px">
+    </div>
+  </div>
+
+  <nav aria-label="サブメニュー" style="{{ overlayStyle }}">
+    <div style="display:grid;gap:clamp(30px,6cqw,60px);width:100%">
+      <div>
+        <p style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:0.24em;color:#7FCBE4;margin:0 0 20px">目次</p>
+        <ul style="list-style:none;margin:0;padding:0;display:grid;gap:12px;font-family:Jost,sans-serif;font-size:16px;letter-spacing:0.08em;color:#F4FBFE">
+          <li><a href="#about" onClick="{{ closeMenu }}">ABOUT</a></li>
+          <li><a href="#what" onClick="{{ closeMenu }}">お手伝いできる範囲</a></li>
+          <li><a href="#works" onClick="{{ closeMenu }}">WORKS</a></li>
+          <li><a href="#next" onClick="{{ closeMenu }}">NOW &amp; NEXT</a></li>
+          <li><a href="#contact" onClick="{{ closeMenu }}">CONTACT</a></li>
+        </ul>
+      </div>
+      <div>
+        <p style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:0.24em;color:#7FCBE4;margin:0 0 18px">SNS</p>
+        <ul style="list-style:none;margin:0;padding:0;display:grid;gap:14px;font-family:Jost,sans-serif;font-size:clamp(20px,3cqw,28px);color:#F4FBFE">
+          <li><a href="{{ instagram }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:12px"><img src="icons/icon-instagram.svg" alt="" aria-hidden="true" style="width:18px;height:18px;filter:brightness(0) invert(1)">Instagram</a></li>
+          <li><a href="{{ x }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:12px"><img src="icons/icon-x.svg" alt="" aria-hidden="true" style="width:18px;height:18px;filter:brightness(0) invert(1)">X</a></li>
+          <li><a href="{{ note }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:12px"><img src="icons/icon-note.svg" alt="" aria-hidden="true" style="width:18px;height:18px;filter:brightness(0) invert(1)">note</a></li>
+        </ul>
+      </div>
+      <div>
+        <p style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:0.24em;color:#7FCBE4;margin:0 0 18px">個人</p>
+        <ul style="list-style:none;margin:0;padding:0;display:grid;gap:18px">
+          <li><a href="{{ pianistUrl }}" style="display:block"><span style="display:block;font-family:Jost,sans-serif;font-size:clamp(20px,3cqw,28px);color:#F4FBFE">ピアニスト</span><span style="display:block;font-size:12px;color:#7FCBE4;margin-top:4px">ときどき、ピアノを弾いています。</span></a></li>
+          <li><a href="{{ horrorUrl }}" style="display:block"><span style="display:block;font-family:Jost,sans-serif;font-size:clamp(20px,3cqw,28px);color:#F4FBFE">ホラー</span><span style="display:block;font-size:12px;color:#7FCBE4;margin-top:4px">趣味でつくっている、少し不穏なもの。</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin:36px 0 0;font-family:Jost,sans-serif;font-size:11px;letter-spacing:0.2em;color:#4E9DBC">RINA OBA — Webディレクター</p>
+  </nav>
+
+  <main>
+    <!-- FIRST VIEW -->
+    <section id="first" data-screen-label="FIRST VIEW" style="min-height:100svh;position:relative;overflow:hidden;padding:clamp(104px,13cqw,150px) clamp(20px,6cqw,80px) clamp(64px,8cqw,90px);display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;background:linear-gradient(170deg,#D7F0FA 0%,#BFE8F7 42%,#DCF2FA 78%,#F0FAFD 100%)">
+      <div aria-hidden="true" style="position:absolute;left:-14%;top:6%;width:210px;height:210px;border-radius:50%;background:radial-gradient(circle at 34% 30%,rgba(255,255,255,0.85),rgba(255,255,255,0) 68%);pointer-events:none"></div>
+      <div aria-hidden="true" style="position:absolute;right:-22%;top:34%;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle at 60% 40%,rgba(255,222,130,0.34),rgba(255,222,130,0) 70%);pointer-events:none"></div>
+
+      <div data-float="14" style="position:absolute;right:18px;top:20%;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.85);box-shadow:0 8px 20px rgba(16,72,95,0.10);display:flex;align-items:center;justify-content:center" aria-hidden="true">
+        <img src="icons/icon-connect.svg" alt="" style="width:19px;height:19px;animation:floatY 5.5s ease-in-out infinite">
+      </div>
+      <div data-float="-22" style="position:absolute;left:30px;bottom:38%;width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,0.85);box-shadow:0 8px 20px rgba(16,72,95,0.10);display:flex;align-items:center;justify-content:center" aria-hidden="true">
+        <img src="icons/icon-organize.svg" alt="" style="width:20px;height:20px;animation:floatY2 6.5s ease-in-out infinite">
+      </div>
+      <div data-float="18" style="position:absolute;right:38px;bottom:19%;width:38px;height:38px;border-radius:50%;background:rgba(255,199,44,0.16);display:flex;align-items:center;justify-content:center" aria-hidden="true">
+        <img src="icons/icon-schedule.svg" alt="" style="width:17px;height:17px;animation:floatY 7s ease-in-out infinite">
+      </div>
+
+      <div style="position:relative;display:flex;gap:14px;align-items:center;justify-content:center;font-family:Jost,sans-serif;font-size:11px;letter-spacing:0.24em;color:#4E9DBC">
+        <span>Webディレクター</span>
+        <span style="width:32px;height:1px;background:#8FD3EA"></span>
+        <span>2026</span>
+      </div>
+
+      <h2 style="position:relative;margin:clamp(28px,6cqw,64px) 0 0;font-weight:500;font-size:clamp(30px,8.4cqw,124px);line-height:1.16;letter-spacing:-0.02em;color:#0E4257;text-wrap:balance">
+        <span style="display:block">整理して、つないで、</span>
+        <span style="display:block">ちゃんと<span style="display:inline-block;background-image:linear-gradient(90deg,rgba(255,199,44,0.62),rgba(255,222,130,0.52));background-repeat:no-repeat;background-size:100% 0.22em;background-position:0 88%;border-radius:3px">前に進める。</span></span>
+      </h2>
+
+      <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:clamp(22px,4cqw,56px);margin-top:clamp(32px,6cqw,80px)">
+        <p style="margin:0 auto;font-size:clamp(14px,1.5cqw,17px);line-height:2;color:#2E7793;max-width:34ch">教員経験を活かした、<br>コミュニケーションと進行管理。</p>
+        <div style="font-family:Jost,sans-serif;text-align:center;letter-spacing:0.14em">
+          <p style="margin:0;font-size:11px;color:#4E9DBC">Webディレクター</p>
+          <p style="margin:6px 0 0;font-size:clamp(20px,2.4cqw,30px);color:#0E4257">RINA OBA</p>
+        </div>
+      </div>
+
+      <a href="#about" style="position:relative;margin-top:clamp(28px,5cqw,56px);display:inline-flex;align-items:center;gap:14px;font-family:Jost,sans-serif;font-size:11px;letter-spacing:0.24em;color:#4E9DBC;width:fit-content">
+        スクロール
+        <span style="display:block;width:64px;height:1px;background:#A6DDEF;overflow:hidden;position:relative"><span style="position:absolute;inset:0;background:#F0B400;animation:cue 2.4s ease-in-out infinite"></span></span>
+      </a>
+
+      <svg viewBox="0 0 375 90" preserveAspectRatio="none" aria-hidden="true" style="position:absolute;left:0;right:0;bottom:-1px;width:100%;height:90px;display:block">
+        <path d="M0,52 C70,86 130,24 200,44 C264,62 320,90 375,58 L375,90 L0,90 Z" fill="rgba(255,255,255,0.55)"></path>
+        <path d="M0,66 C80,94 132,42 206,60 C270,76 322,98 375,72 L375,90 L0,90 Z" fill="#F4FBFE"></path>
+      </svg>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" data-screen-label="ABOUT" style="position:relative;padding:clamp(72px,10cqw,150px) clamp(20px,6cqw,80px) clamp(56px,8cqw,120px)">
+      <div style="display:grid;gap:clamp(30px,5cqw,72px);max-width:1280px;margin:0 auto">
+        <div data-reveal="" style="text-align:center">
+          <p style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:0.26em;color:#B57E00;margin:0 0 22px">ABOUT ME</p>
+          <h2 style="margin:0;font-weight:500;font-size:clamp(23px,3.6cqw,46px);line-height:1.55;letter-spacing:-0.01em;color:#0E4257">教える仕事から、<br>つなぐ仕事へ。</h2>
+          <dl style="margin:clamp(32px,5cqw,64px) 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:22px 28px;border-top:1px solid rgba(79,195,232,0.28);padding-top:26px;text-align:left">
+            <div><dt style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:0.22em;color:#4E9DBC">名前</dt><dd style="margin:8px 0 0;font-size:15px">RINA OBA</dd></div>
+            <div><dt style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:0.22em;color:#4E9DBC">職業</dt><dd style="margin:8px 0 0;font-size:15px">Webディレクター</dd></div>
+            
+            <div><dt style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:0.22em;color:#4E9DBC">経歴</dt><dd style="margin:8px 0 0;font-size:15px">教育・保育業界→<br>Web制作&amp;ピアニスト</dd></div><div><dt style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:0.22em;color:#4E9DBC">趣味</dt><dd style="margin:8px 0 0;font-size:15px">・美術芸術鑑賞<br>・オカルト調べ</dd></div>
+          </dl>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:26px;font-size:clamp(14px,1.4cqw,16px);line-height:2.15;color:#2E7793;max-width:46ch;margin:0 auto;text-align:center;width:100%">
+          <ol style="list-style:none;margin:0 auto;padding:0;display:grid;gap:34px;max-width:420px;width:100%;position:relative">
+            <li data-reveal="" style="position:relative;border:1px solid rgba(79,195,232,0.30);border-radius:20px;background:rgba(255,255,255,0.78);padding:20px 22px;display:flex;flex-direction:column;align-items:center;gap:6px">
+              <span style="position:absolute;left:50%;bottom:-27px;transform:translateX(-50%);width:1px;height:20px;background:linear-gradient(180deg,#8FD3EA,rgba(143,211,234,0))"></span>
+              <span style="font-family:Jost,sans-serif;font-weight:600;font-size:22px;color:#A6DDEF">01　2013~2023</span>
+              <span data-float="9" style="display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;background:linear-gradient(150deg,#EAF7FC,#CFEDF8);box-shadow:0 6px 16px rgba(16,72,95,0.08)"><img src="icons/icon-connect.svg" alt="" aria-hidden="true" style="width:34px;height:34px"></span>
+              <span style="font-size:clamp(16px,1.8cqw,19px);font-weight:500;color:#0E4257">教育・保育業界</span>
+            </li>
+            <li data-reveal="" style="position:relative;border:1px solid rgba(79,195,232,0.30);border-radius:20px;background:rgba(255,255,255,0.78);padding:20px 22px;display:flex;flex-direction:column;align-items:center;gap:6px">
+              <span style="position:absolute;left:50%;bottom:-27px;transform:translateX(-50%);width:1px;height:20px;background:linear-gradient(180deg,#8FD3EA,rgba(143,211,234,0))"></span>
+              <span style="font-family:Jost,sans-serif;font-weight:600;font-size:22px;color:#A6DDEF">02　2024~2025</span>
+              <span data-float="11" style="display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;background:linear-gradient(150deg,#EAF7FC,#CFEDF8);box-shadow:0 6px 16px rgba(16,72,95,0.08)"><img src="icons/icon-organize.svg" alt="" aria-hidden="true" style="width:34px;height:34px"></span>
+              <span style="font-size:clamp(16px,1.8cqw,19px);font-weight:500;color:#0E4257;line-height:1.7">コーダー<span style="display: block; font-size: 12px; letter-spacing: -0.01em; color: rgb(46, 119, 147);">(HTML/CSS/JavaScript/GSAP/WordPress)</span></span>
+            </li>
+            <li data-reveal="" style="position:relative;border-radius:20px;background:linear-gradient(135deg,#2A97C4,#0E4257);padding:22px 22px;display:flex;flex-direction:column;align-items:center;gap:6px;box-shadow:0 14px 30px rgba(16,72,95,0.18)">
+              <span style="font-family:Jost,sans-serif;font-weight:600;font-size:22px;color:#FFD86B">03　2025~現在</span>
+              <span data-float="13" style="display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;background:linear-gradient(150deg,#FFFFFF,#DFF2FA);box-shadow:0 6px 16px rgba(0,0,0,0.18)"><img src="icons/icon-direction.svg" alt="" aria-hidden="true" style="width:34px;height:34px"></span>
+              <span style="font-size:clamp(16px,1.8cqw,19px);font-weight:600;color:#F4FBFE">Webディレクター</span>
+            </li>
+          </ol>
+
+          <div data-reveal="" style="max-width:320px;margin:14px auto 0;border-top:1px solid rgba(79,195,232,0.28);text-align:left;width:100%">
+            <div style="display:grid;grid-template-columns:1fr 20px 1fr;align-items:center;gap:6px;padding:13px 0;border-bottom:1px solid rgba(79,195,232,0.28);font-family:Jost,sans-serif;font-size:10px;letter-spacing:0.14em;color:#4E9DBC"><span style="text-align: center">教育</span><span style="text-align:center;color:#B57E00">→</span><span style="text-align: center; color: #0E4257; font-weight: 500">Webディレクション</span></div>
+            <div style="display:grid;grid-template-columns:1fr 20px 1fr;align-items:center;gap:6px;padding:13px 0;border-bottom:1px solid rgba(79,195,232,0.28);font-size:13px;color:#2E7793"><span style="text-align: center">相手を理解する</span><span style="text-align:center;color:#FFD86B;font-size:12px">→</span><span style="text-align: center; color: #0E4257; font-weight: 500">ヒアリング</span></div>
+            <div style="display:grid;grid-template-columns:1fr 20px 1fr;align-items:center;gap:6px;padding:13px 0;border-bottom:1px solid rgba(79,195,232,0.28);font-size:13px;color:#2E7793"><span style="text-align: center">情報を整理する</span><span style="text-align:center;color:#FFD86B;font-size:12px">→</span><span style="text-align: center; color: #0E4257; font-weight: 500">要件整理</span></div>
+            <div style="display:grid;grid-template-columns:1fr 20px 1fr;align-items:center;gap:6px;padding:13px 0;border-bottom:1px solid rgba(79,195,232,0.28);font-size:13px;color:#2E7793"><span style="text-align: center">わかりやすく伝える</span><span style="text-align:center;color:#FFD86B;font-size:12px">→</span><span style="text-align: center; color: #0E4257; font-weight: 500">指示・共有</span></div>
+            <div style="display:grid;grid-template-columns:1fr 20px 1fr;align-items:center;gap:6px;padding:13px 0;border-bottom:1px solid rgba(79,195,232,0.28);font-size:13px;color:#2E7793"><span style="text-align: center">人と進める</span><span style="text-align:center;color:#FFD86B;font-size:12px">→</span><span style="text-align: center; color: #0E4257; font-weight: 500">進行管理</span></div>
+          </div>
+
+          <p data-reveal="" style="margin: clamp(24px,4cqw,40px) auto 0; max-width: 41.6ch; font-size: clamp(15px,1.7cqw,18px); font-weight: 500; line-height: 1.85; color: #0E4257; text-align: center">相手に合わせて整理し、伝え、前に進める。<br>それが、私のディレクションの土台です。</p>
+        </div>
+      </div>
+    </section>
+
+    <div aria-hidden="true" style="line-height:0;position:relative">
+      <svg viewBox="0 0 375 72" preserveAspectRatio="none" style="display:block;width:100%;height:clamp(44px,7cqw,84px)">
+        <path d="M0,30 C68,4 128,58 194,40 C258,22 316,0 375,26 L375,72 L0,72 Z" fill="rgba(255,255,255,0.5)"></path>
+        <path d="M0,46 C70,20 130,70 196,52 C260,34 318,14 375,42 L375,72 L0,72 Z" fill="rgba(169,228,245,0.38)"></path>
+      </svg>
+      <span data-float="7" style="position:absolute;left:50%;top:50%;margin-left:-17px;margin-top:-17px;width:34px;height:34px;border-radius:50%;background:#FFFFFF;box-shadow:0 6px 16px rgba(16,72,95,0.12);display:flex;align-items:center;justify-content:center"><img src="icons/icon-organize.svg" alt="" style="width:18px;height:18px"></span>
+    </div>
+
+    <!-- WHAT I DO -->
+    <section id="what" data-screen-label="お手伝いできる範囲" style="position:relative;padding:clamp(56px,8cqw,130px) clamp(20px,6cqw,80px) clamp(64px,9cqw,130px)">
+      <div style="max-width:1280px;margin:0 auto">
+        <div data-reveal="" style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;margin-bottom:clamp(36px,6cqw,80px)">
+          <p style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:0.26em;color:#B57E00;margin:0">WHAT I DO</p>
+          <h2 style="margin:0;font-weight:500;font-size:clamp(23px,3.6cqw,46px);line-height:1.55;color:#0E4257">受注以降の制作の流れを、<br>まるっとお任せいただけます。</h2>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:24px;font-size:clamp(14px,1.4cqw,16px);line-height:2.15;color:#2E7793;max-width:46ch;margin:0 auto;text-align:center;width:100%">
+          <div style="display:grid;gap:0;margin:0">
+            <div data-reveal="" style="position:relative;border:1px solid rgba(79,195,232,0.32);border-radius:18px;background:rgba(255,255,255,0.7);padding:16px 20px;text-align:center">
+              <span data-float="8" aria-hidden="true" style="position:absolute;left:-4px;top:-18px;z-index:2;width:44px;height:44px;border-radius:50%;background:#FFFFFF;box-shadow:0 6px 16px rgba(16,72,95,0.14);display:flex;align-items:center;justify-content:center;animation:nodeGlow 4.5s ease-in-out infinite"><img src="icons/icon-client.svg" alt="" style="width:22px;height:22px"></span>
+              <p style="margin:0;font-family:Jost,sans-serif;font-weight:600;font-size:14px;letter-spacing:0.08em;color:#0E4257">受注</p>
+            </div>
+            <div aria-hidden="true" data-connector="lr" style="position:relative;height:54px"></div>
+            <div data-reveal="" style="position:relative;border:1px solid rgba(255,199,44,0.28);border-radius:18px;background:linear-gradient(180deg,#FFFFFF,#F2FAFE);padding:20px;text-align:center;box-shadow:0 12px 26px rgba(16,72,95,0.07)">
+              <span data-float="10" aria-hidden="true" style="position:absolute;right:-4px;top:-18px;z-index:2;width:44px;height:44px;border-radius:50%;background:linear-gradient(150deg,#FFFFFF,#FFF2CE);box-shadow:0 6px 16px rgba(16,72,95,0.14);display:flex;align-items:center;justify-content:center;animation:nodeGlow 4.5s ease-in-out infinite"><img src="icons/icon-direction.svg" alt="" style="width:22px;height:22px"></span>
+              <p style="margin:0;font-family:Jost,sans-serif;font-weight:600;font-size:15px;letter-spacing:0.08em;color:#0E4257">01 要件定義</p>
+              <ul style="list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px">
+                <li style="background:#F0FAFD;border:1px solid rgba(79,195,232,0.26);border-radius:16px;padding:14px 10px 12px;display:flex;flex-direction:column;align-items:center;gap:8px"><span data-float="7" style="display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:#FFFFFF;box-shadow:0 4px 12px rgba(16,72,95,0.08)"><img src="icons/icon-client.svg" alt="" aria-hidden="true" style="width:26px;height:26px"></span><span style="display:block;font-size:13px;line-height:1.6;color:#2E7793">ヒアリング</span></li>
+                <li style="background:#F0FAFD;border:1px solid rgba(79,195,232,0.26);border-radius:16px;padding:14px 10px 12px;display:flex;flex-direction:column;align-items:center;gap:8px"><span data-float="9" style="display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:#FFFFFF;box-shadow:0 4px 12px rgba(16,72,95,0.08)"><img src="icons/icon-requirement.svg" alt="" aria-hidden="true" style="width:26px;height:26px"></span><span style="display:block;font-size:13px;line-height:1.6;color:#2E7793">3C分析</span></li>
+                <li style="background:#F0FAFD;border:1px solid rgba(79,195,232,0.26);border-radius:16px;padding:14px 10px 12px;display:flex;flex-direction:column;align-items:center;gap:8px"><span data-float="8" style="display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:#FFFFFF;box-shadow:0 4px 12px rgba(16,72,95,0.08)"><img src="icons/icon-advance.svg" alt="" aria-hidden="true" style="width:26px;height:26px"></span><span style="display:block;font-size:13px;line-height:1.6;color:#2E7793">業界調査</span></li>
+                <li style="background:#F0FAFD;border:1px solid rgba(79,195,232,0.26);border-radius:16px;padding:14px 10px 12px;display:flex;flex-direction:column;align-items:center;gap:8px"><span data-float="10" style="display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:#FFFFFF;box-shadow:0 4px 12px rgba(16,72,95,0.08)"><img src="icons/icon-organize.svg" alt="" aria-hidden="true" style="width:26px;height:26px"></span><span style="display:block;font-size:13px;line-height:1.6;color:#2E7793">ワイヤーフレーム作成</span></li>
+              </ul>
+            </div>
+            <div aria-hidden="true" data-connector="rl" style="position:relative;height:54px"></div>
+            <div data-reveal="" style="position:relative;border:1px solid rgba(255,199,44,0.28);border-radius:18px;background:linear-gradient(180deg,#FFFFFF,#F2FAFE);padding:20px;text-align:center;box-shadow:0 12px 26px rgba(16,72,95,0.07)">
+              <span data-float="9" aria-hidden="true" style="position:absolute;left:-4px;top:-18px;z-index:2;width:44px;height:44px;border-radius:50%;background:#FFFFFF;box-shadow:0 6px 16px rgba(16,72,95,0.14);display:flex;align-items:center;justify-content:center;animation:nodeGlow 4.5s ease-in-out infinite"><img src="icons/icon-connect.svg" alt="" style="width:22px;height:22px"></span>
+              <p style="margin:0;font-family:Jost,sans-serif;font-weight:600;font-size:15px;letter-spacing:0.08em;color:#0E4257">02 制作</p>
+              <ul style="list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px">
+                <li style="background:#F0FAFD;border:1px solid rgba(79,195,232,0.26);border-radius:16px;padding:14px 10px 12px;display:flex;flex-direction:column;align-items:center;gap:8px"><span data-float="7" style="display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:#FFFFFF;box-shadow:0 4px 12px rgba(16,72,95,0.08)"><img src="icons/icon-client.svg" alt="" aria-hidden="true" style="width:26px;height:26px"></span><span style="display:block;font-size:13px;line-height:1.6;color:#2E7793">お客様とのやり取り</span></li>
+                <li style="background:#F0FAFD;border:1px solid rgba(79,195,232,0.26);border-radius:16px;padding:14px 10px 12px;display:flex;flex-direction:column;align-items:center;gap:8px"><span data-float="9" style="display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:#FFFFFF;box-shadow:0 4px 12px rgba(16,72,95,0.08)"><img src="icons/icon-advance.svg" alt="" aria-hidden="true" style="width:26px;height:26px"></span><span style="display:block;font-size:13px;line-height:1.6;color:#2E7793">デザイン（パートナー）</span></li>
+                <li style="background:#F0FAFD;border:1px solid rgba(79,195,232,0.26);border-radius:16px;padding:14px 10px 12px;display:flex;flex-direction:column;align-items:center;gap:8px"><span data-float="8" style="display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:#FFFFFF;box-shadow:0 4px 12px rgba(16,72,95,0.08)"><img src="icons/icon-connect.svg" alt="" aria-hidden="true" style="width:26px;height:26px"></span><span style="display:block;font-size:13px;line-height:1.6;color:#2E7793">コーディング（パートナー）</span></li>
+                <li style="background:#F0FAFD;border:1px solid rgba(79,195,232,0.26);border-radius:16px;padding:14px 10px 12px;display:flex;flex-direction:column;align-items:center;gap:8px"><span data-float="10" style="display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:#FFFFFF;box-shadow:0 4px 12px rgba(16,72,95,0.08)"><img src="icons/icon-schedule.svg" alt="" aria-hidden="true" style="width:26px;height:26px"></span><span style="display:block;font-size:13px;line-height:1.6;color:#2E7793">制作管理</span></li>
+                <li style="background:#F0FAFD;border:1px solid rgba(79,195,232,0.26);border-radius:16px;padding:14px 10px 12px;display:flex;flex-direction:column;align-items:center;gap:8px"><span data-float="11" style="display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:#FFFFFF;box-shadow:0 4px 12px rgba(16,72,95,0.08)"><img src="icons/icon-quality.svg" alt="" aria-hidden="true" style="width:26px;height:26px"></span><span style="display:block;font-size:13px;line-height:1.6;color:#2E7793">品質チェック</span></li>
+              </ul>
+            </div>
+            <div aria-hidden="true" data-connector="lr" style="position:relative;height:54px"></div>
+            <div data-reveal="" style="position:relative;border-radius:18px;background:linear-gradient(120deg,#FFC72C,#FFE07A);padding:18px 20px;text-align:center;box-shadow:0 14px 28px rgba(255,199,44,0.30)">
+              <span data-float="8" aria-hidden="true" style="position:absolute;right:-4px;top:-18px;z-index:2;width:44px;height:44px;border-radius:50%;background:#FFFFFF;box-shadow:0 6px 16px rgba(16,72,95,0.16);display:flex;align-items:center;justify-content:center;animation:nodeGlow 4.5s ease-in-out infinite"><img src="icons/icon-client.svg" alt="" style="width:22px;height:22px"></span>
+              <p style="margin:0;font-family:Jost,sans-serif;font-weight:700;font-size:15px;letter-spacing:0.1em;color:#0E4257">公開</p>
+            </div>
+          </div>
+
+          <p data-reveal="" style="margin: clamp(24px,4cqw,40px) auto 0; max-width: 40.6ch; font-size: clamp(15px,1.7cqw,18px); font-weight: 500; line-height: 1.85; color: #0E4257">これまで複数の制作会社様の案件に携わり、<br>制作工程から公開までのディレクション・進行管理を担当してきました。</p>
+          <p data-reveal="" style="margin:0 auto;max-width:34ch;font-size:clamp(15px,1.7cqw,18px);font-weight:700;line-height:1.85;color:#0E4257">特に、ワイヤーフレーム完成後の制作進行を得意としています。</p>
+        </div>
+      </div>
+    </section>
+
+    <div aria-hidden="true" style="line-height:0;position:relative">
+      <svg viewBox="0 0 375 72" preserveAspectRatio="none" style="display:block;width:100%;height:clamp(44px,7cqw,84px)">
+        <path d="M0,44 C64,18 132,64 200,44 C262,26 318,12 375,36 L375,72 L0,72 Z" fill="rgba(255,255,255,0.55)"></path>
+      </svg>
+      <span data-float="9" style="position:absolute;left:50%;top:50%;margin-left:-17px;margin-top:-17px;width:34px;height:34px;border-radius:50%;background:#FFFFFF;box-shadow:0 6px 16px rgba(16,72,95,0.12);display:flex;align-items:center;justify-content:center"><img src="icons/icon-quality.svg" alt="" style="width:18px;height:18px"></span>
+    </div>
+
+    <!-- WORKS -->
+    <section id="works" data-screen-label="WORKS" style="position:relative;padding:clamp(48px,7cqw,120px) clamp(20px,6cqw,80px) clamp(64px,9cqw,130px)">
+      <div style="max-width:1280px;margin:0 auto">
+        <div data-reveal="" style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;margin-bottom:clamp(36px,6cqw,80px)">
+          <p style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:0.26em;color:#B57E00;margin:0">WORKS</p>
+          <h2 style="margin:0;font-weight:500;font-size:clamp(23px,3.6cqw,46px);line-height:1.55;color:#0E4257">これまでの実績</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(28px,4cqw,56px)">
+          <sc-for list="{{ works }}" as="w" hint-placeholder-count="0">
+            <article data-reveal="" style="display:flex;flex-direction:column;background:rgba(255,255,255,0.72);border:1px solid rgba(79,195,232,0.24);border-radius:22px;overflow:hidden;box-shadow:0 14px 30px rgba(16,72,95,0.07)">
+              <a href="{{ w.url }}" style="display:block">
+                <div style="aspect-ratio:4/3;overflow:hidden;background:#FFFFFF">
+                  <img data-src="{{ w.thumbUrl }}" alt="{{ w.title }} のプロジェクト画像" style="display:block;width:100%;height:100%;object-fit:cover;background:#FFFFFF" />
+                </div>
+                <div style="padding:18px 20px 0">
+                  <p style="margin:0;font-family:Jost,sans-serif;font-size:10px;letter-spacing:0.22em;color:#4E9DBC">{{ w.no }}</p>
+                  <h3 style="margin:8px 0 0;font-family:Jost,sans-serif;font-weight:500;font-size:clamp(19px,2cqw,26px);color:#0E4257">{{ w.title }}</h3>
+                </div>
+              </a>
+              <p style="margin:20px 20px 8px;font-family:Jost,sans-serif;font-size:10px;letter-spacing:0.22em;color:#4E9DBC">担当領域</p>
+              <ul style="list-style:none;margin:0;padding:0 20px 22px;display:flex;flex-wrap:wrap;gap:8px">
+                <sc-for list="{{ w.roles }}" as="r" hint-placeholder-count="4">
+                  <li style="font-size:12px;color:#2E7793;border:1px solid rgba(79,195,232,0.34);border-radius:999px;padding:5px 12px;background:#F4FBFE;white-space:nowrap">{{ r }}</li>
+                </sc-for>
+              </ul>
+            </article>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOW & NEXT -->
+    <section id="next" data-screen-label="NOW &amp; NEXT" style="position:relative;padding:clamp(56px,8cqw,130px) clamp(20px,6cqw,80px)">
+      <div aria-hidden="true" style="position:absolute;left:-30%;top:12%;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.7),rgba(255,255,255,0) 70%);pointer-events:none;animation:sway 18s ease-in-out infinite"></div>
+      <div style="position:relative;max-width:1280px;margin:0 auto;display:grid;gap:clamp(32px,5cqw,72px)">
+        <div data-reveal="" style="text-align:center">
+          <p style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:0.26em;color:#B57E00;margin:0 0 20px">NOW &amp; NEXT</p>
+          <h2 style="margin:0;font-weight:500;font-size:clamp(23px,3.6cqw,46px);line-height:1.55;color:#0E4257">「つくる」だけでなく、<br>「成果につなげる」ディレクターへ。</h2>
+          <p style="margin:clamp(26px,4cqw,52px) auto 0;font-size:15px;line-height:2.15;color:#2E7793;max-width:46ch">制作・ディレクションに加え、<br>マーケティングやWeb解析まで視野を広げる。</p>
+        </div>
+        <div style="display:grid;gap:20px">
+          <div data-reveal="" style="border-radius:20px;background:rgba(255,255,255,0.78);border:1px solid rgba(79,195,232,0.26);padding:24px 22px;text-align:center">
+            <p style="margin:0;font-family:Jost,sans-serif;font-size:clamp(28px,3cqw,38px);color:#B57E00;line-height:1">2026</p>
+            <h3 style="margin:14px 0 0;font-weight:500;font-size:19px;letter-spacing:0.02em;color:#0E4257">ディレクション × マーケティング</h3>
+            <p style="margin:12px 0 0;font-size:14px;line-height:2.1;color:#2E7793;text-align:left">SEO、マーケティングをより意識したディレクションを行い、<br>制作の先の成果につなげます。</p>
+          </div>
+          <div data-reveal="" style="border-radius:20px;background:rgba(255,255,255,0.6);border:1px solid rgba(79,195,232,0.22);padding:24px 22px;text-align:center">
+            <p style="margin:0;font-family:Jost,sans-serif;font-size:clamp(28px,3cqw,38px);color:#8FD3EA;line-height:1">2027</p>
+            <h3 style="margin:14px 0 0;font-weight:500;font-size:19px;letter-spacing:0.12em;color:#0E4257">新しい挑戦</h3>
+            <p style="margin:12px 0 0;font-size:14px;line-height:2.1;color:#2E7793;text-align:left">新しい挑戦に向けて、準備を進めています。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" data-screen-label="CONTACT" style="position:relative;padding:clamp(64px,10cqw,160px) clamp(20px,6cqw,80px) clamp(72px,10cqw,160px)">
+      <div data-reveal="" style="max-width:1280px;margin:0 auto">
+        <div style="text-align:center">
+          <p style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:0.26em;color:#B57E00;margin:0 0 22px">CONTACT</p>
+          <h2 style="margin:0;font-weight:500;font-size:clamp(24px,4.6cqw,62px);line-height:1.5;letter-spacing:-0.01em;color:#0E4257">Webサイト制作について、<br>まずはお話を聞かせてください。</h2>
+        </div>
+        <div style="display:grid;gap:22px;margin:clamp(32px,5cqw,72px) auto 0;font-size:15px;line-height:2.1;color:#2E7793;max-width:44ch;text-align:center">
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:10px">
+            <li style="background:#FFFFFF;border:1px solid rgba(79,195,232,0.28);border-radius:16px;padding:13px 18px;font-size:14px;color:#2E7793">「こんなサイトをつくりたい」</li>
+            <li style="background:#FFFFFF;border:1px solid rgba(79,195,232,0.28);border-radius:16px;padding:13px 18px;font-size:14px;color:#2E7793">「何から考えればいいかわからない」</li>
+            <li style="background:#FFFFFF;border:1px solid rgba(79,195,232,0.28);border-radius:16px;padding:13px 18px;font-size:14px;color:#2E7793">「制作をスムーズに進めたい」</li>
+          </ul>
+          <p style="margin:clamp(20px,3cqw,32px) auto 0;max-width:34ch;font-size:clamp(15px,1.7cqw,18px);font-weight:500;line-height:1.85;color:#0E4257">そんな段階からでも大丈夫です。</p>
+        </div>
+
+        <iframe name="gform_target" title="送信処理" style="display:none;width:0;height:0;border:0"></iframe>
+
+        <form action="{{ gAction }}" method="POST" target="gform_target" onSubmit="{{ onSubmit }}" style="{{ formStyle }}">
+          <p style="margin:0 0 28px;font-family:Jost,sans-serif;font-size:11px;letter-spacing:0.24em;color:#4E9DBC">お問い合わせフォーム</p>
+          <div style="display:grid;gap:24px">
+            <label style="display:grid;gap:8px">
+              <span style="font-size:13px;font-weight:500;color:#2E7793">お名前 <span style="color:#B57E00">*</span></span>
+              <input type="text" name="{{ fName }}" required="required" autoComplete="name" style="width:100%;font:inherit;font-size:16px;color:#0E4257;background:transparent;border:none;border-bottom:1px solid rgba(79,195,232,0.5);padding:10px 0;outline:none" style-focus="border-bottom-color:#B57E00">
+            </label>
+            <label style="display:grid;gap:8px">
+              <span style="font-size:13px;font-weight:500;color:#2E7793">ふりがな <span style="color:#B57E00">*</span></span>
+              <input type="text" name="{{ fKana }}" required="required" style="width:100%;font:inherit;font-size:16px;color:#0E4257;background:transparent;border:none;border-bottom:1px solid rgba(79,195,232,0.5);padding:10px 0;outline:none" style-focus="border-bottom-color:#B57E00">
+            </label>
+            <label style="display:grid;gap:8px">
+              <span style="font-size:13px;font-weight:500;color:#2E7793">メールアドレス <span style="color:#B57E00">*</span></span>
+              <span style="font-size:12px;color:#4E9DBC;line-height:1.8">こちらにご入力いただいたメールアドレスに返信いたします。</span>
+              <input type="email" name="{{ fEmail }}" required="required" autoComplete="email" style="width:100%;font:inherit;font-size:16px;color:#0E4257;background:transparent;border:none;border-bottom:1px solid rgba(79,195,232,0.5);padding:10px 0;outline:none" style-focus="border-bottom-color:#B57E00">
+            </label>
+            <fieldset style="margin:0;padding:0;border:none;display:grid;gap:12px">
+              <legend style="font-size:13px;font-weight:500;color:#2E7793;padding:0;margin-bottom:4px">お問い合わせジャンル <span style="color:#B57E00">*</span></legend>
+              <label style="display:flex;align-items:center;gap:12px;font-size:15px;color:#2E7793;cursor:pointer">
+                <input type="radio" name="{{ fGenre }}" value="Web制作について" required="required" onChange="{{ pickGenre }}" style="accent-color:#FFC72C;width:18px;height:18px">
+                Web制作について
+              </label>
+              <label style="display:flex;align-items:center;gap:12px;font-size:15px;color:#2E7793;cursor:pointer">
+                <input type="radio" name="{{ fGenre }}" value="ピアノ演奏について" onChange="{{ pickGenre }}" style="accent-color:#FFC72C;width:18px;height:18px">
+                ピアノ演奏について
+              </label>
+              <label style="display:flex;align-items:center;gap:12px;font-size:15px;color:#2E7793;cursor:pointer">
+                <input type="radio" name="{{ fGenre }}" value="__other_option__" onChange="{{ pickOther }}" style="accent-color:#FFC72C;width:18px;height:18px">
+                その他
+              </label>
+              <input type="text" name="{{ fGenreOther }}" aria-label="その他の内容" placeholder="その他の内容" style="{{ otherStyle }}">
+            </fieldset>
+            <label style="display:grid;gap:8px">
+              <span style="font-size:13px;font-weight:500;color:#2E7793">お問い合わせ詳細 <span style="color:#B57E00">*</span></span>
+              <span style="font-size:12px;color:#4E9DBC;line-height:1.8">詳細に書いていただけますと、こちらも回答しやすいです。</span>
+              <textarea name="{{ fMessage }}" required="required" rows="5" style="width:100%;font:inherit;font-size:16px;color:#0E4257;background:#FFFFFF;border:1px solid rgba(79,195,232,0.4);border-radius:14px;padding:14px;outline:none;resize:vertical" style-focus="border-color:#B57E00"></textarea>
+            </label>
+            <label style="display:flex;align-items:flex-start;gap:12px;font-size:14px;color:#2E7793;line-height:1.9;cursor:pointer">
+              <input type="checkbox" name="{{ fPrivacy }}" value="同意します" required="required" style="accent-color:#FFC72C;width:18px;height:18px;margin-top:3px">
+              <span><a href="{{ privacyUrl }}" target="_blank" rel="noopener" style="border-bottom:1px solid rgba(79,195,232,0.6)">プライバシーポリシー</a>に同意します</span>
+            </label>
+            <button type="submit" style="margin-top:8px;justify-self:center;display:inline-flex;align-items:center;gap:16px;background:linear-gradient(120deg,#FFC72C,#FFE07A);color:#0E4257;font-weight:700;font-family:Jost,sans-serif;font-size:14px;letter-spacing:0.16em;padding:20px 40px;border:none;border-radius:999px;cursor:pointer;box-shadow:0 14px 28px rgba(255,199,44,0.26);transition:gap .3s ease,box-shadow .3s ease" style-hover="gap:26px;box-shadow:0 18px 34px rgba(255,199,44,0.34)">送信する →</button>
+          </div>
+        </form>
+
+        <div style="{{ thanksStyle }}" role="status">
+          <p style="margin:0;font-family:Jost,sans-serif;font-size:11px;letter-spacing:0.24em;color:#B57E00">送信完了</p>
+          <p style="margin:18px 0 0;font-size:17px;font-weight:500;color:#0E4257">お問い合わせありがとうございます。</p>
+          <p style="margin:14px 0 0;font-size:14px;line-height:2;color:#2E7793">1週間を目処にご返信いたします。<br>内容によってはお時間をいただく場合があります。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div aria-hidden="true" style="line-height:0;background:linear-gradient(180deg,#2A97C4,#0E4257);position:relative">
+    <svg viewBox="0 0 375 72" preserveAspectRatio="none" style="display:block;width:100%;height:clamp(44px,7cqw,84px)">
+      <path d="M0,40 C66,66 132,10 200,30 C262,48 318,64 375,38 L375,0 L0,0 Z" fill="#F1FAFD"></path>
+    </svg>
+  </div>
+
+  <footer style="background:linear-gradient(180deg,#0E4257,#0A3243);color:#F4FBFE;padding:clamp(44px,6cqw,90px) clamp(20px,6cqw,80px) clamp(26px,3cqw,40px);margin-top:auto">
+    <div style="max-width:1280px;margin:0 auto;display:grid;gap:clamp(26px,4cqw,60px);align-items:start">
+      <div>
+        <p style="margin:0;font-family:Jost,sans-serif;font-size:clamp(26px,3.4cqw,44px);letter-spacing:0.02em">RINA OBA</p>
+        <p style="margin:10px 0 0;font-size:13px;color:#7FCBE4">Webディレクター / プランナー</p>
+      </div>
+      <ul style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:22px;font-family:Jost,sans-serif;font-size:13px;letter-spacing:0.1em">
+        <li><a href="{{ instagram }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;color:#A6DDEF"><img src="icons/icon-instagram.svg" alt="" aria-hidden="true" style="width:18px;height:18px;filter:brightness(0) invert(1);opacity:.85">Instagram</a></li>
+        <li><a href="{{ x }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;color:#A6DDEF"><img src="icons/icon-x.svg" alt="" aria-hidden="true" style="width:18px;height:18px;filter:brightness(0) invert(1);opacity:.85">X</a></li>
+        <li><a href="{{ note }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;color:#A6DDEF"><img src="icons/icon-note.svg" alt="" aria-hidden="true" style="width:18px;height:18px;filter:brightness(0) invert(1);opacity:.85">note</a></li>
+      </ul>
+    </div>
+    <p style="max-width:1280px;margin:clamp(32px,5cqw,72px) auto 0;font-family:Jost,sans-serif;font-size:11px;letter-spacing:0.16em;color:#4E9DBC">© RINA OBA</p>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;motionStrength&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1,&quot;min&quot;:0,&quot;max&quot;:2,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;アニメーション&quot;},&quot;iconParallax&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;アニメーション&quot;}}">
+class Component extends DCLogic {
+  state = { menu: false, other: false, sent: false };
+
+  componentDidMount() {
+    this._onKey = (e) => { if (e.key === "Escape" && this.state.menu) this.setState({ menu: false }); };
+    document.addEventListener("keydown", this._onKey);
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const strength = this.props.motionStrength ?? 1;
+    const rider = () => document.getElementById("flow-rider");
+    const fill = () => document.getElementById("flow-fill");
+
+    const reveal = (el) => { el.style.opacity = "1"; el.style.transform = "none"; };
+    const prep = () => document.querySelectorAll("[data-reveal]:not([data-prepped])").forEach((el, i) => {
+      el.setAttribute("data-prepped", "1");
+      if (reduce) return;
+      el.style.opacity = "0";
+      el.style.transform = "translateY(26px)";
+      el.style.transition = "opacity .9s cubic-bezier(.2,.7,.2,1) " + ((i % 4) * 70) + "ms, transform .9s cubic-bezier(.2,.7,.2,1) " + ((i % 4) * 70) + "ms";
+    });
+
+    const update = () => {
+      const vh = window.innerHeight || 800;
+      const doc = document.documentElement;
+      // スクロールしている要素を毎フレーム実測して進行度を求める（末端で必ず100%になる）
+      const se = document.scrollingElement || doc;
+      let top = window.scrollY || se.scrollTop || 0;
+      let max = se.scrollHeight - se.clientHeight;
+      if (max < 4) {
+        const host = document.body;
+        top = host.scrollTop || top;
+        max = host.scrollHeight - host.clientHeight;
+      }
+      const p = Math.min(1, Math.max(0, top / Math.max(1, max)));
+
+      const f = fill(); if (f) f.style.width = (p * 100).toFixed(2) + "%";
+      const r = rider();
+      if (r) {
+        const track = r.parentElement ? r.parentElement.clientWidth : 375;
+        const half = r.offsetWidth / 2 || 15;
+        r.style.left = Math.min(track - half, Math.max(half, p * track)).toFixed(1) + "px";
+        if (!reduce) r.style.transform = "translate(-50%,0) rotate(" + (p * 300).toFixed(1) + "deg)";
+      }
+
+      if (!reduce && this.props.iconParallax !== false) {
+        document.querySelectorAll("[data-float]").forEach((el) => {
+          const box = el.getBoundingClientRect();
+          const t = Math.min(1.15, Math.max(-0.15, 1 - (box.top + box.height / 2) / vh));
+          const amt = parseFloat(el.getAttribute("data-float")) * strength;
+          el.style.transform = "translateY(" + ((0.5 - t) * amt).toFixed(2) + "px) rotate(" + ((t - 0.5) * amt * 0.35).toFixed(2) + "deg)";
+        });
+      }
+
+      // 受け渡しの曲線はJSで生成する（エディタ往復でSVGが失われないように）
+      document.querySelectorAll("[data-connector]").forEach((slot) => {
+        if (slot.firstElementChild) return;
+        const dir = slot.getAttribute("data-connector");
+        const d = dir === "rl" ? "M282,0 C282,36 18,18 18,54" : "M18,0 C18,36 282,18 282,54";
+        slot.innerHTML =
+          '<svg viewBox="0 0 300 54" preserveAspectRatio="none" style="display:block;width:100%;height:54px;overflow:visible">' +
+          '<path data-draw d="' + d + '" fill="none" stroke="#FFC72C" stroke-width="1.6" stroke-linecap="round" vector-effect="non-scaling-stroke"></path></svg>';
+      });
+
+      // 画像は値が解決してから src を付ける（{{ }} のままリクエストしない）
+      document.querySelectorAll("img[data-src]").forEach((img) => {
+        const v = img.getAttribute("data-src");
+        if (v && v.indexOf("{{") === -1 && img.getAttribute("src") !== v) img.setAttribute("src", v);
+      });
+
+      // つながりの曲線：スクロールに合わせて線が描かれる
+      document.querySelectorAll("[data-draw]").forEach((path) => {
+        if (!path.dataset.len) {
+          const len = path.getTotalLength();
+          path.dataset.len = String(len);
+          path.style.strokeDasharray = len;
+          path.style.strokeDashoffset = len;
+        }
+        const len = parseFloat(path.dataset.len);
+        const box = path.getBoundingClientRect();
+        const t = Math.min(1, Math.max(0, (vh * 0.82 - box.top) / (box.height + 70)));
+        path.style.strokeDashoffset = (len * (1 - t)).toFixed(1);
+      });
+
+      document.querySelectorAll("[data-reveal]").forEach((el) => {
+        if (el.style.opacity === "1") return;
+        if (el.getBoundingClientRect().top < vh * 0.92) reveal(el);
+      });
+    };
+    // ループはコンポーネントの外側（window）で1本だけ動かす。
+    // 再マウント/ホットリロードで unmount されてもスクロール演出が止まらないようにする。
+    const safe = () => { try { prep(); update(); } catch (e) { /* 1フレームの失敗で演出全体を止めない */ } };
+    window.__flowTick = safe;
+    // マウントごとにループを張り直す（古いチェーンは必ず破棄する）
+    if (window.__flowRaf) cancelAnimationFrame(window.__flowRaf);
+    const loop = () => { if (window.__flowTick) window.__flowTick(); window.__flowRaf = requestAnimationFrame(loop); };
+    window.__flowRaf = requestAnimationFrame(loop);
+    // rAFが止まっても最低限スクロールで追随できる保険
+    if (window.__flowScroll) {
+      window.removeEventListener("scroll", window.__flowScroll);
+      window.removeEventListener("resize", window.__flowScroll);
+      clearInterval(window.__flowInterval);
+    }
+    window.__flowScroll = () => { if (window.__flowTick) window.__flowTick(); };
+    window.addEventListener("scroll", window.__flowScroll, { passive: true });
+    window.addEventListener("resize", window.__flowScroll);
+    window.__flowInterval = setInterval(window.__flowScroll, 250);
+    safe();
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this._onKey);
+  }
+
+  renderVals() {
+    const S = (typeof window !== "undefined" && window.SITE) || {};
+    const social = S.social || {}, pages = S.pages || {}, contact = S.contact || {};
+    const g = contact.gform || {};
+    const open = this.state.menu;
+    const bar = "display:block;width:26px;height:2px;border-radius:2px;background:" + (open ? "#F4FBFE" : "#0E4257") + ";transition:transform .4s cubic-bezier(.2,.7,.2,1),width .4s ease,background .3s ease";
+    return {
+      menuOpen: open,
+      toggleMenu: () => this.setState((s) => ({ menu: !s.menu })),
+      closeMenu: () => this.setState({ menu: false }),
+      markStyle:
+        "pointer-events:auto;font-family:Jost,sans-serif;font-size:13px;letter-spacing:0.16em;color:#0E4257;transition:opacity .3s ease;" +
+        (open ? "opacity:0;pointer-events:none" : "opacity:1"),
+      barTop: bar + (open ? ";transform:translateY(5px) rotate(14deg)" : ""),
+      barBottom: bar + (open ? ";width:26px;transform:translateY(-5px) rotate(-14deg)" : ";width:18px"),
+      overlayStyle:
+        "position:fixed;top:0;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,375px);z-index:80;background:linear-gradient(170deg,#0E4257,#0A3243 60%,#0E4257);display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:92px clamp(20px,6cqw,80px) 40px;" +
+        "transition:opacity .5s ease,visibility .5s ease,clip-path .7s cubic-bezier(.2,.7,.2,1);" +
+        (open
+          ? "opacity:1;visibility:visible;clip-path:inset(0 0 0% 0);pointer-events:auto"
+          : "opacity:0;visibility:hidden;clip-path:inset(0 0 100% 0);pointer-events:none"),
+      works: (S.works || []).map((w) => Object.assign({}, w, { thumbUrl: "icons/" + w.thumb })),
+      instagram: social.instagram || "#",
+      x: social.x || "#",
+      note: social.note || "#",
+      pianistUrl: pages.pianist || "Pianist.dc.html",
+      horrorUrl: pages.horror || "Horror.dc.html",
+      gAction: g.action || "",
+      fName: g.name || "",
+      fKana: g.kana || "",
+      fEmail: g.email || "",
+      fGenre: g.genre || "",
+      fGenreOther: g.genreOther || "",
+      fMessage: g.message || "",
+      fPrivacy: g.privacy || "",
+      privacyUrl: g.privacyUrl || "#",
+      pickGenre: () => { if (this.state.other) this.setState({ other: false }); },
+      pickOther: () => this.setState({ other: true }),
+      otherStyle:
+        "width:100%;font:inherit;font-size:16px;color:#0E4257;background:transparent;border:none;border-bottom:1px solid rgba(79,195,232,0.5);padding:8px 0;outline:none;margin-left:30px;max-width:calc(100% - 30px);" +
+        (this.state.other ? "display:block" : "display:none"),
+      onSubmit: () => { setTimeout(() => this.setState({ sent: true }), 400); },
+      formStyle: "margin-top:clamp(36px,6cqw,72px);border-top:1px solid rgba(79,195,232,0.32);padding-top:clamp(30px,4cqw,48px);" + (this.state.sent ? "display:none" : "display:block"),
+      thanksStyle: "margin-top:clamp(36px,6cqw,72px);border-top:1px solid rgba(79,195,232,0.32);padding-top:clamp(30px,4cqw,48px);" + (this.state.sent ? "display:block" : "display:none")
+    };
+  }
+}
+
+</script>
+</body>
+</html>

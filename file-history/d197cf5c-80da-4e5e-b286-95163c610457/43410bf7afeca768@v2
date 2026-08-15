@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js" defer></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RINA OBA — Web Director｜Webディレクター</title>
+<meta name="description" content="RINA OBAのポートフォリオサイト。要件整理・制作進行・品質管理までを一気通貫で担うWebディレクターとしての強み、これまでの制作実績、経歴を紹介しています。">
+<link rel="canonical" href="https://your-domain.example/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RINA OBA — Web Director｜Webディレクター">
+<meta property="og:description" content="要件整理・制作進行・品質管理までを一気通貫で担うWebディレクター、RINA OBAのポートフォリオサイトです。">
+<meta property="og:url" content="https://your-domain.example/index.html">
+<meta property="og:image" content="https://your-domain.example/ogp.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "RINA OBA",
+  "url": "https://your-domain.example/index.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "RINA OBA",
+    "jobTitle": "Webディレクター",
+    "url": "https://your-domain.example/index.html",
+    "sameAs": [
+      "https://www.instagram.com/barina_code/",
+      "https://x.com/web_nari_selfs",
+      "https://note.com/barina_ccm"
+    ]
+  }
+}
+</script>
+</helmet>
+
+<a href="#first" class="skip-link">本文へスキップ</a>
+
+<div lang="ja" class="top-shell">
+
+  <div class="spine" aria-hidden="true">
+    <svg class="spine__svg" viewBox="0 0 100 1000" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="spineGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#A6DDEF" stop-opacity="0.30"></stop>
+          <stop offset="0.55" stop-color="#7FCBE4" stop-opacity="0.34"></stop>
+          <stop offset="1" stop-color="#FFC72C" stop-opacity="0.40"></stop>
+        </linearGradient>
+      </defs>
+      <path data-draw="" d="M50,0 C-40,60 140,150 50,228 C-40,306 140,396 50,474 C-40,552 140,642 50,720 C-40,798 140,888 50,960 C20,984 50,990 50,1000" fill="none" stroke="url(#spineGrad)" stroke-width="30" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
+    </svg>
+  </div>
+
+  <div class="hero-nav__veil" aria-hidden="true"></div>
+
+  <header class="{{ heroNavClass }}">
+    <h1 class="hero-nav__h1"><a href="#first" class="hero-nav__logo" aria-hidden="{{ menuOpen }}">RINA OBA</a></h1>
+    <button type="button" onClick="{{ toggleMenu }}" aria-label="メニューを開閉する" aria-expanded="{{ menuOpen }}" class="hero-nav__toggle">
+      <span class="hero-nav__bar hero-nav__bar--top"></span>
+      <span class="hero-nav__bar hero-nav__bar--bottom"></span>
+    </button>
+  </header>
+
+  <!-- スクロール進行レール（アイコンがスクロールに合わせて移動） -->
+  <div class="flow-rail" aria-hidden="true">
+    <div class="flow-rail__track"></div>
+    <div id="flow-fill" class="flow-rail__fill"></div>
+    <div id="flow-rider" class="flow-rail__rider">
+      <span class="flow-rail__pulse"></span>
+      <img id="flow-icon" src="images/icon-direction.svg" alt="" class="flow-rail__icon">
+    </div>
+  </div>
+
+  <nav aria-label="サブメニュー" class="{{ menuClass }}">
+    <div class="menu__inner">
+      <div>
+        <p class="menu__group-title">目次</p>
+        <ul class="menu__nav-list">
+          <li><a href="#about" onClick="{{ closeMenu }}">ABOUT</a></li>
+          <li><a href="#what" onClick="{{ closeMenu }}">お手伝いできる範囲</a></li>
+          <li><a href="#works" onClick="{{ closeMenu }}">WORKS</a></li>
+          <li><a href="#next" onClick="{{ closeMenu }}">NOW &amp; NEXT</a></li>
+          <li><a href="#contact" onClick="{{ closeMenu }}">CONTACT</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="menu__group-title">SNS</p>
+        <ul class="menu__social-list">
+          <li><a href="https://www.instagram.com/barina_code/" target="_blank" rel="noopener" class="menu__social-link"><img src="images/icon-instagram.svg" alt="" aria-hidden="true" class="icon-slot icon-slot--social">Instagram</a></li>
+          <li><a href="https://x.com/web_nari_selfs" target="_blank" rel="noopener" class="menu__social-link"><img src="images/icon-x.svg" alt="" aria-hidden="true" class="icon-slot icon-slot--social">X</a></li>
+          <li><a href="https://note.com/barina_ccm" target="_blank" rel="noopener" class="menu__social-link"><img src="images/icon-note.svg" alt="" aria-hidden="true" class="icon-slot icon-slot--social">note</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="menu__group-title">個人</p>
+        <ul class="menu__personal-list">
+          <li><a href="pianist.html" class="menu__personal-link"><span class="menu__personal-link-title">ピアニスト</span><span class="menu__personal-link-desc">ときどき、ピアノを弾いています。</span></a></li>
+          <li><a href="horror.html" class="menu__personal-link"><span class="menu__personal-link-title">ホラー</span><span class="menu__personal-link-desc">趣味でつくっている、少し不穏なもの。</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="menu__credit">RINA OBA — Webディレクター</p>
+  </nav>
+
+  <main>
+    <!-- FIRST VIEW -->
+    <section id="first" data-screen-label="FIRST VIEW" class="hero section--first">
+      <div class="hero__blob hero__blob--a" aria-hidden="true"></div>
+      <div class="hero__blob hero__blob--b" aria-hidden="true"></div>
+
+      <div data-float="14" class="float-badge float-badge--white hero__badge--connect" aria-hidden="true">
+        <img src="images/icon-connect.svg" alt="" class="float-badge__icon float-badge__icon--a">
+      </div>
+      <div data-float="-22" class="float-badge float-badge--white hero__badge--organize" aria-hidden="true">
+        <img src="images/icon-organize.svg" alt="" class="float-badge__icon float-badge__icon--b">
+      </div>
+      <div data-float="18" class="float-badge float-badge--gold hero__badge--schedule" aria-hidden="true">
+        <img src="images/icon-schedule.svg" alt="" class="float-badge__icon float-badge__icon--a">
+      </div>
+
+      <div class="hero__meta">
+        <span>Webディレクター</span>
+        <span class="hero__meta-line"></span>
+        <span>2026</span>
+      </div>
+
+      <h2 class="hero__heading">
+        <span class="hero__line">整理して、つないで、</span>
+        <span class="hero__line">ちゃんと<span class="hero__highlight">前に進める。</span></span>
+      </h2>
+
+      <div class="hero__foot">
+        <p class="hero__lead">教員経験を活かした、<br>コミュニケーションと進行管理。</p>
+        <div class="hero__signature">
+          <p class="hero__signature-label">Webディレクター</p>
+          <p class="hero__signature-name">RINA OBA</p>
+        </div>
+      </div>
+
+      <a href="#about" class="hero__scroll">
+        スクロール
+        <span class="hero__scroll-track"><span class="hero__scroll-bar"></span></span>
+      </a>
+
+      <svg viewBox="0 0 375 90" preserveAspectRatio="none" aria-hidden="true" class="hero__wave">
+        <path d="M0,52 C70,86 130,24 200,44 C264,62 320,90 375,58 L375,90 L0,90 Z" fill="rgba(255,255,255,0.55)"></path>
+        <path d="M0,66 C80,94 132,42 206,60 C270,76 322,98 375,72 L375,90 L0,90 Z" fill="#F4FBFE"></path>
+      </svg>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" data-screen-label="ABOUT" class="section section--about">
+      <div class="about__grid">
+        <div data-reveal="" class="about__intro">
+          <p class="section__eyebrow">ABOUT ME</p>
+          <h2 class="section__heading">教える仕事から、<br>つなぐ仕事へ。</h2>
+          <dl class="about__meta">
+            <div><dt class="about__meta-label">名前</dt><dd class="about__meta-value">RINA OBA</dd></div>
+            <div><dt class="about__meta-label">職業</dt><dd class="about__meta-value">Webディレクター</dd></div>
+            <div><dt class="about__meta-label">経歴</dt><dd class="about__meta-value">教育・保育業界→<br>Web制作&amp;ピアニスト</dd></div>
+            <div><dt class="about__meta-label">趣味</dt><dd class="about__meta-value">・美術芸術鑑賞<br>・オカルト調べ</dd></div>
+          </dl>
+        </div>
+
+        <div class="text-column text-column--wide-gap">
+          <ol class="step-flow">
+            <li data-reveal="" class="step-flow__item">
+              <span class="step-flow__no">01　2013~2023</span>
+              <span data-float="9" class="step-flow__icon-circle"><img src="images/icon-education.svg" alt="" aria-hidden="true" class="step-flow__icon"></span>
+              <span class="step-flow__ja">教育・保育業界</span>
+            </li>
+            <li data-reveal="" class="step-flow__item">
+              <span class="step-flow__no">02　2024~2025</span>
+              <span data-float="11" class="step-flow__icon-circle"><img src="images/icon-code.svg" alt="" aria-hidden="true" class="step-flow__icon"></span>
+              <span class="step-flow__ja">コーダー<span class="step-flow__sub">(HTML/CSS/JavaScript/GSAP/WordPress)</span></span>
+            </li>
+            <li data-reveal="" class="step-flow__item step-flow__item--active">
+              <span class="step-flow__no">03　2025~現在</span>
+              <span data-float="13" class="step-flow__icon-circle"><img src="images/icon-direction.svg" alt="" aria-hidden="true" class="step-flow__icon"></span>
+              <span class="step-flow__ja">Webディレクター</span>
+            </li>
+          </ol>
+
+          <div data-reveal="" class="compare-grid">
+            <div class="compare-grid__head"><span>教育</span><span class="compare-grid__arrow">→</span><span>Webディレクション</span></div>
+            <div class="compare-grid__row"><span>相手を理解する</span><span class="compare-grid__arrow">→</span><span>ヒアリング</span></div>
+            <div class="compare-grid__row"><span>情報を整理する</span><span class="compare-grid__arrow">→</span><span>要件整理</span></div>
+            <div class="compare-grid__row"><span>わかりやすく伝える</span><span class="compare-grid__arrow">→</span><span>指示・共有</span></div>
+            <div class="compare-grid__row"><span>人と進める</span><span class="compare-grid__arrow">→</span><span>進行管理</span></div>
+          </div>
+
+          <p data-reveal="" class="pull-note">相手に合わせて整理し、伝え、前に進める。<br>それが、私のディレクションの土台です。</p>
+        </div>
+      </div>
+    </section>
+
+    <div aria-hidden="true" class="wave-divider">
+      <svg viewBox="0 0 375 72" preserveAspectRatio="none" class="wave-divider__svg">
+        <path d="M0,30 C68,4 128,58 194,40 C258,22 316,0 375,26 L375,72 L0,72 Z" fill="rgba(255,255,255,0.5)"></path>
+        <path d="M0,46 C70,20 130,70 196,52 C260,34 318,14 375,42 L375,72 L0,72 Z" fill="rgba(169,228,245,0.38)"></path>
+      </svg>
+      <span data-float="7" class="float-badge float-badge--white wave-divider__badge"><img src="images/icon-organize.svg" alt="" class="float-badge__icon"></span>
+    </div>
+
+    <!-- WHAT I DO -->
+    <section id="what" data-screen-label="お手伝いできる範囲" class="section">
+      <div class="container">
+        <div data-reveal="" class="section__head">
+          <p class="section__eyebrow">WHAT I DO</p>
+          <h2 class="section__heading">受注以降の制作の流れを、<br>まるっとお任せいただけます。</h2>
+        </div>
+
+        <div class="text-column">
+          <div class="flow-diagram">
+            <div data-reveal="" class="flow-diagram__party">
+              <span data-float="8" aria-hidden="true" class="flow-diagram__badge flow-diagram__badge--left"><img src="images/icon-client.svg" alt="" class="flow-diagram__badge-icon"></span>
+              <p class="flow-diagram__role">受注</p>
+            </div>
+            <div aria-hidden="true" data-connector="lr" class="flow-diagram__connector"></div>
+            <div data-reveal="" class="flow-diagram__party flow-diagram__party--step">
+              <span data-float="10" aria-hidden="true" class="flow-diagram__badge flow-diagram__badge--right-gold"><img src="images/icon-direction.svg" alt="" class="flow-diagram__badge-icon"></span>
+              <p class="flow-diagram__role">01 要件定義</p>
+              <ul class="chip-row">
+                <li class="chip-row__item"><span data-float="7" class="chip-row__icon-circle"><img src="images/icon-requirement.svg" alt="" aria-hidden="true" class="chip-row__icon"></span><span class="chip-row__ja">ヒアリング</span></li>
+                <li class="chip-row__item"><span data-float="9" class="chip-row__icon-circle"><img src="images/icon-analysis.svg" alt="" aria-hidden="true" class="chip-row__icon"></span><span class="chip-row__ja">3C分析</span></li>
+                <li class="chip-row__item"><span data-float="8" class="chip-row__icon-circle"><img src="images/icon-research.svg" alt="" aria-hidden="true" class="chip-row__icon"></span><span class="chip-row__ja">業界調査</span></li>
+                <li class="chip-row__item"><span data-float="10" class="chip-row__icon-circle"><img src="images/icon-wireframe.svg" alt="" aria-hidden="true" class="chip-row__icon"></span><span class="chip-row__ja">ワイヤーフレーム作成</span></li>
+              </ul>
+            </div>
+            <div aria-hidden="true" data-connector="rl" class="flow-diagram__connector"></div>
+            <div data-reveal="" class="flow-diagram__party flow-diagram__party--step">
+              <span data-float="9" aria-hidden="true" class="flow-diagram__badge flow-diagram__badge--left"><img src="images/icon-connect.svg" alt="" class="flow-diagram__badge-icon"></span>
+              <p class="flow-diagram__role">02 制作</p>
+              <ul class="chip-row">
+                <li class="chip-row__item"><span data-float="7" class="chip-row__icon-circle"><img src="images/icon-client.svg" alt="" aria-hidden="true" class="chip-row__icon"></span><span class="chip-row__ja">お客様とのやり取り</span></li>
+                <li class="chip-row__item"><span data-float="9" class="chip-row__icon-circle"><img src="images/icon-design.svg" alt="" aria-hidden="true" class="chip-row__icon"></span><span class="chip-row__ja">デザイン（パートナー）</span></li>
+                <li class="chip-row__item"><span data-float="8" class="chip-row__icon-circle"><img src="images/icon-code.svg" alt="" aria-hidden="true" class="chip-row__icon"></span><span class="chip-row__ja">コーディング（パートナー）</span></li>
+                <li class="chip-row__item"><span data-float="10" class="chip-row__icon-circle"><img src="images/icon-schedule.svg" alt="" aria-hidden="true" class="chip-row__icon"></span><span class="chip-row__ja">制作管理</span></li>
+                <li class="chip-row__item"><span data-float="11" class="chip-row__icon-circle"><img src="images/icon-quality.svg" alt="" aria-hidden="true" class="chip-row__icon"></span><span class="chip-row__ja">品質チェック</span></li>
+              </ul>
+            </div>
+            <div aria-hidden="true" data-connector="lr" class="flow-diagram__connector"></div>
+            <div data-reveal="" class="flow-diagram__party flow-diagram__party--complete">
+              <span data-float="8" aria-hidden="true" class="flow-diagram__badge flow-diagram__badge--right"><img src="images/icon-client.svg" alt="" class="flow-diagram__badge-icon"></span>
+              <p class="flow-diagram__role">公開</p>
+            </div>
+          </div>
+
+          <p data-reveal="" class="pull-note">これまで複数の制作会社様の案件に携わり、<br>制作工程から公開までのディレクション・進行管理を担当してきました。</p>
+          <p data-reveal="" class="pull-note pull-note--narrow pull-note--bold">特に、ワイヤーフレーム完成後の制作進行を得意としています。</p>
+        </div>
+      </div>
+    </section>
+
+    <div aria-hidden="true" class="wave-divider">
+      <svg viewBox="0 0 375 72" preserveAspectRatio="none" class="wave-divider__svg">
+        <path d="M0,44 C64,18 132,64 200,44 C262,26 318,12 375,36 L375,72 L0,72 Z" fill="rgba(255,255,255,0.55)"></path>
+      </svg>
+      <span data-float="9" class="float-badge float-badge--white wave-divider__badge"><img src="images/icon-quality.svg" alt="" class="float-badge__icon"></span>
+    </div>
+
+    <!-- WORKS -->
+    <section id="works" data-screen-label="WORKS" class="section section--works">
+      <div class="container">
+        <div data-reveal="" class="section__head">
+          <p class="section__eyebrow">WORKS</p>
+          <h2 class="section__heading">これまでの実績</h2>
+        </div>
+        <div class="work-list">
+          <article data-reveal="" class="work-card">
+            <a href="#works" class="work-card__link">
+              <div class="work-card__thumb">
+                <img src="images/work-site.webp" alt="Webサイトリニューアル案件のプロジェクト画像" width="1600" height="1200" loading="lazy" class="work-card__thumb-img">
+              </div>
+              <div class="work-card__body">
+                <p class="work-card__no">プロジェクト 01</p>
+                <h3 class="work-card__title">Webサイトリニューアル</h3>
+              </div>
+            </a>
+            <p class="work-card__roles-label">担当領域</p>
+            <ul class="work-card__roles">
+              <li class="work-card__role">Webディレクション</li>
+              <li class="work-card__role">要件定義</li>
+              <li class="work-card__role">進行管理</li>
+              <li class="work-card__role">クライアント対応</li>
+              <li class="work-card__role">品質管理</li>
+            </ul>
+          </article>
+          <article data-reveal="" class="work-card">
+            <a href="#works" class="work-card__link">
+              <div class="work-card__thumb">
+                <img src="images/work-lp.webp" alt="ランディングページ制作案件のプロジェクト画像" width="1200" height="1600" loading="lazy" class="work-card__thumb-img">
+              </div>
+              <div class="work-card__body">
+                <p class="work-card__no">プロジェクト 02</p>
+                <h3 class="work-card__title">ランディングページ制作</h3>
+              </div>
+            </a>
+            <p class="work-card__roles-label">担当領域</p>
+            <ul class="work-card__roles">
+              <li class="work-card__role">ディレクション</li>
+              <li class="work-card__role">ワイヤーフレーム作成</li>
+              <li class="work-card__role">クライアント対応</li>
+              <li class="work-card__role">進行管理</li>
+              <li class="work-card__role">品質管理</li>
+            </ul>
+          </article>
+          <article data-reveal="" class="work-card">
+            <a href="#works" class="work-card__link">
+              <div class="work-card__thumb">
+                <img src="images/work-site.webp" alt="WordPressサイトリニューアル案件のプロジェクト画像" width="1600" height="1200" loading="lazy" class="work-card__thumb-img">
+              </div>
+              <div class="work-card__body">
+                <p class="work-card__no">プロジェクト 03</p>
+                <h3 class="work-card__title">WordPressサイトリニューアル</h3>
+              </div>
+            </a>
+            <p class="work-card__roles-label">担当領域</p>
+            <ul class="work-card__roles">
+              <li class="work-card__role">要件定義</li>
+              <li class="work-card__role">コンテンツ管理</li>
+              <li class="work-card__role">ディレクション</li>
+              <li class="work-card__role">品質管理</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOW & NEXT -->
+    <section id="next" data-screen-label="NOW &amp; NEXT" class="section section--next">
+      <div class="next__blob" aria-hidden="true"></div>
+      <div class="next__grid">
+        <div data-reveal="" class="next__intro">
+          <p class="section__eyebrow">NOW &amp; NEXT</p>
+          <h2 class="section__heading">「つくる」だけでなく、<br>「成果につなげる」ディレクターへ。</h2>
+          <p class="next__body">制作・ディレクションに加え、<br>マーケティングやWeb解析まで視野を広げる。</p>
+        </div>
+        <div class="next__list">
+          <div data-reveal="" class="next__item">
+            <p class="next__item-year">2026</p>
+            <h3 class="next__item-title">ディレクション × マーケティング</h3>
+            <p class="next__item-desc">SEO、マーケティングをより意識したディレクションを行い、<br>制作の先の成果につなげます。</p>
+          </div>
+          <div data-reveal="" class="next__item next__item--muted">
+            <p class="next__item-year next__item-year--muted">2027</p>
+            <h3 class="next__item-title next__item-title--wide">新しい挑戦</h3>
+            <p class="next__item-desc">新しい挑戦に向けて、準備を進めています。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" data-screen-label="CONTACT" class="section section--contact">
+      <div data-reveal="" class="container">
+        <div class="section__intro">
+          <p class="section__eyebrow">CONTACT</p>
+          <h2 class="contact__heading">Webサイト制作について、<br>まずはお話を聞かせてください。</h2>
+        </div>
+        <div class="contact__lead">
+          <ul class="bubble-cards">
+            <li class="bubble-cards__item">「こんなサイトをつくりたい」</li>
+            <li class="bubble-cards__item">「何から考えればいいかわからない」</li>
+            <li class="bubble-cards__item">「制作をスムーズに進めたい」</li>
+          </ul>
+          <p class="pull-note pull-note--narrow">そんな段階からでも大丈夫です。</p>
+        </div>
+
+        <iframe name="gform_target" title="送信処理" class="contact__frame"></iframe>
+
+        <form action="https://docs.google.com/forms/d/e/1FAIpQLSd_tqw3Udx5gUcjrpyCAiLxmVcdXuKvOtEsIsNzSSi53dqvwQ/formResponse" method="POST" target="gform_target" onSubmit="{{ onSubmit }}" class="{{ formClass }}">
+          <p class="form__eyebrow">お問い合わせフォーム</p>
+          <div class="form__fields">
+            <label class="form__field">
+              <span class="form__label">お名前 <span class="form__required">*</span></span>
+              <input type="text" name="entry.1506871634" required="required" autoComplete="name" class="form__input">
+            </label>
+            <label class="form__field">
+              <span class="form__label">ふりがな <span class="form__required">*</span></span>
+              <input type="text" name="entry.1183705674" required="required" class="form__input">
+            </label>
+            <label class="form__field">
+              <span class="form__label">メールアドレス <span class="form__required">*</span></span>
+              <span class="form__hint">こちらにご入力いただいたメールアドレスに返信いたします。</span>
+              <input type="email" name="entry.147453066" required="required" autoComplete="email" class="form__input">
+            </label>
+            <fieldset class="{{ formFieldsetClass }}">
+              <legend class="form__legend">お問い合わせジャンル <span class="form__required">*</span></legend>
+              <label class="form__radio-label">
+                <input type="radio" name="entry.1576637996" value="Web制作について" required="required" onChange="{{ pickGenre }}" class="form__radio">
+                Web制作について
+              </label>
+              <label class="form__radio-label">
+                <input type="radio" name="entry.1576637996" value="ピアノ演奏について" onChange="{{ pickGenre }}" class="form__radio">
+                ピアノ演奏について
+              </label>
+              <label class="form__radio-label">
+                <input type="radio" name="entry.1576637996" value="__other_option__" onChange="{{ pickOther }}" class="form__radio">
+                その他
+              </label>
+              <input type="text" name="entry.1576637996.other_option_response" aria-label="その他の内容" placeholder="その他の内容" class="form__other-input">
+            </fieldset>
+            <label class="form__field">
+              <span class="form__label">お問い合わせ詳細 <span class="form__required">*</span></span>
+              <span class="form__hint">詳細に書いていただけますと、こちらも回答しやすいです。</span>
+              <textarea name="entry.2071656823" required="required" rows="5" class="form__textarea"></textarea>
+            </label>
+            <label class="form__checkbox-label">
+              <input type="checkbox" name="entry.884731574" value="同意します" required="required" class="form__checkbox">
+              <span><a href="privacy.html" target="_blank" rel="noopener" class="form__privacy-link">プライバシーポリシー</a>に同意します</span>
+            </label>
+            <button type="submit" class="form__submit">送信する →</button>
+          </div>
+        </form>
+
+        <div class="{{ thanksClass }}" role="status">
+          <p class="thanks__eyebrow">送信完了</p>
+          <p class="thanks__title">お問い合わせありがとうございます。</p>
+          <p class="thanks__message">1週間を目処にご返信いたします。<br>内容によってはお時間をいただく場合があります。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div aria-hidden="true" class="wave-divider wave-divider--to-dark">
+    <svg viewBox="0 0 375 72" preserveAspectRatio="none" class="wave-divider__svg">
+      <path d="M0,40 C66,66 132,10 200,30 C262,48 318,64 375,38 L375,0 L0,0 Z" fill="#F1FAFD"></path>
+    </svg>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__grid">
+      <div>
+        <p class="site-footer__name">RINA OBA</p>
+        <p class="site-footer__role">Webディレクター / プランナー</p>
+      </div>
+      <ul class="site-footer__social">
+        <li><a href="https://www.instagram.com/barina_code/" target="_blank" rel="noopener" class="site-footer__social-link"><img src="images/icon-instagram.svg" alt="" aria-hidden="true" class="icon-slot icon-slot--social icon-slot--social-muted">Instagram</a></li>
+        <li><a href="https://x.com/web_nari_selfs" target="_blank" rel="noopener" class="site-footer__social-link"><img src="images/icon-x.svg" alt="" aria-hidden="true" class="icon-slot icon-slot--social icon-slot--social-muted">X</a></li>
+        <li><a href="https://note.com/barina_ccm" target="_blank" rel="noopener" class="site-footer__social-link"><img src="images/icon-note.svg" alt="" aria-hidden="true" class="icon-slot icon-slot--social icon-slot--social-muted">note</a></li>
+      </ul>
+    </div>
+    <p class="site-footer__copyright">© RINA OBA</p>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;motionStrength&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1,&quot;min&quot;:0,&quot;max&quot;:2,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;アニメーション&quot;},&quot;iconParallax&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;アニメーション&quot;}}">
+class Component extends DCLogic {
+  state = { menu: false, other: false, sent: false };
+
+  componentDidMount() {
+    this._onKey = (e) => { if (e.key === "Escape" && this.state.menu) this.setState({ menu: false }); };
+    document.addEventListener("keydown", this._onKey);
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const strength = this.props.motionStrength ?? 1;
+    const rider = () => document.getElementById("flow-rider");
+    const fill = () => document.getElementById("flow-fill");
+
+    const reveal = (el) => { el.style.opacity = "1"; el.style.transform = "none"; };
+    const prep = () => document.querySelectorAll("[data-reveal]:not([data-prepped])").forEach((el, i) => {
+      el.setAttribute("data-prepped", "1");
+      if (reduce) return;
+      el.style.opacity = "0";
+      el.style.transform = "translateY(26px)";
+      el.style.transition = "opacity .9s cubic-bezier(.2,.7,.2,1) " + ((i % 4) * 70) + "ms, transform .9s cubic-bezier(.2,.7,.2,1) " + ((i % 4) * 70) + "ms";
+    });
+
+    const update = () => {
+      const vh = window.innerHeight || 800;
+      const doc = document.documentElement;
+      // スクロールしている要素を毎フレーム実測して進行度を求める（末端で必ず100%になる）
+      const se = document.scrollingElement || doc;
+      let top = window.scrollY || se.scrollTop || 0;
+      let max = se.scrollHeight - se.clientHeight;
+      if (max < 4) {
+        const host = document.body;
+        top = host.scrollTop || top;
+        max = host.scrollHeight - host.clientHeight;
+      }
+      const p = Math.min(1, Math.max(0, top / Math.max(1, max)));
+
+      const f = fill(); if (f) f.style.width = (p * 100).toFixed(2) + "%";
+      const r = rider();
+      if (r) {
+        const track = r.parentElement ? r.parentElement.clientWidth : 375;
+        const half = r.offsetWidth / 2 || 15;
+        r.style.left = Math.min(track - half, Math.max(half, p * track)).toFixed(1) + "px";
+        if (!reduce) r.style.transform = "translate(-50%,0) rotate(" + (p * 300).toFixed(1) + "deg)";
+      }
+
+      if (!reduce && this.props.iconParallax !== false) {
+        document.querySelectorAll("[data-float]").forEach((el) => {
+          const box = el.getBoundingClientRect();
+          const t = Math.min(1.15, Math.max(-0.15, 1 - (box.top + box.height / 2) / vh));
+          const amt = parseFloat(el.getAttribute("data-float")) * strength;
+          el.style.transform = "translateY(" + ((0.5 - t) * amt).toFixed(2) + "px) rotate(" + ((t - 0.5) * amt * 0.35).toFixed(2) + "deg)";
+        });
+      }
+
+      // 受け渡しの曲線はJSで生成する（エディタ往復でSVGが失われないように）
+      document.querySelectorAll("[data-connector]").forEach((slot) => {
+        if (slot.firstElementChild) return;
+        const dir = slot.getAttribute("data-connector");
+        const d = dir === "rl" ? "M282,0 C282,36 18,18 18,54" : "M18,0 C18,36 282,18 282,54";
+        slot.innerHTML =
+          '<svg viewBox="0 0 300 54" preserveAspectRatio="none" style="display:block;width:100%;height:54px;overflow:visible">' +
+          '<path data-draw d="' + d + '" fill="none" stroke="#FFC72C" stroke-width="1.6" stroke-linecap="round" vector-effect="non-scaling-stroke"></path></svg>';
+      });
+
+      // つながりの曲線：スクロールに合わせて線が描かれる
+      document.querySelectorAll("[data-draw]").forEach((path) => {
+        if (!path.dataset.len) {
+          const len = path.getTotalLength();
+          path.dataset.len = String(len);
+          path.style.strokeDasharray = len;
+          path.style.strokeDashoffset = len;
+        }
+        const len = parseFloat(path.dataset.len);
+        const box = path.getBoundingClientRect();
+        const t = Math.min(1, Math.max(0, (vh * 0.82 - box.top) / (box.height + 70)));
+        path.style.strokeDashoffset = (len * (1 - t)).toFixed(1);
+      });
+
+      document.querySelectorAll("[data-reveal]").forEach((el) => {
+        if (el.style.opacity === "1") return;
+        if (el.getBoundingClientRect().top < vh * 0.92) reveal(el);
+      });
+    };
+    // ループはコンポーネントの外側（window）で1本だけ動かす。
+    // 再マウント/ホットリロードで unmount されてもスクロール演出が止まらないようにする。
+    const safe = () => { try { prep(); update(); } catch (e) { /* 1フレームの失敗で演出全体を止めない */ } };
+    window.__flowTick = safe;
+    // マウントごとにループを張り直す（古いチェーンは必ず破棄する）
+    if (window.__flowRaf) cancelAnimationFrame(window.__flowRaf);
+    const loop = () => { if (window.__flowTick) window.__flowTick(); window.__flowRaf = requestAnimationFrame(loop); };
+    window.__flowRaf = requestAnimationFrame(loop);
+    // rAFが止まっても最低限スクロールで追随できる保険
+    if (window.__flowScroll) {
+      window.removeEventListener("scroll", window.__flowScroll);
+      window.removeEventListener("resize", window.__flowScroll);
+      clearInterval(window.__flowInterval);
+    }
+    window.__flowScroll = () => { if (window.__flowTick) window.__flowTick(); };
+    window.addEventListener("scroll", window.__flowScroll, { passive: true });
+    window.addEventListener("resize", window.__flowScroll);
+    window.__flowInterval = setInterval(window.__flowScroll, 250);
+    safe();
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this._onKey);
+  }
+
+  renderVals() {
+    const open = this.state.menu;
+    const other = this.state.other;
+    const sent = this.state.sent;
+    return {
+      menuOpen: open,
+      toggleMenu: () => this.setState((s) => ({ menu: !s.menu })),
+      closeMenu: () => this.setState({ menu: false }),
+      heroNavClass: "hero-nav" + (open ? " is-open" : ""),
+      menuClass: "menu" + (open ? " is-open" : ""),
+      formFieldsetClass: "form__fieldset" + (other ? " is-other" : ""),
+      pickGenre: () => { if (this.state.other) this.setState({ other: false }); },
+      pickOther: () => this.setState({ other: true }),
+      onSubmit: () => { setTimeout(() => this.setState({ sent: true }), 400); },
+      formClass: "form" + (sent ? " is-sent" : ""),
+      thanksClass: "thanks" + (sent ? " is-sent" : "")
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -122,7 +122,10 @@
       "Bash(sudo -n crontab -l)",
       "Bash(awk '{print $11}')",
       "Read(//private/etc/**)",
-      "Read(//Applications/**)"
+      "Read(//Applications/**)",
+      "Bash(grep -nE '>[A-Za-z][A-Za-z /→×.,-]{2,}<' /Users/rina/.claude/barina-code/index.html)",
+      "Bash(grep *)",
+      "Bash(sips -g pixelWidth -g pixelHeight work-lp.webp work-site.webp)"
     ],
     "additionalDirectories": [
       "/tmp"

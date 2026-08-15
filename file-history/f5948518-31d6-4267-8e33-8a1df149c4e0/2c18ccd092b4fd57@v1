@@ -1,0 +1,41 @@
+// ============================================
+// サイト全体の差し替え用データ（ここだけ編集）
+// ============================================
+window.SITE = {
+  social: {
+    instagram: "https://www.instagram.com/barina_code/",
+    x: "https://x.com/web_nari_selfs",
+    note: "https://note.com/barina_ccm"
+  },
+  pages: {
+    pianist: "Pianist.dc.html",
+    horror: "Horror.dc.html",
+    privacy: "Privacy.dc.html"
+  },
+  contact: {
+    email: "obarina@barina-codescore.com",
+    formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSd_tqw3Udx5gUcjrpyCAiLxmVcdXuKvOtEsIsNzSSi53dqvwQ/viewform",
+    // Googleフォーム連携（フォームを作り直したらここだけ差し替え）
+    gform: {
+      action: "https://docs.google.com/forms/d/e/1FAIpQLSd_tqw3Udx5gUcjrpyCAiLxmVcdXuKvOtEsIsNzSSi53dqvwQ/formResponse",
+      name: "entry.1506871634",
+      kana: "entry.1183705674",
+      email: "entry.147453066",
+      genre: "entry.1576637996",
+      genreOther: "entry.1576637996.other_option_response",
+      message: "entry.2071656823",
+      privacy: "entry.884731574",
+      genreOptions: ["Web制作について", "ピアノ演奏について"],
+      privacyLabel: "同意します",
+      privacyUrl: "Privacy.dc.html"
+    }
+  },
+  works: [
+    { no: "プロジェクト 01", title: "Webサイトリニューアル", url: "#works",
+      roles: ["Webディレクション", "要件定義", "進行管理", "クライアント対応", "品質管理"] },
+    { no: "プロジェクト 02", title: "ランディングページ制作", url: "#works",
+      roles: ["ディレクション", "ワイヤーフレーム作成", "クライアント対応", "進行管理", "品質管理"] },
+    { no: "プロジェクト 03", title: "WordPressサイトリニューアル", url: "#works",
+      roles: ["要件定義", "コンテンツ管理", "ディレクション", "品質管理"] }
+  ]
+};
