@@ -1,0 +1,4 @@
+{"type":"mode","mode":"normal","sessionId":"9493e87f-6430-4175-8944-5593084bb9c5"}
+{"type":"permission-mode","permissionMode":"auto","sessionId":"9493e87f-6430-4175-8944-5593084bb9c5"}
+{"parentUuid":null,"isSidechain":false,"type":"system","subtype":"informational","content":"Remote Control disconnected — /login","isMeta":false,"timestamp":"2026-08-20T23:59:35.449Z","uuid":"5d90d366-f391-4be9-90d7-d9e4ddf34182","level":"warning","userType":"external","entrypoint":"cli","cwd":"/Users/rina/.claude","sessionId":"9493e87f-6430-4175-8944-5593084bb9c5","version":"2.1.237","gitBranch":"main"}
+{"type":"last-prompt","leafUuid":"5d90d366-f391-4be9-90d7-d9e4ddf34182","sessionId":"9493e87f-6430-4175-8944-5593084bb9c5"}

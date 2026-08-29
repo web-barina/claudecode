@@ -1,0 +1,709 @@
+<title>さくら鍼灸整骨院 リサーチ資料</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500&family=Roboto+Mono:wght@400;500&display=swap">
+
+<style>
+  :root {
+    --ground: #FBF8F7;
+    --surface: #FFFFFF;
+    --surface-2: #F4EDEC;
+    --ink: #2A2327;
+    --ink-soft: #6B5E63;
+    --ink-faint: #9A8E92;
+    --accent: #B23A5E;
+    --accent-soft: #F3DFE5;
+    --line: #E9DEDC;
+    --line-strong: #D8C9C6;
+    --good: #2F7D5D;
+    --warn: #A9702A;
+    --opp: #3C6E93;
+    --threat: #B23A3A;
+    --maxw: 1120px;
+
+    --f-display: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    --f-body: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+    --f-mono: "Roboto Mono", ui-monospace, "SFMono-Regular", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #191517;
+      --surface: #221D20;
+      --surface-2: #2B2427;
+      --ink: #ECE3E4;
+      --ink-soft: #B0A3A7;
+      --ink-faint: #7C7074;
+      --accent: #E98BA6;
+      --accent-soft: #3A2A30;
+      --line: #362E31;
+      --line-strong: #473C40;
+      --good: #6BBF9A;
+      --warn: #D6A461;
+      --opp: #7FB0D2;
+      --threat: #E38686;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #191517;
+    --surface: #221D20;
+    --surface-2: #2B2427;
+    --ink: #ECE3E4;
+    --ink-soft: #B0A3A7;
+    --ink-faint: #7C7074;
+    --accent: #E98BA6;
+    --accent-soft: #3A2A30;
+    --line: #362E31;
+    --line-strong: #473C40;
+    --good: #6BBF9A;
+    --warn: #D6A461;
+    --opp: #7FB0D2;
+    --threat: #E38686;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 15px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- top bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--ground) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar .inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 10px 28px;
+    display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap;
+  }
+  .topbar .brand { font-family: var(--f-display); font-weight: 700; font-size: 14px; letter-spacing: .02em; }
+  .topbar .brand span { color: var(--accent); }
+  .topnav { margin-left: auto; display: flex; gap: 4px; flex-wrap: wrap; }
+  .topnav a {
+    font-family: var(--f-mono); font-size: 11px; text-decoration: none;
+    color: var(--ink-soft); padding: 3px 7px; border-radius: 5px; white-space: nowrap;
+  }
+  .topnav a:hover { background: var(--accent-soft); color: var(--accent); }
+  .topnav a:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+  /* ---------- layout ---------- */
+  main { max-width: var(--maxw); margin: 0 auto; padding: 0 28px 96px; }
+  .wrap-narrow { max-width: 72ch; }
+
+  header.doc { padding: 64px 0 40px; border-bottom: 2px solid var(--ink); }
+  .eyebrow {
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--accent); margin: 0 0 14px;
+  }
+  header.doc h1 {
+    font-family: var(--f-display); font-weight: 700; font-size: clamp(28px, 4.4vw, 44px);
+    line-height: 1.2; margin: 0 0 18px; text-wrap: balance; letter-spacing: .01em;
+  }
+  header.doc .lede { font-size: 16px; color: var(--ink-soft); margin: 0; max-width: 62ch; }
+  .doc-meta {
+    margin-top: 30px; display: flex; flex-wrap: wrap; gap: 8px 26px;
+    font-family: var(--f-mono); font-size: 12px; color: var(--ink-soft);
+  }
+  .doc-meta b { color: var(--ink); font-weight: 500; }
+
+  /* client fact card */
+  .facts {
+    margin: 34px 0 8px; background: var(--surface); border: 1px solid var(--line);
+    border-radius: 12px; padding: 22px 24px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 4px 28px;
+  }
+  .facts .row { padding: 7px 0; border-bottom: 1px dashed var(--line); }
+  .facts .row:last-child { border-bottom: 0; }
+  .facts .k { font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
+  .facts .v { font-size: 13.5px; line-height: 1.55; }
+  .facts .v.accent { color: var(--accent); font-family: var(--f-display); font-weight: 500; }
+
+  /* strategic highlight */
+  .highlight {
+    margin: 40px 0 8px; border-left: 3px solid var(--accent);
+    background: linear-gradient(100deg, var(--accent-soft), transparent 70%);
+    padding: 20px 24px; border-radius: 0 10px 10px 0;
+  }
+  .highlight h2 { font-family: var(--f-display); font-size: 15px; margin: 0 0 8px; letter-spacing: .02em; }
+  .highlight p { margin: 0; font-size: 14.5px; }
+  .highlight .tag { color: var(--accent); font-weight: 500; }
+
+  /* ---------- sections ---------- */
+  section.block { padding: 56px 0 8px; border-top: 1px solid var(--line); margin-top: 40px; }
+  section.block:first-of-type { border-top: 0; }
+  .sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 8px; }
+  .sec-num { font-family: var(--f-mono); font-size: 13px; color: var(--accent); font-weight: 500; }
+  .sec-head h2 {
+    font-family: var(--f-display); font-weight: 700; font-size: clamp(21px, 3vw, 27px);
+    margin: 0; letter-spacing: .01em; text-wrap: balance;
+  }
+  .sec-sub { color: var(--ink-soft); font-size: 13.5px; margin: 2px 0 26px; max-width: 70ch; }
+
+  h3.mini {
+    font-family: var(--f-display); font-weight: 500; font-size: 14px;
+    letter-spacing: .04em; color: var(--ink-soft); margin: 30px 0 12px;
+    padding-bottom: 6px; border-bottom: 1px solid var(--line);
+  }
+
+  /* definition list style */
+  .dl { display: grid; gap: 0; }
+  .dl > div {
+    display: grid; grid-template-columns: 190px 1fr; gap: 24px;
+    padding: 14px 0; border-bottom: 1px solid var(--line);
+  }
+  .dl dt {
+    font-family: var(--f-display); font-weight: 500; font-size: 13.5px; color: var(--ink);
+  }
+  .dl dd { margin: 0; font-size: 14px; white-space: pre-line; }
+  @media (max-width: 680px) { .dl > div { grid-template-columns: 1fr; gap: 4px; } }
+
+  ul.clean { margin: 6px 0; padding-left: 1.2em; }
+  ul.clean li { margin: 5px 0; }
+
+  /* tables */
+  .scroll { overflow-x: auto; margin: 10px 0 6px; border: 1px solid var(--line); border-radius: 10px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; background: var(--surface); }
+  th, td { text-align: left; vertical-align: top; padding: 11px 14px; border-bottom: 1px solid var(--line); }
+  thead th {
+    position: sticky; top: 0; background: var(--surface-2); z-index: 2;
+    font-family: var(--f-display); font-weight: 500; font-size: 12px; letter-spacing: .03em;
+    white-space: nowrap;
+  }
+  tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
+  tbody tr:nth-child(even) td, tbody tr:nth-child(even) th[scope=row] { background: color-mix(in srgb, var(--surface-2) 45%, transparent); }
+  th[scope=row] {
+    position: sticky; left: 0; background: var(--surface); z-index: 1;
+    font-family: var(--f-display); font-weight: 500; font-size: 12.5px; white-space: nowrap;
+    border-right: 1px solid var(--line);
+  }
+  td.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--ink-soft); }
+  td .pre { white-space: pre-line; }
+  .est { font-family: var(--f-mono); font-size: 10px; color: var(--ink-faint); }
+
+  /* SWOT grid */
+  .swot { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 8px 0; }
+  @media (max-width: 780px) { .swot { grid-template-columns: 1fr; } }
+  .quad { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .quad > .qh {
+    padding: 10px 16px; font-family: var(--f-display); font-weight: 700; font-size: 13px;
+    letter-spacing: .04em;
+  }
+  .quad.s .qh { background: color-mix(in srgb, var(--good) 15%, var(--surface)); color: var(--good); border-bottom: 2px solid var(--good); }
+  .quad.w .qh { background: color-mix(in srgb, var(--warn) 15%, var(--surface)); color: var(--warn); border-bottom: 2px solid var(--warn); }
+  .quad.o .qh { background: color-mix(in srgb, var(--opp) 15%, var(--surface)); color: var(--opp); border-bottom: 2px solid var(--opp); }
+  .quad.t .qh { background: color-mix(in srgb, var(--threat) 15%, var(--surface)); color: var(--threat); border-bottom: 2px solid var(--threat); }
+  .quad ul { list-style: none; margin: 0; padding: 8px 16px 14px; }
+  .quad li { padding: 10px 0; border-bottom: 1px dashed var(--line); }
+  .quad li:last-child { border-bottom: 0; }
+  .quad .item { font-weight: 500; font-size: 13.5px; display: block; margin-bottom: 3px; }
+  .quad .web { font-size: 12.5px; color: var(--ink-soft); }
+  .quad .web::before { content: "Web施策  "; font-family: var(--f-mono); font-size: 9.5px; letter-spacing: .08em; color: var(--accent); }
+
+  .cross { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 18px; }
+  @media (max-width: 780px) { .cross { grid-template-columns: 1fr; } }
+  .cross div { background: var(--surface-2); border-radius: 9px; padding: 13px 15px; font-size: 12.5px; }
+  .cross b { font-family: var(--f-mono); color: var(--accent); font-size: 11px; display: block; margin-bottom: 4px; letter-spacing: .06em; }
+
+  /* needs site-use tag */
+  .usetag {
+    font-family: var(--f-display); font-weight: 500; font-size: 11px; color: var(--accent);
+    background: var(--accent-soft); padding: 1px 7px; border-radius: 4px; margin-right: 6px;
+    white-space: nowrap;
+  }
+  .kwtag {
+    display: inline-block; font-family: var(--f-mono); font-size: 10.5px; color: var(--ink-soft);
+    border: 1px solid var(--line-strong); border-radius: 999px; padding: 1px 9px;
+  }
+  a.src { font-family: var(--f-mono); font-size: 11px; color: var(--opp); word-break: break-all; }
+
+  /* personas */
+  .personas { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+  .persona { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 4px 20px 16px; }
+  .persona .pt {
+    font-family: var(--f-display); font-weight: 700; font-size: 14px; padding: 16px 0 12px;
+    border-bottom: 2px solid var(--accent); margin-bottom: 6px;
+  }
+  .persona .pt .n { font-family: var(--f-mono); color: var(--accent); font-size: 12px; margin-right: 8px; }
+  .persona .pr { padding: 11px 0; border-bottom: 1px solid var(--line); }
+  .persona .pr:last-child { border-bottom: 0; }
+  .persona .pk { font-family: var(--f-mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); }
+  .persona .pv { font-size: 13px; white-space: pre-line; margin-top: 2px; }
+  .persona .pb { font-size: 11.5px; color: var(--ink-faint); margin-top: 4px; }
+  .persona .pb::before { content: "根拠  "; font-family: var(--f-mono); font-size: 9px; letter-spacing: .06em; }
+
+  /* positioning */
+  .posmap { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px; margin: 8px 0 20px; }
+  .posmap svg { display: block; width: 100%; height: auto; }
+  .axisline { stroke: var(--line-strong); stroke-width: 2; }
+  .axislbl { fill: var(--ink-soft); font-family: var(--f-body); font-size: 15px; }
+  .bubble { fill: var(--accent); fill-opacity: .16; stroke: var(--accent); stroke-opacity: .38; }
+  .bubble.client { fill-opacity: .92; stroke: var(--accent); stroke-opacity: 1; stroke-width: 2; }
+  .blabel { fill: var(--accent); font-family: var(--f-body); font-size: 10.5px; }
+  .blabel.client { fill: #fff; font-weight: 700; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .blabel.client { fill: #1a1618; } }
+  :root[data-theme="dark"] .blabel.client { fill: #1a1618; }
+
+  .callout { border-left: 3px solid var(--opp); background: color-mix(in srgb, var(--opp) 8%, transparent); padding: 14px 18px; border-radius: 0 8px 8px 0; font-size: 13.5px; margin: 14px 0; }
+  .callout b { font-family: var(--f-display); }
+
+  /* footer */
+  footer {
+    max-width: var(--maxw); margin: 0 auto; padding: 40px 28px 60px;
+    border-top: 1px solid var(--line); color: var(--ink-faint);
+    font-family: var(--f-mono); font-size: 11.5px; line-height: 1.9;
+  }
+  footer b { color: var(--ink-soft); font-weight: 500; }
+
+  .note { font-size: 12px; color: var(--ink-faint); margin-top: 8px; }
+</style>
+
+<div class="topbar">
+  <div class="inner">
+    <span class="brand">さくら鍼灸整骨院 <span>／ リサーチ資料</span></span>
+    <nav class="topnav">
+      <a href="#s1">01 市場</a>
+      <a href="#s2">02 競合</a>
+      <a href="#s3">03 SWOT</a>
+      <a href="#s4">04 ニーズ①</a>
+      <a href="#s5">05 ニーズ②</a>
+      <a href="#s6">06 ペルソナ</a>
+      <a href="#s7">07 ポジショニング</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+  <header class="doc">
+    <p class="eyebrow">Direction Document — Market &amp; Competitor Research</p>
+    <h1>さくら鍼灸整骨院<br>サイトリニューアル リサーチ資料</h1>
+    <p class="lede">
+      岩手県奥州市江刺のさくら鍼灸整骨院について、Webサイトリニューアルの前提となる市場・競合・SWOT・ニーズ・ペルソナ・ポジショニングを整理した分析パートです。
+    </p>
+    <div class="doc-meta">
+      <span>分析日 <b>2026-08-29</b></span>
+      <span>対象業界 <b>鍼灸整骨院（地域治療院）</b></span>
+      <span>商圏 <b>奥州市 江刺・水沢</b></span>
+      <span>Web検索 <b>計11回</b></span>
+    </div>
+
+    <div class="facts">
+      <div class="row"><div class="k">院名</div><div class="v accent">さくら鍼灸整骨院</div></div>
+      <div class="row"><div class="k">所在地</div><div class="v">〒023-1134 岩手県奥州市江刺玉里字青篠203-2</div></div>
+      <div class="row"><div class="k">駐車場</div><div class="v">10台完備</div></div>
+      <div class="row"><div class="k">営業時間</div><div class="v">月〜金・土日祝 8:30〜13:00 ／ 14:00〜19:00</div></div>
+      <div class="row"><div class="k">定休日</div><div class="v">火・水</div></div>
+      <div class="row"><div class="k">予約</div><div class="v">Web予約・電話（0197-47-4988）・LINE</div></div>
+      <div class="row"><div class="k">キャッチコピー</div><div class="v">「痛みの原因を見つけ出し根本から治します」</div></div>
+      <div class="row"><div class="k">特別設備</div><div class="v">酸素ルーム／玉川温泉の岩盤浴／EMS体幹トレーニング／水素吸引療法</div></div>
+      <div class="row"><div class="k">実績訴求</div><div class="v">ぎっくり腰「87％のお客様が当日中に痛みが半減」</div></div>
+      <div class="row"><div class="k">現行サイト</div><div class="v">sakura-mimi.com ／ 料金は未掲載</div></div>
+    </div>
+
+    <div class="highlight">
+      <h2>分析ハイライト（推奨ポジショニング）</h2>
+      <p>
+        <span class="tag">「江刺で唯一、急性痛の即日対応から慢性・体質改善・美容までを最新設備で診る総合治療院」</span>。
+        安さや交通事故特化での消耗戦は避け、<b>効果の速さ（87%当日半減）× 他院にない設備 × 何でも相談できる対応の幅</b>で選ばれる状態をつくる。
+      </p>
+    </div>
+  </header>
+
+  <!-- 01 市場調査 -->
+  <section class="block" id="s1">
+    <div class="sec-head"><span class="sec-num">01</span><h2>市場調査</h2></div>
+    <p class="sec-sub">鍼灸整骨院（地域治療院）業界の全体像。保険縮小と院数増加が進み、自費・付帯サービスと地図検索での集客が競争の焦点。</p>
+
+    <dl class="dl">
+      <div><dt>市場規模</dt><dd>柔道整復・鍼灸・マッサージ市場は2023年で約9,850億円（前年比103.0%／矢野経済研究所）。うち保険適用外の接骨・整骨市場は2024年772億円 → 2025年630億円と縮小傾向。接骨院・整骨院数は2024年時点で50,924件と増加が続き、供給過多・競争激化。<span class="est">（一部推定を含む）</span></dd></div>
+      <div><dt>業界定義</dt><dd>柔道整復師・はり師・きゅう師などの国家資格者が、骨折・脱臼・打撲・捻挫・挫傷（急性外傷）や、肩こり・腰痛・神経痛・冷えなどの慢性不調に対し、手技・鍼灸・物理療法で施術する治療院。急性外傷は健康保険が使えるが、慢性症状・体質改善・美容・整体は自費。交通事故・労災対応、スポーツコンディショニング、産後骨盤矯正なども扱う。近年は酸素ルーム・EMS・水素吸引など自費の付帯サービスを併設する院が増加。</dd></div>
+      <div><dt>サービスの細分化</dt><dd>■資格・領域：① 柔道整復（整骨・接骨、急性外傷は保険）② はり師・きゅう師（鍼灸）③ あん摩マッサージ指圧 ④ 無資格の整体・カイロ（民間）
+■施術メニュー：急性外傷／慢性痛（肩こり・腰痛・膝痛）／骨盤矯正・産後ケア／スポーツ外傷・コンディショニング／交通事故・むち打ち（自賠責）／労災／美容鍼・小顔
+■課金：① 保険施術（3割負担で初回1,500円前後）② 自費施術（1回2,000〜10,000円、相場60分5,000〜7,000円）③ 自費コース・回数券・サブスク ④ 付帯サービス（酸素ルーム・岩盤浴・EMS等）
+■周辺商材：インソール・枕・サポーター・プロテイン等の物販、セルフケア動画・オンライン相談</dd></div>
+      <div><dt>業界の常識・慣習</dt><dd><ul class="clean">
+        <li>急性外傷のみ健康保険適用、慢性症状は自費という線引きの明示が必須（保険の不正請求は行政指導対象）</li>
+        <li>初回はカウンセリング＋検査＋施術で60〜90分、2回目以降は短時間という料金体系</li>
+        <li>予約優先制。当日枠・急患（ぎっくり腰等）対応を打ち出す院が多い</li>
+        <li>Googleビジネスプロフィール（MEO）と口コミ評価が新規集客の生命線</li>
+        <li>「治る」「完治」など医療広告的な断定表現は柔整師法・景表法の広告制限に抵触しやすく注意</li>
+        <li>国家資格の保有を院内・サイトに掲示</li>
+        <li>交通事故は自賠責保険で窓口負担0円、弁護士・整形外科との連携を訴求</li>
+        <li>回数券・都度払い・サブスクなど複数の支払い方法を用意</li>
+      </ul></dd></div>
+      <div><dt>主要プレイヤー</dt><dd>全国チェーン：ほねゆき／ぷらす／おおくま／柔道整復師会系グループ、フランチャイズ（クラシオン、カラダファクトリー系 等）。ポータル・予約：EPARK接骨・鍼灸、ホットペッパービューティー、口コミはGoogleマップ・エキテン。地方は個人経営の単院が大多数で、<b>地域内の整形外科・接骨院・整体サロンが実質競合</b>。</dd></div>
+      <div><dt>価格帯</dt><dd>保険施術：3割負担で初診1,500円前後・2回目以降700円前後。自費施術：1回2,000〜10,000円、60分コースの相場は5,000〜7,000円。骨盤矯正・美容鍼は1回4,000〜8,000円。回数券・サブスクは月8,000〜15,000円程度。付帯（酸素ルーム・岩盤浴等）は都度1,000〜3,000円。地方（奥州市周辺）は都市部よりやや低め。</dd></div>
+      <div><dt>流通・提供方法</dt><dd><ul class="clean">
+        <li>実店舗（院）への来院。予約はWebフォーム・電話・LINE・ポータル経由</li>
+        <li>Googleマップ／Googleビジネスプロフィール経由（地域＋症状名検索）</li>
+        <li>自院ホームページ・ブログ（SEO）からの問い合わせ</li>
+        <li>整形外科・スポーツチーム・接骨師会・弁護士（交通事故）からの紹介</li>
+        <li>訪問鍼灸・出張施術（高齢者・要介護者向け、一部の院）</li>
+      </ul></dd></div>
+      <div><dt>販売促進</dt><dd><ul class="clean">
+        <li>① MEO（Googleビジネスプロフィール最適化・口コミ獲得・投稿）</li>
+        <li>② ローカルSEO（「奥州市 整骨院」「江刺 肩こり」等の地域×症状ページ）</li>
+        <li>③ 初回割引・LINE友だち登録特典・回数券キャンペーン</li>
+        <li>④ Instagram・YouTube・TikTokでの症状解説／ビフォーアフター発信</li>
+        <li>⑤ チラシ・地域情報誌・のぼり・看板など地域密着オフライン施策</li>
+        <li>⑥ 既存患者の紹介カード・口コミ依頼、ニュースレター</li>
+      </ul></dd></div>
+      <div><dt>顧客層</dt><dd>ほぼ100%がBtoC（一部スポーツチーム・企業提携）。整骨院利用率は全体13%（男性11%・女性14%）で、最も高いのは<b>30代女性17%</b>、次いで20代女性16%、30〜40代男性16%。積極利用意向・潜在需要は20〜30代女性が突出。地方では中高年〜高齢者の慢性痛・膝痛・しびれ、農作業や運転による腰痛が厚い。</dd></div>
+      <div><dt>トレンド</dt><dd><ul class="clean">
+        <li>スマホ×地図検索での来院が主流（地域で探す患者の約8割がスマホ、マップ上位3位で選ばれる確率7割超）</li>
+        <li>保険縮小の逆風で、自費メニュー・回数券・サブスク・付帯サービス（酸素・EMS・水素）へのシフト</li>
+        <li>口コミ評価（件数・★平均）が来院の決め手として比重増</li>
+        <li>予約のLINE化・Web完結化、当日予約への対応ニーズ</li>
+        <li>「根本改善」「姿勢」「再発予防」を軸にした通院動機づけ、セルフケア動画の提供</li>
+        <li>美容鍼・小顔・産後骨盤など女性向けメニューの拡大</li>
+      </ul></dd></div>
+    </dl>
+    <p class="note">出典：
+      <a class="src" href="https://www.nikkei.com/article/DGXZRSP676401_Y4A800C2000000/">日経（矢野経済）</a> ／
+      <a class="src" href="https://joypal.jp/osteopathic-clinic-industry-future/">joypal 業界動向</a> ／
+      <a class="src" href="https://www.recruit.co.jp/newsroom/pressrelease/assets/20250710_beauty_01.pdf">リクルート 利用実態調査2025</a> ／
+      <a class="src" href="https://rehasaku.net/magazine/clinic/price-quotes/">リハサク 料金相場</a> ／
+      <a class="src" href="https://kartte.jp/column/67a2ba12e6afb42bcc539a90">kartte MEO</a> ／
+      <a class="src" href="https://dime.jp/genre/1830100/">@DIME 利用率</a>
+    </p>
+  </section>
+
+  <!-- 02 競合調査 -->
+  <section class="block" id="s2">
+    <div class="sec-head"><span class="sec-num">02</span><h2>競合調査</h2></div>
+    <p class="sec-sub">選定基準：「奥州市 整骨院／接骨院／鍼灸院」「江刺 整体」等で検索し、さくら鍼灸整骨院と商圏（奥州市 江刺・水沢）が重なる治療院を選定。周辺競合として整形外科も1件含む。</p>
+
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">調査項目</th>
+            <th scope="col">げんきや接骨院・はり灸院 江刺</th>
+            <th scope="col">まこと鍼灸整骨院</th>
+            <th scope="col">てらにし整骨院</th>
+            <th scope="col">鳳（おおとり）整骨院</th>
+            <th scope="col">及川整形外科クリニック</th>
+            <th scope="col">奥州カイロ須田施術院</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">区分</th><td>中小（FC加盟）</td><td>中小（個人）</td><td>中小（個人）</td><td>中小（個人）</td><td>周辺競合（医療機関）</td><td>中小（民間資格・整体）</td></tr>
+          <tr><th scope="row">サイト</th>
+            <td><a class="src" href="https://genkiyagroup.net/esashi/">genkiyagroup.net/esashi</a></td>
+            <td><a class="src" href="https://www.makocare21.com/">makocare21.com</a></td>
+            <td><a class="src" href="https://teranishi-seikotsu.com/">teranishi-seikotsu.com</a></td>
+            <td><a class="src" href="https://www.ootori0711.com/">ootori0711.com</a></td>
+            <td><a class="src" href="https://doctorsfile.jp/h/51484/">doctorsfile.jp</a></td>
+            <td>公式サイトで確認</td>
+          </tr>
+          <tr><th scope="row">キャッチコピー</th><td>腰痛・肩こりでお悩みの方。整体・骨盤矯正ならお任せ！</td><td>痛みのない健康体とその先にある美しさをあなたに</td><td>奥州市で交通事故治療 実績が豊富な整骨院です</td><td>各種保険取扱いの地域密着整骨院 <span class="est">（明示なし）</span></td><td>整形外科・リハビリテーション（水沢江刺駅前）</td><td>カイロによる骨格・姿勢の調整 <span class="est">（推定）</span></td></tr>
+          <tr><th scope="row">サービス</th><td>整体・手技・骨盤矯正・姿勢矯正・鍼灸、腰痛/肩こり。保険施術も対応</td><td>痛み治療、ボディメンテ、アスリート、美容鍼・美容整体、産後骨盤矯正、交通事故</td><td>ストレッチ整体、姿勢/骨盤矯正、本格肩こり・腰痛コース、交通事故治療</td><td>骨折・脱臼・打撲・捻挫の施術、健保・労災・自賠責取扱、自費施術</td><td>医師の診察・画像診断・投薬・注射・リハビリ。肩こり・腰痛・関節痛・骨粗鬆症</td><td>カイロ、骨格矯正、姿勢改善、肩こり・腰痛の整体 <span class="est">（推定）</span></td></tr>
+          <tr><th scope="row">価格帯</th><td>自費コース中心 <span class="est">（推定 1回3,000〜6,000円）</span>＋保険併用</td><td>サイト未掲載（自費コース中心）</td><td>初診2,980円キャンペーン／交通事故は自賠責で窓口0円</td><td>厚労省が定める料金（保険中心）＋自費</td><td>健康保険適用（3割で数百〜数千円）</td><td>全額自費 <span class="est">（1回3,000〜6,000円程度・推定）</span></td></tr>
+          <tr><th scope="row">デザイン印象</th><td>グループ共通テンプレ。オレンジ×白の明るいトーン、症状別ページが豊富</td><td>青基調の清潔感あるシンプルな医療系。情報が整理され訪問しやすい</td><td>親しみやすく情報量が多い。患者の声・メニュー充実、交通事故訴求を強調</td><td>シンプルで実直。料金・保険の説明中心で装飾は控えめ <span class="est">（推定）</span></td><td>クリニックの標準的な情報サイト。診療時間・医師紹介が中心</td><td>個人整体院の簡易サイト <span class="est">（推定）</span></td></tr>
+          <tr><th scope="row">主な機能</th><td>Web予約、症状別LP、本部の研修体制</td><td>電話・メールフォーム予約、国家資格・トータルアプローチを明示</td><td>時間外予約対応、転院サポート、整形外科併用案内</td><td>保険・労災・自賠責の取扱明示、施術内容・料金ページ</td><td>医師の確定診断、画像診断、薬の処方、理学療法士のリハビリ</td><td>予約制のマンツーマン施術 <span class="est">（推定）</span></td></tr>
+          <tr><th scope="row">対応領域</th><td>整体・骨盤矯正・鍼灸・交通事故（グループ標準）</td><td>鍼灸＋整骨＋骨格矯正。美容鍼・産後骨盤・アスリートと幅広い</td><td>交通事故（自賠責）が主軸。姿勢・骨盤・肩こり・腰痛コース</td><td>柔道整復（急性外傷）中心。労災・交通事故も</td><td>運動器全般の医学的診断・治療・リハビリ</td><td>整体・カイロ（国家資格施術ではない）</td></tr>
+          <tr><th scope="row">対応時間・体制</th><td>土・日・祝も営業（イオンタウン江刺敷地内）</td><td>9:00〜12:00 / 15:00〜20:00（水・土は〜17:30）、日祝休診</td><td>月〜金営業（木17時まで）、土は12:30まで、日祝休業</td><td>平日日中中心 <span class="est">（推定）</span></td><td>平日日中＋土曜午前 <span class="est">（推定）</span></td><td>予約制、平日＋土日一部 <span class="est">（推定）</span></td></tr>
+          <tr><th scope="row">特徴 ①</th><td>イオンタウン江刺敷地内の立地・駐車場の利便性</td><td>鍼灸を前面に出した専門性（美容鍼・アスリート鍼）</td><td>アトム法律事務所と提携（示談・慰謝料サポート）</td><td>健保・労災・自賠責をすべて取扱う安心感</td><td>医師による確定診断・画像診断（骨折・ヘルニア等の除外）</td><td>カイロ専門の骨格調整</td></tr>
+          <tr><th scope="row">特徴 ②</th><td>土日祝営業でファミリー層・会社員が通いやすい</td><td>「根本改善・再発予防」のメッセージが明確</td><td>初診2,980円のお試し価格</td><td>厚労省基準の明朗な保険料金</td><td>健康保険で自己負担が軽い</td><td>中町分院もあり複数拠点 <span class="est">（推定）</span></td></tr>
+          <tr><th scope="row">特徴 ③</th><td>FC本部のマーケ・症状別コンテンツ</td><td>産後骨盤矯正など女性向けメニュー</td><td>他院からの転院OK・整形外科併用OK</td><td>—</td><td>診断書・後遺障害診断（交通事故）が発行できる</td><td>—</td></tr>
+          <tr><th scope="row">強み</th><td class="pre">・江刺エリアで唯一の商業施設内立地
+・土日祝営業
+・症状別Webコンテンツが厚い（本部支援）</td><td class="pre">・鍼灸の専門性と美容・産後メニュー
+・根本改善のブランドメッセージが一貫
+・水沢の住宅エリアで地域密着</td><td class="pre">・交通事故対応で地域No.1の打ち出し
+・法律事務所提携という差別化
+・初診お試し価格で新規獲得</td><td class="pre">・保険施術の正統性・明朗料金
+・労災・交通事故にも対応
+・長年の地域密着（推定）</td><td class="pre">・医学的診断の信頼性
+・保険で低負担
+・重症・器質的疾患に対応</td><td class="pre">・整体・カイロに特化した独自ポジション
+・口コミ評価が地域で一定
+・予約制で待ち時間が少ない（推定）</td></tr>
+          <tr><th scope="row">弱み</th><td class="pre">・FCゆえの画一的な印象で「地域の先生」感は弱い（推定）
+・鍼灸・特殊機器の専門性は限定的（推定）</td><td class="pre">・料金がサイト非掲載で初診ハードル（推定）
+・LINE予約・当日予約導線が弱い（推定）
+・平日夜のみで日祝休み</td><td class="pre">・交通事故偏重で慢性痛・高齢者の日常通院訴求は薄い（推定）
+・鍼灸・特殊機器の専門性は限定的（推定）
+・土曜午後・日祝が休み</td><td class="pre">・自費メニュー・付帯サービスの訴求が弱い（推定）
+・Web予約・SNS等のデジタル集客が弱い（推定）
+・美容・女性向け需要は取りこぼし（推定）</td><td class="pre">・待ち時間が長い・施術時間が短い（推定）
+・手技・鍼灸のきめ細かいケアは弱い
+・夜間・日祝は対応不可（推定）</td><td class="pre">・国家資格施術・保険が使えない
+・鍼灸・急性外傷・交通事故に非対応（推定）
+・エビデンス訴求が弱い（推定）</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">出典：エキテン／EPARK接骨・鍼灸／各院公式サイト／交通事故病院 ほか</p>
+  </section>
+
+  <!-- 03 SWOT -->
+  <section class="block" id="s3">
+    <div class="sec-head"><span class="sec-num">03</span><h2>SWOT分析</h2></div>
+    <p class="sec-sub">さくら鍼灸整骨院の内部環境（強み・弱み）と外部環境（機会・脅威）。各項目に「Webサイトへの打ち出し」を対で記載。</p>
+
+    <div class="swot">
+      <div class="quad s">
+        <div class="qh">強み — Strength</div>
+        <ul>
+          <li><span class="item">「87%のお客様が当日中に痛みが半減」というぎっくり腰対応の実績</span><span class="web">ファーストビューに「ぎっくり腰 当日対応／87%が当日中に痛み半減」を大きく配置。当日予約枠バナー＋LINEワンタップ予約を常設。集計条件も小さく明記し信頼性を担保</span></li>
+          <li><span class="item">鍼灸・整骨・カイロプラクティックの多角的アプローチ</span><span class="web">「1院で原因特定から仕上げまで」を図解。症状別に「どの施術を組み合わせるか」を説明するページを用意</span></li>
+          <li><span class="item">酸素ルーム・玉川温泉の岩盤浴・EMS体幹トレ・水素吸引など他院にない設備</span><span class="web">設備紹介ページを写真・動画付きで独立作成。「痛みを取った後の再発予防・コンディショニング」まで通える理由として訴求。単体利用メニュー・回数券も掲載</span></li>
+          <li><span class="item">土日祝も8:30〜19:00で営業（火・水が定休）</span><span class="web">全ページのヘッダーに営業時間を固定表示。「平日忙しい方・部活の学生・ご家族でも通える」と生活シーン別に訴求</span></li>
+          <li><span class="item">交通事故・労災・スポーツ外傷・美容まで対応領域が広い</span><span class="web">トップに「お悩みから探す」アイコン導線（腰・肩・膝・しびれ・交通事故・産後・スポーツ・美容）。各症状ページで保険可否と流れを明示</span></li>
+        </ul>
+      </div>
+      <div class="quad w">
+        <div class="qh">弱み — Weakness</div>
+        <ul>
+          <li><span class="item">料金がサイトに未掲載で初診のハードルになっている</span><span class="web">料金表ページを新設。「保険が使える症状」「自費メニュー1回◯円／回数券◯円」「各設備の単体料金」を表で明記。初回体験メニューを用意</span></li>
+          <li><span class="item">スマホ表示・導線が最適化されていない可能性／予約導線が弱い</span><span class="web">スマホファーストで再構築。固定フッターに「電話／LINE／Web予約」の3ボタンを常設。急ぎの人が2タップで予約できる導線</span></li>
+          <li><span class="item">地域内での認知・口コミ蓄積が競合（げんきや等）に対して十分でない可能性</span><span class="web">施術後に口コミ依頼カード＋QRを運用。GBPに症例投稿を週1更新。「患者様の声」ページを症状タグ付きで拡充</span></li>
+          <li><span class="item">ブランドストーリー・院長の人柄が伝わりにくい</span><span class="web">院長あいさつ・資格・治療方針・地域への想いを写真付きで1ページに。スタッフ紹介、院内ツアー動画を追加</span></li>
+        </ul>
+      </div>
+      <div class="quad o">
+        <div class="qh">機会 — Opportunity</div>
+        <ul>
+          <li><span class="item">地域で治療院を探す人の約8割がスマホ検索、マップ上位3位で7割超が選ばれる</span><span class="web">「奥州市 整骨院」「江刺 肩こり／腰痛／交通事故」など地域×症状のLPを個別作成しMEOと連動。NAP情報をサイトとGBPで統一</span></li>
+          <li><span class="item">保険縮小で自費・回数券・サブスク・付帯サービスへ需要がシフト</span><span class="web">「根本改善プログラム（全◯回）」「メンテナンス通い放題」など自費コースをパッケージ化して価格と成果目安を提示</span></li>
+          <li><span class="item">20〜30代女性の利用意向・潜在需要が突出（美容鍼・産後骨盤）</span><span class="web">美容鍼・産後骨盤矯正・冷え／むくみの特設ページ。ビフォーアフター（同意取得済）とInstagram埋め込み。託児・キッズスペースの有無も明記</span></li>
+          <li><span class="item">農作業・車社会・高齢化による慢性腰痛／膝痛／しびれニーズが厚い地域特性</span><span class="web">「畑仕事の腰痛」「長時間運転の腰痛」「足のしびれ」など地域生活に密着した症状コラム。送迎・バリアフリー・駐車場10台を訴求</span></li>
+        </ul>
+      </div>
+      <div class="quad t">
+        <div class="qh">脅威 — Threat</div>
+        <ul>
+          <li><span class="item">げんきや江刺（商業施設内立地・土日祝営業・FCの集客力）が同エリアの直接競合</span><span class="web">「地域の専門院ならではの担当制・多角的施術・本格設備」で差別化。設備×実績データ×院長の顔が見える発信でFCとの違いを明確化</span></li>
+          <li><span class="item">整形外科への流出、および「整骨院は行かない方がいい」論調</span><span class="web">「まず整形外科で異常の有無を診てもらい、その後の機能改善は当院で」という連携姿勢を明示。国家資格・検査の流れ・エビデンスを丁寧に説明し不信感を払拭</span></li>
+          <li><span class="item">医療広告・柔整の広告制限（「治る」「完治」等の断定表現は不可）</span><span class="web">表現は「◯%が当日中に痛み半減（当院調べ・条件明記）」「根本原因にアプローチ」等の事実・体験ベースに統一。ガイドライン準拠のチェックを制作フローに組み込む</span></li>
+          <li><span class="item">価格競争（初診2,980円等のお試し訴求）による値引き圧力</span><span class="web">安さではなく「設備・多角施術・即効性・通いやすさ」の総合価値で訴求。初回は割引でなく「しっかり検査＋説明つき体験」として設計</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="mini">クロス分析</h3>
+    <div class="cross">
+      <div><b>SO ／ 強み×機会</b>即効性の実績データ×スマホ×MEO：「奥州市 ぎっくり腰 当日」等の地域×緊急ワードで上位を取り、当日LINE予約に直結させて新規を獲得する。</div>
+      <div><b>ST ／ 強み×脅威</b>本格設備＋多角施術×FC・整形外科の脅威：「診断は整形外科、原因からの機能改善と再発予防は設備の整った当院」という補完ポジションで棲み分ける。</div>
+      <div><b>WO ／ 弱み×機会</b>料金非掲載の弱み×自費シフトの機会：明朗な料金表と自費コースのパッケージ化を同時に行い、価格の不安を解消しながら客単価を上げる。</div>
+      <div><b>WT ／ 弱み×脅威</b>認知不足×価格競争の脅威：値引き合戦に乗らず、口コミ蓄積と院長・症例の継続発信でブランドを育て、比較検討時に「ここは違う」と思わせる。</div>
+    </div>
+  </section>
+
+  <!-- 04 ニーズ①キーワード -->
+  <section class="block" id="s4">
+    <div class="sec-head"><span class="sec-num">04</span><h2>ニーズ分析 ① — キーワード</h2></div>
+    <p class="sec-sub">検索キーワードから読み取れる課題と、それに応えるサイト施策。検索ボリュームは概算・推定。</p>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th scope="col">キーワード</th><th scope="col">月間検索<br>ボリューム</th><th scope="col">抱えている課題</th><th scope="col">このニーズにどう応えるか（サイトへの活用案）</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>奥州市 整骨院 ／ 江刺 整骨院 ／ 水沢 接骨院 おすすめ 口コミ</td><td class="num">100〜1,000<br><span class="est">推定</span></td><td class="pre">・近所で通える治療院を探している
+・どこがいいか分からず口コミで比較したい
+・失敗したくない（強引な勧誘・不明瞭な料金が不安）</td><td><span class="usetag">きっかけづくり</span>「奥州市・江刺エリアで整骨院をお探しの方へ」のトップ導線＋Googleマップ埋め込み。口コミ抜粋・★評価・院内写真・駐車場10台を1画面で見せ、比較検討中の来訪者を受け止める</td></tr>
+          <tr><td>ぎっくり腰 ／ 寝違え ＋ 奥州市・江刺（当日・すぐ）</td><td class="num">100〜1,000<br><span class="est">推定</span></td><td class="pre">・今すぐ痛みをどうにかしたい
+・整形外科と整骨院どちらに行くべきか迷う
+・何日で治るのか不安</td><td><span class="usetag">不安の解消／緊急対応</span>「ぎっくり腰 当日対応」専用LP。87%が当日中に痛み半減の実績、応急処置の説明、当日予約枠、LINE即予約ボタン。「まず整形外科が必要なケース」も正直に併記して信頼獲得</td></tr>
+          <tr><td>肩こり ／ 腰痛 整骨院 保険 適用外 ／ 通っても治らない</td><td class="num">1,000〜1万<br><span class="est">全国</span></td><td class="pre">・慢性の肩こり腰痛に保険が使えないと言われた
+・電気やマッサージだけで良くならない
+・自費でいくらかかるのか知りたい</td><td><span class="usetag">信用を得る</span>「保険が使える症状／使えない症状」を図で解説。慢性症状に対する当院の「原因分析＋多角施術＋設備での再発予防」の流れと料金を明記</td></tr>
+          <tr><td>交通事故 治療 むちうち 整骨院 奥州市 ／ 自賠責 0円</td><td class="num">100〜1,000<br><span class="est">推定</span></td><td class="pre">・事故後の首・腰の痛みを窓口負担なしで治したい
+・保険会社とのやり取り・書類が不安
+・整形外科と併院できるのか知りたい</td><td><span class="usetag">不安の解消</span>交通事故専用ページ。自賠責で窓口0円、通院の流れ、保険会社対応の代行範囲、整形外科との併院OK、後遺障害の相談窓口を明記</td></tr>
+          <tr><td>産後 骨盤矯正 ／ 美容鍼 奥州市・北上・一関</td><td class="num">100〜1,000<br><span class="est">推定</span></td><td class="pre">・産後の骨盤の開き・体型・腰痛が気になる
+・子連れで通えるか不安
+・美容鍼に興味はあるが痛くないか心配</td><td><span class="usetag">きっかけづくり</span>産後骨盤・美容鍼の特設ページ。開始時期の目安、託児・キッズスペースの有無、症例写真（同意済）、Instagram埋め込み、初回体験メニュー</td></tr>
+          <tr><td>膝の痛み ／ 足のしびれ ／ 坐骨神経痛 整体 高齢</td><td class="num">100〜1,000<br><span class="est">推定</span></td><td class="pre">・年齢のせいと諦めているが歩くのがつらい
+・整形外科で様子見と言われた
+・畑仕事や長時間運転で悪化する</td><td><span class="usetag">信用を得る</span>「膝痛・しびれ・坐骨神経痛」ページで原因タイプ別に解説。地域特性（農作業・車移動）に触れ、駐車場・バリアフリー・送迎の有無を明記。EMS・酸素ルームでの筋力維持も提案</td></tr>
+          <tr><td>酸素カプセル ／ 岩盤浴 ／ EMS ／ 水素吸引 奥州市</td><td class="num">10〜100<br><span class="est">推定</span></td><td class="pre">・疲労回復や体質改善に興味がある
+・トレーニングや運動不足対策をしたい
+・近くで受けられる場所を探している</td><td><span class="usetag">きっかけづくり／再来促進</span>設備ごとの独立ページ＋単体利用メニュー・回数券。「施術後のメンテナンスに」「部活・マラソン前後に」など利用シーンを提案し、痛み以外の通院動機をつくる</td></tr>
+          <tr><td>整骨院 選び方 ／ 良い整骨院 見分け方</td><td class="num">1,000〜1万<br><span class="est">全国</span></td><td class="pre">・良い院の見極めポイントを知りたい
+・強引な物販・回数券契約が怖い
+・料金や通院回数の総額を先に知りたい</td><td><span class="usetag">信用を得る</span>「失敗しない整骨院の選び方」コラム。当院は国家資格・料金明示・無理な勧誘なし・初回に総額とゴールを説明、と自院の姿勢を重ねて訴求</td></tr>
+          <tr><td>スポーツ 外傷 ／ 部活 ケガ 早く復帰 奥州市</td><td class="num">10〜100<br><span class="est">推定</span></td><td class="pre">・大会前にケガを早く治したい
+・テーピングやリハビリまで見てほしい
+・保護者として信頼できる院か知りたい</td><td><span class="usetag">きっかけづくり</span>スポーツ外傷ページ。競技別の対応、応急処置〜復帰までの流れ、EMS・酸素ルームでのコンディショニング、学生向けの通いやすい時間帯を訴求</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 05 ニーズ②検索ワード質問 -->
+  <section class="block" id="s5">
+    <div class="sec-head"><span class="sec-num">05</span><h2>ニーズ分析 ② — 検索ワード質問</h2></div>
+    <p class="sec-sub">Q&amp;Aサイト等の実際の相談から、検索の背景にある不安と応え方を抽出。</p>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th scope="col">質問内容</th><th scope="col">情報ソース</th><th scope="col">抱えている課題</th><th scope="col">このニーズにどう応えるか</th><th scope="col">キーワード</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>地元で人気の整骨院に通っているが、毎回同じ電気とマッサージだけで本当に良くなっているのか分からない。良い整骨院の見極め方を教えてほしい。</td><td><a class="src" href="https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13270601703">Yahoo!知恵袋</a></td><td class="pre">・施術が毎回同じで効果を実感できない
+・自分の症状に合っているか不安
+・通い続ける意味があるのか判断したい</td><td>「初回の流れ」ページで、問診→検査→原因説明→施術計画（回数とゴール）→毎回の効果確認、というプロセスを可視化。担当制・国家資格・多角施術で「毎回同じ」にならないことを明示</td><td><span class="kwtag">施術への納得・信頼</span></td></tr>
+          <tr><td>ぎっくり腰になった。整形外科と接骨院どっちに行くべき？だいたい何日くらいで治るもの？</td><td><a class="src" href="https://fdoc.jp/byouki-scope/features/strainedback-clinic/">fdoc</a></td><td class="pre">・激痛で今すぐどうにかしたい
+・受診先の選択を間違えたくない
+・治るまでの見通しを知って安心したい</td><td>ぎっくり腰LPに「整形外科が先に必要なケース／当院で対応できるケース」のフローチャートと回復目安（激痛は数日〜1週間、日常復帰2〜3週間）を掲載。87%当日半減の実績と当日予約導線を併設</td><td><span class="kwtag">緊急対応・受診先の判断</span></td></tr>
+          <tr><td>慢性的な肩こりで整骨院に行ったら「保険は使えない」と言われた。自費でも通うメリットはある？料金はどのくらい？</td><td><a class="src" href="https://plusseikotsuin.com/katakori/15144.html">ぷらす鍼灸整骨院</a></td><td class="pre">・保険が使えず費用面で迷う
+・自費でも改善するのか半信半疑
+・総額でいくらかかるのか不明</td><td>「保険が使える症状／使えない症状」の解説ページと料金表を新設。慢性肩こりへの原因分析＋鍼灸／整体／EMSの組み合わせと1回料金・回数券・想定期間を明記</td><td><span class="kwtag">保険適用・料金の不安</span></td></tr>
+          <tr><td>整形外科で「骨に異常なし、様子を見て」と言われたが、しびれや痛みが続いている。このまま放置していいのか、他に相談先はあるのか。</td><td><a class="src" href="https://www.seikotsuin-kobayashi.com/column/recommend/true_fault_seikotsuin/">小林整骨院コラム</a></td><td class="pre">・画像で異常なしでも症状がつらい
+・どこに相談すればいいか分からない
+・年齢のせいと諦めたくない</td><td>「整形外科で異常なしと言われた方へ」ページ。筋肉・関節・神経の機能的な問題という視点を説明し、検査→原因仮説→施術の流れを提示。医療機関との連携姿勢も明記</td><td><span class="kwtag">様子見難民・原因を知りたい</span></td></tr>
+          <tr><td>交通事故でむちうちになった。相手の保険で治療できると聞いたが、整骨院でも大丈夫？整形外科と両方通ってもいい？手続きが不安。</td><td><a class="src" href="https://wp64.jiko24.jp/clinic/iwate/%E5%A5%A5%E5%B7%9E%E5%B8%82/">交通事故病院</a></td><td class="pre">・窓口0円で治療できるのか確認したい
+・整形外科と併院できるのか不安
+・保険会社とのやり取りや書類が面倒</td><td>交通事故ページに「窓口0円の仕組み」「整形外科との併院OK」「保険会社対応で当院がやること／ご本人がやること」「慰謝料・通院日数の考え方」をQ&amp;A形式で掲載。相談LINE窓口を設置</td><td><span class="kwtag">交通事故・手続き不安</span></td></tr>
+          <tr><td>産後で骨盤の開きや腰痛、体型の崩れが気になる。子どもがまだ小さいけど連れて行っても大丈夫？いつから通える？</td><td><a class="src" href="https://rehasaku.net/magazine/clinic/stiff-shoulder/">リハサク</a></td><td class="pre">・産後の体の変化を早く戻したい
+・子連れで通えるか（預け先がない）
+・通い始めてよい時期が分からない</td><td>産後骨盤矯正ページで開始時期の目安（産後1〜2か月〜、要相談）、キッズスペース／ベビーカー可否、施術時間、初回体験、症例を掲載。ママ向けの通いやすい時間帯を提案</td><td><span class="kwtag">産後ケア・子連れ通院</span></td></tr>
+          <tr><td>整骨院は行かない方がいいという意見をネットで見た。強引に回数券を買わされたり、ずっと通わされたりしないか心配。</td><td><a class="src" href="https://www.seichiku.com/column/should-you-avoid-seikotsuin/">成竹鍼灸整骨院コラム</a></td><td class="pre">・不要な物販・回数券の押し売りが怖い
+・終わりが見えない通院になるのが不安
+・信頼できる院か事前に見極めたい</td><td>「当院のお約束」ページで、無理な勧誘なし・初回に総額と目標回数を提示・卒業（メンテナンス移行）の考え方を明記。料金表と口コミへのリンクを添えて透明性を担保</td><td><span class="kwtag">整骨院不信・押し売り懸念</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 06 ペルソナ -->
+  <section class="block" id="s6">
+    <div class="sec-head"><span class="sec-num">06</span><h2>ペルソナ</h2></div>
+    <p class="sec-sub">市場データ・ニーズ分析・院の強みから設計した3人。第1＝主要リピート層、第2＝伸びしろの若年女性、第3＝交通事故・スポーツの中間層。</p>
+    <div class="personas">
+
+      <div class="persona">
+        <div class="pt"><span class="n">01</span>メイン顧客（50代・慢性腰痛の会社員／自営）</div>
+        <div class="pr"><div class="pk">年齢</div><div class="pv">54歳</div><div class="pb">地域の車社会・農作業・現場仕事で慢性腰痛・膝痛が厚い層。整骨院の主要リピート層</div></div>
+        <div class="pr"><div class="pk">性別</div><div class="pv">男性</div><div class="pb">30〜50代男性の整骨院利用率は16%と高め</div></div>
+        <div class="pr"><div class="pk">家族構成</div><div class="pv">妻・高校生の子ども1人、親と近居。持ち家・車2台</div><div class="pb">奥州市の標準的な世帯像。移動は自家用車前提</div></div>
+        <div class="pr"><div class="pk">居住地</div><div class="pv">奥州市 江刺／水沢の郊外。院まで車で10〜15分</div><div class="pb">商圏を江刺・水沢に設定。駐車場10台が来院条件</div></div>
+        <div class="pr"><div class="pk">ライフスタイル</div><div class="pv">製造業または農業・建設関連で日中は体を使う仕事。長時間の運転や中腰作業が多い。休日は家の手入れや子どもの部活の送迎。整形外科の飲み薬と湿布でしのいできたが限界を感じている。</div><div class="pb">地域の就労構造と、整形外科で改善しない層の受け皿ニーズ</div></div>
+        <div class="pr"><div class="pk">抱えている課題</div><div class="pv">・朝起きたときと車の乗り降りで腰が固まる
+・整形外科では「異常なし・様子見」で改善しない
+・仕事を休めないので早く・確実に楽にしたい
+・このまま歳で悪化するのが不安</div><div class="pb">「様子見難民」「保険適用外」のニーズ分析結果</div></div>
+        <div class="pr"><div class="pk">検索時のシチュエーション</div><div class="pv">腰を痛めた翌朝、通勤前の車内でスマホで「奥州市 整骨院 腰痛」「江刺 ぎっくり腰 当日」を検索。★評価と口コミ件数、駐車場・当日予約可否、料金の分かりやすさで2〜3院を比較し、電話かLINEで予約。</div><div class="pb">地域で探す人の約8割がスマホ検索・マップ上位で7割超が選ばれる、という市場データ</div></div>
+      </div>
+
+      <div class="persona">
+        <div class="pt"><span class="n">02</span>若年層（20代女性・美容鍼／産後・骨盤）</div>
+        <div class="pr"><div class="pk">年齢</div><div class="pv">29歳</div><div class="pb">20〜30代女性は利用意向・潜在需要が突出。美容鍼・産後骨盤の中心層</div></div>
+        <div class="pr"><div class="pk">性別</div><div class="pv">女性</div><div class="pb">整骨院利用率は30代女性17%・20代女性16%で最多</div></div>
+        <div class="pr"><div class="pk">家族構成</div><div class="pv">夫、0歳の第一子。夫の実家近くに住む（里帰り後にUターン）</div><div class="pb">産後骨盤・子連れ通院ニーズに直結</div></div>
+        <div class="pr"><div class="pk">居住地</div><div class="pv">奥州市水沢の賃貸／新築。買い物はイオンタウン江刺・水沢のSC</div><div class="pb">げんきや江刺の商圏と重なる。ついで来院の動線</div></div>
+        <div class="pr"><div class="pk">ライフスタイル</div><div class="pv">育休中。Instagram・TikTokで育児と美容の情報収集。産前は事務職。冷え・むくみ・肩こりと、産後の体型・骨盤の開きが気になる。ママ友の口コミとGoogleの評価を重視。託児やキッズスペースの有無を必ず確認する。</div><div class="pb">Z〜ミレニアル世代女性のSNS行動と産後の体の悩み</div></div>
+        <div class="pr"><div class="pk">抱えている課題</div><div class="pv">・産後の骨盤の開き・ぽっこりお腹・腰痛
+・慢性的な肩こりと冷え
+・子どもを預けられず自分のケアを後回しにしている
+・美容鍼に興味はあるが痛み・料金が不安</div><div class="pb">ニーズ分析「産後ケア・子連れ通院」「美容鍼」</div></div>
+        <div class="pr"><div class="pk">検索時のシチュエーション</div><div class="pv">子どもの昼寝中や授乳中にスマホで「奥州市 産後 骨盤矯正」「美容鍼 奥州」「整骨院 子連れ 奥州市」を検索。院のInstagramでビフォーアフターとキッズスペースを確認し、DMかLINEで問い合わせてから予約。</div><div class="pb">SNS起点・子連れ可否の事前確認という導線</div></div>
+      </div>
+
+      <div class="persona">
+        <div class="pt"><span class="n">03</span>中間層（30代男性・交通事故／スポーツ）</div>
+        <div class="pr"><div class="pk">年齢</div><div class="pv">36歳</div><div class="pb">30代男性は利用率16%。交通事故・スポーツ外傷の中心層</div></div>
+        <div class="pr"><div class="pk">性別</div><div class="pv">男性</div><div class="pb">交通事故通院・草野球／フットサル等の外傷は男性比率が高い</div></div>
+        <div class="pr"><div class="pk">家族構成</div><div class="pv">妻・保育園児2人。車で通勤（通勤距離15km）</div><div class="pb">地方の車通勤＝交通事故リスクとの接点</div></div>
+        <div class="pr"><div class="pk">居住地</div><div class="pv">奥州市江刺。国道沿いを毎日運転</div><div class="pb">商圏内。事故は通勤路で発生しやすい</div></div>
+        <div class="pr"><div class="pk">ライフスタイル</div><div class="pv">会社員（営業）。月数回、社会人チームでフットサルや野球。多忙で平日日中は通いにくく、土日か夜に予約したい。効率重視で、通院の総額・回数・書類の手間を先に知りたい。整形外科は待ち時間が長くて敬遠しがち。</div><div class="pb">「通いやすさ（土日・夜）」「総額を先に知りたい」というニーズ</div></div>
+        <div class="pr"><div class="pk">抱えている課題</div><div class="pv">・追突事故後の首・肩・腰の痛みと頭重感
+・相手保険会社とのやり取り、通院日数・慰謝料が分からない
+・整形外科と整骨院の両方に通ってよいのか不安
+・平日は通えず土日・夜しか時間がない</div><div class="pb">ニーズ分析「交通事故・手続き不安」「通いやすさ」</div></div>
+        <div class="pr"><div class="pk">検索時のシチュエーション</div><div class="pv">事故当日〜翌日、示談前に「奥州市 交通事故 整骨院」「むちうち 整骨院 土日」「自賠責 0円 奥州」を検索。料金0円・整形外科併院OK・保険会社対応の代行範囲・土日祝営業を確認し、LINEで相談してから予約。</div><div class="pb">交通事故ニーズ＋土日祝8:30〜19:00営業という自院の強みが刺さる導線</div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 07 ポジショニング -->
+  <section class="block" id="s7">
+    <div class="sec-head"><span class="sec-num">07</span><h2>ポジショニングマップ</h2></div>
+    <p class="sec-sub">
+      X軸「急性・ケガ対応 ⇔ 慢性改善・体質／美容・予防」、Y軸「低価格・手軽 ⇔ 高付加価値（設備・多角施術・専門性）」。
+      さくら鍼灸整骨院を右上の空白ゾーンに置く。
+    </p>
+
+    <div class="posmap">
+      <svg viewBox="0 0 820 600" role="img" aria-label="ポジショニングマップ：さくら鍼灸整骨院は高付加価値かつ対応領域が広いゾーンに位置">
+        <line class="axisline" x1="120" y1="295" x2="700" y2="295"></line>
+        <line class="axisline" x1="410" y1="70" x2="410" y2="520"></line>
+        <polygon points="700,295 688,289 688,301" fill="var(--line-strong)"></polygon>
+        <polygon points="410,70 404,82 416,82" fill="var(--line-strong)"></polygon>
+
+        <text class="axislbl" x="410" y="50" text-anchor="middle">高付加価値（設備・多角施術・専門性）</text>
+        <text class="axislbl" x="410" y="552" text-anchor="middle">低価格・手軽（保険中心／お試し価格）</text>
+        <text class="axislbl" x="112" y="289" text-anchor="end">急性・ケガ対応</text>
+        <text class="axislbl" x="112" y="309" text-anchor="end">（保険・交通事故）</text>
+        <text class="axislbl" x="708" y="289" text-anchor="start">慢性改善・体質／美容</text>
+        <text class="axislbl" x="708" y="309" text-anchor="start">・予防</text>
+
+        <!-- competitors -->
+        <circle class="bubble" cx="381" cy="331" r="30"></circle>
+        <text class="blabel" x="381" y="335" text-anchor="middle">げんきや江刺</text>
+
+        <circle class="bubble" cx="538" cy="241" r="26"></circle>
+        <text class="blabel" x="538" y="245" text-anchor="middle">まこと</text>
+
+        <circle class="bubble" cx="207" cy="385" r="27"></circle>
+        <text class="blabel" x="207" y="389" text-anchor="middle">てらにし</text>
+
+        <circle class="bubble" cx="236" cy="430" r="24"></circle>
+        <text class="blabel" x="236" y="434" text-anchor="middle">鳳</text>
+
+        <circle class="bubble" cx="300" cy="295" r="28"></circle>
+        <text class="blabel" x="300" y="299" text-anchor="middle">及川整形外科</text>
+
+        <circle class="bubble" cx="584" cy="318" r="24"></circle>
+        <text class="blabel" x="584" y="322" text-anchor="middle">奥州カイロ</text>
+
+        <!-- client -->
+        <circle class="bubble client" cx="468" cy="138" r="34"></circle>
+        <text class="blabel client" x="468" y="134" text-anchor="middle">さくら</text>
+        <text class="blabel client" x="468" y="150" text-anchor="middle" font-size="11">鍼灸整骨院</text>
+      </svg>
+    </div>
+
+    <div class="callout">
+      <b>読み取れること：</b>
+      左下（急性・低価格）はてらにし・鳳が、右側の慢性／美容はまこと・カイロが分け合い、整形外科は診断で中央に位置。
+      <b>右上＝「対応領域が広く、設備と専門性で付加価値が高い」ゾーンはほぼ空白。</b>
+      さくらは設備・多角施術・87%当日半減の即効性データを武器にここを取り、価格や交通事故特化の消耗戦を避けるのが有効。
+    </div>
+
+    <h3 class="mini">各社の位置づけ</h3>
+    <dl class="dl">
+      <div><dt>さくら鍼灸整骨院</dt><dd>急性（ぎっくり腰当日対応）から慢性・体質改善・美容・交通事故までを、酸素ルーム／岩盤浴／EMS／水素と鍼灸・整骨・カイロの多角施術で提供。「対応の幅 × 設備 × 即効性」で右上の高付加価値ゾーンを単独で取る。</dd></div>
+      <div><dt>げんきや江刺</dt><dd>整体・骨盤・鍼灸・交通事故を標準メニューで広くカバー。FCで価格・提供価値は中庸。立地の強さで集客。</dd></div>
+      <div><dt>まこと鍼灸整骨院</dt><dd>鍼灸・美容鍼・産後・根本改善に寄せた慢性／体質改善型。専門性は高いが設備は限定的。</dd></div>
+      <div><dt>てらにし整骨院</dt><dd>交通事故特化・弁護士提携・初診2,980円。急性／事故対応かつお試し価格で手軽側。</dd></div>
+      <div><dt>鳳整骨院</dt><dd>保険・労災・自賠責中心で厚労省基準の明朗料金。急性寄り・低価格・堅実。</dd></div>
+      <div><dt>及川整形外科</dt><dd>医学的診断・画像・投薬・リハビリ。保険で低負担だが手技の付加価値は限定的。診断面で価値が高い。</dd></div>
+      <div><dt>奥州カイロ須田施術院</dt><dd>カイロ・整体特化の自費。慢性／姿勢寄りだが設備・国家資格施術・保険はなし。</dd></div>
+    </dl>
+
+    <h3 class="mini">代替軸の案</h3>
+    <dl class="dl">
+      <div><dt>エリア × 通いやすさ</dt><dd>X：水沢中心 ⇔ 江刺中心／Y：平日日中のみ ⇔ 土日祝・夜も対応。「江刺で土日祝も夜も診てくれる」利便性の優位を説明したい場面。さくらは右上、げんきや江刺が競合。</dd></div>
+      <div><dt>施術スタイル × 設備投資</dt><dd>X：単一手技 ⇔ 鍼灸＋整骨＋カイロの多角／Y：設備最小 ⇔ 酸素・岩盤浴・EMS・水素など充実。設備と多角施術という差別化を前面に出す場面。さくらが右上に独立。</dd></div>
+    </dl>
+  </section>
+</main>
+
+<footer>
+  <div><b>生成物</b>　marketing_research_鍼灸整骨院_20260829.xlsx（7シート）／ positioning_map_鍼灸整骨院.png・.svg</div>
+  <div><b>この資料に含まれないもの</b>　ヒアリングシート・制作スケジュール・ワイヤーフレーム（Figma）は別途追記</div>
+  <div><b>注記</b>　検索ボリューム・一部の競合情報は概算・推定を含む（「推定」表記）。医療広告ガイドラインに沿った表現調整は実装フェーズで実施。</div>
+  <div><b>marketing-research skill</b>　v2（統合版）／ 分析日 2026-08-29 ／ Web検索 計11回</div>
+</footer>

@@ -1,0 +1,641 @@
+<title>管理画面 操作ガイド</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+
+<style>
+  :root{
+    --paper:#FBFCFD;
+    --surface:#FFFFFF;
+    --panel:#EDF2F5;
+    --ink:#1E2830;
+    --ink-soft:#54646F;
+    --line:#D7DFE5;
+    --line-strong:#C2CCD3;
+    --accent:#256E9B;
+    --accent-ink:#1B506F;
+    --accent-soft:#E2EDF4;
+    --warn:#A2600C;
+    --warn-soft:#F6ECDB;
+    --tip:#2E7D63;
+    --tip-soft:#E2F0EA;
+    --todo:#8A5A00;
+    --todo-soft:#FBF0D8;
+    --shadow:0 1px 2px rgba(22,42,56,.05), 0 10px 30px rgba(22,42,56,.07);
+    --radius:10px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --paper:#11171C;
+      --surface:#192127;
+      --panel:#212B33;
+      --ink:#E7ECEF;
+      --ink-soft:#9EABB4;
+      --line:#2F3A43;
+      --line-strong:#3C4954;
+      --accent:#6EB4DA;
+      --accent-ink:#A9D3E8;
+      --accent-soft:#1D2E39;
+      --warn:#E0A85C;
+      --warn-soft:#31281A;
+      --tip:#79C6AC;
+      --tip-soft:#1B2E28;
+      --todo:#E3B778;
+      --todo-soft:#322817;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#11171C;
+    --surface:#192127;
+    --panel:#212B33;
+    --ink:#E7ECEF;
+    --ink-soft:#9EABB4;
+    --line:#2F3A43;
+    --line-strong:#3C4954;
+    --accent:#6EB4DA;
+    --accent-ink:#A9D3E8;
+    --accent-soft:#1D2E39;
+    --warn:#E0A85C;
+    --warn-soft:#31281A;
+    --tip:#79C6AC;
+    --tip-soft:#1B2E28;
+    --todo:#E3B778;
+    --todo-soft:#322817;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Noto Sans JP", system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+    font-weight:400;
+    line-height:1.85;
+    letter-spacing:.01em;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{
+    max-width:820px;
+    margin:0 auto;
+    padding:48px 28px 96px;
+  }
+
+  /* ---------- editor memo (screen only) ---------- */
+  .memo{
+    border:1px dashed var(--todo);
+    background:var(--todo-soft);
+    color:var(--ink);
+    border-radius:var(--radius);
+    padding:18px 20px;
+    margin-bottom:40px;
+    font-size:.86rem;
+    line-height:1.7;
+  }
+  .memo h2{
+    margin:0 0 8px;
+    font:600 .7rem/1.4 "IBM Plex Mono", ui-monospace, monospace;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--todo);
+  }
+  .memo ul{margin:6px 0 0;padding-left:1.2em;}
+  .memo li{margin:2px 0;}
+
+  /* ---------- cover ---------- */
+  .cover{
+    border-radius:14px;
+    background:
+      linear-gradient(180deg, var(--accent-soft), transparent 62%),
+      var(--surface);
+    border:1px solid var(--line);
+    box-shadow:var(--shadow);
+    padding:44px 40px 36px;
+    margin-bottom:44px;
+  }
+  .cover__eyebrow{
+    font:600 .72rem/1.4 "IBM Plex Mono", ui-monospace, monospace;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    margin:0 0 18px;
+  }
+  .cover__title{
+    font-family:"Zen Kaku Gothic New", "Noto Sans JP", sans-serif;
+    font-weight:900;
+    font-size:clamp(1.9rem, 4.6vw, 2.7rem);
+    line-height:1.28;
+    letter-spacing:.02em;
+    text-wrap:balance;
+    margin:0 0 10px;
+  }
+  .cover__sub{
+    color:var(--ink-soft);
+    font-size:.98rem;
+    margin:0 0 30px;
+  }
+  .meta{
+    width:100%;
+    border-collapse:collapse;
+    font-size:.9rem;
+    margin-bottom:6px;
+  }
+  .meta th,.meta td{
+    text-align:left;
+    padding:9px 4px;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+  .meta th{
+    width:9.5em;
+    font-weight:700;
+    color:var(--ink-soft);
+    font-size:.82rem;
+    letter-spacing:.04em;
+  }
+
+  /* ---------- table of contents ---------- */
+  .toc{
+    margin-top:30px;
+    border-top:2px solid var(--line-strong);
+    padding-top:18px;
+  }
+  .toc h2{
+    font:600 .72rem/1.4 "IBM Plex Mono", ui-monospace, monospace;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 12px;
+  }
+  .toc ol{margin:0;padding:0;list-style:none;counter-reset:toc;}
+  .toc li{
+    counter-increment:toc;
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    padding:7px 0;
+    border-bottom:1px dotted var(--line);
+  }
+  .toc li::before{
+    content:counter(toc,decimal-leading-zero);
+    font:600 .82rem/1 "IBM Plex Mono", ui-monospace, monospace;
+    color:var(--accent);
+    flex:none;
+  }
+  .toc a{color:var(--ink);text-decoration:none;font-weight:500;}
+  .toc a:hover{color:var(--accent);text-decoration:underline;}
+
+  /* ---------- section ---------- */
+  .section{
+    margin-top:56px;
+    counter-increment:sec;
+  }
+  .section__head{
+    display:flex;
+    align-items:flex-start;
+    gap:16px;
+    padding-bottom:14px;
+    border-bottom:2px solid var(--accent);
+    margin-bottom:26px;
+  }
+  .section__num{
+    font:600 .95rem/1 "IBM Plex Mono", ui-monospace, monospace;
+    color:#fff;
+    background:var(--accent);
+    border-radius:7px;
+    padding:9px 11px;
+    flex:none;
+    margin-top:3px;
+  }
+  .section__title{
+    font-family:"Zen Kaku Gothic New", "Noto Sans JP", sans-serif;
+    font-weight:700;
+    font-size:clamp(1.35rem, 3vw, 1.7rem);
+    line-height:1.35;
+    letter-spacing:.02em;
+    text-wrap:balance;
+    margin:0;
+  }
+  .section__lead{
+    color:var(--ink-soft);
+    font-size:.95rem;
+    margin:-8px 0 24px;
+  }
+  .subhead{
+    font-family:"Zen Kaku Gothic New", "Noto Sans JP", sans-serif;
+    font-weight:700;
+    font-size:1.05rem;
+    letter-spacing:.02em;
+    margin:34px 0 14px;
+    padding-left:12px;
+    border-left:4px solid var(--accent);
+  }
+
+  /* ---------- steps ---------- */
+  .steps{
+    list-style:none;
+    margin:0;
+    padding:0;
+    counter-reset:step;
+  }
+  .steps>li{
+    counter-increment:step;
+    position:relative;
+    padding:0 0 22px 52px;
+  }
+  .steps>li::before{
+    content:counter(step);
+    position:absolute;
+    left:0;
+    top:0;
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:var(--accent-soft);
+    color:var(--accent-ink);
+    border:1.5px solid var(--accent);
+    font:600 .95rem/34px "IBM Plex Mono", ui-monospace, monospace;
+    text-align:center;
+  }
+  .steps>li:not(:last-child)::after{
+    content:"";
+    position:absolute;
+    left:16.5px;
+    top:38px;
+    bottom:2px;
+    width:1.5px;
+    background:var(--line-strong);
+  }
+  .steps>li>p{margin:5px 0 0;}
+  .steps>li>p:first-child{margin-top:4px;}
+
+  /* ---------- ui chips ---------- */
+  .ui{
+    display:inline-block;
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-weight:600;
+    font-size:.82em;
+    line-height:1.4;
+    padding:1px 8px;
+    border-radius:5px;
+    background:var(--panel);
+    border:1px solid var(--line-strong);
+    white-space:nowrap;
+  }
+  .ui--go{
+    background:var(--accent);
+    color:#fff;
+    border-color:var(--accent);
+  }
+  .path{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-weight:600;
+    font-size:.88em;
+    color:var(--accent-ink);
+  }
+
+  /* ---------- fill-in placeholder ---------- */
+  .fill{
+    display:inline-block;
+    min-width:9em;
+    padding:0 .5em;
+    background:var(--todo-soft);
+    border-bottom:1.5px dashed var(--todo);
+    color:var(--todo);
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:.85em;
+    font-weight:600;
+  }
+
+  /* ---------- notes ---------- */
+  .note{
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    border-radius:var(--radius);
+    padding:15px 18px;
+    margin:20px 0;
+    font-size:.92rem;
+    line-height:1.75;
+    border:1px solid var(--line);
+    background:var(--panel);
+  }
+  .note p{margin:0;}
+  .note__label{
+    flex:none;
+    font:600 .7rem/1.7 "IBM Plex Mono", ui-monospace, monospace;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    padding:1px 9px;
+    border-radius:5px;
+  }
+  .note--warn{background:var(--warn-soft);border-color:var(--warn);}
+  .note--warn .note__label{background:var(--warn);color:#fff;}
+  .note--tip{background:var(--tip-soft);border-color:var(--tip);}
+  .note--tip .note__label{background:var(--tip);color:#fff;}
+
+  /* ---------- screenshot frame ---------- */
+  .shot{margin:22px 0;}
+  .shot__box{
+    aspect-ratio:16/9;
+    border:2px dashed var(--line-strong);
+    border-radius:var(--radius);
+    background:
+      repeating-linear-gradient(-45deg, transparent, transparent 12px, var(--panel) 12px, var(--panel) 24px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--ink-soft);
+    font:600 .8rem/1.5 "IBM Plex Mono", ui-monospace, monospace;
+    letter-spacing:.08em;
+    text-align:center;
+    padding:12px;
+  }
+  .shot figcaption{
+    margin-top:8px;
+    font-size:.82rem;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- decoration table ---------- */
+  .table-scroll{overflow-x:auto;margin:18px 0;}
+  table.deco{
+    width:100%;
+    border-collapse:collapse;
+    font-size:.9rem;
+    min-width:520px;
+  }
+  table.deco th,table.deco td{
+    text-align:left;
+    padding:11px 14px;
+    border:1px solid var(--line);
+    vertical-align:top;
+  }
+  table.deco thead th{
+    background:var(--accent-soft);
+    color:var(--accent-ink);
+    font-weight:700;
+    font-size:.8rem;
+    letter-spacing:.06em;
+  }
+  table.deco tbody tr:nth-child(even){background:var(--panel);}
+
+  /* ---------- misc ---------- */
+  a{color:var(--accent);}
+  strong{font-weight:700;}
+  .foot{
+    margin-top:72px;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+    font-size:.8rem;
+    color:var(--ink-soft);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  :where(a,summary):focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+    border-radius:3px;
+  }
+
+  @media (max-width:560px){
+    .wrap{padding:32px 18px 72px;}
+    .cover{padding:32px 22px;}
+    .section__head{gap:12px;}
+    .steps>li{padding-left:44px;}
+  }
+
+  /* ---------- print / PDF ---------- */
+  @media print{
+    :root{
+      --paper:#fff;--surface:#fff;--panel:#f0f3f5;
+      --ink:#15202a;--ink-soft:#4a5a64;--line:#c9d2d8;--line-strong:#b3bec6;
+      --accent:#1f5f88;--accent-ink:#184b6c;--accent-soft:#e6eef4;
+      --warn:#8a5208;--warn-soft:#f4ead6;--tip:#276b55;--tip-soft:#e2efe9;
+      --todo:#7a5000;--todo-soft:#f7eed6;
+      --shadow:none;
+    }
+    @page{size:A4;margin:16mm 14mm;}
+    body{background:#fff;}
+    .wrap{max-width:none;padding:0;}
+    .no-print{display:none !important;}
+    .cover{page-break-after:always;box-shadow:none;}
+    .section{page-break-before:always;margin-top:0;}
+    .section:first-of-type{page-break-before:avoid;}
+    .steps>li,.note,.shot,table.deco tr{page-break-inside:avoid;}
+    .shot__box{aspect-ratio:auto;height:120px;}
+  }
+</style>
+
+<div class="wrap">
+
+  <div class="memo no-print" role="note">
+    <h2>編集メモ（この枠は印刷されません）</h2>
+    このファイルは<strong>ドラフト（データの形）</strong>です。以下の箇所を差し替えてから納品してください。
+    <ul>
+      <li><span class="fill">記入</span> の枠 … サイト名・管理画面URL・ID・パスワード・発行日など</li>
+      <li>「スクリーンショット差し込み位置」の枠 … 実際の管理画面キャプチャに置き換え</li>
+      <li>「4. 文字装飾の一覧」の表 … 下書きの装飾サンプルの内容に合わせて更新</li>
+      <li>「5. 困ったときは」 … 連絡先を記入</li>
+    </ul>
+  </div>
+
+  <header class="cover">
+    <p class="cover__eyebrow">お客様向け 管理画面マニュアル</p>
+    <h1 class="cover__title">WordPress 管理画面<br>操作ガイド</h1>
+    <p class="cover__sub">サイトリニューアルに伴う、日常の更新作業の手順書です。<br>「採用情報」と「お知らせ」の2つの更新方法をまとめています。</p>
+
+    <table class="meta">
+      <tr><th>対象サイト</th><td><span class="fill">サイト名を記入</span></td></tr>
+      <tr><th>管理画面URL</th><td><span class="fill">https://〇〇〇/wp-admin/</span></td></tr>
+      <tr><th>発行日</th><td><span class="fill">2026年〇月〇日</span></td></tr>
+      <tr><th>バージョン</th><td>1.0（ドラフト）</td></tr>
+      <tr><th>発行</th><td><span class="fill">制作会社名を記入</span></td></tr>
+    </table>
+
+    <nav class="toc">
+      <h2>目次</h2>
+      <ol>
+        <li><a href="#s1">管理画面へのログイン</a></li>
+        <li><a href="#s2">採用情報の編集（固定ページ）</a></li>
+        <li><a href="#s3">お知らせの追加（投稿）</a></li>
+        <li><a href="#s4">文字装飾の一覧</a></li>
+        <li><a href="#s5">困ったときは</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <!-- ============ 1 ============ -->
+  <section class="section" id="s1" style="counter-reset:sec 1">
+    <div class="section__head">
+      <span class="section__num">01</span>
+      <h2 class="section__title">管理画面へのログイン</h2>
+    </div>
+    <p class="section__lead">更新作業はすべて「管理画面（ダッシュボード）」から行います。まずはログインしてください。</p>
+
+    <ol class="steps">
+      <li><p>ブラウザで管理画面URL <span class="fill">https://〇〇〇/wp-admin/</span> を開きます。</p></li>
+      <li><p><strong>ユーザー名（またはメールアドレス）</strong> <span class="fill">記入</span> を入力します。</p></li>
+      <li><p><strong>パスワード</strong> <span class="fill">記入</span> を入力します。</p></li>
+      <li><p><span class="ui ui--go">ログイン</span> ボタンをクリックします。</p></li>
+      <li><p>左側にメニューが並んだ<strong>ダッシュボード</strong>が表示されればログイン完了です。</p></li>
+    </ol>
+
+    <figure class="shot">
+      <div class="shot__box">スクリーンショット差し込み位置<br>（ログイン画面）</div>
+      <figcaption>図1: ログイン画面</figcaption>
+    </figure>
+
+    <div class="note note--tip">
+      <span class="note__label">ポイント</span>
+      <p>パスワードは第三者に教えないでください。よく使うパソコンでは、ブラウザに「パスワードを保存」しておくと次回から入力の手間が省けます。</p>
+    </div>
+  </section>
+
+  <!-- ============ 2 ============ -->
+  <section class="section" id="s2">
+    <div class="section__head">
+      <span class="section__num">02</span>
+      <h2 class="section__title">採用情報の編集（固定ページ）</h2>
+    </div>
+    <p class="section__lead">採用情報のページは「固定ページ」で管理しています。本文の文章を書き替えて更新するだけで、公開ページに反映されます。</p>
+
+    <h3 class="subhead">募集内容を掲載・修正する</h3>
+    <ol class="steps">
+      <li><p>左メニューの <span class="ui">固定ページ</span> をクリックします。</p></li>
+      <li><p>ページ一覧から <span class="ui">採用情報</span> をクリックして、編集画面を開きます。</p></li>
+      <li><p>本文エリアに、募集内容のテキストを入力・修正します。</p></li>
+      <li><p>画面右上の <span class="ui ui--go">更新</span> ボタンをクリックします。</p></li>
+      <li><p>「固定ページを更新しました」と表示されれば完了です。公開ページを開いて表示を確認してください。</p></li>
+    </ol>
+
+    <figure class="shot">
+      <div class="shot__box">スクリーンショット差し込み位置<br>（固定ページ「採用情報」の編集画面／更新ボタン）</div>
+      <figcaption>図2: 採用情報ページの編集画面</figcaption>
+    </figure>
+
+    <div class="note note--warn">
+      <span class="note__label">注意</span>
+      <p><strong>特に募集がない場合</strong>は、本文のテキストを<strong>すべて削除</strong>して空の状態にしたうえで、<span class="ui ui--go">更新</span> ボタンを押してください。これで採用情報ページには何も表示されなくなります。</p>
+    </div>
+
+    <div class="note note--tip">
+      <span class="note__label">ポイント</span>
+      <p>見出しや箇条書きなどの装飾は「お知らせ」と同じ手順で付けられます。<a href="#s4">4. 文字装飾の一覧</a> を参照してください。</p>
+    </div>
+  </section>
+
+  <!-- ============ 3 ============ -->
+  <section class="section" id="s3">
+    <div class="section__head">
+      <span class="section__num">03</span>
+      <h2 class="section__title">お知らせの追加（投稿）</h2>
+    </div>
+    <p class="section__lead">新しいお知らせは「投稿」で1件ずつ追加します。タイトル → 本文 → カテゴリー → 公開、の順に進めます。</p>
+
+    <h3 class="subhead">新しいお知らせを追加する</h3>
+    <ol class="steps">
+      <li><p>左メニューの <span class="path">投稿 › 新規追加</span> をクリックします。</p></li>
+      <li><p>「タイトルを追加」の欄に、<strong>お知らせのタイトル</strong>を入力します。</p></li>
+      <li><p>本文エリアに、<strong>お知らせの内容</strong>を入力します。</p></li>
+      <li><p>必要に応じて文字に<strong>装飾</strong>を付けます（太字・見出し・箇条書き・リンクなど）。付け方は <a href="#s4">4. 文字装飾の一覧</a> と、下書きの装飾サンプルをご覧ください。</p></li>
+      <li><p>画面右側の <span class="ui">カテゴリー</span> から、該当するカテゴリーに<strong>必ずチェックを入れます</strong>。</p></li>
+      <li><p>すべて入力できたら <span class="ui ui--go">公開</span> ボタンをクリックします（公開済みの記事を直す場合は <span class="ui ui--go">更新</span>）。</p></li>
+      <li><p>公開ページの「お知らせ」一覧に表示されることを確認します。</p></li>
+    </ol>
+
+    <figure class="shot">
+      <div class="shot__box">スクリーンショット差し込み位置<br>（投稿編集画面／タイトル・本文・カテゴリー・公開ボタン）</div>
+      <figcaption>図3: お知らせ（投稿）の編集画面</figcaption>
+    </figure>
+
+    <div class="note note--warn">
+      <span class="note__label">注意</span>
+      <p><strong>カテゴリーの選択は、公開（更新）ボタンを押す前に</strong>行ってください。カテゴリーを選ばずに公開すると、お知らせ一覧に正しく表示されないことがあります。</p>
+    </div>
+
+    <div class="note note--tip">
+      <span class="note__label">ポイント</span>
+      <p>すぐに公開したくないときは <span class="ui">下書き保存</span> を押しておけば、後日続きを編集して公開できます。</p>
+    </div>
+  </section>
+
+  <!-- ============ 4 ============ -->
+  <section class="section" id="s4">
+    <div class="section__head">
+      <span class="section__num">04</span>
+      <h2 class="section__title">文字装飾の一覧</h2>
+    </div>
+    <p class="section__lead">本文で使える主な装飾です。実際の表示サンプルは、管理画面の「下書き（装飾サンプル）」ページにご用意しています。あわせてご確認ください。</p>
+
+    <div class="table-scroll">
+      <table class="deco">
+        <thead>
+          <tr><th>装飾</th><th>操作方法</th><th>使う場面</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>太字</td>
+            <td>文字を選択 →ツールバーの <span class="ui">B</span></td>
+            <td>強調したい語句</td>
+          </tr>
+          <tr>
+            <td>見出し</td>
+            <td>段落を選択 →ブロックを「見出し」に変更（H2／H3）</td>
+            <td>長い本文の区切り</td>
+          </tr>
+          <tr>
+            <td>箇条書き</td>
+            <td>ブロックを「リスト」に変更</td>
+            <td>項目を並べて見せたいとき</td>
+          </tr>
+          <tr>
+            <td>リンク</td>
+            <td>文字を選択 →ツールバーの <span class="ui">リンク</span> →URLを入力</td>
+            <td>別ページ・外部サイトへの誘導</td>
+          </tr>
+          <tr>
+            <td colspan="3"><span class="fill">下書きの装飾サンプルに合わせて追記・修正</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note note--tip">
+      <span class="note__label">ポイント</span>
+      <p>装飾は付けすぎず、「太字」と「見出し」を中心にシンプルにまとめると読みやすくなります。</p>
+    </div>
+  </section>
+
+  <!-- ============ 5 ============ -->
+  <section class="section" id="s5">
+    <div class="section__head">
+      <span class="section__num">05</span>
+      <h2 class="section__title">困ったときは</h2>
+    </div>
+    <p class="section__lead">操作でわからないことや、表示がおかしいと感じたときは、下記までご連絡ください。</p>
+
+    <table class="meta">
+      <tr><th>担当</th><td><span class="fill">担当者名を記入</span></td></tr>
+      <tr><th>メール</th><td><span class="fill">support@〇〇〇</span></td></tr>
+      <tr><th>電話</th><td><span class="fill">00-0000-0000</span>（平日 <span class="fill">10:00–18:00</span>）</td></tr>
+    </table>
+
+    <div class="note note--warn">
+      <span class="note__label">注意</span>
+      <p>プラグインの追加・削除、テーマの編集、「設定」メニューの変更は、サイトの表示に影響することがあります。ご不明な場合は操作せず、まずはご相談ください。</p>
+    </div>
+  </section>
+
+  <div class="foot">
+    <span>WordPress 管理画面 操作ガイド</span>
+    <span><span class="fill">サイト名</span> ／ v1.0 ドラフト</span>
+  </div>
+
+</div>

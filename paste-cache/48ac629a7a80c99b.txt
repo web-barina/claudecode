@@ -1,0 +1,33 @@
+本番公開前チェックリストの整備（西川さんに約束済み）：「表示崩れ」だけでなく①全リンクの遷移先 ②旧ドメイン参照ゼロ（http://・https://両方）を項目化
+逆井店のクチコミ画像・残1件を入江さんへ個別修正依頼 → 修正後ライブ確認
+入江さんへ渡す情報を取りまとめ：本番ドメイン切替日程／DNS・サーバー切替担当／SSL手配状況／お問い合わせ送信先＋SMTP情報
+お客様へ確認依頼（下記「お客様」リストの内容を整理して投げる）
+8/31公開の可否を最終確認。間に合わないQA項目は「公開前必須／公開後でも可」を入江さんと切り分け合意
+GTMコンテナ設定（まーけるGmailアカウントから／西川さん依頼・夜対応と回答済み）。CV設定
+公開後：noindex解除の確認・Search Console登録・sitemap送信・主要導線の最終クリックテスト
+
+【残1件】/sakasai/ の grw-img のsrcを新サーバー（https://test.td-group.jp/.../ChIJq-RpIuSCGGAR...jpg、新サーバーに実体あり200）へ。プラグインのキャッシュ／シリアライズmeta。→ 完了後、全ページで test-page.site 参照ゼロを再確認（http・https両方）
+シリアライズデータの手動更新完了 → 旧ドメイン参照ゼロ確認 → td-group.test-page.site 完全削除
+本番ドメイン移行：サイトURL/ホームURLを https://td-group.jp に変更／DB一括置換 http://test.td-group.jp → https://td-group.jp（シリアライズ注意）／canonical・OGP・内部リンク・srcset・混在コンテンツのhttps統一
+SSL化：証明書導入、http→https 301リダイレクト
+お問い合わせフォーム：本番送信先設定、SMTP（またはGoogle送信）設定、送信テスト（管理者通知＋自動返信）、サンクスページ遷移、スパム対策（reCAPTCHA等）
+noindex,nofollow 解除（AIOSEO）、robots.txt・sitemap・llms.txt のドメイン確認
+QA指摘対応：
+- campaign01〜03 PNG（各1MB超）を WebP化・リサイズ・圧縮（各50〜100KB）
+- hero.webp の loading="lazy" 削除＋fetchpriority="high"、aria-hiddenとaltの矛盾解消
+- jQuery / jquery-migrate / CF7スクリプトに defer
+- コピーライト年を自動出力化
+- ロゴalt統一・ヘッダー/フッターロゴにホバー・「TOPへ戻る」ボタン確認
+- グロナビ親項目 href="#" を実URLへ（可能な範囲）
+- TOPのh1方針決定後に反映
+推薦者の声セクション「3名で公開」
+GTM/GA発火確認（大場のコンテナ設定後）
+本番公開作業（DNS/サーバー切替）→ 公開後の全ページ表示・フォーム・SSL最終確認
+
+8/31公開でよいか最終決定（未対応QAがある場合の優先度合意）
+お問い合わせ本番受信先メールの確定（tdgroup.corporate@gmail.com でよいか）＋「サイト上にGmailアドレスを掲載してよいか」への回答（入江さんからの質問）
+SMTP情報の提供（送信サーバー／ユーザー／パスワード等）、またはGmailでの送受信可否の回答
+旧テストサーバー td-group.test-page.site 完全削除の了承
+本番ドメイン td-group.jp の管理権限・DNS/サーバー情報の提供、切替日時の調整
+SSL証明書をどちら側で用意するかの確認
+公開前の最終コンテンツ確認（原稿・画像・店舗情報・電話番号）

@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>中国アプリ事前調査（要約版）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f4f7f6;--surface:#ffffff;--ink:#16262f;--ink-soft:#2c3d46;--muted:#5c6f76;--faint:#8a9aa0;
+  --line:#dbe4e3;--line-soft:#e9eeed;--navy:#122438;--blue:#1f5f96;--blue-soft:#e8f1fa;--teal:#12786f;--teal-soft:#e6f4f1;
+  --amber:#a8701c;--amber-soft:#faf1e0;--red:#b23a2e;--red-soft:#fbeae8;--orange:#c67322;--orange-soft:#fcefe0;
+  --yellow:#9c7e14;--yellow-soft:#faf5df;--green:#2c7a52;--green-soft:#e7f4ed;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0f1a20;--surface:#16232a;--ink:#e8eef0;--ink-soft:#c9d5d8;--muted:#94a7ac;--faint:#6d8085;
+    --line:#2a3a40;--line-soft:#223035;--navy:#0b1620;--blue:#6fa8d8;--blue-soft:#16283a;--teal:#5fc2b4;--teal-soft:#12302c;
+    --amber:#e0ab5f;--amber-soft:#332818;--red:#e28277;--red-soft:#35201d;--orange:#e3a35f;--orange-soft:#332615;
+    --yellow:#dcc064;--yellow-soft:#332c14;--green:#7ecba0;--green-soft:#173124;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0f1a20;--surface:#16232a;--ink:#e8eef0;--ink-soft:#c9d5d8;--muted:#94a7ac;--faint:#6d8085;
+  --line:#2a3a40;--line-soft:#223035;--navy:#0b1620;--blue:#6fa8d8;--blue-soft:#16283a;--teal:#5fc2b4;--teal-soft:#12302c;
+  --amber:#e0ab5f;--amber-soft:#332818;--red:#e28277;--red-soft:#35201d;--orange:#e3a35f;--orange-soft:#332615;
+  --yellow:#dcc064;--yellow-soft:#332c14;--green:#7ecba0;--green-soft:#173124;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP","Hiragino Sans",sans-serif;line-height:1.75;font-size:15px;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;text-wrap:balance;color:var(--ink)}
+::selection{background:var(--blue);color:#fff}
+a{color:var(--blue)}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);max-width:1200px;margin:0 auto}
+.toc{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;padding:32px 16px 40px 26px;border-right:1px solid var(--line)}
+.toc-head{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;color:var(--faint);text-transform:uppercase;margin-bottom:14px}
+.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+.toc li{counter-increment:toc;margin-bottom:2px}
+.toc a{display:flex;gap:8px;padding:5px 8px;border-radius:6px;color:var(--ink-soft);text-decoration:none;font-size:12.5px;line-height:1.4}
+.toc a:hover{background:var(--line-soft)}
+.toc a::before{content:counter(toc,decimal-leading-zero);font-family:"JetBrains Mono",monospace;color:var(--faint);font-size:11px;flex:none;padding-top:1px}
+.main{padding:0 0 90px}
+.printbar{position:sticky;top:0;z-index:5;display:flex;justify-content:flex-end;padding:14px 44px;background:linear-gradient(var(--paper) 70%,transparent)}
+.printbar button{background:var(--navy);color:#fff;border:0;padding:9px 16px;font-weight:600;font-family:"Noto Sans JP",sans-serif;font-size:13px;border-radius:6px;cursor:pointer}
+.cover{padding:8px 44px 40px;border-bottom:1px solid var(--line)}
+.kicker{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.12em;color:var(--teal);text-transform:uppercase}
+.cover h1{font-size:clamp(26px,3.4vw,38px);line-height:1.3;margin:14px 0 12px;font-weight:900}
+.cover .lede{max-width:680px;color:var(--muted);font-size:15px}
+.legend-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.legend-pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:5px 11px;border-radius:99px;border:1px solid var(--line)}
+.legend-pill.fact{background:var(--blue-soft);color:var(--blue);border-color:transparent}
+.legend-pill.hyp{background:var(--teal-soft);color:var(--teal);border-color:transparent}
+.legend-pill.confirm{background:var(--amber-soft);color:var(--amber);border-color:transparent}
+section.block{padding:34px 44px;border-bottom:1px solid var(--line);scroll-margin-top:14px}
+.eyebrow{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;color:var(--faint);text-transform:uppercase;margin-bottom:8px}
+h2.htitle{font-size:22px;margin:0 0 6px}
+.subhead{color:var(--muted);font-size:14px;max-width:720px;margin-bottom:18px}
+h3{font-size:15.5px;margin:22px 0 9px}
+h3:first-of-type{margin-top:4px}
+p{margin:0 0 11px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.grid.three{grid-template-columns:repeat(3,1fr)}
+@media(max-width:860px){.grid,.grid.three{grid-template-columns:1fr}}
+.box{border:1px solid var(--line);padding:15px 17px;background:var(--surface);border-radius:8px}
+.box h4{margin:0 0 7px;font-size:12px;font-family:"JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase}
+.box p:last-child{margin-bottom:0}
+.box.fact{background:var(--blue-soft);border-color:transparent}.box.fact h4{color:var(--blue)}
+.box.hyp{background:var(--teal-soft);border-color:transparent}.box.hyp h4{color:var(--teal)}
+.box.confirm{background:var(--amber-soft);border-color:transparent}.box.confirm h4{color:var(--amber)}
+.list{margin:0;padding-left:1.2em}
+.list li+li{margin-top:6px}
+.tablewrap{overflow-x:auto;margin:12px 0;border:1px solid var(--line);border-radius:8px}
+table{width:100%;border-collapse:collapse;font-size:13px;background:var(--surface)}
+th,td{border-bottom:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+th{background:var(--line-soft);font-weight:600;font-size:12px;white-space:nowrap}
+td.num,th.num{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:0}
+.tag{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:5px;font-family:"JetBrains Mono",monospace}
+.tag.fact{background:var(--blue-soft);color:var(--blue)}
+.tag.hyp{background:var(--teal-soft);color:var(--teal)}
+.tag.confirm{background:var(--amber-soft);color:var(--amber)}
+.risk{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:99px;white-space:nowrap}
+.risk.r1{background:var(--red-soft);color:var(--red)}
+.risk.r2{background:var(--orange-soft);color:var(--orange)}
+.risk.r3{background:var(--yellow-soft);color:var(--yellow)}
+.risk.r4{background:var(--green-soft);color:var(--green)}
+.callout{padding:18px 22px;background:var(--navy);color:#eef4f4;border-radius:10px;font-size:15px;line-height:1.65}
+.callout strong{color:#8fd6cb}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:16px 0}
+.flow .step{flex:1;min-width:110px;padding:12px 10px;background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--teal);border-radius:6px;font-weight:600;font-size:12.5px;text-align:center}
+.flow .arrow{align-self:center;color:var(--faint);font-size:16px}
+.note-inline{font-size:12px;color:var(--muted);margin-top:9px}
+.num10{counter-reset:n10;margin:0;padding:0}
+.num10>li{counter-increment:n10;list-style:none;position:relative;padding:13px 0 13px 42px;border-bottom:1px solid var(--line-soft)}
+.num10>li:last-child{border-bottom:0}
+.num10>li::before{content:counter(n10,decimal-leading-zero);position:absolute;left:0;top:12px;font-family:"JetBrains Mono",monospace;font-size:18px;font-weight:600;color:var(--teal)}
+.num10 h4{margin:0 0 4px;font-size:14px;font-family:"Zen Kaku Gothic New",sans-serif}
+.num10 .mini{font-size:12.5px;color:var(--muted);margin:2px 0}
+.num10 .mini b{color:var(--ink-soft);font-weight:600}
+footer.endsrc{padding:34px 44px 50px}
+.source-list{margin:0;padding-left:0;list-style:none;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--muted)}
+.source-list li{padding:7px 0;border-bottom:1px solid var(--line-soft);word-break:break-all}
+.source-list li:last-child{border-bottom:0}
+.source-list .stitle{font-family:"Noto Sans JP",sans-serif;color:var(--ink-soft);font-weight:500;display:block;margin-bottom:2px}
+@media(max-width:900px){
+  .layout{grid-template-columns:1fr}
+  .toc{display:none}
+  .cover,section.block,.printbar,footer.endsrc{padding-left:20px;padding-right:20px}
+}
+@media print{
+  .toc,.printbar{display:none}
+  .layout{display:block}
+  section.block{break-inside:auto;border-bottom:none;padding:16px 34px}
+  .box,.tablewrap,.flow,.callout,.num10>li{break-inside:avoid}
+  h2.htitle,h3{break-after:avoid}
+  body{background:#fff;font-size:10pt;line-height:1.55}
+  .cover{padding-bottom:20px}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="toc">
+<div class="toc-head">Contents</div>
+<ol>
+<li><a href="#summary">結論サマリー</a></li>
+<li><a href="#os">OS・端末シェア</a></li>
+<li><a href="#store">Androidストア5社・App備案</a></li>
+<li><a href="#ios">iOS / App Store</a></li>
+<li><a href="#push">プッシュ通知</a></li>
+<li><a href="#pay">決済（Alipay/WeChat Pay）</a></li>
+<li><a href="#ad">広告配信</a></li>
+<li><a href="#data">個人情報・データ規制</a></li>
+<li><a href="#server">サーバー・バックエンド</a></li>
+<li><a href="#qr">QRコード読み取り</a></li>
+<li><a href="#ops">保守運用・役割分担</a></li>
+<li><a href="#budget">費用・期間に影響する要因</a></li>
+<li><a href="#flow">全体像</a></li>
+<li><a href="#table">リスクマップ</a></li>
+<li><a href="#meeting">重要ポイントと確認事項</a></li>
+<li><a href="#sources">出典</a></li>
+</ol>
+</nav>
+<main class="main">
+<div class="printbar"><button onclick="window.print()">印刷 / PDF保存</button></div>
+<header class="cover">
+<div class="kicker">中国向けアプリ展開 事前調査サマリー / 2026-08-26</div>
+<h1>中国向けアプリ開発<br>事前調査結果 ご報告（サマリー版）</h1>
+<p class="lede">中国向けにアプリを展開するにあたり、公開・決済・通知・運用の各領域で必要となる手続きや制約について事前調査を実施しました。本資料はその結果を要点に絞ってまとめたものです。初回のお打ち合わせに向けた共通認識づくりとしてご確認ください。</p>
+<div class="legend-row">
+<span class="legend-pill fact">FACT — 公式情報で確認できた事実</span>
+<span class="legend-pill hyp">分析 — 二次情報＋論理整理</span>
+<span class="legend-pill confirm">要確認 — 貴社の状況確認 or 追加調査が必要</span>
+</div>
+</header>
+
+<section class="block" id="summary">
+<div class="eyebrow">01 / Executive Summary</div>
+<h2 class="htitle">調査結果の全体像</h2>
+<div class="callout"><strong>「アプリを技術的に作ること」と「中国で公開・決済・通知・運用を成立させること」は別の問題です。</strong>後者の多くは<strong>中国法人という「申請主体」</strong>を必要とする制度設計になっており、開発の技術力だけでは解決できません。とりわけ<strong>App備案（アプリの届出）と決済加盟店契約</strong>が、いずれも中国法人という同じ前提に依存します。</div>
+<h3>要点</h3>
+<ul class="list">
+<li><span class="tag fact">FACT</span> <b>App備案（2023年9月〜・全アプリ対象）は中国法人または中国籍者の身分証がないと申請できない。</b>未着手ならスケジュール全体（自社法人で7〜14ヶ月／現地パートナー経由で4〜6週間）を左右する。</li>
+<li><span class="tag fact">FACT</span> <b>「中国法人がある」＝準備完了ではない。</b>ストア5社・決済・Push・広告は、それぞれ個別の開発者アカウント・実名/法人認証・契約が別途必要。</li>
+<li><span class="tag fact">FACT</span> <b>Google系サービス（FCM・AdMob等）は中国で機能しない。</b>Push・広告は実装ごと差し替えになりうる（設定変更でなく開発工数）。</li>
+<li><span class="tag hyp">分析</span> <b>「洗濯完了通知」の到達性が最大の技術リスクです。</b>中国メーカー端末（HyperOS/ColorOS/OriginOS/MagicOS）はバックグラウンドを積極的に停止するため、単一SDKでは到達率を保証できず、複数手段を組み合わせた設計が必要になります。</li>
+<li><span class="tag fact">FACT</span> <b>決済手数料はむしろ有利。</b>Apple App Review 3.1.5により、現実サービス（洗濯）の決済はアプリ内課金の対象外＝Apple30%手数料がかからない。</li>
+<li><span class="tag fact">FACT</span> <b>HarmonyOS NEXT（2024年〜）はAndroid非互換。</b>対応するなら事実上もう1本アプリを作るコスト構造。初期リリースに含めるかは要検討。</li>
+<li><span class="tag confirm">要確認</span> <b>iOSはグローバルアカウントで現状ICP備案なしに公開可。</b>ただし前例（2020年のゲームISBN厳格化）から突然の強制化リスクを織り込む必要がある。</li>
+</ul>
+<h3>費用・期間に影響する主な要因</h3>
+<p>Push（メーカー別対応 or 集約SDK＋継続的な仕様変更対応）、Androidストア各社への個別申請、広告SDKの差し替え、HarmonyOS対応、現地でのテスト体制などが費用に影響します。App備案・ICPは費用よりも「取得までの時間」がボトルネックです。初回のお打ち合わせでは、これらのうちどこを初期対応（必須）とし、どこを段階的な対応とするか、優先順位のすり合わせをさせていただければと考えています。</p>
+</section>
+
+<section class="block" id="os">
+<div class="eyebrow">02 / OS &amp; Device Share</div>
+<h2 class="htitle">OS・端末シェア</h2>
+<p class="subhead">市場シェアの数字は取得できますが、「シェアが高い＝対応すべき」とは限りません。</p>
+<div class="tablewrap"><table>
+<tr><th>指標</th><th class="num">Android</th><th class="num">iOS</th><th>出典</th></tr>
+<tr><td>モバイルWebトラフィック（StatCounter, 2026年7月分）</td><td class="num">70.37%</td><td class="num">29.51%</td><td><span class="tag fact">Tier1</span></td></tr>
+</table></div>
+<div class="tablewrap"><table>
+<tr><th>端末メーカー（2026 Q1, Counterpoint）</th><th class="num">シェア</th><th>備考</th></tr>
+<tr><td>Huawei</td><td class="num">20%</td><td>5年で最高</td></tr>
+<tr><td>Apple</td><td class="num">19%</td><td>最も成長率が高い</td></tr>
+<tr><td>OPPO / vivo / Xiaomi</td><td class="num">続く</td><td>上位6社で市場の約94〜96%</td></tr>
+</table></div>
+<div class="box hyp"><h4>分析</h4><p><b>HarmonyOSの扱い：</b>開発観点では「別OS」。HarmonyOS NEXTはAOSP非互換で、Android APKはネイティブに動かず、ArkTS/ArkUIでの再実装が必要。一方シェア統計は集計方法により定義がぶれる（StatCounterはAndroidに含めて計測している可能性が高い。出荷ベース推計では新規出荷の約19〜22%でiOSを上回るとの業界推計も）。ご説明の際は「どの定義に基づくシェアか」を明示します。</p></div>
+<div class="box confirm"><h4>要確認</h4><p>市場シェアは全国・全用途の統計で、対象（特定地域のコインランドリー利用者）とは母集団が異なります。<b>①全国シェア → ②対象地域 → ③店舗利用者層 → ④実際の端末 → ⑤対応優先順位</b>の順で絞り込む必要があり、Web調査だけでは埋まりません。対象地域・想定利用者層について貴社にお伺いします。</p></div>
+</section>
+
+<section class="block" id="store">
+<div class="eyebrow">03 / Android Stores &amp; App Filing</div>
+<h2 class="htitle">中国Androidストア5社・App備案</h2>
+<p class="subhead">5ストアに共通して「開発者登録 → 実名/法人認証 → 審査 → App備案」という手続きが必要です。「中国法人があれば解決」というわけではありません。</p>
+<h3>共通して確認できた事実</h3>
+<div class="grid">
+<div class="box fact"><h4>FACT</h4><p>全社共通で「開発者アカウント作成 → 実名/法人認証 → アプリ登録 → 審査 → 公開」フロー。国内向けと海外向けで開発者ポータルが分かれるストアがあり（vivo確認済、他も類似の可能性）、海外アカウントで中国国内配信は基本不可。</p></div>
+<div class="box fact"><h4>FACT</h4><p>企業アカウント認証には営業執照（三合一）・法定代表者の身分証・場合により対公口座の少額入金確認が必要。個人の実名認証だけでは法人名義の運用不可。</p></div>
+</div>
+<div class="box confirm"><h4>要確認 — ただし方向性は明確</h4><p><b>「中国法人があれば十分」は誤り。</b>中国法人は各ストア企業認証の「必要条件の一つ」に過ぎず、以下は別途個別に必要：<b>①</b>ストアごとの開発者アカウント新規作成（5ストア分）<b>②</b>ストアごとの法人認証の再実施<b>③</b>アプリ審査＋App備案の取得<b>④</b>決済・Push等の外部サービスごとの個別契約。<br>手数料：ゲーム内課金では40〜50%の店舗手数料の報告があるが、今回のようにAlipay/WeChat Payで店舗外サービス（洗濯代金）を決済するケースへの適用可否は各ストア公式料率表で未確認＝要確認。</p></div>
+
+<h3>App備案（MIIT）— 特に注意が必要なポイント</h3>
+<div class="box fact"><h4>FACT — 最重要</h4><p>2023年9月1日、MIITが「移動互聯網応用程序備案（App備案）」を新設。<b>既存アプリを含め中国国内で配信される全アプリが対象。</b>2024年7月から「常態化」段階として当局が登録情報を継続監査。<b>外国企業単独では直接申請できず</b>、中国法人の営業執照または中国籍者の身分証が必須。対応は実質2択：自社で中国法人設立（7〜14ヶ月）／AppInChina等の現地パートナー代行（4〜6週間、パートナーが申請主体）。</p></div>
+<div class="tablewrap"><table>
+<tr><th>制度</th><th>対象</th><th>紐づく主体</th></tr>
+<tr><td>ICP Filing（網站備案）</td><td>中国国内でホスティングするドメイン・サーバー</td><td>ホスティング事業者経由、中国法人が前提</td></tr>
+<tr><td>App備案</td><td>中国国内で配信・サービス提供する全アプリ</td><td>営業執照 or 中国籍者の身分証が前提</td></tr>
+</table></div>
+<p class="note-inline">中国国内サーバーをバックエンドに使う場合は<b>両方</b>必要。なお「判定基準はサーバー所在地でなく中国国内でのサービス提供の有無」という記載と、Huawei AppGallery内部の「サーバー海外なら備案不要」案内の間に解釈の食い違いがあり、現地コンプライアンスパートナーへの確認を推奨。<br>収益化（決済・広告）を行うアプリは基礎的なApp備案に加え<b>商用ICPライセンス（B25等）</b>が必要になり、今回はこの重い区分に該当。未対応リスク：ストア削除・罰金5,000〜50,000元・停止命令（vivoは備案未取得の700本超を一斉削除した実績）。</p>
+</section>
+
+<section class="block" id="ios">
+<div class="eyebrow">04 / iOS &amp; China App Store</div>
+<h2 class="htitle">iOS — 「今は公開できる」が「今後も同じ」とは限らない</h2>
+<div class="grid">
+<div class="box fact"><h4>FACT</h4><p>現時点（2025年11月時点の情報）では、グローバルのApple Developerアカウントを使った中国配信でも<b>ICP備案なしで公開できる</b>。強制適用は現状、中国企業名義のアカウントに限られる。</p></div>
+<div class="box confirm"><h4>要確認 — 将来リスク</h4><p>Appleは2020年、ゲームアプリのISBN要件を予告なく厳格運用に切り替えた前例あり。ICP備案も突然の強制適用に転じる可能性。「今公開できる」前提の計画はこの変更リスクを織り込む必要がある。</p></div>
+</div>
+<div class="box fact"><h4>FACT — 重要（コスト構造の好材料）</h4><p>App Review Guideline 3.1.5により、<b>アプリの外で消費される物理サービス（＝洗濯）の決済はAppleのアプリ内課金を使う必要がなく</b>、Alipay・WeChat Pay・クレカ等のアプリ外決済でよい。Appleの30%手数料の対象外。</p></div>
+<div class="tablewrap"><table>
+<tr><th>公開方式</th><th>ICP備案</th><th>期間目安</th><th>特徴</th></tr>
+<tr><td>①既存グローバルアカウントのまま</td><td>提出不要（現状）</td><td>即時〜</td><td>簡便だが将来の規制強化リスク</td></tr>
+<tr><td>②中国子会社を設立</td><td>取得必須</td><td>7〜14ヶ月</td><td>最もクリーンだが初期投資・時間大</td></tr>
+<tr><td>③現地パートナー経由</td><td>パートナーが取得</td><td>4〜6週間</td><td>グローバルアカウント維持しつつ備案確保</td></tr>
+</table></div>
+<p class="note-inline">いずれの方式でも中国国内売上への納税・源泉徴収義務は発生（AppInChina記載）。</p>
+</section>
+
+<section class="block" id="push">
+<div class="eyebrow">05 / Push Notifications</div>
+<h2 class="htitle">プッシュ通知 — 今回の要「洗濯完了通知」の到達性</h2>
+<div class="box fact"><h4>FACT — 前提</h4><p>FCMは2014年以降Great Firewallで中国本土からアクセス不可。日本版がFCMを使っている場合、中国版では<b>ほぼ確実に別経路への置き換えが必要</b>。iOSのAPNsはApple独自インフラで中国本土でも到達すると業界的に広く認識されるが、公式ステートメントでは未確認（Tier3相当）。</p></div>
+<div class="tablewrap"><table>
+<tr><th>メーカー</th><th>サービス</th><th>2025-2026の動き</th></tr>
+<tr><td>Huawei</td><td>HMS Core Push Kit</td><td>—</td></tr>
+<tr><td>Xiaomi</td><td>Xiaomi Push</td><td>2026-07-01よりテンプレートメッセージ必須化</td></tr>
+<tr><td>OPPO</td><td>OPPO Push</td><td>既存ユーザーのテンプレート移行期限2025-12-31</td></tr>
+<tr><td>vivo</td><td>vivo Push</td><td>2026-01-01よりローカル通知の分類報告が必須化</td></tr>
+<tr><td>HONOR</td><td>HONOR Push Kit</td><td>—</td></tr>
+</table></div>
+<div class="grid">
+<div class="box hyp"><h4>分析</h4><p>各社「アカウント作れば終わり」ではなく、2025〜2026年にかけてテンプレート必須化・分類報告義務化など<b>仕様変更が相次いでいる</b>。初期実装コストに加え継続保守コストとして予算に織り込む必要。</p></div>
+<div class="box confirm"><h4>要確認</h4><p>極光推送（JPush）・個推（Getui）等の第三者集約SDKが各メーカー公式チャンネルを裏で束ねる形でマルチベンダー対応を提供。ただし契約条件・費用・データの扱い・日本企業が直接契約可能かは公開情報で確認できず、個別問い合わせが必要。</p></div>
+</div>
+<div class="box hyp"><h4>分析 — 特に重要</h4><p>Xiaomi(HyperOS)・OPPO(ColorOS)・vivo(OriginOS)・HONOR(MagicOS)はいずれもバッテリー最適化のためバックグラウンドプロセスを積極的に停止します。ホワイトリスト外のPushチャンネルは、アプリがバックグラウンド／スワイプで閉じられた／再起動後の状態で通知が届かない・遅延するケースが知られています。<b>洗濯完了通知はまさにこのパターン</b>にあたるため、単一SDKの導入だけでは到達率を保証できません。ホワイトリスト登録のご案内（自動起動許可・バッテリー最適化除外）、SMS等の代替通知、アプリ再起動時の状態確認など、複数の手段を組み合わせた設計が必要になります。</p></div>
+</section>
+
+<section class="block" id="pay">
+<div class="eyebrow">06 / Payments</div>
+<h2 class="htitle">Alipay / WeChat Pay — 「API連携できる」と「決済を開始できる」は別</h2>
+<div class="tablewrap"><table>
+<tr><th>項目</th><th>Alipay（企業アカウント）</th><th>WeChat Pay（商戸号）</th></tr>
+<tr><td>必要書類</td><td>営業執照・法定代表者身分証・対公口座情報</td><td>営業執照・法人身分証・対公銀行口座</td></tr>
+<tr><td>本人確認</td><td>法定代表者本人によるアプリでの顔認証（15分以内）</td><td>資料提出＋審査</td></tr>
+<tr><td>審査期間</td><td>3〜5営業日</td><td>1〜2営業日</td></tr>
+<tr><td>手数料</td><td>未取得（業種・契約形態による）</td><td>0.6%〜1%（業種カテゴリで変動）</td></tr>
+</table></div>
+<div class="box confirm"><h4>要確認 — 重要な区別</h4><p>Alipay+等の「越境（クロスボーダー）」商戸プログラムは<b>訪日・訪外中の中国人観光客が海外店舗で払う</b>ことを想定した仕組み。「中国国内に設置されたコインランドリー」が「中国居住の会員」から代金を受け取る今回の構図（純粋な中国国内取引）とは前提が異なる。正攻法は中国現地の通常商戸登録（対公口座・法人認証つき）で、<b>中国法人の存在が実質必須</b>と考えられる。決済代行会社・現地パートナーへの確認を強く推奨。</p></div>
+<div class="box hyp"><h4>分析</h4><p>API・SDKのドキュメントは公式に公開されており、技術的な連携そのもののハードルは高くありません。ただし「商用として決済を受け付ける」には、契約主体（法人格）・対公口座・法定代表者の本人確認・審査といった手続きが別途必要です。これらは弊社が代行できるものではなく、<b>契約主体は貴社（中国法人）</b>となります。弊社はAPI・SDK連携の技術実装を担当します。</p></div>
+</section>
+
+<section class="block" id="ad">
+<div class="eyebrow">07 / Advertising</div>
+<h2 class="htitle">広告配信 — 「日本版のSDKがそのまま使える」とは限らない</h2>
+<div class="box fact"><h4>FACT</h4><p>Google系広告サービス（AdMob等）は中国本土で機能しない。日本版がAdMob等を利用している場合、中国版では<b>広告配信の実装そのものを別ベンダーへ丸ごと差し替える必要がある</b>（設定変更でなく開発工数）。</p></div>
+<div class="grid three">
+<div class="box"><h4>穿山甲 / Pangle（ByteDance）</h4><p>本土向けと海外向けSDKは別物で相互流用不可。SDK規約でPIPL等の遵守・同意取得・必要最小限原則が明記。</p></div>
+<div class="box"><h4>優量匯（Tencent Ads）</h4><p>Tencentの広告配信ネットワーク。</p></div>
+<div class="box"><h4>Baidu 広告ネットワーク</h4><p>検索大手Baiduの広告配信。</p></div>
+</div>
+<div class="box confirm"><h4>要確認</h4><p>Apple ATTは中国配信アプリにも適用。中国独自ID「CAID」は2021年にAppleが事実上ブロックし、以降の正式な代替枠組みの成立は未確認。広告SDK選定時に最新状況の再確認が必要。<br><b>まず日本版で使用中の広告SDK/ネットワークの特定が調査の前提</b>（Google系なら全面差し替え、非Google系なら影響範囲を個別確認）。</p></div>
+</section>
+
+<section class="block" id="data">
+<div class="eyebrow">08 / Personal Information &amp; Data</div>
+<h2 class="htitle">個人情報・データ規制 — 押さえるべき論点の整理</h2>
+<p class="subhead">法的な判断は専門家・現地パートナーの領域です。ここでは開発を進めるうえで事前に把握しておくべき論点を整理します。</p>
+<div class="grid">
+<div class="box fact"><h4>FACT — 法的枠組み</h4><p>PIPL（個人情報保護法, 2021年11月施行）／DSL（データセキュリティ法, 2021年9月）／CSL（サイバーセキュリティ法, 2017年、2026年改正で越境データ違反の行政罰強化）。</p></div>
+<div class="box fact"><h4>FACT — 越境データ移転（2026-01-01施行）</h4><p>3ルート：<b>①CAC安全評価（必須）</b>＝重要インフラ or 年間100万人超の個人情報。<b>②標準契約（SCC）</b>＝10万〜100万人分。<b>③認証制度（新設）</b>＝中規模移転向けの第三者認証。</p></div>
+</div>
+<div class="box hyp"><h4>分析</h4><p>コインランドリー会員アプリの規模なら通常①の閾値（100万人）には達しにくく、越境移転するなら②か③が現実的。ただし「必ず中国国内サーバーが必要」とは断定できず、越境移転を行うかの設計判断（サーバー節）とセットで検討する。</p></div>
+<div class="box fact"><h4>FACT — 見落とされやすい</h4><p>2026年1月公表の意見募集稿で、アプリストアに<b>新規アプリの上架前に個人情報処理の規範性審査を行う義務</b>を課す方向。同年4月にはCACが33本のアプリの個人情報問題を実名通報。<b>ストア審査に機能面だけでなくプライバシー実務面の審査が組み込まれつつある</b>。今回のアプリが扱いうる個人情報：SMS認証・電話番号／会員情報／決済情報／QR・利用履歴／Pushトークン／広告関連デバイスID。いずれもPIPLの必要最小限原則・同意取得の対象。</p></div>
+</section>
+
+<section class="block" id="server">
+<div class="eyebrow">09 / Server &amp; Backend</div>
+<h2 class="htitle">サーバー・バックエンド — 「遅い」ではなく「不安定」の問題</h2>
+<div class="grid">
+<div class="box fact"><h4>FACT</h4><p>AWS China・Azure Chinaは現地パートナー法人（Sinnet、21Vianet等）経由でのみ運営される、グローバル版と構造的に別のサービス。グローバルアカウントから中国リージョンを単純に有効化できない。</p></div>
+<div class="box fact"><h4>FACT</h4><p>国内主要クラウド（Alibaba/Tencent/Huawei Cloud）を公開向けに使う場合も、利用者が有効なICP備案を保有していることが前提。ここでも中国法人への依存が発生。</p></div>
+</div>
+<div class="box hyp"><h4>分析</h4><p>日本にバックエンドを置いたまま中国向けにアプリ配信すること自体は技術的に可能。ただしAPI呼び出し・QRコード検証・決済コールバックなど「その場で洗濯機を動かす」体験に直結する通信は毎回Great Firewallを越え、<b>単純な速度低下でなく間欠的な遮断・不安定化のリスク</b>として現れうる（国内ホスティングは概ね100ms未満、越境は大きく変動）。リアルタイム性が要るQR起動フローでは中国国内バックエンドの優先度が相対的に高いが、費用・法人体制とのトレードオフであり断定はしない。</p></div>
+</section>
+
+<section class="block" id="qr">
+<div class="eyebrow">10 / QR Code</div>
+<h2 class="htitle">QRコード読み取り — コア機能だが規制リスクは低い</h2>
+<div class="grid">
+<div class="box fact"><h4>FACT</h4><p>標準的なQRコード（ISO/IEC 18004）読み取りに中国固有の規制上の制約は確認できず。QRスキャン決済は中国の無人・セルフサービス端末の主流UXで、コインランドリー用途として実績がある。</p></div>
+<div class="box confirm"><h4>要確認</h4><p>HarmonyOS NEXT対応時は<b>カメラ・QRスキャンの実装コードも個別再実装が必要</b>（Android版の使い回し不可）。洗濯機側QRコードの独自フォーマット・エンコード仕様は日本版アプリ・機器の仕様に依存するため、既存の仕様書を確認させていただく必要があります。</p></div>
+</div>
+</section>
+
+<section class="block" id="ops">
+<div class="eyebrow">11 / Operations &amp; Responsibility</div>
+<h2 class="htitle">保守運用・役割分担</h2>
+<h3>公開後に継続的に発生する対応</h3>
+<p>ストアアプリの更新申請、Push SDKの仕様変更対応（2025-2026だけでもXiaomi/OPPO/vivoで変更あり）、決済・広告SDKの更新、App備案の継続監査対応、規制変更（PIPL通達等）の反映、HarmonyOS等メーカーOS更新への追従。<b>保守は軽微な障害対応が中心、という想定は実態に合いにくく、ベンダー各社の仕様変更への追従を保守費用に見込んでおく必要があります。</b></p>
+<h3>役割分担 — 弊社と貴社（中国法人）の対応範囲</h3>
+<div class="tablewrap"><table>
+<tr><th>領域</th><th>弊社側で対応可能</th><th>貴社／中国法人側で必要</th></tr>
+<tr><td>アプリストア公開</td><td>ビルド・審査資料・技術対応</td><td>各社の企業アカウント認証（営業執照・対公口座・代表者確認）</td></tr>
+<tr><td>App備案</td><td>技術情報の提供支援</td><td>営業執照の提出、申請主体としての当局対応</td></tr>
+<tr><td>Alipay/WeChat Pay加盟店契約</td><td>API/SDK実装</td><td>対公口座、法定代表者の本人確認（顔認証含む）、加盟店契約締結</td></tr>
+<tr><td>Push（メーカー公式）</td><td>実装・複数SDK統合</td><td>各社デベロッパーアカウントの開設・維持</td></tr>
+<tr><td>広告SDK契約</td><td>実装・差し替え対応</td><td>広告ネットワークとの契約主体</td></tr>
+<tr><td>現地テスト・実機検証</td><td>テスト設計・自動化</td><td>現地端末・現地ネットワーク環境の用意</td></tr>
+<tr><td>個人情報保護法対応</td><td>実装レベル（最小権限、同意フロー）</td><td>最終的な法的整合性の確認（現地法務）</td></tr>
+</table></div>
+</section>
+
+<section class="block" id="budget">
+<div class="eyebrow">12 / Cost Drivers</div>
+<h2 class="htitle">費用・期間に影響する要因と、対応範囲の考え方</h2>
+<p class="subhead">「できる／できない」ではなく、どこにコストがかかり、どこから優先的に対応するか、という観点で整理しています。</p>
+<div class="grid three">
+<div class="box fact"><h4>Must</h4><p>iOSの中国向け差分対応、Android系ストア優先1〜2社対応、Push基本実装、Alipay/WeChat Pay SDK連携、既存広告SDKの置き換え要否判定</p></div>
+<div class="box hyp"><h4>Should</h4><p>複数の中国Androidストア横断対応、Push到達率向上の多層設計、中国国内バックエンド検討</p></div>
+<div class="box confirm"><h4>Could / Future</h4><p>HarmonyOS NEXTネイティブ対応、全5ストア完全対応、広告ネットワーク複数併用、リリース後の現地A/Bテスト</p></div>
+</div>
+<h3>費用に影響する要因</h3>
+<ul class="list">
+<li><b>Push：</b>単一SDKでは完結せず、メーカー別対応 or 集約SDKの契約・検証が必要。加えて2025-2026だけでも複数回の仕様変更対応が発生</li>
+<li><b>ストア対応：</b>各社への個別申請・個別審査・個別の実名/法人認証フロー</li>
+<li><b>広告：</b>日本版がGoogle系SDKの場合、実装の丸ごと差し替え</li>
+<li><b>HarmonyOS NEXT：</b>Androidコードの流用不可＝実質的に「もう1つのアプリ」に近い工数</li>
+<li><b>App備案・ICP：</b>直接コストよりも「取得までの時間」がボトルネック（自社法人で7〜14ヶ月／現地パートナー経由で4〜6週間）</li>
+<li><b>現地テスト：</b>日本から再現できないため、現地実機・現地回線でのテスト体制が別途必要</li>
+</ul>
+<p>初回のお打ち合わせでは、これらのうちどこを初期対応（必須）とし、どこを段階的な対応とするか、優先順位についてご相談させてください。</p>
+</section>
+
+<section class="block" id="flow">
+<div class="eyebrow">13 / The Whole Picture</div>
+<h2 class="htitle">中国展開を成立させるための全体像</h2>
+<div class="flow">
+<div class="step">日本版アプリ</div><div class="arrow">→</div>
+<div class="step">中国向け差分整理</div><div class="arrow">→</div>
+<div class="step">OS/端末<br>（HarmonyOS含む）</div><div class="arrow">→</div>
+<div class="step">ストア5社<br>+App備案</div><div class="arrow">→</div>
+<div class="step">Push<br>メーカー別+集約</div>
+</div>
+<div class="flow">
+<div class="step">決済<br>Alipay/WeChat Pay</div><div class="arrow">→</div>
+<div class="step">広告<br>SDK差し替え</div><div class="arrow">→</div>
+<div class="step">バックエンド<br>/データ</div><div class="arrow">→</div>
+<div class="step">現地法人・<br>アカウント・契約</div><div class="arrow">→</div>
+<div class="step">審査・公開・運用</div>
+</div>
+<p style="margin-top:14px">この流れの中で<b>「App備案」と「決済加盟店契約」の2つが、中国法人という同じ前提に依存します</b>。まずここを初回のお打ち合わせで確認できれば、他の論点（ストアの優先順位、Push設計、費用配分）はその前提の上で技術的に整理できます。</p>
+</section>
+
+<section class="block" id="table">
+<div class="eyebrow">14 / Risk Map</div>
+<h2 class="htitle">リスクマップ</h2>
+<p class="subhead">各論点の詳細は前章を参照ください。FACT／分析／要確認 の区別は各セクションのタグに対応しています。</p>
+<div class="tablewrap"><table>
+<tr><th>リスク</th><th>レベル</th><th>理由</th></tr>
+<tr><td>App備案（中国法人必須・数週間〜1年超）</td><td><span class="risk r1">🔴 高</span></td><td>公開の絶対条件。未着手だとスケジュール全体を左右</td></tr>
+<tr><td>決済加盟店契約の契約主体</td><td><span class="risk r1">🔴 高</span></td><td>中国法人による対公口座・本人確認が前提。貴社側の準備状況による</td></tr>
+<tr><td>Push到達率（バックグラウンド制限）</td><td><span class="risk r2">🟠 要確認</span></td><td>複数メーカーで既知の問題。設計で緩和可能だが完全解消は困難</td></tr>
+<tr><td>広告SDKの全面差し替え</td><td><span class="risk r2">🟠 要確認</span></td><td>日本版SDKが未特定のため影響範囲が見えない</td></tr>
+<tr><td>iOS ICP備案の将来強制化</td><td><span class="risk r2">🟠 要確認</span></td><td>現状は未強制だが前例から突然の方針転換がありうる</td></tr>
+<tr><td>HarmonyOS NEXT対応</td><td><span class="risk r3">🟡 条件次第</span></td><td>初期リリース必須にするかはシェア推計・予算次第</td></tr>
+<tr><td>越境データ移転の要否</td><td><span class="risk r3">🟡 条件次第</span></td><td>データ規模・バックエンド設計次第でルートが変わる</td></tr>
+<tr><td>QR読み取りの技術的実現性</td><td><span class="risk r4">🟢 比較的明確</span></td><td>規制上の制約なし、中国国内で実績のある方式</td></tr>
+<tr><td>Apple 3.1.5によるアプリ外決済の可否</td><td><span class="risk r4">🟢 比較的明確</span></td><td>ガイドライン上明記されている</td></tr>
+<tr><td>ゲーム版号の要否</td><td><span class="risk r4">🟢 比較的明確</span></td><td>非ゲームアプリのため非該当と考えられる</td></tr>
+</table></div>
+<p class="note-inline">現時点で断定を避けている論点：「App備案のサーバー所在地基準」「集約Push SDKの契約条件」「越境決済プログラムの中国国内取引への適用可否」「iOS ICP備案の将来強制化時期」。CAID/IDFA代替（2021年時点の情報が中心）とAPNsの中国到達性（実務上のコンセンサスであり公式未確認）は情報が相対的に古い／未確認のため、意思決定の直前に再確認することを推奨します。</p>
+</section>
+
+<section class="block" id="meeting">
+<div class="eyebrow">15 / Key Points</div>
+<h2 class="htitle">重要ポイントと確認事項</h2>
+<h3>特に重要な10項目</h3>
+<ol class="num10">
+<li><h4>App備案は中国法人がないと申請できない</h4><p class="mini"><b>影響：</b>スケジュール全体（4〜6週間〜14ヶ月）を左右。<b>確認事項：</b>中国法人の営業執照の有無・状態。</p></li>
+<li><h4>「中国法人がある」≠「準備完了」</h4><p class="mini"><b>影響：</b>ストア・決済・Pushはそれぞれ個別の認証・契約が必要。<b>確認事項：</b>どのアカウント・契約が取得済みか個別に。</p></li>
+<li><h4>FCM（Googleの通知基盤）は中国で機能しない</h4><p class="mini"><b>影響：</b>「洗濯完了通知」の設計に直結。<b>確認事項：</b>通知の許容遅延・失敗時の代替手段の希望。</p></li>
+<li><h4>中国メーカー端末はバックグラウンド通知を積極的に止める</h4><p class="mini"><b>影響：</b>多層的な通知設計・ユーザー案内が必要。<b>確認事項：</b>通知が届かない場合の許容度。</p></li>
+<li><h4>決済は「技術連携」と「契約」が別問題</h4><p class="mini"><b>影響：</b>契約主体は貴社（中国法人）側となる点が明確に。<b>確認事項：</b>決済契約の主体・現状。</p></li>
+<li><h4>日本版の広告SDKがGoogle系なら総入れ替え</h4><p class="mini"><b>影響：</b>費用見積もりの前提が変わる。<b>確認事項：</b>現在使用中の広告SDK名。</p></li>
+<li><h4>HarmonyOS NEXTはAndroidと別物</h4><p class="mini"><b>影響：</b>対応する場合は実質的にもう1本アプリを作る工数。<b>確認事項：</b>初期リリースでの対応要否。</p></li>
+<li><h4>Apple 3.1.5により決済手数料面は有利</h4><p class="mini"><b>影響：</b>コスト面で有利に働く前向きな材料。<b>確認事項：</b>特段の対応は不要（共有のみ）。</p></li>
+<li><h4>2026年、ストアの個人情報事前審査が強化されている</h4><p class="mini"><b>影響：</b>審査落ちリスクの新しい要因。<b>確認事項：</b>取得予定データの用途・同意設計への理解。</p></li>
+<li><h4>市場シェアの数字だけでは対応OSを決められない</h4><p class="mini"><b>影響：</b>対応OSの優先順位づけの土台。<b>確認事項：</b>対象地域・想定利用者層。</p></li>
+</ol>
+<h3>初回のお打ち合わせでご確認いただきたい事項</h3>
+<div class="grid">
+<div class="box confirm"><h4>法人・体制</h4><ul class="list"><li>中国法人の名義・営業執照の状態</li><li>法定代表者はどなたで、本人確認手続きにご協力いただけるか</li><li>中国側に技術／事業のご担当者がいるか</li></ul></div>
+<div class="box confirm"><h4>アカウント・契約の現状</h4><ul class="list"><li>各ストアの開発者アカウント取得済みか</li><li>Alipay/WeChat Payの契約有無</li><li>既存の広告契約・SDKの有無</li></ul></div>
+<div class="box confirm"><h4>優先順位・スコープ</h4><ul class="list"><li>対象地域・店舗の具体的な立地</li><li>必須ストアの絞り込み方針</li><li>HarmonyOS対応を初期リリースに含めるか</li></ul></div>
+<div class="box confirm"><h4>日本版アプリの実態</h4><ul class="list"><li>利用中の広告SDK・Push基盤の具体名</li><li>QRコードの仕様（独自フォーマットか）</li><li>ソースコード・仕様書の提供可否</li></ul></div>
+<div class="box confirm"><h4>予算・スケジュール</h4><ul class="list"><li>ご予算の範囲と、対応範囲の優先順位</li><li>App備案の申請期間（4〜6週間〜14ヶ月）を見込めるスケジュールか</li></ul></div>
+<div class="box confirm"><h4>リスク許容度</h4><ul class="list"><li>iOS ICP備案未提出のまま公開するリスクを許容できるか</li><li>Push到達率が100%でない前提を許容できるか</li></ul></div>
+</div>
+</section>
+
+<footer class="endsrc" id="sources">
+<div class="eyebrow">Sources</div>
+<h2 class="htitle" style="font-size:18px">出典（主要）</h2>
+<p class="subhead">法的判断は専門家・現地パートナーへの確認を要する。市場データは調査時点のスナップショットであり、提案提出前の再確認を推奨。</p>
+<ul class="source-list">
+<li><span class="stitle">StatCounter Global Stats — Mobile OS Market Share China</span>https://gs.statcounter.com/os-market-share/mobile/china/</li>
+<li><span class="stitle">Counterpoint Research — China Smartphone Market Q1 2026</span>https://counterpointresearch.com/en/insights/china-smartphone-market-q1-2026</li>
+<li><span class="stitle">Apple — App Review Guidelines</span>https://developer.apple.com/app-store/review/guidelines/</li>
+<li><span class="stitle">AppInChina — App Store China / Mobile App Filing guides</span>https://appinchina.co/blog/</li>
+<li><span class="stitle">Norton Rose Fulbright / Linklaters TechInsights — China app filing regime</span>https://www.nortonrosefulbright.com/ ／ https://techinsights.linklaters.com/</li>
+<li><span class="stitle">Huawei / HONOR / vivo / Mi Developers（Push・AppGallery Connect 等）</span>https://developer.huawei.com/ ／ https://developer.honor.com/ ／ https://dev.vivo.com.cn/ ／ http://en.dev.mi.com/</li>
+<li><span class="stitle">WeChat Pay Merchant Platform / Alipay Open Platform・Antom Docs</span>https://pay.weixin.qq.com/ ／ https://open.alipay.com/ ／ https://global.alipay.com/docs/</li>
+<li><span class="stitle">Firebase Cloud Messaging Documentation</span>https://firebase.google.com/docs/cloud-messaging</li>
+<li><span class="stitle">CAC（国家インターネット情報弁公室）— 個人信息収集使用規定 / 通報</span>https://www.cac.gov.cn/</li>
+<li><span class="stitle">Chambers and Partners — China Cross-Border Personal Information Transfer Regulations</span>https://chambers.com/articles/the-final-piece-of-chinas-cross-border-personal-information-transfer-regulations</li>
+<li><span class="stitle">穿山甲广告平台 — SDK合规使用说明</span>https://www.csjplatform.com/terms/compliance-guide</li>
+<li><span class="stitle">AdExchanger — CAID, The Chinese IDFA Workaround</span>https://www.adexchanger.com/data-driven-thinking/going-behind-the-scenes-with-caid-the-chinese-idfa-workaround-causing-such-a-headache-for-apple/</li>
+<li><span class="stitle">Niko Partners — Game License (Banhao) Requirements</span>https://nikopartners.com/game-regulations-in-china-everything-you-need-to-know/</li>
+</ul>
+</footer>
+</main>
+</div>
+</body>
+</html>

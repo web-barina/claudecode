@@ -1,0 +1,16 @@
+1    【残1件】/sakasai/ の grw-img のsrcを新サーバー（https://test.td-group.jp/.../ChIJq-RpIuSCGGAR...jpg、新サーバーに実体あり200）へ。プラグインのキャッシュ／シリアライズmeta。→ 完了後、全ページで test-page.site 参照ゼロを再確認（http・https両方）    入江    ☆公開前必須
+2    - [ ] シリアライズデータの手動更新完了 → 旧ドメイン参照ゼロ確認 → td-group.test-page.site 完全削除    入江    ☆公開前必須
+3    - [ ] 既存本番サイトからの差し替え：サイトURL/ホームURLを https://td-group.jp に変更／DB一括置換 http://test.td-group.jp → https://td-group.jp（シリアライズ注意）／canonical・OGP・内部リンク・srcset・混在コンテンツの https 統一    入江    ☆公開前必須
+    テスト環境、お問い合わせメール確認(自動返信など)        
+4    - [ ] http→https 301リダイレクトの確認（本番はSSL導入済み）    入江    ☆公開前必須
+5    - [ ] お問い合わせフォーム：本番送信先設定、SMTP（またはGoogle送信）設定、送信テスト（管理者通知＋自動返信）、サンクスページ遷移、スパム対策（reCAPTCHA等）    入江    ☆公開前必須
+6    - [ ] noindex,nofollow 解除（AIOSEO）、robots.txt・sitemap・llms.txt のドメイン確認    入江    ☆公開前必須
+7    - campaign01〜03 PNG（各1MB超）を WebP化・リサイズ・圧縮（各50〜100KB）    入江    
+8    - hero.webp の loading="lazy" 削除＋fetchpriority="high"、aria-hidden と alt の矛盾解消    入江    
+9    - jQuery / jquery-migrate / CF7スクリプトに defer    入江    
+10    - コピーライト年を自動出力化    入江    
+11    - ロゴ alt 統一・ヘッダー/フッターロゴにホバー・「TOPへ戻る」ボタン確認    入江    
+12    - グロナビ親項目 href="#" を実URLへ（可能な範囲）    入江    
+13    - TOPのh1方針決定後に反映    入江    
+14    - [ ] 推薦者の声セクション「3名で公開」のレイアウト実装（大場と連携）    入江    片山様のコメントが公開時までに間に合わない場合は、3名で表示
+15    - [ ] 本番公開作業（既存サイトから新サイトへ差し替え）→ 公開後の全ページ表示・フォーム・SSL最終確認    入江    

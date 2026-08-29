@@ -1,0 +1,503 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+marketing-research スキル STEP8：research.json → ディレクション資料フォーマットの Excel。
+
+使い方:
+  python3 build_excel.py --input /tmp/research_占い/research.json --outdir ~/Desktop
+
+出力:
+  {outdir}/marketing_research_{industry}_{YYYYMMDD}.xlsx
+  {outdir}/positioning_map_{industry}.png   （シートにも貼り付け）
+  {outdir}/positioning_map_{industry}.svg   （共有用）
+
+シート: 市場調査 / 競合調査 / SWOT分析 / ニーズ分析①キーワード /
+        ニーズ分析②検索ワード質問 / ペルソナ / ポジショニングマップ
+（PDFの「スケジュール」「ヒアリングシート」「ワイヤーフレーム」はユーザーが追記。3C分析シートは無し）
+"""
+
+import argparse
+import datetime as _dt
+import html
+import json
+import os
+import sys
+
+import openpyxl
+from openpyxl.drawing.image import Image as XLImage
+from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
+from openpyxl.utils import get_column_letter
+
+# ---------- デザイン ----------
+HEADER_BG = "2E4057"
+SECTION_BG = "4A90D9"
+GROUP_BG = "6C5CE7"          # SWOT/ペルソナの見出し帯
+ACCENT_BG = "F0F4F8"
+WHITE = "FFFFFF"
+BORDER = "CCCCCC"
+
+FONT_TITLE = Font(name="Yu Gothic", bold=True, size=14)
+FONT_HEADER = Font(name="Yu Gothic", bold=True, color=WHITE, size=10)
+FONT_SECTION = Font(name="Yu Gothic", bold=True, color=WHITE, size=10)
+FONT_BODY = Font(name="Yu Gothic", size=9)
+FONT_BODY_B = Font(name="Yu Gothic", bold=True, size=9)
+
+FILL_HEADER = PatternFill("solid", fgColor=HEADER_BG)
+FILL_SECTION = PatternFill("solid", fgColor=SECTION_BG)
+FILL_GROUP = PatternFill("solid", fgColor=GROUP_BG)
+FILL_ACCENT = PatternFill("solid", fgColor=ACCENT_BG)
+
+_side = Side(style="thin", color=BORDER)
+BOX = Border(left=_side, right=_side, top=_side, bottom=_side)
+
+TOP_WRAP = Alignment(horizontal="left", vertical="top", wrap_text=True)
+CENTER = Alignment(horizontal="center", vertical="center", wrap_text=True)
+
+
+def _j(v):
+    """リスト → 箇条書き文字列 / その他 → str。"""
+    if v is None:
+        return ""
+    if isinstance(v, (list, tuple)):
+        out = []
+        for x in v:
+            x = str(x).strip()
+            out.append(x if x.startswith(("・", "①", "②", "③", "④", "⑤", "【", "-")) else "・" + x)
+        return "\n".join(out)
+    return str(v)
+
+
+def _cell(ws, r, c, value, *, font=FONT_BODY, fill=None, align=TOP_WRAP, border=BOX):
+    cell = ws.cell(row=r, column=c, value=value)
+    cell.font = font
+    cell.alignment = align
+    if fill:
+        cell.fill = fill
+    if border:
+        cell.border = border
+    return cell
+
+
+def _title(ws, text, span):
+    ws.cell(row=1, column=1, value=text).font = FONT_TITLE
+    ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=span)
+    ws.row_dimensions[1].height = 22
+
+
+def _table_header(ws, row, headers):
+    for i, h in enumerate(headers, start=1):
+        _cell(ws, row, i, h, font=FONT_HEADER, fill=FILL_HEADER, align=CENTER)
+
+
+def _widths(ws, widths):
+    for i, w in enumerate(widths, start=1):
+        ws.column_dimensions[get_column_letter(i)].width = w
+
+
+def _autoheight(ws, first_row=2, chars_per_line=42, line_h=13, min_h=18, max_h=320):
+    for row in ws.iter_rows(min_row=first_row):
+        longest = 1
+        for cell in row:
+            if cell.value is None:
+                continue
+            for part in str(cell.value).split("\n"):
+                width = ws.column_dimensions[cell.column_letter].width or 10
+                cpl = max(8, width * 1.05)
+                longest = max(longest, -(-len(part) // int(cpl)) or 1)
+        h = min(max_h, max(min_h, longest * line_h))
+        cur = ws.row_dimensions[row[0].row].height
+        if cur is None or cur < h:
+            ws.row_dimensions[row[0].row].height = h
+
+
+# ---------- 各シート ----------
+def sheet_market(wb, d):
+    ws = wb.create_sheet("市場調査")
+    m = d.get("market", {}) or {}
+    _title(ws, f"市場調査：{d.get('industry','')}", 3)
+    ws.cell(row=2, column=1, value=f"分析日：{d.get('analyzed_at','')}").font = FONT_BODY
+    _table_header(ws, 3, ["調査項目", "詳細（観点）", "記入欄"])
+    rows = [
+        ("市場規模", "市場全体の規模感", m.get("market_size")),
+        ("業界定義", "どのようなサービス・商品があるのか", m.get("industry_definition")),
+        ("サービス・商品の細分化", "業界のサービス・商品を細分化できるか", m.get("service_breakdown")),
+        ("業界の常識", "業界の基本的な慣習・商習慣", _j(m.get("industry_norms"))),
+        ("主要企業", "市場をリードしている企業はどこか", m.get("major_players")),
+        ("価格帯", "サービス・商品の一般的な価格", m.get("price_range")),
+        ("流通方法", "商品・サービスの提供方法", _j(m.get("distribution"))),
+        ("販売促進方法", "どのような販売促進があるのか", _j(m.get("promotion"))),
+        ("顧客層", "BtoB / BtoC、ターゲット層の特徴", m.get("customer_segments")),
+        ("トレンド", "消費者の動向、いま何が求められているか", _j(m.get("trends"))),
+    ]
+    r = 4
+    for item, detail, val in rows:
+        _cell(ws, r, 1, item, font=FONT_BODY_B, fill=FILL_ACCENT)
+        _cell(ws, r, 2, detail, fill=FILL_ACCENT)
+        _cell(ws, r, 3, val or "")
+        r += 1
+    srcs = m.get("sources") or []
+    if srcs:
+        _cell(ws, r, 1, "参考URL", font=FONT_BODY_B, fill=FILL_ACCENT)
+        _cell(ws, r, 2, "", fill=FILL_ACCENT)
+        _cell(ws, r, 3, "\n".join(srcs))
+    _widths(ws, [22, 30, 90])
+    _autoheight(ws, 4)
+
+
+def sheet_competitor(wb, d):
+    ws = wb.create_sheet("競合調査")
+    c = d.get("competitors", {}) or {}
+    comps = c.get("companies", []) or []
+    _title(ws, f"競合調査：{d.get('industry','')}", 1 + max(1, len(comps)))
+    _cell(ws, 2, 1, "競合選定基準", font=FONT_BODY_B, fill=FILL_ACCENT)
+    _cell(ws, 2, 2, c.get("selection_criteria", ""))
+    if len(comps) > 1:
+        ws.merge_cells(start_row=2, start_column=2, end_row=2, end_column=1 + len(comps))
+
+    fields = [
+        ("区分", "size"), ("サイトURL", "url"),
+        ("キャッチコピー", "catchcopy"), ("サービス", "service"), ("価格帯", "price_range"),
+        ("デザイン", "design"), ("機能", "features"), ("コンテンツ内容", "content"),
+        ("専門領域・取扱い範囲", "coverage"), ("対応時間・体制", "operation"),
+        ("特徴①", "highlight1"), ("特徴②", "highlight2"), ("特徴③", "highlight3"),
+        ("強み", "strengths"), ("弱み", "weaknesses"),
+    ]
+    start = 4
+    _cell(ws, start, 1, "調査項目", font=FONT_HEADER, fill=FILL_HEADER, align=CENTER)
+    for ci, comp in enumerate(comps, start=2):
+        _cell(ws, start, ci, comp.get("name", f"競合{ci-1}"),
+              font=FONT_HEADER, fill=FILL_HEADER, align=CENTER)
+    for ri, (label, key) in enumerate(fields, start=start + 1):
+        _cell(ws, ri, 1, label, font=FONT_BODY_B, fill=FILL_ACCENT)
+        for ci, comp in enumerate(comps, start=2):
+            v = comp.get(key)
+            _cell(ws, ri, ci, _j(v) if isinstance(v, list) else (v or ""))
+    _widths(ws, [20] + [34] * max(1, len(comps)))
+    _autoheight(ws, start + 1)
+
+
+def _swot_block(ws, r, label, items, color):
+    _cell(ws, r, 1, label, font=Font(name="Yu Gothic", bold=True, color=WHITE, size=11),
+          fill=PatternFill("solid", fgColor=color), align=CENTER)
+    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=3)
+    r += 1
+    for it in items or []:
+        _cell(ws, r, 1, "", fill=FILL_ACCENT)
+        _cell(ws, r, 2, _j(it.get("item")) if isinstance(it.get("item"), list) else it.get("item", ""))
+        _cell(ws, r, 3, it.get("web", ""))
+        r += 1
+    return r
+
+
+def sheet_swot(wb, d):
+    ws = wb.create_sheet("SWOT分析")
+    s = d.get("swot", {}) or {}
+    _title(ws, f"SWOT分析：{d.get('industry','')}", 3)
+    _table_header(ws, 3, ["SWOT", "具体的な項目", "Webサイトへの打ち出し"])
+    r = 4
+    r = _swot_block(ws, r, "強み（Strength）", s.get("strengths"), "27AE60")
+    r = _swot_block(ws, r, "弱み（Weakness）", s.get("weaknesses"), "E67E22")
+    r = _swot_block(ws, r, "機会（Opportunity）", s.get("opportunities"), "2980B9")
+    r = _swot_block(ws, r, "脅威（Threat）", s.get("threats"), "C0392B")
+    cross = s.get("cross") or {}
+    if cross:
+        r += 1
+        _cell(ws, r, 1, "クロス分析", font=FONT_SECTION, fill=FILL_SECTION, align=CENTER)
+        ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=3)
+        r += 1
+        for k, name in [("SO", "強み×機会（積極化）"), ("ST", "強み×脅威（差別化）"),
+                        ("WO", "弱み×機会（段階的改善）"), ("WT", "弱み×脅威（防衛・撤退）")]:
+            _cell(ws, r, 1, k, font=FONT_BODY_B, fill=FILL_ACCENT)
+            _cell(ws, r, 2, name, fill=FILL_ACCENT)
+            _cell(ws, r, 3, cross.get(k, ""))
+            r += 1
+    _widths(ws, [20, 46, 60])
+    _autoheight(ws, 4)
+
+
+def sheet_needs_kw(wb, d):
+    ws = wb.create_sheet("ニーズ分析①キーワード")
+    _title(ws, f"ニーズ分析①（キーワード）：{d.get('industry','')}", 4)
+    _table_header(ws, 3, ["キーワード", "月間平均検索ボリューム", "抱えている課題",
+                          "このニーズにどう応えるか（サイトへの活用案）"])
+    r = 4
+    for row in d.get("needs_keywords", []) or []:
+        _cell(ws, r, 1, row.get("keyword", ""), font=FONT_BODY_B)
+        _cell(ws, r, 2, row.get("volume", ""), align=CENTER)
+        _cell(ws, r, 3, _j(row.get("problem")))
+        _cell(ws, r, 4, _j(row.get("site_use")))
+        r += 1
+    _widths(ws, [26, 20, 44, 60])
+    _autoheight(ws, 4)
+
+
+def sheet_needs_qa(wb, d):
+    ws = wb.create_sheet("ニーズ分析②検索ワード質問")
+    _title(ws, f"ニーズ分析②（検索ワード質問）：{d.get('industry','')}", 5)
+    _table_header(ws, 3, ["質問内容", "情報ソース（URL）", "抱えている課題",
+                          "このニーズにどう応えるか（サイトへの活用案）", "キーワード"])
+    r = 4
+    for row in d.get("needs_qa", []) or []:
+        _cell(ws, r, 1, row.get("question", ""))
+        _cell(ws, r, 2, row.get("source", ""))
+        _cell(ws, r, 3, _j(row.get("problem")))
+        _cell(ws, r, 4, _j(row.get("site_use")))
+        _cell(ws, r, 5, row.get("keyword", ""), align=CENTER)
+        r += 1
+    _widths(ws, [46, 34, 40, 54, 20])
+    _autoheight(ws, 4)
+
+
+def sheet_persona(wb, d):
+    ws = wb.create_sheet("ペルソナ")
+    _title(ws, f"ペルソナ設計：{d.get('industry','')}", 3)
+    r = 3
+    for p in d.get("personas", []) or []:
+        _cell(ws, r, 1, f"第{p.get('no','')}ペルソナ  {p.get('title','')}",
+              font=Font(name="Yu Gothic", bold=True, color=WHITE, size=11),
+              fill=FILL_GROUP, align=CENTER)
+        ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=3)
+        r += 1
+        _table_header(ws, r, ["項目", "詳細", "メモ（根拠）"])
+        r += 1
+        for row in p.get("rows", []) or []:
+            _cell(ws, r, 1, row.get("item", ""), font=FONT_BODY_B, fill=FILL_ACCENT)
+            _cell(ws, r, 2, row.get("detail", ""))
+            _cell(ws, r, 3, row.get("basis", ""))
+            r += 1
+        r += 1
+    _widths(ws, [34, 60, 46])
+    _autoheight(ws, 3)
+
+
+# ---------- ポジショニングマップ描画 ----------
+def _find_font(size):
+    from PIL import ImageFont
+    cands = [
+        "/System/Library/Fonts/ヒラギノ角ゴシック W4.ttc",
+        "/System/Library/Fonts/ヒラギノ角ゴシック W3.ttc",
+        "/System/Library/Fonts/Hiragino Sans GB.ttc",
+        "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
+        "/Library/Fonts/Arial Unicode.ttf",
+        "/System/Library/Fonts/AquaKana.ttc",
+    ]
+    for p in cands:
+        if os.path.exists(p):
+            try:
+                return ImageFont.truetype(p, size)
+            except Exception:
+                continue
+    return ImageFont.load_default()
+
+
+def render_positioning_png(pos, path, W=1000, H=1000):
+    from PIL import Image, ImageDraw
+    img = Image.new("RGB", (W, H), "white")
+    dr = ImageDraw.Draw(img, "RGBA")
+    f_title = _find_font(34)
+    f_axis = _find_font(22)
+    f_lbl = _find_font(20)
+
+    m = 130
+    ox0, oy0, ox1, oy1 = m, m, W - m, H - m
+    cx, cy = (ox0 + ox1) // 2, (oy0 + oy1) // 2
+
+    ax = pos.get("axis_x", {}) or {}
+    ay = pos.get("axis_y", {}) or {}
+    dr.text((W // 2, 30), "ポジショニングマップ", font=f_title, fill="#2E2E2E", anchor="ma")
+
+    dr.line((ox0, cy, ox1, cy), fill="#444", width=3)
+    dr.line((cx, oy0, cx, oy1), fill="#444", width=3)
+    for pts in [((ox1, cy), (ox1 - 14, cy - 8), (ox1 - 14, cy + 8)),
+                ((cx, oy0), (cx - 8, oy0 + 14), (cx + 8, oy0 + 14))]:
+        dr.polygon(pts, fill="#444")
+
+    dr.text((W // 2, oy0 - 30), ay.get("top", ""), font=f_axis, fill="#6C5CE7", anchor="ma")
+    dr.text((W // 2, oy1 + 12), ay.get("bottom", ""), font=f_axis, fill="#6C5CE7", anchor="ma")
+    dr.text((ox0 - 20, cy), ax.get("left", ""), font=f_axis, fill="#6C5CE7", anchor="rm")
+    dr.text((ox1 + 20, cy), ax.get("right", ""), font=f_axis, fill="#6C5CE7", anchor="lm")
+
+    def place(x, y):
+        return ox0 + x * (ox1 - ox0), oy1 - y * (oy1 - oy0)
+
+    items = list(pos.get("companies", []) or [])
+    cl = pos.get("client")
+    if cl:
+        cl = dict(cl)
+        cl["is_client"] = True
+        cl.setdefault("size", 1.4)
+        items.append(cl)
+
+    for it in items:
+        px, py = place(float(it.get("x", 0.5)), float(it.get("y", 0.5)))
+        rad = 34 * float(it.get("size", 1.0))
+        px = min(max(px, ox0 + rad), ox1 - rad)
+        py = min(max(py, oy0 + rad), oy1 - rad)
+        if it.get("is_client"):
+            fill, outline, tcol = (108, 92, 231, 230), "#5B4BD6", "#FFFFFF"
+        else:
+            fill, outline, tcol = (108, 92, 231, 60), (108, 92, 231, 110), "#5B4BD6"
+        dr.ellipse((px - rad, py - rad, px + rad, py + rad), fill=fill, outline=outline, width=2)
+        name = str(it.get("name", ""))
+        if len(name) > 6:
+            mid = -(-len(name) // 2)
+            name = name[:mid] + "\n" + name[mid:]
+        dr.multiline_text((px, py), name, font=f_lbl, fill=tcol, anchor="mm",
+                          align="center", spacing=2)
+
+    img.save(path)
+
+
+def render_positioning_svg(pos, path, W=900, H=900):
+    ax = pos.get("axis_x", {}) or {}
+    ay = pos.get("axis_y", {}) or {}
+    m = 120
+    ox0, oy0, ox1, oy1 = m, m, W - m, H - m
+    cx, cy = (ox0 + ox1) / 2, (oy0 + oy1) / 2
+
+    def esc(s):
+        return html.escape(str(s or ""))
+
+    def place(x, y):
+        return ox0 + float(x) * (ox1 - ox0), oy1 - float(y) * (oy1 - oy0)
+
+    p = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" '
+         f'font-family="Hiragino Sans, Yu Gothic, sans-serif">',
+         f'<rect width="{W}" height="{H}" fill="#fff"/>',
+         f'<text x="{W/2}" y="46" font-size="30" font-weight="bold" fill="#2e2e2e" text-anchor="middle">ポジショニングマップ</text>',
+         f'<line x1="{ox0}" y1="{cy}" x2="{ox1}" y2="{cy}" stroke="#444" stroke-width="3"/>',
+         f'<line x1="{cx}" y1="{oy0}" x2="{cx}" y2="{oy1}" stroke="#444" stroke-width="3"/>',
+         f'<text x="{W/2}" y="{oy0-16}" font-size="20" fill="#6c5ce7" text-anchor="middle">{esc(ay.get("top"))}</text>',
+         f'<text x="{W/2}" y="{oy1+30}" font-size="20" fill="#6c5ce7" text-anchor="middle">{esc(ay.get("bottom"))}</text>',
+         f'<text x="{ox0-14}" y="{cy}" font-size="20" fill="#6c5ce7" text-anchor="end" dominant-baseline="middle">{esc(ax.get("left"))}</text>',
+         f'<text x="{ox1+14}" y="{cy}" font-size="20" fill="#6c5ce7" text-anchor="start" dominant-baseline="middle">{esc(ax.get("right"))}</text>']
+
+    items = list(pos.get("companies", []) or [])
+    cl = pos.get("client")
+    if cl:
+        cl = dict(cl); cl["is_client"] = True; cl.setdefault("size", 1.4)
+        items.append(cl)
+    for it in items:
+        px, py = place(it.get("x", 0.5), it.get("y", 0.5))
+        r = 32 * float(it.get("size", 1.0))
+        if it.get("is_client"):
+            p.append(f'<circle cx="{px}" cy="{py}" r="{r}" fill="#6c5ce7" fill-opacity="0.9" stroke="#5b4bd6" stroke-width="2"/>')
+            p.append(f'<text x="{px}" y="{py}" font-size="18" fill="#fff" text-anchor="middle" dominant-baseline="middle">{esc(it.get("name"))}</text>')
+        else:
+            p.append(f'<circle cx="{px}" cy="{py}" r="{r}" fill="#6c5ce7" fill-opacity="0.22" stroke="#6c5ce7" stroke-opacity="0.4"/>')
+            p.append(f'<text x="{px}" y="{py}" font-size="18" fill="#5b4bd6" text-anchor="middle" dominant-baseline="middle">{esc(it.get("name"))}</text>')
+    p.append("</svg>")
+    with open(path, "w", encoding="utf-8") as fh:
+        fh.write("\n".join(p))
+
+
+def sheet_positioning(wb, d, png_path):
+    ws = wb.create_sheet("ポジショニングマップ")
+    pos = d.get("positioning", {}) or {}
+    _title(ws, f"ポジショニングマップ：{d.get('industry','')}", 5)
+    ax, ay = pos.get("axis_x", {}) or {}, pos.get("axis_y", {}) or {}
+    r = 3
+    _cell(ws, r, 1, "X軸", font=FONT_BODY_B, fill=FILL_ACCENT)
+    _cell(ws, r, 2, f"{ax.get('left','')} ⇔ {ax.get('right','')}")
+    _cell(ws, r, 3, ax.get("why", ""))
+    r += 1
+    _cell(ws, r, 1, "Y軸", font=FONT_BODY_B, fill=FILL_ACCENT)
+    _cell(ws, r, 2, f"{ay.get('bottom','')} ⇔ {ay.get('top','')}")
+    _cell(ws, r, 3, ay.get("why", ""))
+    r += 2
+    _table_header(ws, r, ["企業", "X（0-1）", "Y（0-1）", "規模", "ポジションの根拠"])
+    r += 1
+    for c in pos.get("companies", []) or []:
+        _cell(ws, r, 1, c.get("name", ""), font=FONT_BODY_B)
+        _cell(ws, r, 2, c.get("x", ""), align=CENTER)
+        _cell(ws, r, 3, c.get("y", ""), align=CENTER)
+        _cell(ws, r, 4, c.get("size", ""), align=CENTER)
+        _cell(ws, r, 5, c.get("note", ""))
+        r += 1
+    cl = pos.get("client")
+    if cl:
+        _cell(ws, r, 1, f"★ {cl.get('name','クライアント')}", font=FONT_BODY_B, fill=FILL_ACCENT)
+        _cell(ws, r, 2, cl.get("x", ""), align=CENTER, fill=FILL_ACCENT)
+        _cell(ws, r, 3, cl.get("y", ""), align=CENTER, fill=FILL_ACCENT)
+        _cell(ws, r, 4, cl.get("size", 1.4), align=CENTER, fill=FILL_ACCENT)
+        _cell(ws, r, 5, cl.get("note", ""), fill=FILL_ACCENT)
+        r += 1
+    r += 1
+    _cell(ws, r, 1, "示唆", font=FONT_BODY_B, fill=FILL_ACCENT)
+    _cell(ws, r, 2, pos.get("insight", ""))
+    ws.merge_cells(start_row=r, start_column=2, end_row=r, end_column=5)
+    r += 1
+    for i, a in enumerate(pos.get("alt_axes", []) or [], start=1):
+        _cell(ws, r, 1, f"代替軸案{i}", font=FONT_BODY_B, fill=FILL_ACCENT)
+        _cell(ws, r, 2, f"X: {a.get('x','')} / Y: {a.get('y','')} — {a.get('when','')}")
+        ws.merge_cells(start_row=r, start_column=2, end_row=r, end_column=5)
+        r += 1
+    _widths(ws, [26, 16, 16, 10, 64])
+    _autoheight(ws, 3)
+    if png_path and os.path.exists(png_path):
+        img = XLImage(png_path)
+        img.width, img.height = 520, 520
+        ws.add_image(img, f"A{r + 2}")
+
+
+# ---------- メイン ----------
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--input", required=True)
+    ap.add_argument("--outdir", default=os.path.expanduser("~/Desktop"))
+    args = ap.parse_args()
+
+    with open(os.path.expanduser(args.input), encoding="utf-8") as fh:
+        d = json.load(fh)
+
+    d.setdefault("analyzed_at", _dt.date.today().isoformat())
+    industry = (d.get("industry") or "業界").replace(" ", "_").replace("/", "_")
+    outdir = os.path.expanduser(args.outdir)
+    os.makedirs(outdir, exist_ok=True)
+    stamp = _dt.date.today().strftime("%Y%m%d")
+
+    warn = [k for k in ("market", "competitors", "swot", "needs_keywords",
+                        "needs_qa", "personas", "positioning") if not d.get(k)]
+    if warn:
+        print(f"⚠ 未入力キー: {', '.join(warn)}（空欄で出力します）", file=sys.stderr)
+
+    png_path = os.path.join(outdir, f"positioning_map_{industry}.png")
+    svg_path = os.path.join(outdir, f"positioning_map_{industry}.svg")
+    pos = d.get("positioning") or {}
+    if pos:
+        try:
+            render_positioning_png(pos, png_path)
+        except Exception as e:
+            print(f"⚠ PNG描画スキップ: {e}", file=sys.stderr)
+            png_path = None
+        try:
+            render_positioning_svg(pos, svg_path)
+        except Exception as e:
+            print(f"⚠ SVG描画スキップ: {e}", file=sys.stderr)
+    else:
+        png_path = None
+
+    wb = openpyxl.Workbook()
+    wb.remove(wb.active)
+    sheet_market(wb, d)
+    sheet_competitor(wb, d)
+    sheet_swot(wb, d)
+    sheet_needs_kw(wb, d)
+    sheet_needs_qa(wb, d)
+    sheet_persona(wb, d)
+    sheet_positioning(wb, d, png_path)
+
+    for ws in wb.worksheets:
+        ws.sheet_view.showGridLines = False
+        ws.freeze_panes = "A4"
+
+    xlsx = os.path.join(outdir, f"marketing_research_{industry}_{stamp}.xlsx")
+    wb.save(xlsx)
+    print(f"✅ {xlsx}")
+    if png_path:
+        print(f"   {png_path}")
+        print(f"   {svg_path}")
+
+
+if __name__ == "__main__":
+    main()

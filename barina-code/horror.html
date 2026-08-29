@@ -69,6 +69,26 @@
         </ul>
       </div>
     </section>
+
+    <section class="dream-experience" aria-labelledby="dream-title">
+      <div class="dream-experience__noise" aria-hidden="true"></div>
+      <div class="sub-container dream-experience__inner">
+        <p class="dream-experience__eyebrow">PERSONAL DREAM / 02:00 AM</p>
+        <h2 class="dream-experience__title" id="dream-title">RIGHT EAR</h2>
+        <p class="dream-experience__lead">実際に見た夢を、短い体験として再現しています。<br>音が出ます。暗い場所で、ひとりでどうぞ。</p>
+
+        <div class="dream-stage dream-stage--{{ sceneClass }}" aria-live="polite">
+          <div class="dream-stage__sky" aria-hidden="true"></div>
+          <div class="dream-stage__ear" aria-hidden="true"><span class="dream-stage__ear-hole"></span><span class="dream-stage__ear-pulse"></span></div>
+          <div class="dream-stage__insects" aria-hidden="true"><i>·</i><i>×</i><i>·</i><i>×</i><i>·</i><i>×</i><i>·</i><i>×</i></div>
+          <p class="dream-stage__caption">{{ sceneCaption }}</p>
+        </div>
+
+        <p class="dream-experience__copy">{{ sceneCopy }}</p>
+        <button class="dream-experience__action" type="button" onClick="{{ advance }}">{{ actionLabel }}</button>
+        <p class="dream-experience__progress">{{ sceneNumber }} / 06</p>
+      </div>
+    </section>
   </main>
 
   <footer class="page-footer page-footer--dark">
@@ -82,11 +102,30 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { entered: false };
+  state = { entered: false, scene: 0 };
   renderVals() {
     const e = this.state.entered;
+    const scene = this.state.scene;
+    const scenes = [
+      { caption: "THE ROOM IS STILL", copy: "深夜2時頃。急に目が覚めました。", label: "BEGIN THE DREAM" },
+      { caption: "GICHIGICHIGICHIGICHI", copy: "目が覚めた途端、右耳からギチギチギチギチという音が聞こえました。", label: "TURN TO THE RIGHT" },
+      { caption: "NOTHING THERE", copy: "右を振り向いても、何もありません。なのに音は、まだ右側から聞こえています。", label: "LISTEN CLOSER" },
+      { caption: "INSIDE YOUR EAR", copy: "右側に何かいるのではなく、右耳の中に何かがいる。そう気づきました。", label: "REACH FOR IT" },
+      { caption: "DO NOT LET GO", copy: "おそるおそるつまんで引っ張ると、音がより激しくなります。", label: "PULL" },
+      { caption: "WAKE UP", copy: "細かい破片のようなものがいっぱい出てきました。蜂、蚊など虫の死骸。まだ動いているものもありました。\n\n叫んで、気を失って。そのまま目が覚めました。夢だったんだ。よかった。\n\n……右耳に、毛布の角が入っていました。", label: "PLAY IT AGAIN" }
+    ][scene];
     return {
       enter: () => this.setState({ entered: true }),
+      advance: () => {
+        if (scene === 0) this.startSound();
+        if (scene === 1) this.startSound();
+        this.setState({ scene: scene === 5 ? 0 : scene + 1 });
+      },
+      sceneCaption: scenes.caption,
+      sceneCopy: scenes.copy,
+      actionLabel: scenes.label,
+      sceneNumber: String(scene + 1).padStart(2, "0"),
+      sceneClass: ["still", "sound", "nothing", "inside", "pull", "release"][scene],
       gateStyle:
         "position:fixed;top:0;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,375px);z-index:50;background:#0B0B0C;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(24px,6cqw,80px);" +
         "transition:opacity .9s ease,visibility .9s ease;" +
@@ -95,6 +134,26 @@ class Component extends DCLogic {
         ? "animation:slowfade 1.2s ease both"
         : "opacity:0;overflow:hidden")
     };
+  }
+
+  startSound() {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+    const audio = new AudioContext();
+    const now = audio.currentTime;
+    for (let i = 0; i < 10; i += 1) {
+      const oscillator = audio.createOscillator();
+      const gain = audio.createGain();
+      oscillator.type = "square";
+      oscillator.frequency.setValueAtTime(i % 2 ? 92 : 108, now + i * 0.075);
+      gain.gain.setValueAtTime(0.0001, now + i * 0.075);
+      gain.gain.exponentialRampToValueAtTime(0.045, now + i * 0.075 + 0.012);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.075 + 0.055);
+      oscillator.connect(gain).connect(audio.destination);
+      oscillator.start(now + i * 0.075);
+      oscillator.stop(now + i * 0.075 + 0.06);
+    }
+    setTimeout(() => audio.close(), 1000);
   }
 }
 

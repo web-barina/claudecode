@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&family=Yuji+Mai&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin:0; padding:0; background:#050505; }
+  a { color:#8d3b3b; } a:hover { color:#c05555; }
+  @keyframes frag { 0%{opacity:0; transform:translate(0,0) scale(.3) rotate(0deg);} 12%{opacity:1;} 100%{opacity:0; transform:translate(var(--dx),var(--dy)) scale(1.15) rotate(var(--rot));} }
+  @keyframes flick { 0%,100%{opacity:.06} 45%{opacity:.22} 47%{opacity:.02} 60%{opacity:.3} }
+  @keyframes breathe { 0%,100%{opacity:.5; transform:scale(1)} 50%{opacity:.85; transform:scale(1.06)} }
+  @keyframes eyeIn { 0%{opacity:0; transform:scale(.2)} 30%{opacity:1} 100%{opacity:1; transform:scale(1)} }
+  @keyframes pupil { 0%,100%{transform:scale(1)} 40%{transform:scale(.62)} 70%{transform:scale(1.18)} }
+  @keyframes shake { 0%,100%{transform:translate(0,0)} 20%{transform:translate(-3px,2px)} 40%{transform:translate(4px,-2px)} 60%{transform:translate(-2px,-3px)} 80%{transform:translate(3px,3px)} }
+  @keyframes lid { 0%,84%,100%{transform:scaleY(0)} 90%{transform:scaleY(1)} 95%{transform:scaleY(0)} }
+  @keyframes edgePop { 0%{opacity:0} 4%{opacity:1} 9%{opacity:.4} 14%{opacity:1} 80%{opacity:1} 100%{opacity:0} }
+  @keyframes jit { 0%,100%{translate:0 0} 20%{translate:3px -4px} 40%{translate:-4px 2px} 60%{translate:2px 4px} 80%{translate:-3px -2px} }
+  @keyframes fly { 0%{opacity:0; transform:translate(-50%,-50%) scale(.2)} 10%{opacity:1} 100%{opacity:0; transform:translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.1)} }
+</style>
+</helmet>
+
+<div style="position:fixed; inset:0; background:#050505; z-index:0"></div>
+<div data-bglayer="1" style="position:fixed; inset:0; background:radial-gradient(120% 90% at 50% 0%, #24304a 0%, #0d1220 55%, #04050a 100%); transition:background 1800ms ease; z-index:1"></div>
+<div style="position:fixed; inset:0; z-index:2; pointer-events:none; background:repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0px, rgba(255,255,255,.035) 1px, transparent 1px, transparent 3px); animation:flick 5s steps(3) infinite"></div>
+
+<div style="position:relative; z-index:3; display:flex; justify-content:center; min-height:100vh">
+  <div style="width:375px; max-width:100%; box-sizing:border-box; padding:0 26px 220px; background:linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.78)); border-left:1px solid rgba(255,255,255,.05); border-right:1px solid rgba(255,255,255,.05); font-family:'Yuji Syuku', serif">
+
+    <section data-bg="radial-gradient(120% 90% at 50% 0%, #24304a 0%, #0d1220 55%, #04050a 100%)" style="min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:34px; text-align:center">
+      <div style="width:9px; height:9px; border-radius:50%; background:#7a2222; box-shadow:0 0 18px 6px rgba(122,34,34,.45); animation:breathe 4.2s ease-in-out infinite"></div>
+      <h1 style="margin:0; font-family:'Yuji Mai', serif; font-size:34px; font-weight:400; letter-spacing:.22em; line-height:2.1; color:#d8d2cc">右耳の<br />悪夢</h1>
+      <p style="margin:0; font-family:'Zen Kaku Gothic New',sans-serif; font-size:11px; letter-spacing:.3em; line-height:2.4; color:#6e6864">A DREAM I ACTUALLY HAD</p>
+      <div style="display:flex; flex-direction:column; gap:14px; align-items:center; margin-top:26px">
+        <button onClick="{{ enableSound }}" style="font-family:'Zen Kaku Gothic New',sans-serif; font-size:12px; letter-spacing:.16em; color:#cfc9c4; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.16); border-radius:2px; padding:13px 22px; cursor:pointer" style-hover="background:rgba(122,34,34,.25); border-color:#7a2222">音を入れて読む</button>
+        <p style="margin:0; font-family:'Zen Kaku Gothic New',sans-serif; font-size:10px; letter-spacing:.14em; line-height:2.2; color:#5c5652">スクロールで進みます<br />PCの方は、Tabキーを押さないでください。</p>
+      </div>
+      <div style="margin-top:40px; font-size:18px; color:#4a4542; animation:breathe 2.8s ease-in-out infinite">↓</div>
+    </section>
+
+    <section data-bg="radial-gradient(130% 100% at 30% 40%, #2b2f44 0%, #10131f 55%, #05060a 100%)" style="display:flex; flex-direction:column; gap:120px; padding:34vh 0">
+      <p data-reveal="1" style="margin:0; opacity:.12; transform:translateY(14px); transition:opacity 1400ms ease, transform 1400ms ease; font-size:17px; line-height:2.9; letter-spacing:.06em; color:#cfc9c4">私は夜中に目が覚めた。</p>
+      <p data-reveal="1" data-sfx="gichi" style="margin:0; opacity:.12; transform:translateY(14px); transition:opacity 1400ms ease, transform 1400ms ease; font-size:17px; line-height:2.9; letter-spacing:.06em; color:#cfc9c4; text-align:right">起き上がると右側から音がする。</p>
+      <p data-reveal="1" style="margin:0; opacity:.12; transform:translateY(14px); transition:opacity 1400ms ease, transform 1400ms ease; font-size:17px; line-height:2.9; letter-spacing:.06em; color:#cfc9c4">右を向いても何もない。</p>
+      <p data-reveal="1" data-sfx="gichi" style="margin:0; opacity:.12; transform:translateY(14px); transition:opacity 1400ms ease, transform 1400ms ease; font-size:17px; line-height:2.9; letter-spacing:.06em; color:#cfc9c4; text-align:right">が、また右側から音がする。</p>
+      <p data-reveal="1" style="margin:0; opacity:.12; transform:translateY(14px); transition:opacity 1400ms ease, transform 1400ms ease; font-size:17px; line-height:2.9; letter-spacing:.06em; color:#cfc9c4">私は気づいた。</p>
+    </section>
+
+    <section data-bg="radial-gradient(120% 90% at 82% 45%, #4a2027 0%, #180d13 55%, #060406 100%)" style="display:flex; flex-direction:column; gap:130px; padding:26vh 0">
+      <p data-reveal="1" style="margin:0; opacity:.12; transform:translateY(14px); transition:opacity 1400ms ease, transform 1400ms ease; font-size:17px; line-height:2.9; letter-spacing:.06em; color:#cfc9c4">これは右側に何かいるのではなく、</p>
+      <p data-reveal="1" style="margin:0; opacity:.12; transform:translateY(14px); transition:opacity 1600ms ease, transform 1600ms ease; font-size:26px; font-weight:600; line-height:2.5; letter-spacing:.12em; color:#e6dedb; text-align:center">右耳に何かいる。</p>
+    </section>
+
+    <section data-bg="radial-gradient(90% 70% at 90% 50%, #6b2229 0%, #1f0b10 55%, #070407 100%)" style="display:flex; flex-direction:column; gap:120px; padding:26vh 0">
+      <p data-reveal="1" style="margin:0; opacity:.12; transform:translateY(14px); transition:opacity 1400ms ease, transform 1400ms ease; font-size:17px; line-height:2.9; letter-spacing:.06em; color:#cfc9c4">すると音が大きくなった。<br />大きくなったとともに、また気づいた。</p>
+      <p data-reveal="1" style="margin:0; opacity:.12; transform:translateY(14px); transition:opacity 1600ms ease, transform 1600ms ease; font-size:24px; font-weight:600; line-height:2.6; letter-spacing:.1em; color:#e6dedb; text-align:center">何かが耳の中にいる。</p>
+      <p data-reveal="1" style="margin:0; opacity:.12; transform:translateY(14px); transition:opacity 1400ms ease, transform 1400ms ease; font-size:17px; line-height:2.9; letter-spacing:.06em; color:#cfc9c4">恐る恐る手を近づけると<br />耳元で何かに触れた。</p>
+    </section>
+
+    <section data-bg="radial-gradient(100% 80% at 50% 55%, #58181c 0%, #1b0a0c 58%, #070405 100%)" style="display:flex; flex-direction:column; gap:110px; padding:24vh 0">
+      <p data-reveal="1" style="margin:0; opacity:.12; transform:translateY(14px); transition:opacity 1400ms ease, transform 1400ms ease; font-size:17px; line-height:2.9; letter-spacing:.06em; color:#cfc9c4; text-wrap:pretty">触るたびに、音が大きくなる。この地点で明らかに異常である。病院に行った方がいいかもしれない。</p>
+      <p data-reveal="1" style="margin:0; opacity:.12; transform:translateY(14px); transition:opacity 1400ms ease, transform 1400ms ease; font-size:17px; line-height:2.9; letter-spacing:.06em; color:#cfc9c4; text-wrap:pretty">ただ、病院にいきなり行く前に、何が耳に入っているのかだけは確認したいと思った。私は恐る恐る。耳元にいるそれを引っ張ってみた。</p>
+      <p data-trigger="1" data-reveal="1" style="margin:0; opacity:.12; transform:translateY(14px); transition:opacity 1200ms ease, transform 1200ms ease; font-size:30px; font-weight:800; line-height:2.2; letter-spacing:.16em; color:#d9c9c5; text-align:center">3、2、1、<br />えいっ。</p>
+    </section>
+
+    <section data-bg="radial-gradient(120% 100% at 50% 50%, #8b1f1f 0%, #2a0809 52%, #0a0304 100%)" style="display:flex; flex-direction:column; gap:120px; padding:24vh 0">
+      <p data-reveal="1" style="margin:0; opacity:.12; transform:translateY(14px); transition:opacity 1400ms ease, transform 1400ms ease; font-size:17px; line-height:2.9; letter-spacing:.06em; color:#d3ccc7; text-wrap:pretty">引っ張って出てきたものは蚊や蜂の死骸、羽、足、腹、頭、それぞれがバラバラに出てきた。</p>
+      <p data-reveal="1" style="margin:0; opacity:.12; transform:translateY(14px); transition:opacity 1400ms ease, transform 1400ms ease; font-size:17px; line-height:2.9; letter-spacing:.06em; color:#d3ccc7; text-wrap:pretty">さらに1回引っこ抜いただけでは止まらず、どんどんと出てくる。</p>
+      <p data-reveal="1" style="margin:0; opacity:.12; transform:translateY(14px); transition:opacity 1400ms ease, transform 1400ms ease; font-size:21px; font-weight:600; line-height:2.7; letter-spacing:.08em; color:#e8ded9; text-align:center">ここで私は叫び、<br />夢の中で気を失った。</p>
+    </section>
+
+    <section data-bg="linear-gradient(180deg, #10131a 0%, #2c323c 50%, #080a0e 100%)" style="display:flex; flex-direction:column; gap:130px; padding:26vh 0">
+      <p data-reveal="1" style="margin:0; opacity:.12; transform:translateY(14px); transition:opacity 1600ms ease, transform 1600ms ease; font-size:17px; line-height:2.9; letter-spacing:.06em; color:#cfc9c4">というところで目を覚ました。</p>
+      <p data-reveal="1" style="margin:0; opacity:.12; transform:translateY(14px); transition:opacity 1400ms ease, transform 1400ms ease; font-size:17px; line-height:2.9; letter-spacing:.06em; color:#cfc9c4">安心して、安心したのも束の間。</p>
+      <p data-reveal="1" style="margin:0; opacity:.12; transform:translateY(14px); transition:opacity 1400ms ease, transform 1400ms ease; font-size:22px; font-weight:600; line-height:2.7; letter-spacing:.1em; color:#e8ded9; text-align:center">右耳にさっきと<br />同じ違和感がある。</p>
+    </section>
+
+    <section data-bg="linear-gradient(180deg, #3a4048 0%, #575e68 45%, #14161a 100%)" style="min-height:80vh; display:flex; flex-direction:column; justify-content:center; gap:80px; padding:16vh 0">
+      <p data-reveal="1" style="margin:0; opacity:.12; transform:translateY(14px); transition:opacity 1800ms ease, transform 1800ms ease; font-size:17px; line-height:2.9; letter-spacing:.06em; color:#cfc9c4; text-wrap:pretty">心を落ち着かせて触ったところ、毛布の角が耳に入っていた。</p>
+      <div data-reveal="1" style="opacity:.12; transition:opacity 2000ms ease; display:flex; flex-direction:column; align-items:center; gap:20px">
+        <div style="width:52px; height:1px; background:rgba(255,255,255,.16)"></div>
+        <p style="margin:0; font-family:'Zen Kaku Gothic New',sans-serif; font-size:10px; letter-spacing:.34em; line-height:2.4; color:#6b6560; text-align:center">END<br /><span style="letter-spacing:.14em">それでも、右耳はまだ痒い。</span></p>
+      </div>
+    </section>
+  </div>
+</div>
+
+<sc-if value="{{ burst }}">
+  <div style="position:fixed; inset:0; z-index:40; pointer-events:none; overflow:hidden">
+    <div style="position:absolute; inset:0; background:radial-gradient(70% 60% at 50% 50%, rgba(150,40,30,.5), rgba(30,10,6,.7) 75%); animation:edgePop 3000ms ease-out forwards"></div>
+    <div style="position:absolute; left:50%; top:50%; width:110px; --dx:-150px; --dy:-210px; animation:fly 2400ms cubic-bezier(.15,.75,.25,1) 15ms forwards"><img src="assets/bug0.svg" alt="" style="width:100%; display:block; transform:rotate(300deg); animation:jit 260ms steps(2) infinite; filter:drop-shadow(0 0 8px rgba(0,0,0,.85)) saturate(1.3)" /></div>
+    <div style="position:absolute; left:50%; top:50%; width:86px; --dx:140px; --dy:-250px; animation:fly 2400ms cubic-bezier(.15,.75,.25,1) 120ms forwards"><img src="assets/bug1.svg" alt="" style="width:100%; display:block; transform:rotate(-260deg); animation:jit 260ms steps(2) infinite; filter:drop-shadow(0 0 8px rgba(0,0,0,.85)) saturate(1.3)" /></div>
+    <div style="position:absolute; left:50%; top:50%; width:150px; --dx:-230px; --dy:110px; animation:fly 2400ms cubic-bezier(.15,.75,.25,1) 200ms forwards"><img src="assets/bug2.svg" alt="" style="width:100%; display:block; transform:rotate(340deg); animation:jit 260ms steps(2) infinite; filter:drop-shadow(0 0 8px rgba(0,0,0,.85)) saturate(1.3)" /></div>
+    <div style="position:absolute; left:50%; top:50%; width:120px; --dx:210px; --dy:160px; animation:fly 2400ms cubic-bezier(.15,.75,.25,1) 60ms forwards"><img src="assets/bug3.svg" alt="" style="width:100%; display:block; transform:rotate(-280deg); animation:jit 260ms steps(2) infinite; filter:drop-shadow(0 0 8px rgba(0,0,0,.85)) saturate(1.3)" /></div>
+    <div style="position:absolute; left:50%; top:50%; width:70px; --dx:60px; --dy:-300px; animation:fly 2400ms cubic-bezier(.15,.75,.25,1) 250ms forwards"><img src="assets/bug4.svg" alt="" style="width:100%; display:block; transform:rotate(420deg); animation:jit 260ms steps(2) infinite; filter:drop-shadow(0 0 8px rgba(0,0,0,.85)) saturate(1.3)" /></div>
+    <div style="position:absolute; left:50%; top:50%; width:170px; --dx:-100px; --dy:270px; animation:fly 2400ms cubic-bezier(.15,.75,.25,1) 330ms forwards"><img src="assets/bug0.svg" alt="" style="width:100%; display:block; transform:rotate(-340deg); animation:jit 260ms steps(2) infinite; filter:drop-shadow(0 0 8px rgba(0,0,0,.85)) saturate(1.3)" /></div>
+    <div style="position:absolute; left:50%; top:50%; width:96px; --dx:260px; --dy:-70px; animation:fly 2400ms cubic-bezier(.15,.75,.25,1) 140ms forwards"><img src="assets/bug2.svg" alt="" style="width:100%; display:block; transform:rotate(280deg); animation:jit 260ms steps(2) infinite; filter:drop-shadow(0 0 8px rgba(0,0,0,.85)) saturate(1.3)" /></div>
+    <div style="position:absolute; left:50%; top:50%; width:130px; --dx:-270px; --dy:-90px; animation:fly 2400ms cubic-bezier(.15,.75,.25,1) 20ms forwards"><img src="assets/bug3.svg" alt="" style="width:100%; display:block; transform:rotate(-300deg); animation:jit 260ms steps(2) infinite; filter:drop-shadow(0 0 8px rgba(0,0,0,.85)) saturate(1.3)" /></div>
+    <div style="position:absolute; left:50%; top:50%; width:190px; --dx:40px; --dy:300px; animation:fly 2400ms cubic-bezier(.15,.75,.25,1) 170ms forwards"><img src="assets/bug1.svg" alt="" style="width:100%; display:block; transform:rotate(360deg); animation:jit 260ms steps(2) infinite; filter:drop-shadow(0 0 8px rgba(0,0,0,.85)) saturate(1.3)" /></div>
+    <div style="position:absolute; left:50%; top:50%; width:104px; --dx:-60px; --dy:-330px; animation:fly 2400ms cubic-bezier(.15,.75,.25,1) 290ms forwards"><img src="assets/bug4.svg" alt="" style="width:100%; display:block; transform:rotate(-260deg); animation:jit 260ms steps(2) infinite; filter:drop-shadow(0 0 8px rgba(0,0,0,.85)) saturate(1.3)" /></div>
+    <div style="position:absolute; left:-20%; top:6%; width:54%; animation:edgePop 2900ms ease-out 0ms forwards"><img src="assets/bug2.svg" alt="" style="width:100%; display:block; transform:rotate(18deg); animation:jit 200ms steps(2) infinite; filter:drop-shadow(0 0 14px rgba(0,0,0,.9)) saturate(1.4) contrast(1.1)" /></div>
+    <div style="position:absolute; left:74%; top:20%; width:48%; animation:edgePop 2900ms ease-out 90ms forwards"><img src="assets/bug0.svg" alt="" style="width:100%; display:block; transform:rotate(196deg); animation:jit 200ms steps(2) infinite; filter:drop-shadow(0 0 14px rgba(0,0,0,.9)) saturate(1.4) contrast(1.1)" /></div>
+    <div style="position:absolute; left:-26%; top:52%; width:60%; animation:edgePop 2900ms ease-out 180ms forwards"><img src="assets/bug3.svg" alt="" style="width:100%; display:block; transform:rotate(340deg); animation:jit 200ms steps(2) infinite; filter:drop-shadow(0 0 14px rgba(0,0,0,.9)) saturate(1.4) contrast(1.1)" /></div>
+    <div style="position:absolute; left:78%; top:62%; width:52%; animation:edgePop 2900ms ease-out 270ms forwards"><img src="assets/bug1.svg" alt="" style="width:100%; display:block; transform:rotate(24deg); animation:jit 200ms steps(2) infinite; filter:drop-shadow(0 0 14px rgba(0,0,0,.9)) saturate(1.4) contrast(1.1)" /></div>
+    <div style="position:absolute; left:18%; top:-28%; width:62%; animation:edgePop 2900ms ease-out 60ms forwards"><img src="assets/bug4.svg" alt="" style="width:100%; display:block; transform:rotate(150deg); animation:jit 200ms steps(2) infinite; filter:drop-shadow(0 0 14px rgba(0,0,0,.9)) saturate(1.4) contrast(1.1)" /></div>
+    <div style="position:absolute; left:36%; top:80%; width:56%; animation:edgePop 2900ms ease-out 140ms forwards"><img src="assets/bug2.svg" alt="" style="width:100%; display:block; transform:rotate(300deg); animation:jit 200ms steps(2) infinite; filter:drop-shadow(0 0 14px rgba(0,0,0,.9)) saturate(1.4) contrast(1.1)" /></div>
+    <div style="position:absolute; left:-16%; top:32%; width:42%; animation:edgePop 2900ms ease-out 220ms forwards"><img src="assets/bug0.svg" alt="" style="width:100%; display:block; transform:rotate(70deg); animation:jit 200ms steps(2) infinite; filter:drop-shadow(0 0 14px rgba(0,0,0,.9)) saturate(1.4) contrast(1.1)" /></div>
+    <div style="position:absolute; left:80%; top:-10%; width:46%; animation:edgePop 2900ms ease-out 30ms forwards"><img src="assets/bug3.svg" alt="" style="width:100%; display:block; transform:rotate(240deg); animation:jit 200ms steps(2) infinite; filter:drop-shadow(0 0 14px rgba(0,0,0,.9)) saturate(1.4) contrast(1.1)" /></div>
+    <div style="position:absolute; left:6%; top:86%; width:50%; animation:edgePop 2900ms ease-out 300ms forwards"><img src="assets/bug1.svg" alt="" style="width:100%; display:block; transform:rotate(110deg); animation:jit 200ms steps(2) infinite; filter:drop-shadow(0 0 14px rgba(0,0,0,.9)) saturate(1.4) contrast(1.1)" /></div>
+    <div style="position:absolute; left:54%; top:-22%; width:54%; animation:edgePop 2900ms ease-out 190ms forwards"><img src="assets/bug4.svg" alt="" style="width:100%; display:block; transform:rotate(20deg); animation:jit 200ms steps(2) infinite; filter:drop-shadow(0 0 14px rgba(0,0,0,.9)) saturate(1.4) contrast(1.1)" /></div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ showEye }}">
+  <div style="position:fixed; inset:0; z-index:60; background:#000; display:flex; align-items:center; justify-content:center; animation:shake 220ms linear infinite">
+    <div style="position:relative; width:92vmin; height:92vmin; border-radius:50%; background:radial-gradient(circle at 50% 50%, #f4efe9 0%, #e6ddd3 52%, #b9a99b 78%, #6d5b50 100%); box-shadow:0 0 140px 40px rgba(120,20,20,.35) inset, 0 0 90px 20px rgba(0,0,0,.9); animation:eyeIn 700ms cubic-bezier(.2,.8,.2,1) forwards; display:flex; align-items:center; justify-content:center; overflow:hidden">
+      <div style="position:absolute; left:6%; top:44%; width:44%; height:2px; background:rgba(150,30,30,.5); transform:rotate(-12deg)"></div>
+      <div style="position:absolute; right:8%; top:58%; width:38%; height:2px; background:rgba(150,30,30,.45); transform:rotate(16deg)"></div>
+      <div style="position:absolute; left:18%; top:70%; width:30%; height:1px; background:rgba(150,30,30,.4); transform:rotate(28deg)"></div>
+      <div style="width:44vmin; height:44vmin; border-radius:50%; background:radial-gradient(circle at 45% 42%, #7a2f22 0%, #43180f 55%, #1c0a06 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 0 40px 10px rgba(0,0,0,.6) inset">
+        <div style="width:17vmin; height:17vmin; border-radius:50%; background:#000; box-shadow:0 0 26px 8px rgba(0,0,0,.9); animation:pupil 1400ms ease-in-out infinite"></div>
+      </div>
+      <div style="position:absolute; inset:0; background:#000; transform-origin:50% 0%; animation:lid 1600ms ease-in-out infinite"></div>
+    </div>
+    <p style="position:absolute; bottom:6vh; margin:0; font-family:'Zen Kaku Gothic New',sans-serif; font-size:11px; letter-spacing:.3em; color:#5d4c48">押さないでと言ったのに</p>
+  </div>
+</sc-if>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;sound&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;演出&quot;},&quot;eyeOnTab&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;演出&quot;},&quot;sceneBackgrounds&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;演出&quot;}}">
+class Component extends DCLogic {
+  state = { burst: false, showEye: false };
+
+  componentDidMount() {
+    this.eyeTimer = null;
+    const io = new IntersectionObserver((es) => {
+      es.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        el.style.opacity = "1";
+        el.style.transform = "translateY(0)";
+        if (el.getAttribute("data-sfx") === "gichi") this.gichi();
+        if (el.hasAttribute("data-trigger") && !this.state.burst) this.fire();
+        io.unobserve(el);
+      });
+    }, { threshold: 0.55 });
+    document.querySelectorAll("[data-reveal]").forEach((el) => io.observe(el));
+
+    const bg = document.querySelector("[data-bglayer]");
+    const sio = new IntersectionObserver((es) => {
+      es.forEach((e) => {
+        if (e.isIntersecting && bg && this.props.sceneBackgrounds !== false) {
+          bg.style.background = e.target.getAttribute("data-bg");
+        }
+      });
+    }, { threshold: 0.35 });
+    document.querySelectorAll("section[data-bg]").forEach((el) => sio.observe(el));
+
+    this.onKey = (ev) => {
+      if (ev.key !== "Tab") return;
+      if (this.props.eyeOnTab === false) return;
+      if (window.matchMedia("(pointer: coarse)").matches) return;
+      ev.preventDefault();
+      this.setState({ showEye: true });
+      this.screech();
+      clearTimeout(this.eyeTimer);
+      this.eyeTimer = setTimeout(() => this.setState({ showEye: false }), 3200);
+    };
+    window.addEventListener("keydown", this.onKey);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("keydown", this.onKey);
+    clearTimeout(this.eyeTimer);
+  }
+
+  ctx() {
+    if (this.props.sound === false) return null;
+    if (!this.ac) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return null;
+      this.ac = new AC();
+    }
+    if (this.ac.state === "suspended") this.ac.resume();
+    return this.ac;
+  }
+
+  fire() {
+    this.setState({ burst: true });
+    this.buzz();
+  }
+
+  buzz() {
+    const ac = this.ctx();
+    if (!ac) return;
+    const t = ac.currentTime;
+    const g = ac.createGain();
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(0.22, t + 0.06);
+    g.gain.setValueAtTime(0.22, t + 1.4);
+    g.gain.exponentialRampToValueAtTime(0.001, t + 2.4);
+    const filt = ac.createBiquadFilter();
+    filt.type = "bandpass";
+    filt.frequency.value = 900;
+    filt.Q.value = 3;
+    g.connect(filt).connect(ac.destination);
+    [172, 214, 341].forEach((f, i) => {
+      const o = ac.createOscillator();
+      o.type = i === 2 ? "square" : "sawtooth";
+      o.frequency.setValueAtTime(f, t);
+      o.frequency.linearRampToValueAtTime(f * 1.5, t + 2.2);
+      const lfo = ac.createOscillator();
+      const lg = ac.createGain();
+      lfo.frequency.value = 26 + i * 9;
+      lg.gain.value = 30;
+      lfo.connect(lg).connect(o.frequency);
+      o.connect(g);
+      o.start(t); lfo.start(t);
+      o.stop(t + 2.5); lfo.stop(t + 2.5);
+    });
+    const bufLen = ac.sampleRate * 2.2;
+    const buf = ac.createBuffer(1, bufLen, ac.sampleRate);
+    const d = buf.getChannelData(0);
+    for (let i = 0; i < bufLen; i++) d[i] = (Math.random() * 2 - 1) * 0.35;
+    const src = ac.createBufferSource();
+    src.buffer = buf;
+    const ng = ac.createGain();
+    ng.gain.setValueAtTime(0.12, t);
+    ng.gain.exponentialRampToValueAtTime(0.001, t + 2.2);
+    src.connect(ng).connect(ac.destination);
+    src.start(t);
+  }
+
+  gichi() {
+    const ac = this.ctx();
+    if (!ac) return;
+    const t = ac.currentTime;
+    const pan = ac.createStereoPanner ? ac.createStereoPanner() : null;
+    const filt = ac.createBiquadFilter();
+    filt.type = "bandpass";
+    filt.frequency.value = 2100;
+    filt.Q.value = 6;
+    if (pan) { pan.pan.value = 0.95; filt.connect(pan).connect(ac.destination); }
+    else filt.connect(ac.destination);
+    for (let n = 0; n < 7; n++) {
+      const at = t + n * 0.085;
+      const len = Math.floor(ac.sampleRate * 0.05);
+      const buf = ac.createBuffer(1, len, ac.sampleRate);
+      const d = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / len);
+      const src = ac.createBufferSource();
+      src.buffer = buf;
+      const g = ac.createGain();
+      g.gain.setValueAtTime(0.0001, at);
+      g.gain.exponentialRampToValueAtTime(0.17, at + 0.005);
+      g.gain.exponentialRampToValueAtTime(0.0005, at + 0.055);
+      src.connect(g).connect(filt);
+      src.start(at);
+    }
+  }
+
+  screech() {
+    const ac = this.ctx();
+    if (!ac) return;
+    const t = ac.currentTime;
+    const o = ac.createOscillator();
+    o.type = "sawtooth";
+    o.frequency.setValueAtTime(1400, t);
+    o.frequency.exponentialRampToValueAtTime(120, t + 1.1);
+    const g = ac.createGain();
+    g.gain.setValueAtTime(0.18, t);
+    g.gain.exponentialRampToValueAtTime(0.001, t + 1.3);
+    o.connect(g).connect(ac.destination);
+    o.start(t); o.stop(t + 1.3);
+  }
+
+  renderVals() {
+    return {
+      burst: this.state.burst,
+      showEye: this.state.showEye,
+      enableSound: () => {
+        this.ctx();
+        window.scrollBy({ top: window.innerHeight * 0.9, behavior: "smooth" });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
