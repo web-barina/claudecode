@@ -1,0 +1,1711 @@
+<!doctype html><html><head><!-- frame-runtime --><base href="/_f/1788015904-b1e5/"><script>window.__FRAME_PREAMBLE={"v":1,"capabilities":{"artifact":"artifact.D_F1mx8d.js","assets":"assets.8Gk803W0.js","comments":"comments.GLuHR3zP.js","db":"db.h-3sndFg.js","downloads":"downloads.C3GSvEDP.js","embed":"embed.CxGAyc-v.js","mcp":"mcp.Bvma3qD7.js","network":"network.B5UA9Su4.js","notifications":"notifications.ssU4jy7G.js","permissions":"permissions.BNySkLV5.js","room":"room.BMMoe2BY.js","sample":"sample.BW2Uysoh.js","self":"artifact.D_F1mx8d.js","user":"user.BpKav-Rf.js"},"transforms":"_transforms.DSB5x63f.js","comments":"_comments.BoakUwmM.js","translate":"_translate.5HCW4BJh.js"}</script><script>(function(){"use strict";var te=["light","dark","system"],re=/^[A-Za-z0-9_-]{1,64}$/,$=/^[a-zA-Z_:][a-zA-Z0-9_:.-]{0,127}$/,ne=new Set(["class","hidden","value","checked","style","title","alt","placeholder","lang","dir","role","tabindex","disabled","readonly","contenteditable","open","colspan","rowspan"]);function oe(e){const t=e.toLowerCase();return t.startsWith("data-")||t.startsWith("aria-")||ne.has(t)}var Be="http://www.w3.org/1999/xhtml",se="http://www.w3.org/2000/svg",ae=new Set(["script","style","iframe","noscript","noframes","noembed","xmp","plaintext","template","title","textarea","object","embed"]),ie=new Set(["script","style"]);function ce(e){const t=e.localName.toLowerCase();return e.namespaceURI==="http://www.w3.org/1999/xhtml"?!ae.has(t):e.namespaceURI===se?!ie.has(t):!1}function M(e,t){return e===t||(e===160||e===32)&&(t===160||t===32)}function le(e,t){const r=e.length,n=t.length;let s=0;for(;s<r&&s<n&&M(e.charCodeAt(s),t.charCodeAt(s));)s++;let o=0;for(;o<r-s&&o<n-s&&M(e.charCodeAt(r-1-o),t.charCodeAt(n-1-o));)o++;return{p:s,s:o}}function ue(e,t){const r=e.firstChild;if(e.childNodes.length!==1||r===null||r.nodeType!==Node.TEXT_NODE){e.textContent=t;return}const n=r.data,s=n.length,o=t.length,{p:i,s:c}=le(n,t);i===s&&c===0&&s===o||r.replaceData(i,s-i-c,t.slice(i,o-c));const h=r.data,p=e.ownerDocument.getSelection?.()??null,w=p!==null&&p.rangeCount>0&&(p.anchorNode===r||p.focusNode===r)?{anchor:p.anchorNode,anchorOffset:p.anchorOffset,focus:p.focusNode,focusOffset:p.focusOffset}:null;let m=-1,g=-1;for(let f=0;f<h.length&&f<t.length;f++){const v=h.charCodeAt(f),b=t.charCodeAt(f);v!==b&&M(v,b)&&(m<0&&(m=f),g=f)}const a=m>=0;if(a&&r.replaceData(m,g-m+1,t.slice(m,g+1)),a&&w!==null&&w.anchor!==null&&w.focus!==null)try{p.setBaseAndExtent(w.anchor,w.anchorOffset,w.focus,w.focusOffset)}catch{}}var fe=new Set(["html","head","body","frameset"]);function de(e){return e.namespaceURI==="http://www.w3.org/1999/xhtml"&&fe.has(e.localName)}function pe(e){if(e===null||typeof e!="object")return!1;const t=e;if(typeof t.target!="string"||!re.test(t.target)||t.text!==void 0&&typeof t.text!="string")return!1;if(t.attrsSet!==void 0){if(t.attrsSet===null||typeof t.attrsSet!="object")return!1;for(const[r,n]of Object.entries(t.attrsSet))if(!$.test(r)||typeof n!="string")return!1}if(t.attrsRemoved!==void 0){if(!Array.isArray(t.attrsRemoved))return!1;for(const r of t.attrsRemoved)if(typeof r!="string"||!$.test(r))return!1}return!0}function me(e,t){if(e===null||typeof e!="object")return!1;const{seq:r,elements:n}=e;if(typeof r!="number"||!Number.isSafeInteger(r)||!Array.isArray(n)||n.length===0||n.length>64)return!1;for(let s=0;s<n.length;s++)if(!t(n[s]))return!1;return!0}function he(e){return e===null||typeof e!="object"?!1:me(e.__frame_patch,pe)}function _e(e){if(e===null||typeof e!="object")return!1;const t=e.__frame_init;return t!==null&&typeof t=="object"}function ve(e){return e!==null&&typeof e=="object"&&e.__frame_size_poke===!0}function ye(e){if(e===null||typeof e!="object")return!1;const t=e.__frame_theme;if(t===null||typeof t!="object")return!1;const r=t.theme;return typeof r=="string"&&te.includes(r)}var A=/^[\w.-]+\.js$/;function we(e,t,r){return r?"inert":typeof t=="string"&&A.test(t)?e?[t]:"inert":e?"inert":"framed"}function ge(){return{post(e,t){parent.postMessage(e,t)},on(e){const t=r=>{r.source===parent&&e(r.data,r.origin,r.isTrusted)};return addEventListener("message",t),()=>removeEventListener("message",t)}}}function be(){return{post:()=>{},on:()=>()=>{}}}var j="__frame_scroll",Ee=150,Ae=310,Se=160,Te=3e4;function ke(){let e=0,t=!1,r=!1,n=!1,s=0,o=null;const i=l=>{try{sessionStorage.setItem(j,JSON.stringify({y:l}))}catch{}},c=()=>{if(clearTimeout(e),o===null)return;const l=o;o=null,i(l)},h=()=>{if(t){t=!1;return}r=!0,o=scrollY,clearTimeout(e),e=setTimeout(c,Ee)};try{addEventListener("scroll",h,{passive:!0}),addEventListener("pagehide",c)}catch{}const p=()=>{let l;try{l=sessionStorage.getItem(j)}catch{return null}if(l===null)return null;let _;try{_=JSON.parse(l)}catch{_=null}const d=_?.y;if(!(typeof d=="number"&&Number.isFinite(d)&&d>=0)){try{sessionStorage.removeItem(j)}catch{}return null}return d};let w=!1;const m=l=>{try{const _=scrollY;scrollTo({top:l,left:0,behavior:"instant"}),s=l,n=!0,clearTimeout(e),o=null,i(l);const d=scrollY;d!==_&&(t=!0),d!==l&&!w&&(w=!0,addEventListener("load",()=>{try{if(scrollY===d){const T=p();m(T!==null?T:s)}}catch{}},{once:!0}))}catch{}},g=()=>{try{return!!location.hash}catch{return!0}};let a=!1;const f=()=>{try{if(a||innerWidth>Ae||innerHeight>Se)return;a=!0;const l=Date.now(),_=()=>{try{removeEventListener("resize",_)}catch{}if(Date.now()-l>Te||r||g())return;const d=p();m(d!==null?d:s)};addEventListener("resize",_)}catch{}};let v=!1,b=!1;return{restore(){if(v||(v=!0,g()))return;const l=p();l!==null&&(m(l),f())},promoted(){if(b||(b=!0,g()))return;const l=p();l!==null?(m(l),f()):n&&m(s)}}}function Re(e,t,r,n){let s=null;try{s=window.trustedTypes?.createPolicy("frame-runtime",{createScriptURL:h=>h})??null}catch{}const o=window.Worker,i=o?.prototype,c=Object.freeze({Worker:o,workerOn:i?.addEventListener,workerPost:i?.postMessage,workerTerminate:i?.terminate,fetch:window.fetch.bind(window),preventDefault:Event.prototype.preventDefault,policy:s,origins:t});r(e).then(h=>h?.bootTopLevel?h.bootTopLevel(c,n):n.settle()).catch(()=>n.settle())}var De="modulepreload",Ie=function(e){return"/"+e},Ue={},Le=function(t,r,n){let s=Promise.resolve();function o(i){const c=new Event("vite:preloadError",{cancelable:!0});if(c.payload=i,window.dispatchEvent(c),!c.defaultPrevented)throw i}return s.then(i=>{for(const c of i||[])c.status==="rejected"&&o(c.reason);return t().catch(o)})},Oe=window===top,q=Object.getOwnPropertyDescriptor(window,"claude"),k=we(Oe,window.__FRAME_PREAMBLE?.topLevel,q?.writable===!1),N=typeof k=="object"&&k[0],y=N?be():ge();(function(){const e=Object.defineProperty,t=globalThis,r=["RTCPeerConnection","webkitRTCPeerConnection","RTCDataChannel","RTCIceCandidate","RTCSessionDescription","RTCRtpSender","RTCRtpReceiver"];let n=0;for(let s=0;s<r.length;s++){const o=r[s];try{e(t,o,{value:void 0,writable:!1,configurable:!1})}catch{try{delete t[o]}catch{}try{e(t,o,{value:void 0,writable:!1,configurable:!0})}catch{}}typeof t[o]=="function"&&n++}if(n&&k==="framed")try{y.post({__frame_rtc_lockdown_failed:n},"*")}catch{}})();var Pe=1e4,Y=Object.freeze([...window.__FRAME_PREAMBLE?.origins??["https://claude.ai","https://preview.claude.ai"]]);function X(e){for(const t of Y)if(t.endsWith(":*"))try{const r=new URL(e);if(`${r.protocol}//${r.hostname}:*`===t)return!0}catch{}else if(e===t)return!0;return!1}var R=Object.freeze({...window.__FRAME_PREAMBLE?.capabilities}),B=window.__FRAME_PREAMBLE?.transforms,D=window.__FRAME_PREAMBLE?.comments,I=window.__FRAME_PREAMBLE?.translate;function S(e){return Le(()=>import("/_runtime/"+e),void 0)}function G(e,t){return{contract:e.contract,changes:new Set(e.changes??[]),flags:new Set(e.flags??[]),capabilities:e.capabilities??{},capBudgets:e.capBudgets??{},transforms:new Map,shellOrigin:t,mount:x,hooks:O,pipe:()=>({wrap:(r,n)=>(...s)=>{try{return n(...s)}catch(o){return Promise.reject(o)}}})}}var L=null,E=null;function V(e,t,r){try{Object.defineProperty(e,t,{value:r,writable:!1,configurable:!1,enumerable:!0})}catch{try{Object.defineProperty(e,t,{value:r,writable:!1,configurable:!0,enumerable:!0})}catch{}}}var U=!1,O={editBefore:null,edit:null};function Ce(e,t,r=!1){const n=[];let s;if(r)try{O.editBefore?.(e)}catch{}for(const o of e.elements){const i=document.querySelector(`[data-id="${o.target}"]`);if(!i){s=o.target;break}if([...Object.keys(o.attrsSet??{}),...o.attrsRemoved??[]].some(c=>!oe(c))){s=o.target;break}if(o.text!==void 0&&(!ce(i)||de(i))){s=o.target;break}for(const[c,h]of Object.entries(o.attrsSet??{}))if(!J(i,c)){try{i.setAttribute(c,h)}catch{}Z(i,c,h)}for(const c of o.attrsRemoved??[])J(i,c)||(i.removeAttribute(c),Z(i,c,null));typeof o.text=="string"&&ue(i,o.text),n.push(o.target)}if(r)try{O.edit?.(e.seq,n,s)}catch{}if(s!==void 0){y.post({__frame_patch_miss:{seq:e.seq}},t);return}try{document.dispatchEvent(new CustomEvent("claude:edit",{detail:{seq:e.seq,targets:n}}))}catch{}}function Z(e,t,r){if(!(e instanceof HTMLInputElement))return;const n=t.toLowerCase();n==="checked"?e.checked=r!==null:n==="value"&&e.type!=="file"&&(e.value=r??"")}function J(e,t){const r=t.toLowerCase(),n=e;return r==="data-id"||(r==="value"||r==="checked")&&(n.__artifactSecret===!0||/^(password|hidden|file)$/.test(n.type??"")||/(^|\s)(cc-|one-time-code|current-password|new-password)/i.test(`${e.getAttribute("autocomplete")??""} ${n.autocomplete??""}`))}function Q(e){const t=document.documentElement;e==="light"||e==="dark"?(t.dataset.theme=e,t.style.colorScheme=e,U=!0):U&&(delete t.dataset.theme,t.style.colorScheme="",U=!1)}var P=new Map;function Me(){let e;const t={u:new Promise(r=>{e=r}),r:r=>{t.done=!0,e(r)},done:!1,nulled:!1};return t}function F(){for(const e of P.values())e.done||(e.nulled=!0,e.r(null))}var je=Object.freeze(Object.assign(Object.create(null),{call:Function.prototype.call,apply:Function.prototype.apply,bind:Function.prototype.bind})),x=(e,t)=>{const r=P.get(e);if(!r||r.done){r?.nulled&&E&&y.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:e}},E);return}const n=typeof t=="function"?Object.setPrototypeOf(t,je):Object.assign(Object.create(null),t);typeof n.then=="function"&&delete n.then,r.r(Object.freeze(n))};function ee(){const e=q?.value??{};V(window,"claude",e);for(const t of Object.keys(R)){if(e[t]!==void 0){V(e,t,e[t]);continue}P.set(t,Me())}if(e.use===void 0){const t=r=>{if(typeof r!="string"||!Object.hasOwn(R,r))return Promise.resolve(null);const n=P.get(r);return n?n.u:Promise.resolve(e[r]??null)};try{Object.defineProperty(e,"use",{value:t,writable:!0,configurable:!0,enumerable:!1})}catch{}}}if(k==="framed"){const e=B&&A.test(B)?S(B).catch(()=>{}):Promise.resolve(void 0),t=a=>{if(a.type==="auxclick"&&a.button!==1)return;const f=a.target,v=f&&f.closest?f.closest("a[href],area[href]"):null;if(!v)return;const b=v.getAttribute("href");if(!b)return;let l;try{l=new URL(b,document.baseURI)}catch{return}if((l.protocol==="http:"||l.protocol==="https:")&&l.origin!==location.origin){a.preventDefault();const _=(v.getAttribute("target")??"").toLowerCase(),d=a.type==="auxclick"||a.metaKey||a.ctrlKey||a.shiftKey||a.altKey||!["","_self","_top","_parent"].includes(_);y.post({__frame_nav:!0,url:l.href,newTab:d},"*")}};addEventListener("click",t,!0),addEventListener("auxclick",t,!0);const r={},n=a=>{a.isTrusted&&(r.pointer=!0)},s=a=>{a.isTrusted&&(r.click=!0)};addEventListener("pointermove",n,{capture:!0,passive:!0}),addEventListener("click",s,{capture:!0,passive:!0}),e.then(a=>{a?.wireNav&&(a.wireNav(),removeEventListener("click",t,!0),removeEventListener("auxclick",t,!0),removeEventListener("pointermove",n,!0),removeEventListener("click",s,!0),a.wireEngagement?.(r))});let o=null;try{o=ke()}catch{}ee();let i=null,c=null,h=0;const p=y.on((a,f)=>{X(f)&&_e(a)&&(i=a.__frame_init,E=f,p(),clearTimeout(h),c?.())});y.post({__frame_connect:!0},"*");const w=new Promise(a=>{c=a,h=setTimeout(()=>{p(),a()},Pe)}),m=document.readyState==="loading"?new Promise(a=>document.addEventListener("DOMContentLoaded",()=>a(),{once:!0})):Promise.resolve();m.then(()=>{try{o?.restore()}catch{}});const g={cb:null};y.on((a,f)=>{if(X(f)&&ve(a)){try{o?.promoted()}catch{}g.cb?.()}}),w.then(async()=>{if(!i||!E){F();return}Q(i.theme);const a=E;let f=!1,v=!1;y.on((u,z,C)=>{if(z!==a)return;ye(u)&&Q(u.__frame_theme.theme),he(u)&&Ce(u.__frame_patch,a,C);const H=u?.__fc_mode;H&&typeof H=="object"&&!f&&D&&A.test(D)&&(f=!0,S(D).then(K=>K.install?.(a,H.on===!0)).catch(()=>{}));const W=u?.__ft_cmd;W&&typeof W=="object"&&!v&&I&&A.test(I)&&(v=!0,S(I).then(K=>K.install?.(a,W)).catch(()=>{}))});const b=Object.keys(i.capabilities??{}).filter(u=>Object.hasOwn(R,u)).map(u=>[u,R[u]]).filter(u=>typeof u[1]=="string"&&A.test(u[1])),l=await Promise.allSettled(b.map(([,u])=>S(u))),_=await e,d=E;if(_?.buildBoot||y.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:"_transforms"}},d),_?.buildBoot)try{L=_.buildBoot(i,_.TRANSFORMS??{},{shellOrigin:d,mount:x,hooks:O},u=>y.post({__frame_cap_telemetry:u},d))}catch{y.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:"_transforms"}},d),L=G(i,d)}else L=G(i,d);const T=u=>y.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:u}},d),Ne=L;l.forEach((u,z)=>{const C=b[z][0];if(u.status!=="fulfilled"){T(C);return}try{u.value?.install?.(Ne)}catch{T(C)}}),F(),await m,y.post({__frame_ready:!0},E),e.then(u=>u?.installSizeReporter?.(d,g))})}else N&&(ee(),Re(N,Y,S,{settle:F,mount:x}))})();</script><!-- /frame-runtime --><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>サーバー・DNS実務マニュアル</title>
+<meta name="description" content="サーバー移行・DNS切替・本番公開の判断と段取りをまとめた、Webディレクション業務の実務リファレンス。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+<style>
+  :root {
+    --bg: #f3f3ef;
+    --surface: #ffffff;
+    --surface-2: #eae9e3;
+    --ink: #1a1f28;
+    --ink-soft: #55606f;
+    --line: #d9d8cf;
+    --line-strong: #c3c2b6;
+    --accent: #1f5fb0;
+    --accent-ink: #17457f;
+    --accent-soft: #e6eef8;
+    --danger: #b23a2e;
+    --danger-soft: #f6e6e3;
+    --go: #2c7a4b;
+    --go-soft: #e2efe6;
+    --warn: #a9761f;
+    --warn-soft: #f5ecd7;
+    --code-bg: #1b2430;
+    --code-ink: #e9eef5;
+    --code-dim: #8b98a8;
+
+    --maxw: 1180px;
+    --readw: 46rem;
+    --step--1: 0.82rem;
+    --step-0: 1rem;
+    --step-1: 1.18rem;
+    --step-2: 1.5rem;
+    --step-3: clamp(1.8rem, 1.2rem + 2.6vw, 2.9rem);
+
+    --font-head: "Zen Kaku Gothic New", "Noto Sans JP", system-ui, sans-serif;
+    --font-body: "Noto Sans JP", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #13161c;
+      --surface: #1b1f27;
+      --surface-2: #232935;
+      --ink: #e5e8ec;
+      --ink-soft: #99a3b2;
+      --line: #2d333f;
+      --line-strong: #3a414f;
+      --accent: #74abe8;
+      --accent-ink: #a9cbf3;
+      --accent-soft: #1d2b3d;
+      --danger: #e0857a;
+      --danger-soft: #37231f;
+      --go: #7ec99a;
+      --go-soft: #1e2e25;
+      --warn: #d8b46b;
+      --warn-soft: #322818;
+      --code-bg: #0e131b;
+      --code-ink: #e9eef5;
+      --code-dim: #7c8998;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #13161c;
+    --surface: #1b1f27;
+    --surface-2: #232935;
+    --ink: #e5e8ec;
+    --ink-soft: #99a3b2;
+    --line: #2d333f;
+    --line-strong: #3a414f;
+    --accent: #74abe8;
+    --accent-ink: #a9cbf3;
+    --accent-soft: #1d2b3d;
+    --danger: #e0857a;
+    --danger-soft: #37231f;
+    --go: #7ec99a;
+    --go-soft: #1e2e25;
+    --warn: #d8b46b;
+    --warn-soft: #322818;
+    --code-bg: #0e131b;
+    --code-ink: #e9eef5;
+    --code-dim: #7c8998;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "palt" 1;
+  }
+
+  a { color: var(--accent-ink); text-underline-offset: 2px; }
+  a:focus-visible,
+  button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    background: var(--surface-2);
+    padding: 0.12em 0.4em;
+    border-radius: 3px;
+    word-break: break-word;
+  }
+
+  /* ---------- shell ---------- */
+  .wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 3rem);
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding-bottom: 6rem;
+  }
+
+  @media (min-width: 1000px) {
+    .layout {
+      grid-template-columns: 15rem minmax(0, 1fr);
+      gap: 4rem;
+    }
+  }
+
+  /* ---------- masthead ---------- */
+  .masthead {
+    border-bottom: 2px solid var(--ink);
+    padding: 3.2rem 0 2.2rem;
+    margin-bottom: 3rem;
+  }
+  .masthead .eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin: 0 0 1rem;
+  }
+  .masthead h1 {
+    font-family: var(--font-head);
+    font-weight: 900;
+    font-size: var(--step-3);
+    line-height: 1.15;
+    letter-spacing: 0.01em;
+    text-wrap: balance;
+    margin: 0 0 1rem;
+  }
+  .masthead .lede {
+    max-width: var(--readw);
+    color: var(--ink-soft);
+    margin: 0 0 1.8rem;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.75rem;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+  }
+  .meta-row span {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    padding: 0.28rem 0.6rem;
+    border-radius: 999px;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- toc ---------- */
+  .toc {
+    align-self: start;
+  }
+  @media (min-width: 1000px) {
+    .toc {
+      position: sticky;
+      top: 1.5rem;
+      max-height: calc(100vh - 3rem);
+      overflow-y: auto;
+      border-right: 1px solid var(--line);
+      padding-right: 1rem;
+    }
+  }
+  .toc h2 {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 0.9rem;
+  }
+  .toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: toc;
+  }
+  .toc li { margin: 0; }
+  .toc a {
+    display: grid;
+    grid-template-columns: 2.4rem 1fr;
+    gap: 0.4rem;
+    padding: 0.4rem 0.5rem;
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    line-height: 1.45;
+    border-radius: 5px;
+    border-left: 2px solid transparent;
+  }
+  .toc a .n {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--accent-ink);
+    padding-top: 0.15rem;
+  }
+  .toc a:hover { background: var(--surface-2); color: var(--ink); }
+  .toc a.active {
+    background: var(--accent-soft);
+    color: var(--ink);
+    border-left-color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* mobile toc toggle */
+  .toc-toggle {
+    display: none;
+  }
+  @media (max-width: 999px) {
+    .toc-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      width: 100%;
+      margin: 0 0 1.5rem;
+      padding: 0.8rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      color: var(--ink);
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+    .toc {
+      display: none;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    .toc.open { display: block; }
+  }
+
+  /* ---------- main content ---------- */
+  main { min-width: 0; }
+
+  section.part {
+    scroll-margin-top: 5rem;
+    padding-top: 2.5rem;
+    margin-top: 2.5rem;
+    border-top: 1px solid var(--line);
+  }
+  section.part:first-child { border-top: 0; margin-top: 0; padding-top: 0; }
+
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin: 0 0 0.7rem;
+  }
+  .kicker::before {
+    content: "";
+    width: 1.6rem;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  h2.part-title {
+    font-family: var(--font-head);
+    font-weight: 900;
+    font-size: var(--step-2);
+    line-height: 1.25;
+    text-wrap: balance;
+    margin: 0 0 1.4rem;
+    letter-spacing: 0.01em;
+  }
+
+  h3 {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: var(--step-1);
+    line-height: 1.4;
+    margin: 2.4rem 0 0.9rem;
+    text-wrap: balance;
+  }
+  h4 {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 1.02rem;
+    margin: 1.8rem 0 0.6rem;
+    color: var(--ink);
+  }
+
+  p { margin: 0 0 1.1rem; max-width: var(--readw); }
+  main ul, main ol { max-width: var(--readw); padding-left: 1.3rem; }
+  main li { margin: 0.35rem 0; }
+  strong { font-weight: 700; }
+
+  .lead {
+    font-size: 1.06rem;
+    color: var(--ink);
+  }
+
+  /* ---------- tables ---------- */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 1.3rem 0 1.6rem;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.6rem 0.9rem;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  thead th {
+    background: var(--surface-2);
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  tbody tr:nth-child(even) td { background: color-mix(in srgb, var(--surface-2) 40%, transparent); }
+  td code { background: var(--surface); border: 1px solid var(--line); }
+  tbody tr:nth-child(even) td code { background: var(--surface-2); }
+
+  /* ---------- callouts ---------- */
+  .callout {
+    margin: 1.4rem 0;
+    padding: 1.1rem 1.2rem 1.1rem 1.3rem;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    border-left: 4px solid var(--ink-soft);
+  }
+  .callout > :last-child { margin-bottom: 0; }
+  .callout .label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--ink-soft);
+  }
+  .callout.danger {
+    background: var(--danger-soft);
+    border-color: color-mix(in srgb, var(--danger) 35%, var(--line));
+    border-left-color: var(--danger);
+  }
+  .callout.danger .label { color: var(--danger); }
+  .callout.go {
+    background: var(--go-soft);
+    border-color: color-mix(in srgb, var(--go) 35%, var(--line));
+    border-left-color: var(--go);
+  }
+  .callout.go .label { color: var(--go); }
+  .callout.warn {
+    background: var(--warn-soft);
+    border-color: color-mix(in srgb, var(--warn) 40%, var(--line));
+    border-left-color: var(--warn);
+  }
+  .callout.warn .label { color: var(--warn); }
+  .callout.accent {
+    background: var(--accent-soft);
+    border-color: color-mix(in srgb, var(--accent) 30%, var(--line));
+    border-left-color: var(--accent);
+  }
+  .callout.accent .label { color: var(--accent-ink); }
+
+  /* axis / principle panel (dark) */
+  .axis {
+    margin: 1.6rem 0;
+    padding: 1.4rem 1.5rem;
+    border-radius: 10px;
+    background: var(--code-bg);
+    color: var(--code-ink);
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  }
+  .axis .label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--accent) 65%, white);
+    display: block;
+    margin-bottom: 0.7rem;
+  }
+  .axis p { color: var(--code-ink); max-width: none; margin-bottom: 0.6rem; }
+  .axis p:last-child { margin-bottom: 0; }
+  .axis strong { color: #fff; }
+
+  /* ---------- gate (numbered checks) ---------- */
+  .gates {
+    display: grid;
+    gap: 0.7rem;
+    margin: 1.5rem 0;
+    padding-left: 0;
+    list-style: none;
+    max-width: var(--readw);
+  }
+  .gates li {
+    display: grid;
+    grid-template-columns: 2.6rem 1fr;
+    gap: 0.9rem;
+    align-items: baseline;
+    padding: 0.9rem 1rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+  .gates li::before {
+    content: counter(gate);
+    counter-increment: gate;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--accent);
+    text-align: center;
+  }
+  .gates { counter-reset: gate; }
+
+  /* ---------- do / dont split ---------- */
+  .split {
+    display: grid;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 620px) { .split { grid-template-columns: 1fr 1fr; } }
+  .split .col {
+    border-radius: 10px;
+    padding: 1.1rem 1.2rem;
+    border: 1px solid var(--line);
+  }
+  .split .col h4 {
+    margin: 0 0 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .split .col ul { margin: 0; max-width: none; }
+  .split .go { background: var(--go-soft); border-color: color-mix(in srgb, var(--go) 30%, var(--line)); }
+  .split .go h4 { color: var(--go); }
+  .split .danger { background: var(--danger-soft); border-color: color-mix(in srgb, var(--danger) 30%, var(--line)); }
+  .split .danger h4 { color: var(--danger); }
+
+  /* ---------- code / diagram ---------- */
+  pre {
+    margin: 1.3rem 0;
+    background: var(--code-bg);
+    color: var(--code-ink);
+    border-radius: 8px;
+    padding: 1.1rem 1.2rem;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.83rem;
+    line-height: 1.7;
+    border: 1px solid color-mix(in srgb, var(--code-dim) 25%, transparent);
+  }
+  pre code { background: none; padding: 0; font-size: inherit; color: inherit; border: 0; }
+  pre.diagram {
+    background: var(--surface);
+    color: var(--ink-soft);
+    border: 1px dashed var(--line-strong);
+    line-height: 1.5;
+  }
+  .cmd-note {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 1.3rem 0 -0.6rem;
+  }
+
+  /* copy-ready quote block */
+  .quote-block {
+    margin: 1.3rem 0;
+    padding: 1.1rem 1.2rem;
+    background: var(--surface-2);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    white-space: pre-wrap;
+    font-size: 0.92rem;
+    line-height: 1.9;
+  }
+
+  /* ---------- case records ---------- */
+  .case {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.4rem 1.5rem;
+    margin: 1.6rem 0;
+  }
+  .case > h3 { margin-top: 0; }
+  .case dl {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.3rem 1rem;
+    margin: 1rem 0 1.2rem;
+    font-size: 0.9rem;
+  }
+  .case dt { color: var(--ink-soft); font-weight: 700; }
+  .case dd { margin: 0; }
+
+  /* ---------- checklist ---------- */
+  .checklist { max-width: var(--readw); }
+  .checklist h4 { margin-top: 1.6rem; }
+  .checklist ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0;
+    columns: 1;
+  }
+  .checklist li {
+    position: relative;
+    padding-left: 1.9rem;
+    margin: 0.4rem 0;
+  }
+  .checklist li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.45em;
+    width: 1.05rem;
+    height: 1.05rem;
+    border: 1.5px solid var(--line-strong);
+    border-radius: 3px;
+    background: var(--surface);
+  }
+
+  /* quick nav grid */
+  .quick {
+    display: grid;
+    gap: 0.8rem;
+    grid-template-columns: 1fr;
+    margin: 1.5rem 0 0;
+  }
+  @media (min-width: 620px) { .quick { grid-template-columns: 1fr 1fr; } }
+  .quick a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    transition: border-color 0.15s ease;
+  }
+  .quick a:hover { border-color: var(--accent); }
+  .quick .situation { font-family: var(--font-head); font-weight: 700; display: block; margin-bottom: 0.15rem; }
+  .quick .target { font-size: 0.85rem; color: var(--ink-soft); }
+
+  hr {
+    border: 0;
+    border-top: 1px solid var(--line);
+    margin: 2rem 0;
+  }
+
+  .footnote {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; scroll-behavior: auto !important; }
+  }
+  html { scroll-behavior: smooth; }
+
+  @media print {
+    .toc, .toc-toggle { display: none !important; }
+    .layout { grid-template-columns: 1fr; }
+    section.part { break-inside: avoid-page; }
+    pre, .callout, .case { break-inside: avoid; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <p class="eyebrow">Web ディレクション実務リファレンス</p>
+    <h1>サーバー・DNS・データ移行・管理画面 実務マニュアル</h1>
+    <p class="lede">サーバー移行、DNS切替、サイトの本番公開、管理画面まわりで「まず何を確認して、どの順番で作業すればいいのか」を判断するための資料。過去の案件で実際に起きたこと・詰まったことをそのまま反映している。</p>
+    <div class="meta-row">
+      <span>作成 2026年8月</span>
+      <span>画面情報の基準日 2026年8月</span>
+      <span>対象 Webディレクション業務</span>
+      <span>用途 自分用リファレンス</span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <button class="toc-toggle" id="tocToggle" aria-expanded="false" aria-controls="toc">
+      <span aria-hidden="true">☰</span> 目次
+    </button>
+
+    <nav class="toc" id="toc" aria-label="目次">
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="#intro"><span class="n">00</span><span>この資料の使い方</span></a></li>
+        <li><a href="#p1"><span class="n">01</span><span>全体像 — 何がどこで管理されているか</span></a></li>
+        <li><a href="#p2"><span class="n">02</span><span>案件着手時に必ず確認すること</span></a></li>
+        <li><a href="#p3"><span class="n">03</span><span>DNS</span></a></li>
+        <li><a href="#p4"><span class="n">04</span><span>SSL</span></a></li>
+        <li><a href="#p5"><span class="n">05</span><span>データ移行</span></a></li>
+        <li><a href="#p6"><span class="n">06</span><span>メール</span></a></li>
+        <li><a href="#p7"><span class="n">07</span><span>サーバー別 管理画面ガイド</span></a></li>
+        <li><a href="#p8"><span class="n">08</span><span>実際の案件記録</span></a></li>
+        <li><a href="#p9"><span class="n">09</span><span>当日の段取り（標準タイムライン）</span></a></li>
+        <li><a href="#p10"><span class="n">10</span><span>チェックリスト</span></a></li>
+        <li><a href="#p11"><span class="n">11</span><span>トラブル別 原因早見表</span></a></li>
+        <li><a href="#appendix-a"><span class="n">A</span><span>用語早見表</span></a></li>
+        <li><a href="#appendix-b"><span class="n">B</span><span>作業記録テンプレート</span></a></li>
+        <li><a href="#outro"><span class="n">—</span><span>最後に</span></a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <!-- INTRO -->
+      <section class="part" id="intro">
+        <p class="kicker">はじめに · READ ME</p>
+        <h2 class="part-title">この資料の使い方</h2>
+        <p>サーバー移行、DNS切替、サイトの本番公開、管理画面まわりで「まず何を確認して、どの順番で作業すればいいのか」を判断するための資料。</p>
+        <p>過去の案件で実際に起きたこと・詰まったことをそのまま反映している。次に同じ状況になったとき、調査を最初からやり直さなくて済む状態を目指す。</p>
+
+        <h3>急いでいるときの読み方</h3>
+        <div class="quick">
+          <a href="#p2"><span class="situation">これから案件が始まる</span><span class="target">→ 第2部（着手時のヒアリング）</span></a>
+          <a href="#p9"><span class="situation">公開日が決まった</span><span class="target">→ 第9部（当日の段取り）→ 第10部（チェックリスト）</span></a>
+          <a href="#p11"><span class="situation">何かおかしい</span><span class="target">→ 第11部（トラブル別 原因早見表）</span></a>
+          <a href="#p7"><span class="situation">管理画面のどこか分からない</span><span class="target">→ 第7部（サーバー別ガイド）</span></a>
+          <a href="#appendix-a"><span class="situation">用語が分からない</span><span class="target">→ 付録A（用語早見表）</span></a>
+        </div>
+
+        <div class="callout warn">
+          <span class="label">画面情報の基準日：2026年8月</span>
+          <p>サーバー会社のアップデートで、メニュー名・位置・ボタン名は変わる。将来この資料を見るときは、書かれたボタンの位置そのものではなく <strong>「何の設定をするための操作なのか」</strong> を基準に最新画面で探すこと。</p>
+        </div>
+      </section>
+
+      <!-- PART 1 -->
+      <section class="part" id="p1">
+        <p class="kicker">第1部 · PART 01</p>
+        <h2 class="part-title">全体像 —— 何がどこで管理されているか</h2>
+
+        <h3>1-1. 混同しないための4層構造</h3>
+        <p>トラブルの半分は「どの管理画面を開けばいいか分かっていない」ことが原因。まずこの4つを別物として分けて考える。</p>
+        <pre class="diagram"><code>【ドメイン管理会社】
+  ドメインを買った会社。お名前.com、ムームードメインなど
+        ↓
+【DNS管理元（ネームサーバー）】
+  そのドメインのDNS設定を実際に持っている場所
+  ★ドメイン管理会社と同じとは限らない（Cloudflare等が典型）
+        ↓
+【サーバー会社】
+  サイトのファイルとデータベースを置いている場所
+  エックスサーバー、ロリポップなど
+        ↓
+【WordPress管理画面】
+  記事・固定ページ・プラグインなど、サイトの中身</code></pre>
+
+        <div class="axis">
+          <span class="label">判断の順番はいつもこれ</span>
+          <p>① 何を変更したいのか<br>② それを管理しているのはどこか<br>③ その管理画面を開く</p>
+        </div>
+        <p>例：「サイトの表示先を変えたい」→ WordPress管理画面を探しても DNS は変えられない。逆に「記事を直したい」→ DNS管理画面ではなく WordPress 側。</p>
+
+        <h3>1-2. 一番よくある勘違い</h3>
+        <p><strong>ネームサーバー（NS）と DNSレコードは別物。</strong></p>
+        <pre class="diagram"><code>【ネームサーバー】= DNS設定を「どの会社が管理しているか」
+        ↓ 実際の設定内容
+【DNSレコード】= A / CNAME / MX / TXT などの中身</code></pre>
+        <p>実例（td-group.jp）：</p>
+        <ul>
+          <li>ネームサーバーが <code>alfred.ns.cloudflare.com</code> / <code>wanda.ns.cloudflare.com</code></li>
+          <li>→ <strong>DNSの実体は Cloudflare にある</strong></li>
+          <li>→ サーバー（ロリポップ）側でサブドメインを作っても、Cloudflare を触らないと表示されない</li>
+        </ul>
+        <p>「サーバー管理画面でサブドメインを作ったのにアクセスできない」の典型的な原因がこれ。</p>
+
+        <h4>調べ方</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>知りたいこと</th><th>使うもの</th></tr></thead>
+            <tbody>
+              <tr><td>ドメインの登録者・ネームサーバー</td><td>WHOIS（.jp なら <code>whois.jprs.jp</code>）</td></tr>
+              <tr><td>今そのドメインがどのIPを向いているか</td><td><code>whatsmydns.net</code>（種別A）</td></tr>
+              <tr><td>同上（ターミナル）</td><td><code>nslookup ドメイン名</code> / <code>dig ドメイン名 A</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>覚え方は <strong>「取得先は WHOIS、向き先は whatsmydns」</strong>。</p>
+
+        <h4>ネームサーバーから管理先を判別する早見表</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Name Server の表示</th><th>管理先</th></tr></thead>
+            <tbody>
+              <tr><td><code>uns01.lolipop.jp</code> など</td><td>ロリポップ</td></tr>
+              <tr><td><code>dns01.muumuu-domain.com</code> など</td><td>ムームードメイン</td></tr>
+              <tr><td><code>01.dnsv.jp</code> / <code>ns1.onamae.com</code> など</td><td>お名前.com</td></tr>
+              <tr><td><code>ns1.xserver.jp</code> など</td><td>エックスサーバー</td></tr>
+              <tr><td><code>〇〇.ns.cloudflare.com</code></td><td>Cloudflare</td></tr>
+              <tr><td>その他</td><td>制作会社やクライアント独自のDNS</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- PART 2 -->
+      <section class="part" id="p2">
+        <p class="kicker">第2部 · PART 02</p>
+        <h2 class="part-title">案件着手時に必ず確認すること</h2>
+        <p>作業を始める前に、以下を潰しておく。ここを飛ばすと当日に事故る。</p>
+
+        <h3>2-1. サーバー</h3>
+        <ul>
+          <li>現在どのサーバーを利用しているか</li>
+          <li>移行先のサーバーはどこか</li>
+          <li>サーバーの契約者・契約名義（<strong>クライアント名義かどうかは重要</strong>。設定を落とす前に一言必要）</li>
+          <li>サーバー管理画面にログインできるか</li>
+          <li>FTP / SFTP の接続情報</li>
+          <li>データベースの情報</li>
+        </ul>
+
+        <h3>2-2. ドメイン・DNS</h3>
+        <ul>
+          <li>ドメインをどこで取得・管理しているか</li>
+          <li><strong>DNSをどこで管理しているか（ネームサーバーは何か）</strong></li>
+          <li>現在設定されている DNSレコード</li>
+          <li>Webサイトとメールがそれぞれどこを向いているか</li>
+          <li><strong>DNSを変更するのは誰か</strong>（自分／制作会社／お客様）</li>
+        </ul>
+
+        <h3>2-3. Webサイト</h3>
+        <ul>
+          <li>何のシステムで動いているか（WordPress など）</li>
+          <li>ファイルがどこにあるか、DBがどこにあるか</li>
+          <li>管理画面にログインできるか</li>
+          <li>バックアップが取れているか</li>
+        </ul>
+
+        <h3>2-4. メール</h3>
+        <p>DNSを変更する場合、Webサイトだけでなく <strong>必ずメールへの影響を確認する。</strong></p>
+        <p>「Webサイトを移行したらメールが使えなくなった」は定番の事故。MX / TXT / SPF / DKIM を変更前に確認・保存しておく。</p>
+        <ul>
+          <li>メールはどこで動いているか（サーバー付属 / Google Workspace / 外部サービス）</li>
+          <li><strong>Google Workspace など外部なら、MX を触らない限り移行の影響はない</strong>（medi-ent がこのパターンだった）</li>
+          <li>サーバー付属のメールを使っていて、かつメールは移さない場合 → Aレコードを新IPに向けた瞬間にメールが止まる可能性がある</li>
+        </ul>
+
+        <h3>2-5. そのまま送れるヒアリング文（サーバー・DNS担当／お客様向け）</h3>
+        <div class="quote-block">・現在ドメインはどのサーバーを向いていますか
+・DNSはどこで管理されていますか（ネームサーバーは何ですか）
+・DNSを変更するのは誰ですか
+・今回変更するレコードはどれですか
+・メールに影響するレコード（MX / TXT）は変更しませんよね
+・切替の前にTTLを300秒に下げていただけますか
+・切替後にSSLの発行が必要ですか
+・切り戻しが必要になった場合の手順はありますか
+・旧サーバーはいつまで残していただけますか</div>
+
+        <h3>2-6. 移行案件で追加で確認すること</h3>
+        <div class="quote-block">・移行元／移行先のサーバー
+・WordPressファイルとデータベース、両方の移行手順
+・URL置換が必要か
+・Basic認証・noindexの設定と解除タイミング
+・バックアップは取得済みか</div>
+        <div class="callout warn">
+          <p>旧サーバーで改ざん・攻撃があった場合、そのまま全部コピーすると不正ファイルごと新サーバーに持ち込む。<br>「原因・影響範囲の確認 → ファイル確認 → クリーンアップ → 移行」の順で進めてもらう。</p>
+        </div>
+      </section>
+
+      <!-- PART 3 -->
+      <section class="part" id="p3">
+        <p class="kicker">第3部 · PART 03</p>
+        <h2 class="part-title">DNS</h2>
+
+        <h3>3-1. DNSとは</h3>
+        <p>ドメイン名とサーバー（IPアドレス）を結び付ける住所録。</p>
+        <pre class="diagram"><code>example.com
+   ↓ DNSに問い合わせ
+「123.45.67.89 のサーバーです」
+   ↓
+そのサーバーに接続</code></pre>
+
+        <h3>3-2. 主なレコード（実務で出るのは4つ）</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>レコード</th><th>役割</th></tr></thead>
+            <tbody>
+              <tr><td><strong>A</strong></td><td>ドメイン → IPアドレス。<strong>サイト公開で触るのは基本これ</strong></td></tr>
+              <tr><td><strong>CNAME</strong></td><td>ある名前を別のホスト名に紐付ける（<code>www</code> → 頂点ドメイン など）</td></tr>
+              <tr><td><strong>MX</strong></td><td>メールの配送先。<strong>触るとメールが止まる</strong></td></tr>
+              <tr><td><strong>TXT</strong></td><td>SPF / DKIM / DMARC、各種所有権確認。<strong>消すとメールが届かなくなる</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>3-3.〔最重要〕触っていい／絶対に触らない</h3>
+        <div class="split">
+          <div class="col go">
+            <h4>変更する</h4>
+            <ul>
+              <li><code>@</code>（またはドメイン名そのもの）のAレコード</li>
+              <li><code>www</code> のAレコード（またはCNAME）</li>
+            </ul>
+          </div>
+          <div class="col danger">
+            <h4>絶対に触らない</h4>
+            <ul>
+              <li>MX（メールが止まる）</li>
+              <li>TXT（SPF / DKIM / DMARC）</li>
+              <li><code>mail.</code> <code>smtp.</code> などメール系サブドメインのAレコード</li>
+              <li>上記以外のすべてのレコード</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout danger">
+          <span class="label">鉄則</span>
+          <p><strong>「Webサイトを公開するから」といって、DNS設定を丸ごと書き換えない。</strong></p>
+          <p>お客様に設定をお願いする場合は、この一文を必ず添える。実際にメールが止まる事故が起きるのはここ。<strong>作業前に現在のDNS設定画面のスクリーンショットを撮っておいてもらう</strong>のも必須（切り戻し用）。</p>
+        </div>
+
+        <h3>3-4. お客様に渡すレコード表の書き方</h3>
+        <p>現在のネームサーバーはそのままにして、<strong>Aレコードだけ書き換える</strong>方式が一番事故が少ない。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>ホスト名</th><th>種別</th><th>値</th><th>TTL</th></tr></thead>
+            <tbody>
+              <tr><td><code>@</code>（または空欄／ドメイン名そのもの）</td><td>A</td><td>新サーバーのIP</td><td>3600</td></tr>
+              <tr><td><code>www</code></td><td>A</td><td>新サーバーのIP</td><td>3600</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul>
+          <li>管理画面によって「@」「空欄」「ドメイン名そのもの」と表記が違う（お名前.com は空欄、さくらは「@」）</li>
+          <li><code>www</code> が現状 CNAME で頂点ドメインを向いているなら、そのままでOK（頂点が新IPを向けば自動で追随する）</li>
+          <li><strong>「ネームサーバーを変えてください」と言われた場合は別物。</strong> <code>ns1.xxxxx.jp</code> のようなホスト名が渡されるので、IPアドレス（Aレコード）と混同しない</li>
+        </ul>
+
+        <h3>3-5. TTLと「DNSの浸透」</h3>
+        <p>変更しても全員に即座に反映されるわけではない。一時的に「Aさんは新サイト、Bさんはまだ旧サイト」という状態が起きる。</p>
+        <p><strong>TTL（Time To Live）</strong> は「この情報を何秒キャッシュしていいか」の設定値。</p>
+        <pre class="diagram"><code>TTL = 300    →  最大5分
+TTL = 3600   →  最大1時間
+TTL = 86400  →  最大24時間</code></pre>
+        <div class="callout accent">
+          <p><strong>切替の1〜2日前に、TTLを300秒に下げてもらう。</strong></p>
+          <p>これをやっておくと当日の反映が数分で済む。TTLが86400のまま当日を迎えると、切り替えても最大1日反映されず、<strong>その後のSSL設定が当日中に終わらない</strong>。<br><strong>日程が決まった時点でTTL変更を先に依頼するのがディレクターの仕事。</strong></p>
+        </div>
+
+        <h3>3-6. Cloudflare を使っている場合</h3>
+        <p>各レコードに <strong>Proxy status</strong> という設定がある。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>設定</th><th>意味</th></tr></thead>
+            <tbody>
+              <tr><td><strong>DNS only</strong>（グレーの雲）</td><td>素通し。普通のDNSとして動く</td></tr>
+              <tr><td><strong>Proxied</strong>（オレンジの雲）</td><td>Cloudflare を経由する。実際のサーバーIPが隠れる</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul>
+          <li>テスト環境やSSL発行前は、<strong>必ず「DNS only」</strong>にしてもらう。Proxied のままだとサーバー側でSSL証明書を発行しようとしても認証に失敗する</li>
+          <li>Proxied の状態で <code>nslookup</code> しても Cloudflare のIPが返るため、<strong>本当のサーバーIPは分からない</strong></li>
+          <li>Cloudflare は <strong>メンバー招待</strong>ができる。Members → Invite でエンジニアのメールアドレスを招待すれば、認証情報を共有せずに済む。作業後に権限を外すのも一瞬。DNS権限だけに絞った招待も可能</li>
+        </ul>
+
+        <h3>3-7. 確認コマンド</h3>
+        <pre><code>dig example.com A          # Aレコード（IPアドレス）
+dig example.com NS         # ネームサーバー
+dig example.com MX         # メール
+dig example.com TXT        # SPF/DKIM/所有権確認
+dig +short example.com     # 結果だけ簡潔に</code></pre>
+        <p><strong>キャッシュを避けたいとき</strong>は問い合わせ先を指定する。</p>
+        <pre><code>dig @8.8.8.8 example.com          # Google DNSに聞く
+dig @ns1.example.com example.com  # 権威サーバーに直接聞く（最速で真実が分かる）</code></pre>
+        <p>Windows は <code>nslookup example.com</code>、Mac / Linux は <code>host example.com</code> でも簡易確認できる。</p>
+        <p><strong>レジストラ側のNS確認</strong>（ゾーン内のNSレコードと、実際の委任先がズレることがある）：</p>
+        <pre><code>whois example.com | grep -i "name server"</code></pre>
+        <p><strong>伝播状況</strong>を世界各地から見るなら <code>whatsmydns.net</code> か <code>dnschecker.org</code>。</p>
+
+        <h3>3-8. DNS切替前に新サーバーの表示を確認する方法</h3>
+        <p>hosts ファイルに新IPを書けば、自分のPCだけ向き先を変えられる。</p>
+        <pre><code>203.0.113.10  example.com www.example.com</code></pre>
+        <ul>
+          <li>Mac … <code>/etc/hosts</code></li>
+          <li>Windows … <code>C:\Windows\System32\drivers\etc\hosts</code></li>
+        </ul>
+        <div class="callout danger">
+          <p><strong>確認後は必ず削除する。</strong> 消し忘れて「切り替わってないですね」と誤報告するのが定番のミス。</p>
+        </div>
+      </section>
+
+      <!-- PART 4 -->
+      <section class="part" id="p4">
+        <p class="kicker">第4部 · PART 04</p>
+        <h2 class="part-title">SSL</h2>
+
+        <h3>4-1. 基本</h3>
+        <p><code>https://</code> の通信を暗号化する仕組み。現在のサイトは HTTPS が標準。</p>
+        <p><strong>多くの場合、SSL証明書は DNS切替後でないと発行できない。</strong> Let's Encrypt 等は「そのドメインが本当にこのサーバーを向いているか」を確認して発行するため。</p>
+        <p>つまり素直にやると <strong>「DNS切替 → SSL発行までの間、https が繋がらない時間」</strong> が発生する。お客様への事前告知が必要。</p>
+
+        <h3>4-2. ★エックスサーバーなら事前発行できる</h3>
+        <p>エックスサーバーには「<strong>他社ネームサーバーでのDNS認証</strong>」がある。</p>
+        <pre class="diagram"><code>SSL設定 →「他社ネームサーバーでのDNS認証」を選択
+→ 表示されたDNSレコード（TXT）を、現在のDNS管理元に追加してもらう
+→ 認証が通れば、DNS切替前に証明書が発行される
+→ 当日はAレコードを切り替えるだけ</code></pre>
+        <p>これができると <strong>「切替後サイトが見えない時間」がほぼゼロになる。</strong> 移転案件では最初に検討する。</p>
+        <div class="callout warn">
+          <p>※このとき「エックスサーバーのネームサーバーへ変更」は選ばない。SSL発行前にネームサーバーを変えると一時的に表示が壊れる。</p>
+          <p><strong>ロリポップにはこの仕組みがない。</strong> DNSがロリポップを向いて反映されている状態でないと証明書をインストールできない。</p>
+        </div>
+
+        <h3>4-3. SSL発行が失敗するとき</h3>
+        <p>原因はだいたいこの2つ。</p>
+        <ol>
+          <li>ドメインがまだそのサーバーを向いていない（DNS未反映）</li>
+          <li><strong>そのドメインにアクセス制限やリダイレクト設定がかかっている</strong></li>
+        </ol>
+        <p>2は盲点。<strong>Basic認証をかけたままだと認証局がサイトを確認できず失敗する。</strong> SSL発行時は一時的に解除する。</p>
+
+        <h3>4-4. 反映時間の目安</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th></th><th>反映まで</th></tr></thead>
+            <tbody>
+              <tr><td>エックスサーバー</td><td>最大1時間程度</td></tr>
+              <tr><td>ロリポップ</td><td>5〜10分程度</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>「設定中」「反映待ち」の間にアクセスすると一時的に警告が出るが、正常な過程。</p>
+      </section>
+
+      <!-- PART 5 -->
+      <section class="part" id="p5">
+        <p class="kicker">第5部 · PART 05</p>
+        <h2 class="part-title">データ移行</h2>
+
+        <h3>5-1.「ファイルをコピーしたから移行完了」ではない</h3>
+        <p>WordPress は記事・固定ページ・設定情報の多くが <strong>データベース</strong>に入っている。ファイルとDBの両方が必要。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>移す対象</th><th>中身</th></tr></thead>
+            <tbody>
+              <tr><td><strong>ファイル</strong></td><td>テーマ、プラグイン、<code>wp-content/uploads</code> の画像、<code>wp-config.php</code> など</td></tr>
+              <tr><td><strong>データベース</strong></td><td>記事、固定ページ、各種設定（<code>wp_options</code>）、フォーム設定</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>5-2. 手順</h3>
+        <h4>移行前</h4>
+        <ol>
+          <li>旧環境のバックアップ（ファイル＋DB）</li>
+          <li>現在の設定情報を記録</li>
+          <li>DNS設定のスクリーンショット保存</li>
+        </ol>
+        <h4>移行後</h4>
+        <ol>
+          <li>新サーバーへファイルを配置</li>
+          <li>データベースを移行</li>
+          <li><strong>DB接続情報を確認</strong>（<code>wp-config.php</code> の内容と新サーバー側のDB情報が一致しているか）</li>
+          <li>表示確認、管理画面ログイン確認</li>
+          <li>ページ・画像・フォームの確認</li>
+        </ol>
+
+        <h3>5-3. ★URL置換 —— 移行案件で必ず起きる</h3>
+        <p>移行後、DBの中に <strong>旧環境の絶対URLがそのまま残る。</strong> これが td-group で実際に起きた（旧テスト環境への参照が約380箇所・57ページ）。</p>
+        <pre><code># まず件数だけ確認（何も書き換えない、押しても壊れない）
+wp search-replace '旧URL' '新URL' --dry-run --all-tables
+
+# 問題なければ --dry-run を外して実行
+wp search-replace '旧URL' '新URL' --all-tables</code></pre>
+        <p>WP-CLI ならシリアライズデータも壊さず処理してくれる。使えない環境なら <strong>Better Search Replace</strong> プラグインで同等のことができる（「まず変更をシミュレーションする」チェックボックスが <code>--dry-run</code> に相当）。</p>
+
+        <h4>注意点</h4>
+        <ul>
+          <li><strong><code>http://</code> と <code>https://</code> の両方を別々に置換する。</strong> td-group では <code>http://</code> 表記の分が漏れた</li>
+          <li><strong>画像は先に実ファイルを新サーバーの <code>uploads</code> へコピーしてから URL置換。</strong> 順序を逆にすると404になる</li>
+          <li>置換後、テーマ内の直書きURLは別途 <code>grep -r "旧ドメイン"</code> で確認</li>
+          <li>シリアライズ等で一括置換できない箇所は、管理画面から手動更新が必要になることがある</li>
+          <li>置換完了後、<strong>サイト全体をクロールして旧ドメインの文字列がゼロになったことを確認</strong>してから旧環境を停止</li>
+        </ul>
+
+        <h4>参照残りのチェック方法</h4>
+        <p>サイトマップが無い場合は WordPress REST API から URL一覧を取れる。</p>
+        <pre><code># 投稿・固定ページのURL一覧を取得
+curl -s "http://対象ドメイン/wp-json/wp/v2/posts?per_page=100" | grep -o '"link":"[^"]*"'
+curl -s "http://対象ドメイン/wp-json/wp/v2/pages?per_page=100" | grep -o '"link":"[^"]*"'</code></pre>
+        <p>カスタム投稿タイプがある場合は、そのエンドポイントも忘れずに。</p>
+
+        <h3>5-4. テーマだけ差し替える場合</h3>
+        <p>テーマファイルのアップロードは <strong>見た目・機能のファイルを差し替えるだけ</strong>なので、DBに入っているコンテンツには触れない。既存の記事も問い合わせフォームの履歴も残る。</p>
+        <p>ただし、投稿タイプやカテゴリの移動が必要な場合は、リリース後に手動作業が発生する。旧側の記事はいきなり削除せず、<strong>一旦非公開</strong>にしておくと戻せる。</p>
+
+        <h3>5-5. SMTP設定に注意</h3>
+        <p>SMTP は <strong>サイトのURLとは独立した設定</strong>なので、URL が変わったから設定し直し、という性質のものではない。ただし確認は要る。</p>
+        <p><strong>SMTPの設定値も <code>wp_options</code> に保存されている</strong> ので、旧URLの話とまったく同じ構造で、<strong>テスト環境の設定がそのまま本番に引き継がれる。</strong></p>
+        <p>見るべき3点：</p>
+        <ol>
+          <li><strong>SMTPホストがどこのサーバーか</strong>
+            <ul>
+              <li>新サーバーのもの → そのままでOK</li>
+              <li>旧サーバーやテスト用のもの → 差し替えが必要</li>
+              <li>Gmail / SendGrid などの外部サービス → ドメイン移行の影響を受けないのでそのままでOK</li>
+            </ul>
+          </li>
+          <li><strong>送信元（From）のドメインとSPF</strong> — 送信サーバーが変わる場合は SPFレコードの確認が必要</li>
+          <li><strong>DNS切替時のMXレコード</strong> — Aレコードだけ設定してMXを引き継ぎ忘れると、そのドメイン宛のメールが全部止まる。<strong>サイトは正常に見えるので気づきにくく、「公開後に問い合わせが1件も来ない」で発覚する</strong></li>
+        </ol>
+      </section>
+
+      <!-- PART 6 -->
+      <section class="part" id="p6">
+        <p class="kicker">第6部 · PART 06</p>
+        <h2 class="part-title">メール</h2>
+
+        <h3>6-1. 変更前に必ず控えるもの</h3>
+        <ul>
+          <li>MX レコード</li>
+          <li>TXT レコード（SPF / DKIM / DMARC）</li>
+          <li><code>mail.</code> <code>smtp.</code> などメール系サブドメインのAレコード</li>
+        </ul>
+
+        <h3>6-2. パターン別の影響</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>メールの運用場所</th><th>Aレコードを変えたときの影響</th></tr></thead>
+            <tbody>
+              <tr><td>Google Workspace / 外部サービス</td><td><strong>MXを触らなければ影響なし</strong>（medi-ent はこれ）</td></tr>
+              <tr><td>旧サーバー付属のメールを継続利用</td><td>MXが向いているホスト名（例 <code>mail.example.com</code>）に<strong>旧サーバーのIP</strong>でAレコードを追加して固定する必要がある</td></tr>
+              <tr><td>新サーバーへメールも移行</td><td>新サーバー側でメールアカウントを作成してからMXを切り替える</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>6-3. 公開後のテスト</h3>
+        <ul>
+          <li>問い合わせフォームから実送信を1回</li>
+          <li>管理者宛の受信確認</li>
+          <li>自動返信がある場合は、<strong>返信先アドレスを変更したら必ず再テスト</strong>（td-group では返信先を変えたら自動返信が届かなくなった）</li>
+          <li>迷惑メールフォルダも確認</li>
+        </ul>
+      </section>
+
+      <!-- PART 7 -->
+      <section class="part" id="p7">
+        <p class="kicker">第7部 · PART 07</p>
+        <h2 class="part-title">サーバー別 管理画面ガイド</h2>
+
+        <h3>7-1. 2社の違い（早見表）</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th></th><th>エックスサーバー</th><th>ロリポップ！</th></tr></thead>
+            <tbody>
+              <tr><td>管理画面</td><td>Xserverアカウント＋サーバーパネル（2つ）</td><td>ユーザー専用ページ（1つ）</td></tr>
+              <tr><td>ドメイン追加</td><td>ドメイン設定 → ドメインを追加（SSLも同時）</td><td>サーバーの管理・設定 → 独自ドメイン設定</td></tr>
+              <tr><td>SSL</td><td>SSL設定。<strong>DNS切替前の事前発行が可能</strong></td><td>独自SSL証明書導入。<strong>DNS反映後のみ</strong></td></tr>
+              <tr><td>SSL反映</td><td>最大1時間程度</td><td>5〜10分程度</td></tr>
+              <tr><td>サーバーIP</td><td>サーバー情報に表示される</td><td><strong>管理画面に表示なし。初期ドメインから引く</strong></td></tr>
+              <tr><td>WordPress新規</td><td>WordPress簡単インストール</td><td>WordPress簡単インストール</td></tr>
+              <tr><td>WordPress移行</td><td><strong>WordPress簡単移行あり</strong></td><td>手動またはプラグイン</td></tr>
+              <tr><td>Basic認証</td><td>アクセス制限</td><td>セキュリティ → アクセス制限（<strong>.htaccess上書きに注意</strong>）</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>7-2. エックスサーバー</h3>
+        <h4>管理画面の構成</h4>
+        <p><strong>2つの画面</strong>に分かれている。混同すると探し物が見つからない。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>画面</th><th>できること</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Xserverアカウント</strong></td><td>契約・支払い・ドメイン取得・サーバー移行申請</td></tr>
+              <tr><td><strong>サーバーパネル</strong></td><td>ドメイン設定・SSL・WordPress・DB・アクセス制限など<strong>サイトの設定全般</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Xserverアカウントにログイン → 対象サーバーIDの「サーバー管理」→ サーバーパネルが開く。</p>
+
+        <h4>ドメインを追加する</h4>
+        <pre class="diagram"><code>サーバーパネル →「ドメイン設定」→「ドメインを追加」
+→ ドメイン名を入力 →「追加する」</code></pre>
+        <p>ドメイン追加と同時に無料独自SSLの設定も一緒に追加される（不要ならチェックを外す）。反映まで数分〜最大1時間。</p>
+        <div class="callout accent">
+          <p><strong>サーバーにドメインを追加することと、DNSでアクセス先をエックスサーバーへ向けることは別作業。</strong><br>サーバー側だけ設定しても、DNSが旧サーバーを向いていれば一般ユーザーは旧サーバーへアクセスする。</p>
+        </div>
+
+        <h4>サブドメインを作る</h4>
+        <pre class="diagram"><code>サーバーパネル →「サブドメイン設定」
+→ 名前（test など）を入力し、無料独自SSLにチェック</code></pre>
+        <p>サブドメインは無料・無制限。</p>
+
+        <h4>WordPress</h4>
+        <ul>
+          <li><strong>新規</strong> … 「WordPress簡単インストール」。データベースも自動で作られる</li>
+          <li><strong>他社サーバーからの引っ越し</strong> … 「<strong>WordPress簡単移行</strong>」機能あり。移行元のPHPが5.3以降であることが条件</li>
+        </ul>
+        <p>ロリポップ → エックスサーバーのような構成はこの機能で完結することが多い。</p>
+
+        <h4>SSL</h4>
+        <pre class="diagram"><code>サーバーパネル →「SSL設定」→ 対象ドメインを選択
+→「独自SSL設定追加」→ 確認画面へ進む → 追加する</code></pre>
+        <p>★ <strong>DNS切替前の事前発行</strong>については第4部を参照。</p>
+
+        <h4>サーバーのIPアドレス</h4>
+        <pre class="diagram"><code>サーバーパネル →「サーバー情報」→ IPアドレス</code></pre>
+        <p>お客様にAレコードの値を伝えるときは、ここの数字を使う。</p>
+
+        <h4>Basic認証・アクセス制限</h4>
+        <ul>
+          <li><strong>Basic認証</strong> … 「アクセス制限」</li>
+          <li><strong>特定IPを拒否</strong> … 「アクセス拒否設定」</li>
+          <li><strong>WordPress管理画面の保護</strong> … 「WordPressセキュリティ設定」</li>
+        </ul>
+        <p>「WordPressセキュリティ設定」には <strong>国外アクセス制限</strong> と <strong>ダッシュボードアクセス制限（IP制限）</strong> がある。</p>
+        <div class="callout warn">
+          <span class="label">海外案件で注意</span>
+          <p>国外からWordPress管理画面に入れない場合、サイトの不具合ではなくこの設定が原因。海外の協力会社に管理画面を触ってもらう案件では、事前にホワイトリストへIPを登録するか設定をOFFにする。</p>
+        </div>
+
+        <h3>7-3. ロリポップ！</h3>
+        <h4>管理画面の構成</h4>
+        <p>「ユーザー専用ページ」1つにまとまっている。左メニューの分類だけ覚えておけば迷わない。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>メニュー</th><th>主な中身</th></tr></thead>
+            <tbody>
+              <tr><td><strong>サーバーの管理・設定</strong></td><td>独自ドメイン設定 / サブドメイン設定 / データベース / ロリポップFTP / FTPアカウント設定</td></tr>
+              <tr><td><strong>サイト作成ツール</strong></td><td>WordPress簡単インストール</td></tr>
+              <tr><td><strong>セキュリティ</strong></td><td>独自SSL証明書導入 / アクセス制限</td></tr>
+              <tr><td><strong>メール</strong></td><td>メール設定／ロリポップ！webメーラー</td></tr>
+              <tr><td><strong>ユーザー設定</strong></td><td>アカウント情報 / アカウントのセキュリティ</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>独自ドメイン・サブドメイン</h4>
+        <pre class="diagram"><code>「サーバーの管理・設定」→「独自ドメイン設定」
+「サーバーの管理・設定」→「サブドメイン設定」</code></pre>
+        <p>サブドメイン作成時に <strong>公開（アップロード）フォルダ</strong>を指定する。このフォルダ名は後でWordPressのインストール先として使うので控える。</p>
+        <div class="callout danger">
+          <p><strong>★ ロリポップ側でサブドメインを作っただけでは表示されない。</strong><br>DNSが外部（Cloudflare など）で管理されている場合、そちらにAレコードを追加してもらう必要がある。第1部・第3部を参照。</p>
+        </div>
+
+        <h4>WordPress</h4>
+        <pre class="diagram"><code>「サイト作成ツール」→「WordPress簡単インストール」
+→ インストール先（ドメイン／サブドメイン／サブディレクトリ）を選択
+→ 利用データベース：「新規自動作成」
+→ サイトタイトル・ユーザー名・パスワード・メールアドレスを入力</code></pre>
+        <p>「新規自動作成」を選ぶと、DB名とパスワードがランダムな文字列で自動生成される。エンジニアから「DB情報を共有してください」と言われたときに渡すのはこれ。</p>
+        <p>エンジニアに渡す一式：</p>
+        <pre class="diagram"><code>データベース名
+DBユーザー名
+DBパスワード
+DBホスト（mysql84-1.lolipop.lan のような形式）</code></pre>
+        <p>DBホスト名は「サーバーの管理・設定」→「データベース」で確認できる。</p>
+        <p>補足：</p>
+        <ul>
+          <li>ユーザー名に <code>admin</code> <code>test</code> <code>administrator</code> <code>root</code> は使えない</li>
+          <li>インストール先に <code>index.html</code> があるとサイトが表示されない。削除かリネーム</li>
+          <li>複数サイト運用なら、DB名を自動生成に任せず、ドメイン名と紐づけた名前で先に作っておくと後で判別しやすい</li>
+          <li><strong>DB一覧はMySQLのサーバーごとに分かれて表示される。</strong> 見つからないときは画面を下までスクロールして他のサーバー名の見出しが無いか確認</li>
+        </ul>
+
+        <h4>一番確実なDB情報の確認方法</h4>
+        <p>FTPで <code>wp-config.php</code> を見る。実際に使われているDB情報が全部書いてある。</p>
+        <pre class="diagram"><code>「ロリポップ！FTP」→ 対象の公開フォルダ → wp-config.php</code></pre>
+        <pre><code>define( 'DB_NAME', '...' );
+define( 'DB_USER', '...' );
+define( 'DB_PASSWORD', '...' );
+define( 'DB_HOST', '...' );</code></pre>
+
+        <h4>SSL</h4>
+        <pre class="diagram"><code>「セキュリティ」→「独自SSL証明書導入」
+→ 対象ドメイン（wwwあり・なし両方）にチェック
+→「独自SSL（無料）を設定する」
+→ 5〜10分待つ →「SSL保護有効」になれば完了</code></pre>
+        <ul>
+          <li><strong>DNSがロリポップを向いていないと設定できない。</strong> 一覧でドメインが選択できない場合、まずDNSを確認</li>
+          <li>無料独自SSLは一度設定すると解除できない仕様なので、対象ドメインの選択は慎重に</li>
+        </ul>
+
+        <h4>Basic認証（アクセス制限）</h4>
+        <pre class="diagram"><code>「セキュリティ」→「アクセス制限」→「新規作成」
+→ .htaccess設置ディレクトリ、認証フォームのタイトル
+→ ユーザー名・パスワード（10ユーザーまで）</code></pre>
+        <div class="callout danger">
+          <span class="label">★ WordPressで使うときの注意</span>
+          <p>この機能は対象ディレクトリの <strong><code>.htaccess</code> を上書きする。</strong> パーマリンク用の記述が消え、<strong>トップページ以外が404になる</strong>ことがある。</p>
+          <ul>
+            <li>設定前に <code>.htaccess</code> をダウンロードして保管</li>
+            <li>設定後、WordPress管理画面の「設定 → パーマリンク」を開いて <strong>そのまま保存</strong>（記述が再生成される）</li>
+          </ul>
+        </div>
+
+        <h4>サーバーのIPアドレス</h4>
+        <p>管理画面にIPの表示がない。<strong>初期ドメインから引く。</strong></p>
+        <pre class="diagram"><code>①「アカウント情報」でロリポップの初期ドメインを確認
+　（例：td-web.cutegirl.jp のような形式。.webdav-lolipop.jp はFTP用なので違う）
+
+② その初期ドメインに対してIPを引く
+　nslookup td-web.cutegirl.jp
+　または whatsmydns.net で種別「A」検索</code></pre>
+        <p>本番ドメインで引いてもよいが、CloudflareのProxyが有効だとCloudflareのIPが返るため、<strong>初期ドメインから引くほうが確実。</strong></p>
+
+        <h4>SMTP情報の確認</h4>
+        <pre class="diagram"><code>「メール」→「メール設定／ロリポップ！webメーラー」
+→ 対象アドレスの「確認・変更」</code></pre>
+        <p>送信サーバー（SMTP）に出ている値がホスト名。標準は <code>smtp.lolipop.jp</code>、ポートは 465（SSL）か 587。</p>
+
+        <h4>2段階認証（本人確認）</h4>
+        <p>「普段と異なる環境からのログイン」に対して、登録メールアドレスへ認証URLが送られる。<strong>他人がログインしようとすると必ず止まる。</strong></p>
+        <pre class="diagram"><code>「ユーザー設定」→「アカウントのセキュリティ」
+→「普段と異なる環境からのログイン」の本人確認を「無効」</code></pre>
+        <p><strong>ただし、これはアカウント単位。サブドメインだけオフにはできない。</strong> 無効化すると本番サイトを含むアカウント全体が対象になる。</p>
+        <div class="callout warn">
+          <p><strong>無効化は最後の手段。</strong> 先に「渡すものを絞る」ことを検討する。</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>エンジニアの用途</th><th>渡すもの</th></tr></thead>
+            <tbody>
+              <tr><td>DBのインポート・書き換え</td><td><strong>phpMyAdmin</strong> — DB接続情報でそのまま入れる。ロリポップのログイン不要</td></tr>
+              <tr><td>ファイルのアップロード</td><td><strong>追加のFTPアカウント</strong> — 「FTPアカウント設定」で作成。公開フォルダを限定できる。作業後は削除するだけで権限回収</td></tr>
+              <tr><td>WordPress本体の操作</td><td><strong>WordPressの管理者アカウント</strong> — 別ユーザーを発行</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>移行作業なら、たいてい <strong>phpMyAdmin + FTP</strong> の2つで完結する。ユーザー専用ページに入る必要があるのは、サブドメイン作成やSSL設定などサーバー設定を触るときだけ。</p>
+        <div class="callout danger">
+          <p><strong>アカウントがクライアント名義の場合は、セキュリティ設定を落とす前に必ず一言入れる。</strong></p>
+        </div>
+
+        <h3>7-4.「どの管理画面を見ればいい？」早見表</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>やりたいこと</th><th>開く画面</th></tr></thead>
+            <tbody>
+              <tr><td>サーバー内のファイルを確認したい</td><td>サーバー会社の管理画面（FTP）</td></tr>
+              <tr><td>データベースを確認したい</td><td>サーバー側のデータベース設定 / phpMyAdmin</td></tr>
+              <tr><td>WordPressの記事・プラグインを変更したい</td><td>WordPress管理画面</td></tr>
+              <tr><td>ドメインを新サーバーで使えるようにしたい</td><td>新サーバー側のドメイン設定</td></tr>
+              <tr><td><strong>ドメインのアクセス先を旧→新へ変えたい</strong></td><td><strong>DNSを実際に管理しているサービス</strong></td></tr>
+              <tr><td>メールがおかしくなった</td><td>DNSのMX・TXT ＋ メールサーバー側の設定</td></tr>
+              <tr><td>httpsで表示されない</td><td>サーバー側のSSL設定 ＋ DNS</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- PART 8 -->
+      <section class="part" id="p8">
+        <p class="kicker">第8部 · PART 08</p>
+        <h2 class="part-title">実際の案件記録</h2>
+
+        <article class="case">
+          <h3>8-1. medi-ent.co.jp（2026年8月）</h3>
+          <p><strong>内容：</strong> リニューアルに伴いサーバーを新規契約。ドメインは継続利用のためDNS切替が必要。</p>
+          <dl>
+            <dt>ドメイン</dt><dd>medi-ent.co.jp（継続）</dd>
+            <dt>新サーバー</dt><dd>エックスサーバー</dd>
+            <dt>DNS変更の実施者</dt><dd><strong>お客様側</strong>（設定内容をこちらで用意して渡す）</dd>
+            <dt>メール</dt><dd><strong>Google Workspace</strong> → MXを触らないので移行の影響なし</dd>
+            <dt>切替日時</dt><dd>8/28（金）13時頃 DNS切替 → 夕方サイト公開</dd>
+          </dl>
+          <h4>当日の流れ</h4>
+          <pre class="diagram"><code>制作会社側で本番環境へアップ
+　↓
+お客様側でDNS切替（Aレコード変更）
+　↓
+制作会社側でSSL設定</code></pre>
+          <h4>やったこと</h4>
+          <ul>
+            <li>お客様に渡すレコード表（<code>@</code> と <code>www</code> のAレコード）を作成</li>
+            <li>「絶対に触らないレコード」を明記した依頼文を用意</li>
+            <li>切替後、<code>dig</code> でDNS伝播を確認</li>
+            <li>SSL設定完了を確認</li>
+          </ul>
+          <h4>起きたこと・学び</h4>
+          <ul>
+            <li><strong>新サーバーのIPが途中で変わった。</strong> 最初に案内した値と最終的な値が別だった → <strong>お客様に送る前にサーバーパネルの「サーバー情報」で必ず現物を確認する</strong></li>
+            <li>制作会社の指示で、お客様へのDNS連絡は補足説明を省いて <strong>値のみ</strong>共有する方針になった</li>
+            <li>切替・SSL後に <strong>WordPress管理画面にログインできない</strong>事象が発生。<code>wp-json</code> は正常応答するのに <code>wp-login.php</code> が404 → <strong>SiteGuard等のセキュリティプラグインでログインURLが変更されている</strong>か、エックスサーバー側のログイン制限が濃厚。ブラインドで探らず、<strong>制作会社に直接ログインURLを聞く</strong>のが正解</li>
+            <li>GAタグは <strong>お客様側でGoogleアナリティクスを発行</strong>してもらい、そのタグを制作側で設置。制作側発行だとアカウントが制作側管理になり先方が不便になるため</li>
+          </ul>
+          <div class="callout accent">
+            <p>エックスサーバーだったので、次回は「DNS切替前のSSL事前発行」を検討できた案件。</p>
+          </div>
+        </article>
+
+        <article class="case">
+          <h3>8-2. td-group.jp（2026年8月）</h3>
+          <p><strong>内容：</strong> サイトリニューアル。テスト環境構築 → 本番公開。</p>
+          <dl>
+            <dt>本番</dt><dd>td-group.jp</dd>
+            <dt>テスト</dt><dd>test.td-group.jp（ロリポップ内サブドメイン）</dd>
+            <dt>旧テスト環境</dt><dd>td-group.test-page.site</dd>
+            <dt>サーバー</dt><dd>ロリポップ（MySQL 8.4 / <code>mysql84-1.lolipop.lan</code>）</dd>
+            <dt>DNS</dt><dd><strong>Cloudflare</strong>（NS: <code>alfred.ns.cloudflare.com</code> / <code>wanda.ns.cloudflare.com</code>）</dd>
+            <dt>サーバーIP</dt><dd>初期ドメイン <code>td-web.cutegirl.jp</code> から取得</dd>
+          </dl>
+          <h4>起きたこと① サブドメインが表示されない</h4>
+          <p>ロリポップでサブドメインを作成し、WordPress簡単インストールも完了していたのに、ブラウザからアクセスできなかった。<br>→ <strong>原因：Cloudflare側に <code>test</code> のAレコードが無かった。</strong><br>→ 対応：Cloudflare で Type=A / Name=<code>test</code> / IPv4=サーバーIP / <strong>Proxy status=DNS only</strong> を追加依頼。</p>
+          <h4>起きたこと② 旧テスト環境への参照が大量に残った</h4>
+          <p>先方のAIチェックで、新サイトから旧テスト環境（test-page.site）への参照が <strong>約380箇所・57ページ</strong>残っていると指摘された。クリックすると外部の転送ページに飛ぶ状態。</p>
+          <p>具体的な箇所：キャンペーンバナー3枚のリンク先、症状ページ26本の画像、地図画像。</p>
+          <p>対応順序（先方指示、これが正しい順序）：</p>
+          <pre class="diagram"><code>① 画像を新サーバーへ移設
+② 57ページのリンクを一括置換
+③ 参照ゼロを確認
+④ 旧環境を停止</code></pre>
+          <ul>
+            <li><code>--dry-run</code> で件数を先に確認</li>
+            <li><strong><code>http://</code> 表記の分が漏れていた</strong> → http / https を別々に置換</li>
+            <li>シリアライズで一括置換できない箇所は管理画面から手動更新</li>
+            <li>管理画面（wp_options 等）にも旧サイトの残りがあった</li>
+          </ul>
+          <div class="callout accent">
+            <p>再発防止として本番前チェックに「リンク先」「旧ドメインへの参照」を追加した。</p>
+          </div>
+          <h4>起きたこと③ フォーム・メールまわり</h4>
+          <ul>
+            <li>問い合わせの送信先がテスト用のアドレスのままだった → 本番用に変更</li>
+            <li>採用応募フォームの自動返信の返信先を変更したところ、自動返信が届かなくなった → 配信先を一本化して再テスト</li>
+            <li>SMTP情報がテスト時の暫定値のまま本番に引き継がれるリスクを事前に確認</li>
+          </ul>
+          <h4>起きたこと④ テスト環境がhttpのまま</h4>
+          <p>test環境が https 化されておらず http で200応答していた。<strong>本番公開時に混在コンテンツ警告が出るリスク</strong>として事前に共有。</p>
+        </article>
+
+        <article class="case">
+          <h3>8-3. uchikara-clinic.com（移行QA）</h3>
+          <p><strong>内容：</strong> サイト移行のQA。約198記事の新旧比較。</p>
+          <ul>
+            <li>移行元 uchikara-clinic.com → 移行先 demo-uchikara.design707.com</li>
+            <li>ステージングは Basic認証あり</li>
+            <li>Python / Playwright で <strong>テキスト差分比較・リンク切れチェック・ブロック構造の検出</strong>を自動化</li>
+            <li>ブレークポイント別のレイアウト崩れ検出クローラーを作成、CSVでレポート出力</li>
+          </ul>
+          <div class="callout accent">
+            <p><strong>学び：記事数が多い移行案件は、目視チェックではなく自動クロールに寄せる。</strong> 確認項目さえ整理できれば潰していける。</p>
+          </div>
+        </article>
+      </section>
+
+      <!-- PART 9 -->
+      <section class="part" id="p9">
+        <p class="kicker">第9部 · PART 09</p>
+        <h2 class="part-title">当日の段取り（標準タイムライン）</h2>
+
+        <h3>事前（数日前）</h3>
+        <pre class="diagram"><code>D-3 〜 D-2
+ └ TTLを300秒に下げてもらう ★これを忘れると当日終わらない
+ └ 現在のDNS設定をスクショ保存（切り戻し用）
+ └ ファイル・DBのバックアップ取得
+ └ 可能ならSSLを事前発行（エックスサーバーの場合）
+ └ hostsファイルで新サーバーの表示を先に確認
+
+D-1
+ └ 新環境の最終確認（表示・管理画面・フォーム・画像）
+ └ 切替時刻と連絡方法を関係者で確定
+ └ お客様にDNSレコード表と「触らないレコード」を送付</code></pre>
+
+        <h3>当日</h3>
+        <pre class="diagram"><code>STEP 1　新環境に本番データをアップ
+STEP 2　DNS切替（Aレコード変更）
+STEP 3　dig / whatsmydns で伝播確認
+STEP 4　SSL設定（事前発行していなければここ）
+STEP 5　https で表示確認、混在コンテンツ確認
+STEP 6　WordPress管理画面ログイン確認
+STEP 7　フォーム実送信テスト → 受信確認
+STEP 8　メール送受信テスト
+STEP 9　noindex解除・Basic認証解除
+STEP 10　GA / GTM 動作確認</code></pre>
+
+        <h3>事後</h3>
+        <pre class="diagram"><code>・旧サーバーは最低2週間残す（すぐ解約しない）
+・旧環境への参照がゼロになったことを確認してから旧環境停止
+・下げたTTLを元に戻す
+・作業記録を第10部のテンプレートに記入</code></pre>
+
+        <div class="axis">
+          <span class="label">考え方の軸</span>
+          <p><strong>「引っ越しを完了してから住所変更をする」</strong></p>
+          <p>DNSを先に変更すると、まだ準備できていない新サーバーへアクセスが流れる。</p>
+        </div>
+      </section>
+
+      <!-- PART 10 -->
+      <section class="part" id="p10">
+        <p class="kicker">第10部 · PART 10</p>
+        <h2 class="part-title">チェックリスト</h2>
+
+        <h3>10-1. 公開前チェックリスト</h3>
+        <div class="checklist">
+          <h4>サーバー</h4>
+          <ul>
+            <li>本番サーバーは契約・準備済みか</li>
+            <li>WordPressが動作する環境か</li>
+            <li>DBは準備されているか</li>
+            <li>本番データのアップロード担当は誰か</li>
+          </ul>
+          <h4>ドメイン・DNS</h4>
+          <ul>
+            <li>ドメイン管理者は誰か</li>
+            <li>DNS管理者は誰か（ネームサーバーの確認）</li>
+            <li>変更するレコードは確定しているか</li>
+            <li>メールへの影響はないか（MX / TXT / SPF）</li>
+            <li>TTLは事前に下げてあるか</li>
+            <li>切替時刻と合図の方法は決まっているか</li>
+            <li>現在のDNS設定のスクリーンショットは保管されているか</li>
+            <li>（Cloudflare）Proxy status は DNS only か</li>
+          </ul>
+          <h4>SSL</h4>
+          <ul>
+            <li>現行証明書は無料か有料か</li>
+            <li>DNS切替後の発行手順は決まっているか（事前発行は可能か）</li>
+            <li>HTTPSで正常表示されるか</li>
+            <li>混在コンテンツはないか</li>
+          </ul>
+          <h4>WordPress</h4>
+          <ul>
+            <li>本番URLに設定されているか</li>
+            <li><strong>旧ドメイン・旧テスト環境への参照がゼロか</strong>（http / https 両方）</li>
+            <li>管理画面にログインできるか（ログインURLが変更されていないか）</li>
+            <li>フォームは送信できるか（テストメール受信確認）</li>
+            <li><strong>フォームの送信先・自動返信先は本番用になっているか</strong></li>
+            <li><strong>SMTP設定はテスト時の暫定値のままになっていないか</strong></li>
+            <li>画像は表示されるか</li>
+            <li>内部リンクは正しいか</li>
+          </ul>
+          <h4>SEO</h4>
+          <ul>
+            <li>noindex解除</li>
+            <li>Basic認証解除</li>
+            <li>canonical</li>
+            <li>robots.txt</li>
+            <li>sitemap</li>
+            <li>Search Console登録</li>
+          </ul>
+          <h4>計測</h4>
+          <ul>
+            <li>GA4測定IDの受領・設置（<strong>アカウントはお客様名義で発行してもらう</strong>）</li>
+            <li>GTM設置</li>
+            <li>二重計測がないか</li>
+            <li>必要なイベント／CV計測</li>
+          </ul>
+        </div>
+
+        <h3>10-2. 正常動作の確認項目</h3>
+        <div class="checklist">
+          <ul>
+            <li>WebサイトTOP</li>
+            <li>下層ページ</li>
+            <li>画像</li>
+            <li>WordPress等の管理画面</li>
+            <li>問い合わせフォーム</li>
+            <li>メール送信</li>
+            <li>メール受信</li>
+            <li>SSL（https）</li>
+            <li>スマートフォン表示</li>
+          </ul>
+        </div>
+
+        <h3>10-3.〔最重要〕サーバー・DNSを触る前の4点</h3>
+        <ul class="gates">
+          <li>バックアップしたか？</li>
+          <li>変更前の設定を保存したか？</li>
+          <li>新しい環境が正常に動くことを確認したか？</li>
+          <li>メールへの影響を確認したか？</li>
+        </ul>
+        <p>そして、<strong>正常稼働が確認できるまで旧環境をすぐに削除しない。</strong></p>
+
+        <h3>10-4. 管理画面を開いたら、変更前に</h3>
+        <ul class="gates">
+          <li>今どこを向いている？</li>
+          <li>何を変更しようとしている？</li>
+          <li>変更するとWeb・メールのどこに影響する？</li>
+          <li>元に戻せる状態になっている？</li>
+        </ul>
+        <p>「変更前 → 変更内容 → 変更後」が分かるようにスクリーンショットを残してから作業する。</p>
+      </section>
+
+      <!-- PART 11 -->
+      <section class="part" id="p11">
+        <p class="kicker">第11部 · PART 11</p>
+        <h2 class="part-title">トラブル別 原因早見表</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>症状</th><th>疑うところ</th></tr></thead>
+            <tbody>
+              <tr><td><strong>サブドメインを作ったのにアクセスできない</strong></td><td>DNSに該当ホストのAレコードが無い（Cloudflare等の外部管理を確認）</td></tr>
+              <tr><td><strong>ファイルは上げたのにサイトが表示されない</strong></td><td>DNSの向き先／アップロード先ディレクトリの間違い／<code>index.html</code> の残存</td></tr>
+              <tr><td><strong>サイトが真っ白・DB接続エラー</strong></td><td><code>wp-config.php</code> のDB接続情報と新サーバーのDB情報が不一致</td></tr>
+              <tr><td><strong>トップは見えるが下層が404</strong></td><td>パーマリンクの <code>.htaccess</code> 記述が消えた（ロリポップのアクセス制限設定が上書きした可能性）→ 設定→パーマリンクを再保存</td></tr>
+              <tr><td><strong>SSL発行が失敗する</strong></td><td>DNS未反映／Basic認証・リダイレクトがかかっている／CloudflareがProxied</td></tr>
+              <tr><td><strong>httpsで警告が出る</strong></td><td>混在コンテンツ（httpsページ内にhttpのファイル）／SSL反映待ち</td></tr>
+              <tr><td><strong>WordPress管理画面に入れない</strong></td><td>セキュリティプラグイン（SiteGuard等）でログインURL変更／国外アクセス制限／ダッシュボードIP制限</td></tr>
+              <tr><td><strong>公開後に問い合わせが1件も来ない</strong></td><td>MXレコードの引き継ぎ漏れ／フォームの送信先がテスト用のまま／SMTPが暫定値のまま</td></tr>
+              <tr><td><strong>メールが届かない・迷惑メール判定</strong></td><td>MX / SPF(TXT) の設定漏れ／送信サーバーが変わったのにSPF未更新</td></tr>
+              <tr><td><strong>リンクをクリックすると別のサイトに飛ぶ</strong></td><td>DBに旧環境の絶対URLが残っている → search-replace（http/https両方）</td></tr>
+              <tr><td><strong>画像だけ表示されない</strong></td><td>実ファイルの移設漏れ／URL置換を先にやってしまった</td></tr>
+              <tr><td><strong>切り替わっているのに旧サイトが見える</strong></td><td>TTL（キャッシュ）待ち／<strong>hostsファイルの消し忘れ</strong></td></tr>
+              <tr><td><strong>nslookupで変なIPが返る</strong></td><td>CloudflareのProxyが有効 → 初期ドメインから引く</td></tr>
+              <tr><td><strong>エンジニアがサーバー管理画面にログインできない</strong></td><td>2段階認証（普段と異なる環境からのログイン）。認証URLを転送するか、phpMyAdmin / FTPアカウントだけ渡す</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- APPENDIX A -->
+      <section class="part" id="appendix-a">
+        <p class="kicker">付録A · APPENDIX A</p>
+        <h2 class="part-title">用語早見表</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>用語</th><th>一言でいうと</th></tr></thead>
+            <tbody>
+              <tr><td>ドメイン</td><td>サイトの住所（<code>example.com</code>）</td></tr>
+              <tr><td>URL</td><td>部屋番号まで含めた住所</td></tr>
+              <tr><td>サーバー</td><td>サイトのデータを置く場所</td></tr>
+              <tr><td>IPアドレス</td><td>サーバーの実際の番地（<code>123.45.67.89</code>）</td></tr>
+              <tr><td>DNS</td><td>ドメインとサーバーをつなぐ住所録</td></tr>
+              <tr><td>ネームサーバー（NS）</td><td>DNS設定をどこの会社が管理しているか</td></tr>
+              <tr><td>Aレコード</td><td>ドメイン → IPアドレス の指定</td></tr>
+              <tr><td>CNAME</td><td>名前 → 別の名前 の紐付け</td></tr>
+              <tr><td>MXレコード</td><td>メールの配送先。触らない</td></tr>
+              <tr><td>TXTレコード</td><td>SPF/DKIM等。触らない</td></tr>
+              <tr><td>TTL</td><td>DNS情報のキャッシュ時間。切替前に短くする</td></tr>
+              <tr><td>DNSの浸透</td><td>変更が全体に行き渡るまでの時間差</td></tr>
+              <tr><td>Proxy status</td><td>Cloudflare特有。DNS onlyかProxiedか</td></tr>
+              <tr><td>SSL/TLS</td><td>https で通信を暗号化する仕組み</td></tr>
+              <tr><td>混在コンテンツ</td><td>https ページ内に http のファイルが混ざった状態</td></tr>
+              <tr><td>WordPress</td><td>サイトを管理・生成するCMS</td></tr>
+              <tr><td>データベース</td><td>投稿・設定を保存する場所</td></tr>
+              <tr><td><code>wp_options</code></td><td>WordPressの設定が入るDBのテーブル。URLやSMTPもここ</td></tr>
+              <tr><td><code>wp-config.php</code></td><td>WordPressのDB接続設定ファイル</td></tr>
+              <tr><td>WP-CLI</td><td>コマンドでWordPressを操作するツール</td></tr>
+              <tr><td>search-replace</td><td>DB内の文字列を一括置換するコマンド</td></tr>
+              <tr><td>SMTP</td><td>メールを送信するためのサーバー設定</td></tr>
+              <tr><td>Basic認証</td><td>閲覧前にID/PWを要求する仕組み</td></tr>
+              <tr><td>noindex</td><td>検索結果に載せない指定。公開時に解除</td></tr>
+              <tr><td>GA4</td><td>サイトに来た後のアクセスを分析（<code>G-</code>）</td></tr>
+              <tr><td>GTM</td><td>計測タグを管理・配信（<code>GTM-</code>）</td></tr>
+              <tr><td>Search Console</td><td>Google検索側の状況を確認</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- APPENDIX B -->
+      <section class="part" id="appendix-b">
+        <p class="kicker">付録B · APPENDIX B</p>
+        <h2 class="part-title">作業記録テンプレート</h2>
+        <p>案件が終わったら、ここに追記する。</p>
+        <pre><code>### 作業日
+YYYY年MM月DD日
+
+### 対象サイト
+ドメイン：
+
+### 今回やりたかったこと
+例：旧サーバーから新サーバーへのWebサイト移行
+
+### 使用していたサービス
+旧サーバー：
+新サーバー：
+ドメイン管理：
+DNS管理：
+メール：
+CMS：
+
+### 変更した内容
+・
+・
+・
+
+### 発生した問題
+・
+
+### 原因
+・
+
+### 解決方法
+・
+
+### 次回注意すること
+・
+
+### 正常動作を確認した項目
+[ ] WebサイトTOP
+[ ] 下層ページ
+[ ] 画像
+[ ] WordPress等の管理画面
+[ ] 問い合わせフォーム
+[ ] メール送信
+[ ] メール受信
+[ ] SSL（https）
+[ ] スマートフォン表示</code></pre>
+      </section>
+
+      <!-- OUTRO -->
+      <section class="part" id="outro">
+        <p class="kicker">おわりに · CLOSING</p>
+        <h2 class="part-title">最後に</h2>
+        <p>サーバーやDNSの設定を自分で完璧にできる必要はない。ディレクターの仕事は、</p>
+        <ul class="gates">
+          <li><strong>誰が何を管理しているかを最初に確定させること</strong></li>
+          <li><strong>段取りの順番を間違えないこと</strong>（TTL → バックアップ → 移行 → 確認 → DNS → SSL → 確認）</li>
+          <li><strong>戻せる状態を作っておくこと</strong></li>
+        </ul>
+        <p>この3つ。技術的な手を動かす部分は、エンジニアやサーバー担当に依頼して構わない。依頼するときに <strong>何を確認して何を渡せばいいか</strong> が分かっていれば、それがディレクションになる。</p>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var toggle = document.getElementById("tocToggle");
+    var toc = document.getElementById("toc");
+    if (toggle && toc) {
+      toggle.addEventListener("click", function () {
+        var open = toc.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(open));
+      });
+      toc.addEventListener("click", function (e) {
+        if (e.target.closest("a") && window.matchMedia("(max-width: 999px)").matches) {
+          toc.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
+        }
+      });
+    }
+
+    var links = Array.prototype.slice.call(document.querySelectorAll(".toc a"));
+    var map = {};
+    links.forEach(function (a) {
+      var id = a.getAttribute("href").slice(1);
+      var el = document.getElementById(id);
+      if (el) map[id] = a;
+    });
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          links.forEach(function (l) { l.classList.remove("active"); });
+          var a = map[entry.target.id];
+          if (a) a.classList.add("active");
+        }
+      });
+    }, { rootMargin: "-15% 0px -70% 0px", threshold: 0 });
+
+    Object.keys(map).forEach(function (id) {
+      observer.observe(document.getElementById(id));
+    });
+  })();
+</script>
+
+</body></html>

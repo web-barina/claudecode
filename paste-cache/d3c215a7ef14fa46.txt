@@ -1,0 +1,135 @@
+Advanced Custom Fields
+無効化
+パワフル、プロフェッショナル、直感的なフィールドで WordPress をカスタマイズ。
+
+バージョン 6.8.9 | 作者: WP Engine | 詳細を表示
+自動更新を有効化
+All in One SEO を選択    
+All in One SEO
+プロ版にアップグレード | ドキュメンテーション | サポート | SEO 設定 | 無効化
+WordPress 用 SEO。XML サイトマップ、カスタム投稿タイプ用 SEO、ブログ、ビジネスサイト、eコマースサイトの SEO などの機能を利用できます。2007年以降、1億以上ダウンロードされています。
+
+バージョン 5.0.1.1 | 作者: All in One SEO チーム | 詳細を表示 | 機能追加の提案 | 
+自動更新を有効化
+All-In-One Security (AIOS) を選択    
+All-In-One Security (AIOS)
+設定 | 無効化
+すべての面において最高の WordPress セキュリティプラグイン !
+
+バージョン 5.4.9 | 作者: TeamUpdraft, DavidAnderson | 詳細を表示
+自動更新を有効化
+All-in-One WP Migration and Backup を選択    
+All-in-One WP Migration and Backup
+無効化
+All-in-One WP Migration を使用すると、WordPress サイト全体の移行が簡単になります。数回クリックするだけで、データベース、メディア、プラグイン、テーマをエクスポートまたはインポートできます。
+
+バージョン 7.110 | 作者: ServMask | 詳細を表示 | サポートに問い合わせる | 翻訳
+自動更新を有効化
+CF7 Apps を選択    
+CF7 Apps
+無効化 | Settings
+Contact Form 7 Apps is a collection of useful modules and extensions for Contact Form 7.
+
+バージョン 3.7.2 | 作者: CF7 Apps | 詳細を表示
+必須: Contact Form 7
+
+自動更新を有効化
+Classic Editor を選択    
+Classic Editor
+無効化 | 設定
+WordPress の旧エディターと、TinyMCE、メタボックスなどを含む以前のスタイルの投稿編集画面レイアウトを有効化します。この画面を拡張する古いプラグインをサポートします。
+
+バージョン 1.7.0 | 作者: WordPress コントリビューター | 詳細を表示
+自動更新を有効化
+Classic Widgets を選択    
+Classic Widgets
+無効化
+「外観」 > 「ウィジェット」とカスタマイザーで表示される旧来のウィジェット設定画面を有効化します。ウィジェット管理のブロックエディターを無効化します。
+
+バージョン 0.3 | 作者: WordPress Contributors | 詳細を表示
+自動更新を有効化
+Contact Form 7 を選択    
+Contact Form 7
+設定 | 無効化他のプラグインがこのプラグインに依存しているため、このプラグインを無効化することはできません。
+お問い合わせフォームプラグイン。シンプル、でも柔軟。
+
+バージョン 6.1.7 | 作者: 株式会社ロックロブスター | 詳細を表示
+以下で必須: CF7 Apps
+
+注意: このプラグインを必要とするプラグインを停止または削除するまで、このプラグインを無効化または削除することはできません。
+
+自動更新を有効化
+Google Analytics for WordPress by MonsterInsights を選択    
+Google Analytics for WordPress by MonsterInsights
+MonsterInsights Pro を入手 | 設定 | サポート | ドキュメンテーション | 無効化
+WordPress のための最高な Google アナリティクスプラグイン。訪問者がサイトをどのように見つけ、使用しているかを確認することで、彼らが再訪してくれるようにしましょう。
+
+バージョン 11.1.3 | 作者: MonsterInsights | 詳細を表示
+自動更新有効
+自動更新を管理
+Intuitive Custom Post Order を選択    
+Intuitive Custom Post Order
+無効化
+ドラッグ & ドロップで並べ替え可能な JavaScript を使って、直感的に項目 (投稿、ページ、カスタム投稿タイプ、カスタムタクソノミー、サイト) の順序を変えることができます。
+
+バージョン 3.2.0 | 作者: hijiri | 詳細を表示
+自動更新を有効化
+Link Library を選択    
+Link Library
+無効化
+Display links on pages with a variety of options
+
+バージョン 7.9.6 | 作者: Yannick Lefebvre | 詳細を表示 | Donate
+自動更新を有効化
+Really Simple Security を選択    
+Really Simple Security
+セキュリティ改善 - アップグレード | サポート掲示板 | 設定 | 無効化
+Easily improve site security with WordPress Hardening, Two-Factor Authentication (2FA), Login Protection, Vulnerability Detection and SSL certificate generation.
+
+バージョン 9.8.0 | 作者: Really Simple Security | 詳細を表示
+自動更新を有効化
+Rich Showcase for Google Reviews を選択    
+Rich Showcase for Google Reviews
+Connect Reviews | 無効化
+Instantly display Google Map reviews on your website to increase user confidence and sales.
+
+バージョン 6.9.11 | 作者: RichPlugins | 詳細を表示 | Rate plugin ★★★★★
+自動更新を有効化
+Site Kit by Google を選択    
+Site Kit by Google
+セットアップを開始 | 無効化
+Site Kit ひとつで、Googleが提供するWeb上で成功するためのあらゆるツールを WordPress ユーザーが利用できるようになります。
+
+バージョン 1.186.0 | 作者: Google | 詳細を表示 | Site Kit の評価 | サポート
+自動更新を有効化
+Table of Contents Plus を選択    
+Table of Contents Plus
+設定 | Documentation | Support | 無効化
+自動的に目次を生成するパワフルかつユーザーフレンドリーなプラグイン。すべてのページとカテゴリーをリスティングするサイトマップも出力できます。
+
+バージョン 202608.2 | 作者: All in One SEO Team | 詳細を表示 | Suggest a Feature | 
+自動更新を有効化
+Universally Language Translation Multilingual Tool を選択    
+Universally Language Translation Multilingual Tool
+Settings | 無効化
+Automatic website translation and localization for WordPress.
+
+バージョン 1.0.8 | 作者: Syed Balkhi | 詳細を表示
+自動更新を有効化
+Website LLMs.txt を選択    
+Website LLMs.txt
+設定 | 無効化
+ChatGPT、Claude、Perplexity など、大規模言語モデルがサイトの最も重要なコンテンツを理解するのに役立つ、構造化された AI 対応インデックスである llms.txt ファイルを生成および管理します。
+
+バージョン 8.6.1 | 作者: Ryan Howard | 詳細を表示
+自動更新を有効化
+WP Mail SMTP を選択    
+WP Mail SMTP
+WP Mail SMTP Pro を入手する | 設定 | ドキュメンテーション | 無効化
+Send WordPress emails reliably via SMTP or API using SendLayer, Brevo, SMTP.com, Gmail, Outlook, or another email service of your choice.
+
+バージョン 4.9.0 | 作者: WP Mail SMTP | 詳細を表示
+自動更新を有効化
+Yoast Duplicate Post を選択    
+Yoast Duplicate Post
+設定 | 無効化

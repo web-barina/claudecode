@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "freee-api-skill": {
+      "source": "freee/freee-mcp",
+      "sourceType": "github",
+      "skillPath": "skills/freee-api-skill/SKILL.md",
+      "computedHash": "1316be0267dab3eb356ca08c6ba584dd225966113eac7569fba535ec9ab6a959"
+    }
+  }
+}
