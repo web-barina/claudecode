@@ -1,0 +1,48 @@
+#!/usr/bin/env python3
+import sys, re, glob, os, html
+
+def parse_vtt(path):
+    lines = open(path, encoding="utf-8").read().splitlines()
+    out, last = [], None
+    for ln in lines:
+        if "-->" in ln or ln.strip() == "" or ln.startswith(("WEBVTT", "Kind:", "Language:", "NOTE")):
+            continue
+        ln = re.sub(r"<[^>]+>", "", ln)
+        ln = html.unescape(ln).strip()
+        if not ln:
+            continue
+        if ln == last or (last and ln in last):
+            continue
+        out.append(ln)
+        last = ln
+    return out
+
+titles_tsv, subs_dir, outfile, playlist_url, header_title = sys.argv[1:6]
+rows = []
+for line in open(titles_tsv, encoding="utf-8"):
+    line = line.rstrip("\n")
+    p = line.split("\t") if "\t" in line else line.split("\\t")
+    if len(p) >= 3:
+        rows.append((p[0], p[1], p[2]))
+
+parts = []
+missing = []
+for idx, vid, title in rows:
+    cand = glob.glob(os.path.join(subs_dir, f"{idx}-*.ja-orig.vtt")) or glob.glob(os.path.join(subs_dir, f"{idx}-*.ja.vtt"))
+    head = f"\n\n{'='*70}\n{idx}. {title}\nhttps://www.youtube.com/watch?v={vid}\n{'='*70}\n\n"
+    if not cand:
+        parts.append(head + "[字幕なし]\n")
+        missing.append(f"{idx} {title}")
+        continue
+    joined = "".join(parse_vtt(cand[0]))
+    joined = re.sub(r"[ 　]+", "", joined)
+    joined = re.sub(r"([。！？])", r"\1\n", joined)
+    text = "\n".join(l for l in (x.strip() for x in joined.splitlines()) if l)
+    parts.append(head + text + "\n")
+
+with open(outfile, "w", encoding="utf-8") as f:
+    f.write(f"{header_title} 全動画テキスト書き起こし\n{playlist_url}\n"
+            "※YouTube自動生成字幕をもとに整形。誤認識の可能性あり。\n" + "".join(parts))
+print("wrote", outfile)
+if missing:
+    print("字幕なし:", missing)

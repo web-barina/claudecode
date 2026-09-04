@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+import sys, re, glob, os, html
+
+def parse_vtt(path):
+    lines = open(path, encoding="utf-8").read().splitlines()
+    out = []
+    last = None
+    for ln in lines:
+        if "-->" in ln or ln.strip() == "" or ln.startswith(("WEBVTT", "Kind:", "Language:", "NOTE")):
+            continue
+        # strip inline timing tags <00:00:00.000> and <c> tags
+        ln = re.sub(r"<[^>]+>", "", ln)
+        ln = html.unescape(ln).strip()
+        if not ln:
+            continue
+        if ln == last:
+            continue
+        # auto-sub rolling duplicates: skip if this line is a prefix of previous or vice versa
+        if last and (ln in last):
+            continue
+        out.append(ln)
+        last = ln
+    return out
+
+titles = {
+ "01":"【超重要】自由になるためになぜ仕組み化は必要か？",
+ "02":"【重要】仕組み化とはそもそも何？",
+ "03":"【時サポ】時間を空けることはとっても良いことである",
+ "04":"【時サポ】仕組み化のセンターピン",
+ "05":"【時サポ】仕組み化から戻ろうとする気持ちを乗り越えよう！",
+ "06":"【時サポ】仕組み化がハイスピードで進む方法",
+ "07":"【時サポ】1石10鳥マインドをもつ",
+ "08":"【時サポ】データ確認と思いやりのバランスを大切に",
+ "09":"それ要らなくね？と極端な問いをぶつけよう",
+ "10":"制作パートナーとの見積もりすり合わせ術",
+}
+
+subs_dir = sys.argv[1]
+outfile = sys.argv[2]
+parts = []
+for idx in sorted(titles):
+    # prefer ja-orig, fallback ja
+    cand = glob.glob(os.path.join(subs_dir, f"{idx}-*.ja-orig.vtt")) or glob.glob(os.path.join(subs_dir, f"{idx}-*.ja.vtt"))
+    header = f"\n\n{'='*70}\n{idx}. {titles[idx]}\nhttps://www.youtube.com/watch?v="
+    if not cand:
+        parts.append(header + "\n[字幕なし]\n")
+        continue
+    vid = os.path.basename(cand[0]).split("-",1)[1].split(".")[0]
+    joined = "".join(parse_vtt(cand[0]))
+    joined = re.sub(r"[ 　]+", "", joined)
+    # break into readable lines at sentence enders
+    joined = re.sub(r"([。！？])", r"\1\n", joined)
+    text = "\n".join(l for l in (x.strip() for x in joined.splitlines()) if l)
+    parts.append(header + vid + "\n" + f"{'='*70}\n\n" + text + "\n")
+
+open(outfile, "w", encoding="utf-8").write("時サポ仕組み化マインド 再生リスト 全動画テキスト書き起こし\n"
+    "https://www.youtube.com/playlist?list=PLkaivJ6bsig8tRrzT6GswlnvAwpWWMGDj\n"
+    "※YouTube自動生成字幕をもとに整形。誤認識の可能性あり。\n" + "".join(parts))
+print("wrote", outfile)
