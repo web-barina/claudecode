@@ -1,0 +1,83 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+import csv
+import shutil
+import datetime
+
+SRC = "/Users/rina/Downloads/営業リスト - Sheet1_backup_20260905_005337.csv"
+DEST = "/Users/rina/Downloads/営業リスト - Sheet1.csv"
+RESULTS = "/private/tmp/claude-501/-Users-rina--claude/6cb2650b-3e46-43ee-8f75-cf8c28afa608/scratchpad/results.csv"
+UNCERTAIN_REPORT = "/private/tmp/claude-501/-Users-rina--claude/6cb2650b-3e46-43ee-8f75-cf8c28afa608/scratchpad/uncertain_report.csv"
+
+with open(SRC, encoding="utf-8-sig") as f:
+    rows = list(csv.reader(f))
+header = rows[0]
+data = rows[1:]
+
+with open(RESULTS, encoding="utf-8-sig") as f:
+    results = list(csv.DictReader(f))
+
+by_idx = {int(r["idx"]): r for r in results}
+
+out_rows = [header]
+deleted = []
+uncertain_rows = []
+kept_dead_with_history = []
+filled_hiweb = 0
+filled_eigyofuka = 0
+
+for i, row in enumerate(data):
+    res = by_idx.get(i)
+    company = row[0] if len(row) > 0 else ""
+    url = row[1] if len(row) > 1 else ""
+    sent = row[2] if len(row) > 2 else ""
+    dcol = row[3] if len(row) > 3 else ""
+
+    if res is None:
+        out_rows.append([company, url, sent, dcol])
+        continue
+
+    status = res["check_status"]
+    has_history = bool(dcol.strip())
+
+    # 既にD列に何か記録がある行(面談・返信ありなど)はCRM履歴として保持する。
+    # 現在リンク切れでも履歴を消さない。
+    if status == "dead":
+        if not has_history:
+            deleted.append((company, url, res["detail"]))
+            continue
+        else:
+            kept_dead_with_history.append((company, url, res["detail"], dcol))
+
+    new_dcol = dcol
+    if status == "uncertain":
+        uncertain_rows.append((company, url, res["detail"], dcol))
+
+    if not has_history and status != "dead":
+        suggestion = res["d_value_suggested"]
+        if suggestion == "非WEB":
+            new_dcol = "非WEB"
+            filled_hiweb += 1
+        elif suggestion == "営業不可":
+            new_dcol = "営業不可"
+            filled_eigyofuka += 1
+
+    out_rows.append([company, url, sent, new_dcol])
+
+with open(DEST, "w", newline="", encoding="utf-8-sig") as f:
+    csv.writer(f).writerows(out_rows)
+
+with open(UNCERTAIN_REPORT, "w", newline="", encoding="utf-8-sig") as f:
+    w = csv.writer(f)
+    w.writerow(["company", "url", "detail", "dcol_orig"])
+    w.writerows(uncertain_rows)
+
+print("total original rows:", len(data))
+print("deleted (dead links, no history):", len(deleted))
+print("kept:", len(out_rows) - 1)
+print("filled 非WEB:", filled_hiweb)
+print("filled 営業不可:", filled_eigyofuka)
+print("uncertain (kept, not modified, see report):", len(uncertain_rows))
+print("dead but kept due to existing history:", len(kept_dead_with_history))
+for c, u, d, dc in kept_dead_with_history:
+    print("  -", c, "|", u, "|", d, "|", dc)

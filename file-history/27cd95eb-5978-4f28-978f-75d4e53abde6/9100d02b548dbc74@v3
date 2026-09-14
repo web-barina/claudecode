@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ワイヤーフレーム｜初めての方へ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: #333333; background: #FFFFFF; font-size: 12px; line-height: 1.7; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+  .label { display:inline-block; font-size:10px; color:#888888; border:1px solid #DDDDDD; padding:2px 8px; margin-bottom:8px; }
+  .img-ph { background:#CCCCCC; display:flex; align-items:center; justify-content:center; color:#666666; font-size:12px; width:100%; }
+  .icon-ph { background:#CCCCCC; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#666666; font-size:10px; flex-shrink:0; }
+  .btn { display:inline-block; background:#888888; color:#FFFFFF; text-align:center; padding:12px 24px; font-size:13px; font-weight:700; border:none; cursor:pointer; }
+  .btn-block { display:block; width:100%; }
+  .badge { display:inline-block; border:1px solid #333333; font-size:10px; padding:3px 10px; margin:0 4px 8px; }
+  .section { padding: 32px 0; border-bottom: 1px solid #DDDDDD; }
+  .section-inner { padding: 0 16px; }
+  .section-title { font-size: 18px; font-weight: 700; text-align:center; margin-bottom: 8px; }
+  .section-lead { font-size: 12px; text-align:center; color:#666666; margin-bottom:24px; }
+  .header { border-bottom:1px solid #DDDDDD; }
+  .header-inner { max-width:1200px; margin:0 auto; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; }
+  .logo-ph { background:#CCCCCC; width:120px; height:32px; display:flex; align-items:center; justify-content:center; font-size:11px; color:#666; }
+  .nav-icon { width:32px; height:32px; }
+  .nav-pc { display:none; }
+  .header-btn { display:none; }
+  .breadcrumb { font-size:10px; color:#888; padding:10px 16px; }
+
+  .page-title { text-align:center; padding:24px 16px; background:#F5F5F5; }
+  .page-title h1 { font-size:22px; font-weight:700; }
+
+  .intro-block { text-align:center; padding:32px 16px; }
+  .intro-block h3 { font-size:15px; font-weight:700; margin-bottom:12px; }
+  .intro-block p { font-size:12px; color:#555; margin-bottom:12px; text-align:left; }
+  .intro-block .url { font-size:11px; color:#888; word-break:break-all; }
+
+  .promo { border:2px solid #888888; margin:16px; padding:16px; text-align:center; }
+  .promo-label { font-size:11px; border:1px solid #888888; display:inline-block; padding:2px 10px; margin-bottom:8px; }
+  .promo-name { font-size:13px; font-weight:700; margin-bottom:4px; }
+  .promo-price { font-size:28px; font-weight:700; margin-bottom:12px; }
+  .promo-price span { font-size:14px; }
+  .promo-note { font-size:10px; color:#888; margin-top:8px; }
+
+  .symptom-grid { display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+  .symptom-card { border:1px solid #DDDDDD; padding:12px; }
+  .symptom-card .icon-ph { width:36px; height:36px; margin:0 auto 8px; font-size:9px; }
+  .symptom-card h4 { font-size:12px; text-align:center; font-weight:700; margin-bottom:6px; }
+  .symptom-card p { font-size:11px; text-align:center; color:#666; margin-bottom:8px; }
+  .symptom-card .btn { width:100%; font-size:11px; padding:8px; }
+
+  table.compare { width:100%; border-collapse:collapse; font-size:11px; margin-top:16px; }
+  table.compare th, table.compare td { border:1px solid #DDDDDD; padding:8px; text-align:center; }
+  table.compare th { background:#F5F5F5; }
+  table.compare td.head { background:#F5F5F5; font-weight:700; text-align:left; }
+  .compare-wrap { overflow-x:auto; }
+
+  .merit-item { border:1px solid #DDDDDD; padding:12px; margin-top:12px; }
+  .merit-item h4 { font-size:12px; font-weight:700; margin-bottom:6px; }
+  .merit-item p { font-size:11px; color:#666; }
+
+  .recommend-grid { display:grid; grid-template-columns: 1fr; gap:12px; }
+  .recommend-card { border:1px solid #DDDDDD; padding:14px; }
+  .recommend-card .icon-ph { width:56px; height:56px; margin-bottom:10px; font-size:9px; }
+  .recommend-card .quote { font-size:13px; font-weight:700; margin-bottom:8px; }
+  .recommend-card .comment { font-size:11px; color:#555; margin-bottom:10px; }
+  .recommend-card .who { font-size:10px; color:#888; border-top:1px dashed #DDDDDD; padding-top:8px; }
+
+  .flow-list { display:flex; flex-direction:column; gap:12px; }
+  .flow-item { display:flex; gap:12px; align-items:flex-start; border:1px solid #DDDDDD; padding:12px; }
+  .flow-num { width:28px; height:28px; font-size:13px; font-weight:700; }
+  .flow-item .img-ph { width:70px; height:70px; font-size:9px; flex-shrink:0; }
+  .flow-item h4 { font-size:12px; font-weight:700; margin-bottom:4px; }
+  .flow-item p { font-size:11px; color:#666; }
+
+  .access-card { border:1px solid #DDDDDD; padding:16px; }
+  .access-card .img-ph { height:160px; margin-bottom:12px; }
+  table.info { width:100%; border-collapse:collapse; font-size:11px; margin-bottom:12px; }
+  table.info th, table.info td { border:1px solid #DDDDDD; padding:8px; text-align:left; }
+  table.info th { background:#F5F5F5; width:30%; }
+
+  .voice-block .img-ph { height:180px; margin-bottom:16px; }
+  .voice-block h4 { font-size:14px; font-weight:700; margin-bottom:8px; }
+  .voice-block p { font-size:12px; color:#555; margin-bottom:8px; }
+
+  .source-note { font-size:10px; color:#888; border-top:1px dashed #DDDDDD; margin-top:16px; padding-top:8px; }
+
+  footer { background:#EFEFEF; padding:24px 16px; text-align:center; }
+  .footer-nav { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; font-size:11px; margin-bottom:12px; }
+  .footer-copy { font-size:10px; color:#888; }
+
+  @media (min-width: 769px) {
+    body { font-size:16px; }
+    .header-inner { padding:16px 40px; }
+    .nav-icon { display:none; }
+    .nav-pc { display:flex; gap:24px; font-size:14px; }
+    .header-btn { display:block; }
+    .header-btn .btn { padding:10px 20px; font-size:13px; }
+    .breadcrumb { padding:12px 40px; font-size:12px; }
+
+    .page-title { padding:48px 16px; }
+    .page-title h1 { font-size:32px; }
+
+    .intro-block { padding:56px 16px; max-width:800px; margin:0 auto; }
+    .intro-block h3 { font-size:20px; }
+    .intro-block p { font-size:14px; }
+
+    .section { padding:64px 0; }
+    .section-inner { padding:0 40px; }
+    .section-title { font-size:28px; }
+    .section-lead { font-size:14px; margin-bottom:40px; }
+
+    .promo { margin:24px auto; max-width:800px; padding:32px; display:flex; align-items:center; justify-content:space-between; text-align:left; }
+    .promo-price { font-size:40px; margin-bottom:0; }
+    .promo-note { margin-top:0; }
+
+    .symptom-grid { grid-template-columns: repeat(4, 1fr); gap:16px; }
+
+    table.compare { font-size:14px; }
+    table.compare th, table.compare td { padding:14px; }
+
+    .recommend-grid { grid-template-columns: repeat(3, 1fr); }
+
+    .flow-list { flex-direction:row; flex-wrap:wrap; }
+    .flow-item { flex-direction:column; flex:1 1 30%; text-align:center; }
+    .flow-item .img-ph { width:100%; height:140px; margin:0 auto 8px; }
+
+    .access-card { display:flex; gap:24px; }
+    .access-card .img-ph { flex:0 0 320px; height:220px; margin-bottom:0; }
+    .access-card .body { flex:1; }
+
+    .voice-block { display:flex; gap:32px; align-items:center; max-width:1000px; margin:0 auto; }
+    .voice-block .img-ph { flex:0 0 320px; height:280px; margin-bottom:0; }
+    .voice-block .text { flex:1; }
+    .footer-nav { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo-ph">LOGO</div>
+    <nav class="nav-pc">
+      <a href="#">ホーム</a>
+      <a href="#">初めての方へ</a>
+      <a href="#">お悩み一覧</a>
+      <a href="#">お客様の声</a>
+      <a href="#">推薦者の声</a>
+      <a href="#">よくある質問</a>
+    </nav>
+    <div class="header-btn"><a href="#" class="btn">ご予約・お問合せ</a></div>
+    <div class="icon-ph nav-icon">MENU</div>
+  </div>
+</header>
+<p class="breadcrumb wrap">TOP ＞ 初めての方へ</p>
+
+<div class="page-title">
+  <h1>初めての方へ</h1>
+  <p style="font-size:11px; color:#888; margin-top:8px;">※リニューアル後URL：/guide　現サイトの「初めての方へ」「料金・施術の流れ」「楽トレ」「その他」ページをこの1ページに統合予定</p>
+</div>
+
+<!-- コンセプト -->
+<div class="intro-block">
+  <h3>当院が目指す「根本改善」という考え方</h3>
+  <p>当院は「根本的に身体を改善する」ことを強みとしており、痛みの表面的な対症療法ではなく本当の原因にアプローチします。骨盤の歪みや骨の異常（特に仙腸関節や椎間関節）を中心に全身を整え、インナーマッスルや自律神経の機能を向上させることで、症状を根本改善し再発予防へと導きます。</p>
+  <p class="url">出典：miyagawa-seikotsu.com/about/</p>
+</div>
+
+<!-- 他院との違い -->
+<div class="intro-block" style="background:#F5F5F5;">
+  <h3>他院との違い</h3>
+  <p>多くの医療機関では電気療法やマッサージなど表面的な部分のみを対象とするため、翌日には痛みが戻ってしまいます。当院は<strong>NHK「スゴ技Q」でも紹介された</strong>骨盤の歪みという根本原因に着目し、施術効果を高めるためにアフターケアにも力を入れています。</p>
+  <div><span class="badge">NHK「スゴ技Q」で紹介</span></div>
+  <p class="url">出典：miyagawa-seikotsu.com/about/</p>
+</div>
+
+<!-- 症状訴求 -->
+<section class="section">
+  <div class="section-inner">
+    <div class="label">こんなお悩みありませんか</div>
+    <h2 class="section-title">治らないと諦めていませんか？</h2>
+    <p class="section-lead">こんなご相談ができる整骨院を探していませんか</p>
+    <div class="symptom-grid">
+      <div class="symptom-card"><div class="icon-ph">ICON</div><h4>腰痛</h4><p>慢性的な腰の痛みに</p><a href="#" class="btn">症状はこちら</a></div>
+      <div class="symptom-card"><div class="icon-ph">ICON</div><h4>肩こり・頭痛</h4><p>何をしても改善しない方に</p><a href="#" class="btn">症状はこちら</a></div>
+      <div class="symptom-card"><div class="icon-ph">ICON</div><h4>骨盤矯正</h4><p>姿勢・体の歪みの根本改善に</p><a href="#" class="btn">症状はこちら</a></div>
+      <div class="symptom-card"><div class="icon-ph">ICON</div><h4>四十肩・五十肩</h4><p>腕が上がらない痛みに</p><a href="#" class="btn">症状はこちら</a></div>
+      <div class="symptom-card"><div class="icon-ph">ICON</div><h4>坐骨神経痛</h4><p>病院に行くか迷う症状に</p><a href="#" class="btn">症状はこちら</a></div>
+      <div class="symptom-card"><div class="icon-ph">ICON</div><h4>自律神経失調症</h4><p>病院で異常なしと言われた方に</p><a href="#" class="btn">症状はこちら</a></div>
+    </div>
+    <p class="section-lead" style="margin-top:16px;">頭痛・顎関節症・手足のしびれ・腱鞘炎・ヘルニア・脊柱管狭窄症・背部痛/肋間神経痛・股関節痛/変形性股関節症・膝痛/変形性膝関節症・生理痛/PMS・スポーツ傷害等、全17項目の「お悩み一覧」ページで詳しくご案内します。こちらに当てはまらないお悩みも、まずはお気軽にご相談ください。</p>
+    <p class="source-note">出典：現サイトのお悩み別コース一覧（miyagawa-seikotsu.com／リニューアル後「お悩み一覧」/symptom-list に集約予定）／ニーズ分析①②「効果への懐疑」「受診先の判断に迷う」</p>
+  </div>
+</section>
+
+<!-- 初回特典 -->
+<div class="promo">
+  <div>
+    <div class="promo-label">初回限定特典</div>
+    <div class="promo-name">症状改善整体コース　60分</div>
+  </div>
+  <div>
+    <div class="promo-price">980<span>円（税込）</span></div>
+    <p class="promo-note">通常価格7,000円（院長担当は+2,000円）</p>
+  </div>
+  <a href="#" class="btn btn-block">ご予約はこちら</a>
+</div>
+
+<!-- 医師・専門家からの推薦 -->
+<section class="section">
+  <div class="section-inner">
+    <div class="label">初めての方に知っていただきたいこと</div>
+    <h2 class="section-title">医師・専門家からの推薦の声</h2>
+    <p class="section-lead">「強引な勧誘があるのでは」というご不安に対し、整形外科医3名を含む専門家10名からの推薦状で当院の技術と誠実さをお伝えします</p>
+    <div class="recommend-grid">
+      <div class="recommend-card"><div class="icon-ph">IMAGE</div><p class="quote">「本当に治せる整骨院を目指してください」</p><p class="comment">整形外科でリハビリ室責任者として、骨折・捻挫の処置や画像診断など幅広い知識を習得。知識・技術・人柄で患者の悩みを解決する存在です。</p><p class="who">十日市場整形外科内科医院　院長・医師　浅井 潤一郎 先生</p></div>
+      <div class="recommend-card"><div class="icon-ph">IMAGE</div><p class="quote">「何院も回って改善しなかった症状にも」</p><p class="comment">約3年間の勤務で、長期の腰痛・膝関節痛患者を多数治療し改善させた実績があります。重症患者を適切な医療機関に紹介できる広い人脈も強みです。</p><p class="who">医療法人明誠会　まきうち整形外科　理事長・医師　牧内 大輔 先生</p></div>
+      <div class="recommend-card"><div class="icon-ph">IMAGE</div><p class="quote">「柔道整復師でありながら整形外科・内科の知見も」</p><p class="comment">リハビリ室責任者として成長し、患者の訴えを的確に把握。多くの患者から慕われる頼れる存在です。</p><p class="who">黒田内科医院　副院長・医師　黒田 高明 先生</p></div>
+    </div>
+    <p class="section-lead" style="margin-top:16px; font-size:11px;">ほか、理学療法士4名・看護師1名・診療放射線技師1名・フィットネスインストラクター1名から推薦をいただいています。推薦者の声一覧はこちら＞</p>
+    <p class="source-note">出典：現サイト「推薦者の声」（miyagawa-seikotsu.com/suisen　全10名）。リニューアル後は「推薦者の声」（/recommend）として独立ページ化予定／ニーズ分析②「施術院への信頼・警戒心（強引な勧誘への不安）」</p>
+  </div>
+</section>
+
+<!-- 整骨院・マッサージ・病院との違い -->
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title" style="text-align:left; border-left:4px solid #888; padding-left:12px;">整骨院・マッサージ・病院との違い</h2>
+    <p class="section-lead" style="text-align:left; margin-top:12px;">「どこに行けばいいか分からない」という方のために、それぞれの違いをまとめました。</p>
+    <div class="compare-wrap">
+      <table class="compare">
+        <tr><th></th><th>みやがわ整骨院</th><th>一般的な整骨院</th><th>マッサージ</th><th>病院（整形外科）</th></tr>
+        <tr><td class="head">根本原因への<br>アプローチ</td><td>◎</td><td>△</td><td>×</td><td>△</td></tr>
+        <tr><td class="head">保険診療の<br>取り扱い</td><td>◯</td><td>◯</td><td>×</td><td>◯</td></tr>
+        <tr><td class="head">施術者の資格</td><td>柔道整復師</td><td>柔道整復師</td><td>資格不問の場合あり</td><td>医師</td></tr>
+        <tr><td class="head">料金の目安</td><td>◯（明朗）</td><td>△</td><td>◯</td><td>◯（保険適用）</td></tr>
+      </table>
+    </div>
+    <div class="merit-item"><h4>一般的な整骨院と比べると</h4><p>院長本人が15年・臨床10万件の実績をもとに施術。骨盤の歪みという根本原因にアプローチするため再発しにくいのが特長です。</p></div>
+    <div class="merit-item"><h4>マッサージと比べると</h4><p>その場の癒しだけでなく、骨盤・骨の異常（仙腸関節・椎間関節）という原因そのものに対して施術を行います。</p></div>
+    <div class="merit-item"><h4>病院（整形外科）と比べると</h4><p>検査で「異常なし」と言われた慢性的な不調にも対応。他院の院長からも支持される確かな技術で、必要に応じて受診の目安もご案内します。</p></div>
+    <p class="source-note">※この比較表は現サイトには未掲載の新規提案コンテンツです。出典・根拠：ニーズ分析①②「整骨院・病院どちらに行くべきか」「整骨院・マッサージ・病院との違い」</p>
+  </div>
+</section>
+
+<!-- 施術の流れ -->
+<section class="section">
+  <div class="section-inner">
+    <div class="label">ご来院の流れ</div>
+    <h2 class="section-title">施術の流れ</h2>
+    <div class="flow-list">
+      <div class="flow-item"><div class="icon-ph flow-num">1</div><div class="img-ph">IMAGE</div><div><h4>カルテ記入</h4><p>症状と悩みをご記入いただきます</p></div></div>
+      <div class="flow-item"><div class="icon-ph flow-num">2</div><div class="img-ph">IMAGE</div><div><h4>カウンセリング</h4><p>お悩みを詳しく伺います</p></div></div>
+      <div class="flow-item"><div class="icon-ph flow-num">3</div><div class="img-ph">IMAGE</div><div><h4>検査</h4><p>身体の状態を評価します</p></div></div>
+      <div class="flow-item"><div class="icon-ph flow-num">4</div><div class="img-ph">IMAGE</div><div><h4>原因説明</h4><p>痛みの根本原因を説明します</p></div></div>
+      <div class="flow-item"><div class="icon-ph flow-num">5</div><div class="img-ph">IMAGE</div><div><h4>施術</h4><p>柔道整復師による本物の施術</p></div></div>
+      <div class="flow-item"><div class="icon-ph flow-num">6</div><div class="img-ph">IMAGE</div><div><h4>施術後の説明</h4><p>セルフケア指導と改善方法をご提示</p></div></div>
+    </div>
+    <p class="source-note">出典：現サイト「施術の流れ」6ステップ（miyagawa-seikotsu.com/price/）</p>
+  </div>
+</section>
+
+<!-- 料金 -->
+<section class="section">
+  <div class="section-inner">
+    <div class="label">料金</div>
+    <h2 class="section-title">料金・コースのご案内</h2>
+    <p class="section-lead">「自費だと高額になるのでは」というご不安を解消するため、料金を明朗に公開しています</p>
+    <div class="compare-wrap">
+      <table class="compare">
+        <tr><th>コース</th><th>内容</th><th>料金（税込）</th></tr>
+        <tr><td class="head">初回限定</td><td>症状改善整体コース　60分</td><td>980円</td></tr>
+        <tr><td class="head">症状改善整体コース</td><td>根本改善から骨盤矯正までトータルサポート</td><td>7,000円（院長担当+2,000円）</td></tr>
+        <tr><td class="head">プレミア整体コース</td><td>症状改善整体＋楽トレ（EMS）</td><td>10,000円（院長担当+2,000円）</td></tr>
+        <tr><td class="head">楽トレ（EMS）</td><td>体幹・インナーマッスルを強化</td><td>3,000円</td></tr>
+      </table>
+    </div>
+    <p class="section-lead" style="margin-top:16px; font-size:12px; text-align:left;"><strong>楽トレ（EMS）とは</strong>：米国・日本で特許取得した最先端トレーニングマシン。寝たまま30分で約18,000回の筋収縮を実現し、自力では鍛えにくい体幹・インナーマッスルに深層からアプローチします。骨盤周りの安定化・姿勢を支える筋力強化に有効です。</p>
+    <p class="source-note">出典：現サイト「料金・施術の流れ」（miyagawa-seikotsu.com/price/）「楽トレ」（miyagawa-seikotsu.com/rakutore）。SWOT分析で指摘された「料金非公開」という課題に対応し、比較検討中の不安を解消します。</p>
+  </div>
+</section>
+
+<!-- 院情報・アクセス -->
+<section class="section">
+  <div class="section-inner">
+    <div class="label">院情報・アクセス</div>
+    <h2 class="section-title">みやがわ整骨院への行き方</h2>
+    <div class="access-card">
+      <div class="img-ph">MAP</div>
+      <div class="body">
+        <table class="info">
+          <tr><th>住所</th><td>〒241-0005 神奈川県横浜市旭区白根7-15-6 1F</td></tr>
+          <tr><th>電話番号</th><td>045-744-5038</td></tr>
+          <tr><th>営業時間</th><td>平日 9:00〜13:00／15:00〜19:30　土曜 9:00〜13:00</td></tr>
+          <tr><th>定休日</th><td>土曜午後・日曜</td></tr>
+          <tr><th>アクセス</th><td>西谷駅から車4分／鶴ヶ峰駅から車8分／バス停「金草沢」徒歩2分</td></tr>
+        </table>
+        <a href="#" class="btn">アクセス・地図の詳細を見る</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 院長の想い -->
+<section class="section">
+  <div class="section-inner voice-block">
+    <div class="img-ph">IMAGE</div>
+    <div class="text">
+      <div class="label">院長からのメッセージ</div>
+      <h4>院長　宮川 晃司</h4>
+      <p>国家資格：柔道整復師／業界歴15年（2007年〜整形外科で研鑽、2018年みやがわ整骨院を開院）／臨床数10万件</p>
+      <p>来院された方をただ施術するだけでなく、なぜ身体が痛いのかをお客様に理解していただいたうえで、一緒に改善に向けて歩んでいきたい。そんな想いで日々の施術に向き合っています。</p>
+    </div>
+  </div>
+  <p class="source-note wrap" style="max-width:1000px; margin:16px auto 0;">出典：現サイト「初めての方へ」院長紹介（miyagawa-seikotsu.com/about/）</p>
+</section>
+
+<footer>
+  <div class="footer-nav">
+    <a href="#">ホーム</a>
+    <a href="#">初めての方へ</a>
+    <a href="#">お悩み一覧</a>
+    <a href="#">症例報告一覧</a>
+    <a href="#">お客様の声</a>
+    <a href="#">推薦者の声</a>
+    <a href="#">よくある質問</a>
+    <a href="#">コラム一覧</a>
+    <a href="#">お知らせ一覧</a>
+    <a href="#">採用情報</a>
+    <a href="#">お問い合わせ</a>
+    <a href="#">利用規約</a>
+    <a href="#">プライバシーポリシー</a>
+  </div>
+  <p class="footer-copy">© みやがわ整骨院</p>
+</footer>
+
+</body>
+</html>

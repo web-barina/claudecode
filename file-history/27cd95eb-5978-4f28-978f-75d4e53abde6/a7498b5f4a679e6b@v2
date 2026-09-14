@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ワイヤーフレーム｜採用募集</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: #333333; background: #FFFFFF; font-size: 12px; line-height: 1.7; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+  .label { display:inline-block; font-size:10px; color:#888888; border:1px solid #DDDDDD; padding:2px 8px; margin-bottom:8px; }
+  .img-ph { background:#CCCCCC; display:flex; align-items:center; justify-content:center; color:#666666; font-size:12px; width:100%; }
+  .icon-ph { background:#CCCCCC; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#666666; font-size:10px; flex-shrink:0; }
+  .btn { display:inline-block; background:#888888; color:#FFFFFF; text-align:center; padding:12px 24px; font-size:13px; font-weight:700; border:none; cursor:pointer; }
+  .btn-block { display:block; width:100%; }
+  .section { padding: 32px 0; border-bottom: 1px solid #DDDDDD; }
+  .section-inner { padding: 0 16px; }
+  .section-title { font-size: 18px; font-weight: 700; text-align:center; margin-bottom: 24px; }
+  .header { border-bottom:1px solid #DDDDDD; }
+  .header-inner { max-width:1200px; margin:0 auto; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; }
+  .logo-ph { background:#CCCCCC; width:120px; height:32px; display:flex; align-items:center; justify-content:center; font-size:11px; color:#666; }
+  .nav-icon { width:32px; height:32px; }
+  .nav-pc { display:none; }
+  .header-btn { display:none; }
+
+  .page-title { text-align:center; padding:24px 16px; background:#F5F5F5; }
+  .page-title h1 { font-size:22px; font-weight:700; }
+
+  .philosophy { text-align:center; padding:32px 16px; }
+  .philosophy h3 { font-size:16px; font-weight:700; margin-bottom:12px; }
+  .philosophy p { font-size:12px; color:#555; }
+
+  .charm-item { display:flex; flex-direction:column; gap:12px; margin-bottom:24px; }
+  .charm-item .img-ph { height:160px; }
+  .charm-item h4 { font-size:14px; font-weight:700; margin-bottom:8px; }
+  .charm-item p { font-size:11px; color:#666; }
+
+  .voice-scroll { display:flex; gap:12px; overflow-x:auto; padding-bottom:8px; }
+  .voice-staff-card { flex:0 0 70%; border:1px solid #DDDDDD; }
+  .voice-staff-card .img-ph { height:140px; }
+  .voice-staff-card .body { padding:12px; }
+  .voice-staff-card h4 { font-size:11px; font-weight:700; margin-bottom:4px; }
+  .voice-staff-card p { font-size:10px; color:#666; }
+
+  .flow-list { display:flex; flex-direction:column; gap:0; }
+  .flow-item { display:flex; gap:12px; align-items:flex-start; padding:16px 0; border-bottom:1px solid #DDDDDD; }
+  .flow-item:last-child { border-bottom:none; }
+  .flow-item .img-ph { width:64px; height:64px; font-size:9px; flex-shrink:0; border-radius:50%; }
+  .flow-item h4 { font-size:12px; font-weight:700; margin-bottom:4px; }
+  .flow-item p { font-size:11px; color:#666; }
+
+  .greeting { display:flex; flex-direction:column; gap:16px; }
+  .greeting .img-ph { height:180px; }
+  .greeting .name { font-size:11px; color:#666; margin-top:8px; }
+  .greeting h4 { font-size:15px; font-weight:700; margin-bottom:12px; }
+  .greeting p { font-size:12px; color:#555; margin-bottom:8px; }
+
+  table.req { width:100%; border-collapse:collapse; font-size:11px; }
+  table.req th, table.req td { border:1px solid #DDDDDD; padding:10px; text-align:left; }
+  table.req th { background:#F5F5F5; width:32%; }
+
+  .form-row { margin-bottom:16px; }
+  .form-row label { display:block; font-size:11px; font-weight:700; margin-bottom:6px; }
+  .form-row .req-tag { color:#888; font-weight:400; font-size:10px; border:1px solid #888; padding:1px 6px; margin-left:6px; }
+  .form-input { width:100%; border:1px solid #DDDDDD; background:#F5F5F5; padding:10px; font-size:11px; color:#999; }
+  .form-note { font-size:10px; color:#888; text-align:center; margin:16px 0; }
+
+  .source-note { font-size:10px; color:#888; border-top:1px dashed #DDDDDD; margin-top:16px; padding-top:8px; }
+
+  footer { background:#EFEFEF; padding:24px 16px; text-align:center; }
+  .footer-nav { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; font-size:11px; margin-bottom:12px; }
+  .footer-copy { font-size:10px; color:#888; }
+
+  @media (min-width: 769px) {
+    body { font-size:16px; }
+    .header-inner { padding:16px 40px; }
+    .nav-icon { display:none; }
+    .nav-pc { display:flex; gap:24px; font-size:14px; }
+    .header-btn { display:block; }
+    .header-btn .btn { padding:10px 20px; font-size:13px; }
+
+    .page-title { padding:48px 16px; }
+    .page-title h1 { font-size:32px; }
+
+    .philosophy { padding:56px 16px; max-width:800px; margin:0 auto; }
+    .philosophy h3 { font-size:22px; }
+    .philosophy p { font-size:14px; }
+
+    .section { padding:64px 0; }
+    .section-inner { padding:0 40px; max-width:1000px; margin:0 auto; }
+    .section-title { font-size:28px; }
+
+    .charm-item { flex-direction:row; align-items:center; }
+    .charm-item:nth-child(even) { flex-direction:row-reverse; }
+    .charm-item .img-ph { flex:1; height:240px; }
+    .charm-item .text { flex:1; }
+    .charm-item h4 { font-size:20px; }
+    .charm-item p { font-size:13px; }
+
+    .voice-staff-card { flex:0 0 22%; }
+    .voice-staff-card .img-ph { height:180px; }
+
+    .flow-list { flex-direction:row; }
+    .flow-item { flex-direction:column; text-align:center; flex:1; border-bottom:none; border-right:1px solid #DDDDDD; }
+    .flow-item:last-child { border-right:none; }
+    .flow-item .img-ph { width:90px; height:90px; margin:0 auto 8px; }
+
+    .greeting { flex-direction:row; gap:32px; }
+    .greeting .photo { flex:0 0 280px; }
+    .greeting .img-ph { height:280px; }
+    .greeting .text { flex:1; }
+
+    table.req th, table.req td { padding:16px; font-size:14px; }
+
+    .form-row { display:flex; align-items:flex-start; gap:24px; }
+    .form-row label { flex:0 0 200px; margin-bottom:0; padding-top:10px; }
+    .form-row .field { flex:1; }
+    .footer-nav { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo-ph">LOGO</div>
+    <nav class="nav-pc">
+      <a href="#">初めての方へ</a>
+      <a href="#">施術メニュー</a>
+      <a href="#">院長紹介</a>
+      <a href="#">店舗一覧</a>
+      <a href="#">採用募集</a>
+    </nav>
+    <div class="header-btn"><a href="#" class="btn">WEB予約</a></div>
+    <div class="icon-ph nav-icon">MENU</div>
+  </div>
+</header>
+
+<div class="page-title"><h1>採用募集</h1></div>
+
+<!-- 理念 -->
+<div class="philosophy">
+  <h3>みやがわ整骨院とは</h3>
+  <p>治療家としてのみならず、人としての成長を追究し、従業員満足度にこだわりを持った会社です。臨床実績10万件を超える院長のもとで、確かな技術と誠実な姿勢を学べる環境です。</p>
+</div>
+
+<!-- 働く魅力 -->
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">みやがわ整骨院で働く魅力</h2>
+    <div class="charm-item">
+      <div class="img-ph">IMAGE</div>
+      <div class="text"><h4>「人を創る」</h4><p>技術アップを図り、その上で「ありがとう」の言葉をいただける治療家であってほしい。人としての成長がなければ、施術の成果も長続きしないと考えています。</p></div>
+    </div>
+    <div class="charm-item">
+      <div class="img-ph">IMAGE</div>
+      <div class="text"><h4>遊ぶ時も働くときも一生懸命。<br>そんな社風が流れています。</h4><p>私たちみやがわ整骨院は従業員満足度の追求を貫いています。結果として離職率が低く、社員同士の家族的な絆と誇れる人生を実現しています。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 社員の声 -->
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">みやがわ整骨院で働く社員の声</h2>
+    <div class="voice-scroll">
+      <div class="voice-staff-card"><div class="img-ph">IMAGE</div><div class="body"><h4>従業員満足度業界最高峰を目指して</h4><p>治療家　名前が入ります</p></div></div>
+      <div class="voice-staff-card"><div class="img-ph">IMAGE</div><div class="body"><h4>従業員満足度業界最高峰を目指して</h4><p>治療家　名前が入ります</p></div></div>
+      <div class="voice-staff-card"><div class="img-ph">IMAGE</div><div class="body"><h4>従業員満足度業界最高峰を目指して</h4><p>治療家　名前が入ります</p></div></div>
+      <div class="voice-staff-card"><div class="img-ph">IMAGE</div><div class="body"><h4>従業員満足度業界最高峰を目指して</h4><p>治療家　名前が入ります</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 採用までの流れ -->
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">採用までの流れ</h2>
+    <div class="flow-list">
+      <div class="flow-item"><div class="icon-ph img-ph">1</div><div><h4>採用担当者に連絡</h4><p>当サイトの応募フォームよりお気軽にご連絡ください</p></div></div>
+      <div class="flow-item"><div class="icon-ph img-ph">2</div><div><h4>企業見学に参加（Zoom可）</h4><p>院内の雰囲気、院長・スタッフの人柄をご確認いただけます</p></div></div>
+      <div class="flow-item"><div class="icon-ph img-ph">3</div><div><h4>採用面接を実施</h4><p>面接時間は短めに設定。不安なことは何でもお聞きください</p></div></div>
+      <div class="flow-item"><div class="icon-ph img-ph">4</div><div><h4>採用</h4><p>採用が決まったら、あなたもみやがわ整骨院の一員です</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 代表者挨拶 -->
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">代表者挨拶</h2>
+    <div class="greeting">
+      <div class="photo"><div class="img-ph">IMAGE</div><p class="name">代表取締役　名前が入ります</p></div>
+      <div class="text">
+        <h4>従業員さんがイキイキと働ける、<br>従業員満足度最高峰を志して。</h4>
+        <p>この度は当社のホームページをご覧いただけ、ありがとうございます。学生時代から長くお付き合いいただいた業界を良くしていきたい、創業者としての想いを大切にしています。</p>
+        <p>院として大切にしていること：<br>・患者様の健康創りにお役立ちしたい<br>・従業員満足度の向上のために様々な分野にチャレンジしたい<br>・そして自分自身としても働く方にも喜んでいただける人材を育成したい</p>
+        <p>「人を創る」文化が根底にあります。会社選びでお悩みの方は一度ご相談ください。お会いできることを楽しみにしています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 募集要項 -->
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">募集要項　― 柔道整復師（正社員）―</h2>
+    <table class="req">
+      <tr><th>勤務地</th><td>東京都・千葉県</td></tr>
+      <tr><th>給与</th><td>280,000円〜　※ダブル免許：290,000円〜</td></tr>
+      <tr><th>就業時間</th><td>実務労働8時間／日曜完全定休／見込み残業20〜25時間</td></tr>
+      <tr><th>休日</th><td>週休2日制／年末年始休暇6日間／GW休暇3日間／誕生日休暇1日／希望有給取得率100%（入社半年後10日付与）</td></tr>
+      <tr><th>加入保険</th><td>社会保険完備（厚生年金・雇用保険・健康保険・労災保険）</td></tr>
+      <tr><th>交通費</th><td>全額支給</td></tr>
+      <tr><th>福利厚生</th><td>賞与年2回（業績に応じて）／各種手当（引越し手当）／ネイル・髭OK／髪型自由／健康診断／ご家族施術割引（施術代無料）／産休・育休／新人研修（4ヶ月から1ヶ月間）／社内勉強会</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 応募フォーム -->
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">応募フォーム</h2>
+    <div class="form-row"><label>応募職種<span class="req-tag">必須</span></label><div class="field"><div class="form-input">選択してください ▾</div></div></div>
+    <div class="form-row"><label>お名前<span class="req-tag">必須</span></label><div class="field"><div class="form-input">例）山田　太郎</div></div></div>
+    <div class="form-row"><label>フリガナ<span class="req-tag">必須</span></label><div class="field"><div class="form-input">例）ヤマダ　タロウ</div></div></div>
+    <div class="form-row"><label>メールアドレス<span class="req-tag">必須</span></label><div class="field"><div class="form-input">例）example@mail.com</div></div></div>
+    <div class="form-row"><label>電話番号<span class="req-tag">必須</span></label><div class="field"><div class="form-input">例）080-1234-5678</div></div></div>
+    <div class="form-row"><label>ご住所<span class="req-tag">必須</span></label><div class="field"><div class="form-input">例）東京都〇〇区〇〇1-1-1</div></div></div>
+    <div class="form-row"><label>コメント<span class="req-tag">必須</span></label><div class="field"><div class="form-input" style="height:80px;">当院で働いてみたいと思った理由や、伝えたいことがあればご記入ください</div></div></div>
+    <p class="form-note">このサイトはreCAPTCHAによって保護されており、Googleのプライバシーポリシーと利用規約が適用されます。</p>
+    <p class="form-note">□ プライバシーポリシーに同意して送信する</p>
+    <a href="#" class="btn btn-block">上記内容で送信する</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-nav">
+    <a href="#">初めての方へ</a>
+    <a href="#">施術メニュー</a>
+    <a href="#">院長紹介</a>
+    <a href="#">店舗一覧</a>
+    <a href="#">採用募集</a>
+    <a href="#">プライバシーポリシー</a>
+  </div>
+  <p class="footer-copy">© みやがわ整骨院</p>
+</footer>
+
+</body>
+</html>

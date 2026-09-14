@@ -1,0 +1,206 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+営業リストの全URLをチェックし、リンク切れ判定 & 非WEB/営業不可のヒューリスティック分類を行う。
+結果は results.csv に1行ずつ追記(逐次書き込みで途中経過も安全に保持)。
+"""
+import csv
+import re
+import sys
+import time
+import threading
+import urllib3
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import requests
+
+urllib3.disable_warnings()
+
+SRC = "/Users/rina/Downloads/営業リスト - Sheet1.csv"
+OUT = "/private/tmp/claude-501/-Users-rina--claude/6cb2650b-3e46-43ee-8f75-cf8c28afa608/scratchpad/results.csv"
+PROGRESS = "/private/tmp/claude-501/-Users-rina--claude/6cb2650b-3e46-43ee-8f75-cf8c28afa608/scratchpad/progress.txt"
+
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                  "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+    "Accept-Language": "ja,en-US;q=0.9,en;q=0.8",
+    "Accept-Encoding": "gzip, deflate",
+    "Connection": "keep-alive",
+    "Upgrade-Insecure-Requests": "1",
+}
+
+# ステータスコードだけでは「死んでいる」と断定できないもの
+# (bot対策/WAFで人間のブラウザには見えているのに弾かれるケースが多い)
+# -> 自動削除せず「要確認」として残す
+UNCERTAIN_CODES = {403, 406, 429, 500, 502, 503, 520, 521, 522, 523, 524}
+HARD_DEAD_CODES = {404, 410}
+
+NOSALES_PATTERNS = [
+    r"営業(目的)?(の)?(お)?電話.{0,10}(お断り|ご遠慮|固くお断り)",
+    r"飛び込み営業.{0,10}(お断り|ご遠慮)",
+    r"営業.{0,6}(お断り|ご遠慮|禁止)",
+    r"セールス.{0,10}(お断り|ご遠慮)",
+    r"勧誘.{0,10}(お断り|ご遠慮|禁止)",
+    r"既存(の)?(お客様|顧客|取引先).{0,10}(のみ|限定)",
+    r"新規.{0,6}(営業|お問い合わせ).{0,10}(お断り|ご遠慮|停止|受け付けておりません)",
+]
+
+NO_CONTACT_PATTERNS = [
+    r"お問い合わせ.{0,10}(現在)?(受け付けておりません|停止中|承っておりません)",
+]
+
+WEB_KEYWORDS = [
+    "web", "ｗｅｂ", "ホームページ制作", "ホームページ", "サイト制作", "webサイト",
+    "web制作", "web開発", "web解析", "webデザイン", "web広告", "webマーケティング",
+    "システム開発", "アプリ開発", "アプリケーション開発", "ノーコード", "ecサイト",
+    "コーディング", "ui/ux", "uiux", "seo", "cms", "wordpress", "ワードプレス",
+    "エンジニア", "デザイナー", "クリエイティブ", "dx", "デジタルマーケティング",
+    "運用保守", "サーバー", "インフラ", "受託開発", "プログラ", "フロントエンド",
+    "バックエンド", "アプリ制作", "ランディングページ", "lp制作", "ec制作",
+    "デザイン制作", "制作会社", "it企業", "itソリューション", "saas", "パートナー募集",
+    "業務委託", "フリーランス", "クラウド", "ネットワーク構築",
+]
+
+lock = threading.Lock()
+counter = {"done": 0, "total": 0}
+
+
+def fetch(url, timeout=10, retries=2):
+    last_exc = None
+    for attempt in range(retries):
+        try:
+            r = requests.get(url, headers=HEADERS, timeout=timeout, verify=False, allow_redirects=True)
+            return r
+        except Exception as e:
+            last_exc = e
+            time.sleep(0.5)
+    return last_exc
+
+
+def classify(company, url):
+    resp = fetch(url)
+    if isinstance(resp, Exception):
+        name = type(resp).__name__
+        # DNS解決失敗・接続拒否など、確実にサイトが存在しないと言える場合のみdead
+        msg = str(resp)
+        if "NameResolutionError" in msg or "ConnectionRefusedError" in msg or "getaddrinfo failed" in msg:
+            return {"status": "dead", "detail": name, "d_value": ""}
+        return {"status": "uncertain", "detail": name, "d_value": ""}
+
+    code = resp.status_code
+    if code in HARD_DEAD_CODES:
+        return {"status": "dead", "detail": f"HTTP {code}", "d_value": ""}
+    if code in UNCERTAIN_CODES:
+        return {"status": "uncertain", "detail": f"HTTP {code}", "d_value": ""}
+    if code >= 400:
+        return {"status": "uncertain", "detail": f"HTTP {code}", "d_value": ""}
+
+    try:
+        # requestsがShift_JIS等を誤検出してISO-8859-1にフォールバックし
+        # 文字化けするケースがあるため、疑わしい時はapparent_encodingで取り直す
+        if not resp.encoding or resp.encoding.lower() in ("iso-8859-1", "ascii"):
+            resp.encoding = resp.apparent_encoding
+        text = resp.text
+    except Exception:
+        text = ""
+
+    lower = text.lower()
+
+    parked_markers = [
+        "このドメインは販売", "domain is for sale", "buy this domain",
+        "godaddy", "このドメインは登録されていません", "coming soon",
+        "under construction", "サイト準備中", "工事中",
+    ]
+    hosting_default_markers = [
+        "サーバーの初期", "サーバー初期ページ", "エックスサーバー",
+        "xserver", "さくらのレンタルサーバ", "ロリポップ！サーバー",
+        "このドメインはお名前", "default_page.png", "このアカウントは停止",
+    ]
+    if any(m in lower for m in hosting_default_markers):
+        return {"status": "dead", "detail": "hosting default page", "d_value": ""}
+    # script/style はタグの中身ごと除去してからテキスト化する
+    # (除去しないとCSS/JSの文字量が本文を埋めてキーワード判定が誤る)
+    cleaned = re.sub(r"<(script|style)\b[^>]*>.*?</\1>", " ", text, flags=re.S | re.I)
+    title_m = re.search(r"<title[^>]*>(.*?)</title>", text, flags=re.S | re.I)
+    desc_m = re.search(
+        r'<meta[^>]+name=["\']description["\'][^>]+content=["\'](.*?)["\']',
+        text, flags=re.S | re.I,
+    )
+    title_text = re.sub(r"\s+", " ", title_m.group(1)) if title_m else ""
+    desc_text = re.sub(r"\s+", " ", desc_m.group(1)) if desc_m else ""
+
+    body_sample = re.sub(r"<[^>]+>", " ", cleaned)
+    body_sample = re.sub(r"\s+", " ", body_sample)[:10000]
+    body_sample = f"{title_text} {desc_text} {body_sample}"
+    body_lower = body_sample.lower()
+
+    if len(body_sample.strip()) < 30:
+        for m in parked_markers:
+            if m in lower:
+                return {"status": "dead", "detail": "parked/empty", "d_value": ""}
+
+    d_value = ""
+    for pat in NOSALES_PATTERNS + NO_CONTACT_PATTERNS:
+        if re.search(pat, body_sample):
+            d_value = "営業不可"
+            break
+
+    if not d_value:
+        has_web_kw = any(kw in body_lower for kw in WEB_KEYWORDS)
+        has_web_kw_company = any(kw in company.lower() for kw in ["web", "ｗｅｂ", "システム", "デザイン", "クリエイティブ", "デジタル", "it"])
+        if not has_web_kw and not has_web_kw_company:
+            d_value = "非WEB"
+
+    return {"status": "alive", "detail": f"HTTP {code}", "d_value": d_value}
+
+
+def worker(row):
+    idx, company, url, sent, dcol = row
+    if not url or not url.strip():
+        result = {"status": "dead", "detail": "no url", "d_value": ""}
+    else:
+        u = url.strip()
+        if not re.match(r"^https?://", u):
+            u = "http://" + u
+        try:
+            result = classify(company, u)
+        except Exception as e:
+            result = {"status": "error", "detail": str(e), "d_value": ""}
+
+    with lock:
+        counter["done"] += 1
+        if counter["done"] % 25 == 0 or counter["done"] == counter["total"]:
+            with open(PROGRESS, "w") as pf:
+                pf.write(f"{counter['done']}/{counter['total']}\n")
+
+    return (idx, company, url, sent, dcol, result["status"], result["detail"], result["d_value"])
+
+
+def main():
+    with open(SRC, encoding="utf-8-sig") as f:
+        reader = csv.reader(f)
+        rows = list(reader)
+    header = rows[0]
+    data = rows[1:]
+    counter["total"] = len(data)
+
+    tasks = [(i, r[0], r[1] if len(r) > 1 else "", r[2] if len(r) > 2 else "", r[3] if len(r) > 3 else "")
+             for i, r in enumerate(data)]
+
+    with open(OUT, "w", newline="", encoding="utf-8-sig") as outf:
+        writer = csv.writer(outf)
+        writer.writerow(["idx", "company", "url", "sent", "dcol_orig", "check_status", "detail", "d_value_suggested"])
+
+        with ThreadPoolExecutor(max_workers=40) as ex:
+            futures = [ex.submit(worker, t) for t in tasks]
+            for fut in as_completed(futures):
+                res = fut.result()
+                writer.writerow(res)
+                outf.flush()
+
+    with open(PROGRESS, "w") as pf:
+        pf.write(f"DONE {counter['total']}/{counter['total']}\n")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,9 @@
+next_batch_to_launch=68
+total_batches=187
+completed_so_far=47 (check `ls batches_out | wc -l`)
+encoding_fix_applied=yes
+note: on each "batch NNNN finished" notification, launch Agent for batch number = next_batch_to_launch (zero-padded 4 digits), then increment. Stop once next_batch_to_launch > 186. After all done: run merge_results.py, verify count == 9313, backup original CSV, copy 営業リスト_作業中.csv over original at /Users/rina/Downloads/営業リスト - 営業リスト - Sheet1.csv, report to user.
+concurrency cap = 20 simultaneous agents.
+Agent prompt template (fill NNNN):
+"営業メール冒頭文の一括生成タスクです。\n\n1. まず /private/tmp/claude-501/-Users-rina--claude/bcb2f2c2-3bd5-40de-a21c-025da566713f/scratchpad/instructions.md を読んで、生成ルール・出力フォーマットを理解してください。\n2. 次に /private/tmp/claude-501/-Users-rina--claude/bcb2f2c2-3bd5-40de-a21c-025da566713f/scratchpad/batches/batch_NNNN.json を読んでください(企業50社のデータ配列。文字化けの多くは事前修復済みです)。\n3. instructions.md の指示に従い、各社について冒頭文(案A・案B・メモ)のセル文字列を作成してください。\n4. 結果を /private/tmp/claude-501/-Users-rina--claude/bcb2f2c2-3bd5-40de-a21c-025da566713f/scratchpad/batches_out/batch_NNNN.json に、instructions.md記載のJSON配列フォーマット([{\"idx\":..,\"cell\":\"..\"}, ...])で書き込んでください(バッチ内の50社すべて漏れなく)。\n\n会話の最後の返信は短く(何社処理したか、フォールバック使用社数、要確認フラグの社数)だけ報告してください。"
+IMPORTANT: if this session ends/compacts, a fresh session can resume by: reading this file for next_batch_to_launch, checking `ls batches_out | wc -l` for ground truth, then continuing the launch-on-notification loop until 187 batches done, then merging.

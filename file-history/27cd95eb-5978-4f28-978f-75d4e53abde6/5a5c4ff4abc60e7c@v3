@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ワイヤーフレーム｜院情報・アクセスページ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: #333333; background: #FFFFFF; font-size: 12px; line-height: 1.7; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+  .label { display:inline-block; font-size:10px; color:#888888; border:1px solid #DDDDDD; padding:2px 8px; margin-bottom:8px; }
+  .img-ph { background:#CCCCCC; display:flex; align-items:center; justify-content:center; color:#666666; font-size:12px; width:100%; }
+  .icon-ph { background:#CCCCCC; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#666666; font-size:10px; flex-shrink:0; }
+  .btn { display:inline-block; background:#888888; color:#FFFFFF; text-align:center; padding:12px 24px; font-size:13px; font-weight:700; border:none; cursor:pointer; }
+  .btn-block { display:block; width:100%; }
+  .btn-small { font-size:11px; padding:8px 14px; }
+  .badge { display:inline-block; border:1px solid #333333; font-size:10px; padding:3px 10px; margin:0 4px 8px; }
+  .section { padding: 32px 0; border-bottom: 1px solid #DDDDDD; }
+  .section-inner { padding: 0 16px; }
+  .section-title { font-size: 18px; font-weight: 700; text-align:center; margin-bottom: 8px; }
+  .section-lead { font-size: 12px; text-align:center; color:#666666; margin-bottom:24px; }
+  .header { border-bottom:1px solid #DDDDDD; }
+  .header-inner { max-width:1200px; margin:0 auto; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; }
+  .logo-ph { background:#CCCCCC; width:120px; height:32px; display:flex; align-items:center; justify-content:center; font-size:11px; color:#666; }
+  .nav-icon { width:32px; height:32px; }
+  .nav-pc { display:none; }
+  .header-btn { display:none; }
+  .breadcrumb { font-size:10px; color:#888; padding:10px 16px; }
+
+  .store-hero { padding:16px; }
+  .store-hero h1 { font-size:18px; font-weight:700; margin-bottom:8px; }
+  .store-hero .addr { font-size:11px; color:#666; margin-bottom:12px; }
+  .store-hero .img-ph { height:180px; }
+
+  .promo { border:2px solid #888888; margin:16px; padding:16px; text-align:center; }
+  .promo-label { font-size:11px; border:1px solid #888888; display:inline-block; padding:2px 10px; margin-bottom:8px; }
+  .promo-name { font-size:13px; font-weight:700; margin-bottom:4px; }
+  .promo-price { font-size:28px; font-weight:700; margin-bottom:12px; }
+  .promo-price span { font-size:14px; }
+  .promo-note { font-size:10px; color:#888; margin-top:8px; }
+
+  table.info { width:100%; border-collapse:collapse; font-size:11px; }
+  table.info th, table.info td { border:1px solid #DDDDDD; padding:10px; text-align:left; }
+  table.info th { background:#F5F5F5; width:30%; }
+
+  .number-grid { display:grid; grid-template-columns: 1fr; gap:16px; text-align:center; }
+  .number-box .num { font-size:28px; font-weight:700; }
+  .number-box .unit { font-size:12px; }
+  .number-box p { font-size:11px; color:#666; margin-top:8px; }
+
+  .merit-list { display:flex; flex-direction:column; gap:10px; }
+  .merit-item { display:flex; gap:10px; align-items:flex-start; border:1px solid #DDDDDD; padding:10px 12px; }
+  .merit-item .icon-ph { width:26px; height:26px; font-size:11px; font-weight:700; }
+  .merit-item p { font-size:11px; }
+
+  .staff-card .img-ph { height:180px; margin-bottom:8px; }
+  .staff-card h4 { font-size:13px; font-weight:700; }
+  .staff-card p { font-size:11px; color:#666; }
+
+  .menu-list { display:flex; flex-direction:column; gap:12px; }
+  .menu-item { display:flex; gap:12px; border:1px solid #DDDDDD; padding:12px; }
+  .menu-item .img-ph { width:90px; height:90px; flex-shrink:0; font-size:9px; }
+  .menu-item h4 { font-size:12px; font-weight:700; margin-bottom:4px; }
+  .menu-item p { font-size:11px; color:#666; margin-bottom:6px; }
+  .menu-item .price { font-size:13px; font-weight:700; }
+
+  .ba-row { display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-bottom:12px; }
+  .ba-row .img-ph { height:100px; font-size:10px; }
+  .slider-nav { text-align:center; font-size:12px; color:#888; margin-top:8px; }
+
+  .voice-grid { display:grid; grid-template-columns: 1fr; gap:12px; }
+  .voice-card { border:1px solid #DDDDDD; padding:12px; }
+  .voice-card .img-ph { width:48px; height:48px; border-radius:50%; margin-bottom:8px; font-size:9px; }
+  .voice-card h4 { font-size:12px; font-weight:700; margin-bottom:6px; }
+  .voice-card p { font-size:11px; color:#555; }
+
+  table.price { width:100%; border-collapse:collapse; font-size:11px; }
+  table.price th, table.price td { border:1px solid #DDDDDD; padding:8px; text-align:left; }
+  table.price th { background:#F5F5F5; }
+  .price-wrap { overflow-x:auto; }
+
+  .map-block .img-ph { height:200px; margin-bottom:12px; }
+  .map-block p { font-size:11px; color:#666; margin-bottom:4px; }
+  .route-grid { display:grid; grid-template-columns:1fr; gap:12px; margin-top:12px; }
+  .route-card { border:1px solid #DDDDDD; padding:12px; }
+  .route-card h4 { font-size:12px; font-weight:700; margin-bottom:6px; }
+  .route-card p { font-size:11px; color:#666; }
+
+  .faq-item { border-bottom:1px solid #DDDDDD; padding:12px 0; }
+  .faq-q { font-weight:700; font-size:12px; margin-bottom:6px; }
+  .faq-a { font-size:11px; color:#666; }
+
+  .area-list { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+  .area-list span { border:1px solid #DDDDDD; font-size:11px; padding:6px 12px; }
+
+  .source-note { font-size:10px; color:#888; border-top:1px dashed #DDDDDD; margin-top:16px; padding-top:8px; }
+
+  footer { background:#EFEFEF; padding:24px 16px; text-align:center; }
+  .footer-nav { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; font-size:11px; margin-bottom:12px; }
+  .footer-copy { font-size:10px; color:#888; }
+
+  @media (min-width: 769px) {
+    body { font-size:16px; }
+    .header-inner { padding:16px 40px; }
+    .nav-icon { display:none; }
+    .nav-pc { display:flex; gap:24px; font-size:14px; }
+    .header-btn { display:block; }
+    .header-btn .btn { padding:10px 20px; font-size:13px; }
+    .breadcrumb { padding:12px 40px; font-size:12px; }
+
+    .store-hero { padding:40px; max-width:1200px; margin:0 auto; }
+    .store-hero h1 { font-size:26px; }
+    .store-hero .img-ph { height:320px; }
+
+    .promo { margin:24px auto; max-width:800px; padding:32px; display:flex; align-items:center; justify-content:space-between; text-align:left; }
+    .promo-price { font-size:40px; margin-bottom:0; }
+    .promo-note { margin-top:0; }
+
+    .section { padding:64px 0; }
+    .section-inner { padding:0 40px; }
+    .section-title { font-size:28px; }
+    .section-lead { font-size:14px; margin-bottom:40px; }
+
+    table.info th, table.info td { padding:16px; font-size:14px; }
+    .number-grid { grid-template-columns: repeat(3, 1fr); }
+    .number-box .num { font-size:44px; }
+    .merit-list { flex-direction:row; flex-wrap:wrap; }
+    .merit-item { flex:1 1 45%; }
+    .menu-list { flex-direction:row; flex-wrap:wrap; }
+    .menu-item { flex:1 1 45%; }
+    .ba-row { grid-template-columns: repeat(2, 1fr); }
+    .ba-row .img-ph { height:220px; }
+    .voice-grid { grid-template-columns: repeat(3, 1fr); }
+    table.price { font-size:14px; }
+    table.price th, table.price td { padding:12px; }
+    .map-block .img-ph { height:340px; }
+    .route-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-nav { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo-ph">LOGO</div>
+    <nav class="nav-pc">
+      <a href="#">ホーム</a>
+      <a href="#">初めての方へ</a>
+      <a href="#">お悩み一覧</a>
+      <a href="#">お客様の声</a>
+      <a href="#">推薦者の声</a>
+      <a href="#">よくある質問</a>
+    </nav>
+    <div class="header-btn"><a href="#" class="btn">ご予約・お問合せ</a></div>
+    <div class="icon-ph nav-icon">MENU</div>
+  </div>
+</header>
+<p class="breadcrumb wrap">TOP ＞ 院情報・アクセス</p>
+
+<!-- 店舗ヘッダー -->
+<div class="store-hero">
+  <h1>みやがわ整骨院</h1>
+  <p class="addr">〒241-0005 神奈川県横浜市旭区白根7-15-6 1F　TEL：045-744-5038</p>
+  <p style="font-size:11px; color:#888; margin-bottom:12px;">※このページはTOPページの「院情報・アクセス」セクションから遷移する詳細ページの想定です。将来的に多店舗展開する場合は、この構成を各店舗ページのテンプレートとしてご利用いただけます。</p>
+  <div class="img-ph">IMAGE</div>
+</div>
+
+<!-- 初回特典 -->
+<div class="promo">
+  <div>
+    <div class="promo-label">初回限定特典</div>
+    <div class="promo-name">症状改善整体コース　60分</div>
+  </div>
+  <div>
+    <div class="promo-price">980<span>円（税込）</span></div>
+    <p class="promo-note">通常価格7,000円（院長担当は+2,000円）</p>
+  </div>
+  <a href="#" class="btn btn-block">ご予約はこちら</a>
+</div>
+
+<!-- 店舗情報 -->
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">院情報</h2>
+    <table class="info">
+      <tr><th>住所</th><td>〒241-0005 神奈川県横浜市旭区白根7-15-6 1F</td></tr>
+      <tr><th>営業時間</th><td>平日 9:00〜13:00／15:00〜19:30　土曜 9:00〜13:00</td></tr>
+      <tr><th>定休日</th><td>土曜午後・日曜</td></tr>
+      <tr><th>駐車場</th><td>あり（院前2台＋第二駐車場　※台数・稼働状況は最新情報をご確認ください）</td></tr>
+      <tr><th>アクセス</th><td>西谷駅から車4分／鶴ヶ峰駅から車8分／神奈中バス停「金草沢」徒歩2分</td></tr>
+      <tr><th>対応</th><td>保険診療／自費診療</td></tr>
+    </table>
+    <p class="source-note">出典：現サイト「院情報・アクセス」（miyagawa-seikotsu.com/access/）。駐車場は現サイトで「第二駐車場が一時利用停止中」と案内されており、マーケティングリサーチ資料の「駐車場5台完備」という表記と差異があるため、最新の実状に合わせて要確認・要修正です。</p>
+  </div>
+</section>
+
+<!-- 選ばれる理由 -->
+<section class="section">
+  <div class="section-inner">
+    <div class="label">選ばれる理由</div>
+    <h2 class="section-title">多くの方に選ばれる理由</h2>
+    <div class="number-grid">
+      <div class="number-box"><div class="num">のべ10万人<span class="unit">以上</span></div><p>これまでの臨床実績</p></div>
+      <div class="number-box"><div class="num">15年<span class="unit">以上</span></div><p>院長の施術歴</p></div>
+      <div class="number-box"><div class="num">3名<span class="unit">の同業者が推薦</span></div><p>他院院長からの推薦</p></div>
+    </div>
+    <div class="merit-list" style="margin-top:24px;">
+      <div class="merit-item"><div class="icon-ph">1</div><p>徹底したヒアリングと検査で原因を特定します</p></div>
+      <div class="merit-item"><div class="icon-ph">2</div><p>バキバキしない、身体にソフトな施術です</p></div>
+      <div class="merit-item"><div class="icon-ph">3</div><p>再発しない身体へ導くアフターケアを行います</p></div>
+      <div class="merit-item"><div class="icon-ph">4</div><p>予約優先制で待ち時間がありません</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 院長紹介 -->
+<section class="section">
+  <div class="section-inner">
+    <div class="label">担当する施術者</div>
+    <h2 class="section-title">院長紹介</h2>
+    <div class="staff-card">
+      <div class="img-ph">IMAGE</div>
+      <h4>院長　宮川 晃司</h4>
+      <p>国家資格：柔道整復師／業界歴15年（2007年〜整形外科で研鑽、2018年開院）／臨床数10万件</p>
+    </div>
+    <div class="staff-card" style="margin-top:16px;">
+      <div class="img-ph">IMAGE</div>
+      <h4>スタッフ　前野 晴輝</h4>
+      <p>国家資格：柔道整復師</p>
+    </div>
+    <p class="source-note">出典：現サイト「スタッフ紹介」（miyagawa-seikotsu.com/staff）</p>
+  </div>
+</section>
+
+<!-- 施術メニュー -->
+<section class="section">
+  <div class="section-inner">
+    <div class="label">施術メニュー</div>
+    <h2 class="section-title">当院で受けられる施術</h2>
+    <div class="menu-list">
+      <div class="menu-item"><div class="img-ph">IMAGE</div><div><h4>症状改善整体コース</h4><p>根本改善から骨盤矯正までトータルサポート</p><span class="price">7,000円（院長担当+2,000円）</span></div></div>
+      <div class="menu-item"><div class="img-ph">IMAGE</div><div><h4>プレミア整体コース（症状改善整体＋EMS）</h4><p>症状が重い方のための特別コース</p><span class="price">10,000円（院長担当+2,000円）</span></div></div>
+      <div class="menu-item"><div class="img-ph">IMAGE</div><div><h4>楽トレ（EMS）</h4><p>特許取得の最先端機器で体幹・インナーマッスルを強化</p><span class="price">3,000円</span></div></div>
+      <div class="menu-item"><div class="img-ph">IMAGE</div><div><h4>初回限定コース</h4><p>症状改善整体コース　60分</p><span class="price">980円</span></div></div>
+    </div>
+    <p class="source-note">出典：現サイト「料金・施術の流れ」（miyagawa-seikotsu.com/price/）※全て税込価格</p>
+  </div>
+</section>
+
+<!-- ビフォーアフター -->
+<section class="section">
+  <div class="section-inner">
+    <div class="label">改善事例</div>
+    <h2 class="section-title">施術のリアルな変化</h2>
+    <div class="ba-row">
+      <div class="img-ph">BEFORE</div>
+      <div class="img-ph">AFTER</div>
+    </div>
+    <div class="slider-nav">＜　●　○　○　○　＞</div>
+  </div>
+</section>
+
+<!-- お客様の声 -->
+<section class="section">
+  <div class="section-inner">
+    <div class="label">お客様の声</div>
+    <h2 class="section-title">当院に届いたお喜びの声</h2>
+    <div class="voice-grid">
+      <div class="voice-card"><div class="img-ph">ICON</div><h4>秀島 美紀 様（足首捻挫・腰痛）</h4><p>電気治療とEMSで、つまずきやすさが解消しました。</p></div>
+      <div class="voice-card"><div class="img-ph">ICON</div><h4>荒木 重光 様（股関節痛）</h4><p>足首の硬さを改善していただき、歩き方と肩の上がりにくさが良くなりました。</p></div>
+      <div class="voice-card"><div class="img-ph">ICON</div><h4>海野 翔太 様（腰痛・教員）</h4><p>腰の反りを改善していただき、パワフルに仕事ができるようになりました。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 初回特典（再掲） -->
+<div class="promo">
+  <div>
+    <div class="promo-label">初回限定特典</div>
+    <div class="promo-name">症状改善整体コース　60分</div>
+  </div>
+  <div>
+    <div class="promo-price">980<span>円（税込）</span></div>
+    <p class="promo-note">通常価格7,000円（院長担当は+2,000円）</p>
+  </div>
+  <a href="#" class="btn btn-block">ご予約はこちら</a>
+</div>
+
+<!-- 料金表 -->
+<section class="section">
+  <div class="section-inner">
+    <div class="label">料金・保険適用について</div>
+    <h2 class="section-title">料金表</h2>
+    <div class="price-wrap">
+      <table class="price">
+        <tr><th>メニュー</th><th>保険/自費</th><th>料金（税込）</th></tr>
+        <tr><td>急性外傷（捻挫・打撲等）</td><td>保険診療</td><td>一部負担額</td></tr>
+        <tr><td>症状改善整体コース</td><td>自費</td><td>7,000円（院長担当+2,000円）</td></tr>
+        <tr><td>初回限定　症状改善整体コース60分</td><td>自費</td><td>980円</td></tr>
+        <tr><td>プレミア整体コース（症状改善整体＋EMS）</td><td>自費</td><td>10,000円（院長担当+2,000円）</td></tr>
+        <tr><td>楽トレ（EMS）</td><td>自費</td><td>3,000円</td></tr>
+      </table>
+    </div>
+    <p class="source-note">出典：現サイト「料金・施術の流れ」（miyagawa-seikotsu.com/price/）。SWOT分析で指摘された「料金非公開」という課題に対し、料金の全面公開で比較検討中の不安を解消します。</p>
+  </div>
+</section>
+
+<!-- アクセス -->
+<section class="section">
+  <div class="section-inner map-block">
+    <div class="label">アクセス</div>
+    <h2 class="section-title">アクセス・駐車場のご案内</h2>
+    <div class="img-ph">MAP</div>
+    <p>西谷駅から車4分／鶴ヶ峰駅から車8分／神奈中バス停「金草沢」から徒歩2分。お車の方は院前の駐車スペースをご利用いただけます。</p>
+    <div class="route-grid">
+      <div class="route-card"><h4>西谷・横浜方面からお越しの方</h4><p>道順案内が入ります。道順案内が入ります。</p></div>
+      <div class="route-card"><h4>白山・鴨居方面からお越しの方</h4><p>道順案内が入ります。道順案内が入ります。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- よくある質問 -->
+<section class="section">
+  <div class="section-inner">
+    <div class="label">よくある質問</div>
+    <h2 class="section-title">よくあるご質問</h2>
+    <div class="faq-item"><p class="faq-q">Q. 駐車場はありますか？</p><p class="faq-a">A. あります。ただし停めづらい場合がございますので、恐れ入りますが慎重にご利用ください。</p></div>
+    <div class="faq-item"><p class="faq-q">Q. 予約は必要ですか？</p><p class="faq-a">A. 予約優先制です。飛び込みも時間に空きがあれば対応可能ですが、事前のご連絡をおすすめしています。</p></div>
+    <div class="faq-item"><p class="faq-q">Q. どんな服装で行けばいいですか？</p><p class="faq-a">A. 動きやすい服装でお越しください。関節の可動域確認のためジーパン等はご遠慮いただく場合があります。着替えの貸し出しもございます。</p></div>
+    <p class="source-note">出典：現サイト「よくある質問」（miyagawa-seikotsu.com/faq）</p>
+  </div>
+</section>
+
+<!-- 対応エリア -->
+<section class="section">
+  <div class="section-inner">
+    <div class="label">対応エリア</div>
+    <h2 class="section-title">こんな地域からもご来院いただいています</h2>
+    <div class="area-list">
+      <span>横浜市旭区</span><span>保土ヶ谷区</span><span>瀬谷区</span><span>西谷</span><span>鶴ヶ峰</span><span>二俣川</span>
+    </div>
+    <p class="source-note">※このセクションは新規提案です。出典・根拠：ニーズ分析①「旭区 二俣川 整骨院」等の地域名キーワード／SWOT分析「地域名＋駐車場・アクセス情報をSEO文脈に活用」</p>
+  </div>
+</section>
+
+<!-- 初回特典（再掲） -->
+<div class="promo">
+  <div>
+    <div class="promo-label">初回限定特典</div>
+    <div class="promo-name">症状改善整体コース　60分</div>
+  </div>
+  <div>
+    <div class="promo-price">980<span>円（税込）</span></div>
+    <p class="promo-note">通常価格7,000円（院長担当は+2,000円）</p>
+  </div>
+  <a href="#" class="btn btn-block">ご予約はこちら</a>
+</div>
+
+<footer>
+  <div class="footer-nav">
+    <a href="#">ホーム</a>
+    <a href="#">初めての方へ</a>
+    <a href="#">お悩み一覧</a>
+    <a href="#">症例報告一覧</a>
+    <a href="#">お客様の声</a>
+    <a href="#">推薦者の声</a>
+    <a href="#">よくある質問</a>
+    <a href="#">コラム一覧</a>
+    <a href="#">お知らせ一覧</a>
+    <a href="#">採用情報</a>
+    <a href="#">お問い合わせ</a>
+    <a href="#">利用規約</a>
+    <a href="#">プライバシーポリシー</a>
+  </div>
+  <p class="footer-copy">© みやがわ整骨院</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+import csv, json, os
+
+SRC = '/Users/rina/Downloads/営業リスト - 営業リスト - Sheet1.csv'
+STATUS_PATH = '/private/tmp/claude-501/-Users-rina--claude/bcb2f2c2-3bd5-40de-a21c-025da566713f/scratchpad/fetch_status.jsonl'
+BATCH_DIR = '/private/tmp/claude-501/-Users-rina--claude/bcb2f2c2-3bd5-40de-a21c-025da566713f/scratchpad/batches'
+BATCH_SIZE = 50
+
+os.makedirs(BATCH_DIR, exist_ok=True)
+
+with open(SRC, newline='', encoding='utf-8') as f:
+    reader = csv.reader(f)
+    rows = list(reader)
+data = rows[1:]
+
+fetched = {}
+if os.path.exists(STATUS_PATH):
+    with open(STATUS_PATH, encoding='utf-8') as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            d = json.loads(line)
+            fetched[d['idx']] = d
+
+items = []
+for i, r in enumerate(data):
+    name = r[0].strip()
+    url = r[1].strip()
+    fd = fetched.get(i, {})
+    body = (fd.get('body') or '')[:1400]
+    title = fd.get('title') or ''
+    desc = fd.get('desc') or ''
+    items.append({
+        'idx': i,
+        'name': name,
+        'url': url,
+        'ok': bool(fd.get('ok')),
+        'title': title,
+        'desc': desc,
+        'body': body,
+    })
+
+batches = [items[i:i+BATCH_SIZE] for i in range(0, len(items), BATCH_SIZE)]
+for bi, b in enumerate(batches):
+    path = os.path.join(BATCH_DIR, f'batch_{bi:04d}.json')
+    with open(path, 'w', encoding='utf-8') as f:
+        json.dump(b, f, ensure_ascii=False, indent=1)
+
+print(f'total items={len(items)} batches={len(batches)} size={BATCH_SIZE}')

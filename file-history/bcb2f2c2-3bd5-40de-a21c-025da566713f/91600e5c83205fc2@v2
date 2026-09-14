@@ -1,0 +1,84 @@
+import csv, os, re, sys, json, time
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import requests
+from bs4 import BeautifulSoup
+
+SRC = '/Users/rina/Downloads/営業リスト - 営業リスト - Sheet1.csv'
+OUT_DIR = '/private/tmp/claude-501/-Users-rina--claude/bcb2f2c2-3bd5-40de-a21c-025da566713f/scratchpad/site_texts'
+STATUS_PATH = '/private/tmp/claude-501/-Users-rina--claude/bcb2f2c2-3bd5-40de-a21c-025da566713f/scratchpad/fetch_status.jsonl'
+
+os.makedirs(OUT_DIR, exist_ok=True)
+
+HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36'
+}
+
+SUBPAGE_HINTS = ['about', 'company', 'profile', 'works', 'case', 'portfolio', 'service', 'recruit', 'news']
+
+def clean_text(html, base_url):
+    soup = BeautifulSoup(html, 'html.parser')
+    for tag in soup(['script', 'style', 'noscript', 'header', 'footer', 'nav']):
+        tag.decompose()
+    title = soup.title.string.strip() if soup.title and soup.title.string else ''
+    desc = ''
+    md = soup.find('meta', attrs={'name': 'description'})
+    if md and md.get('content'):
+        desc = md['content'].strip()
+    text = soup.get_text(separator='\n')
+    lines = [l.strip() for l in text.split('\n') if l.strip()]
+    body = '\n'.join(lines)
+    # find candidate internal links matching hints
+    links = set()
+    for a in soup.find_all('a', href=True):
+        href = a['href']
+        low = href.lower()
+        if any(h in low for h in SUBPAGE_HINTS):
+            links.add(href)
+    return title, desc, body[:6000], list(links)[:8]
+
+def fetch_one(idx, url):
+    result = {'idx': idx, 'url': url, 'ok': False}
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=12, allow_redirects=True)
+        r.raise_for_status()
+        title, desc, body, links = clean_text(r.text, url)
+        result.update({'ok': True, 'title': title, 'desc': desc, 'body': body, 'links': links})
+    except Exception as e:
+        result['error'] = str(e)[:200]
+    return result
+
+def main():
+    with open(SRC, newline='', encoding='utf-8') as f:
+        reader = csv.reader(f)
+        rows = list(reader)
+    data = rows[1:]
+
+    # resume support: skip already-fetched
+    done_idx = set()
+    if os.path.exists(STATUS_PATH):
+        with open(STATUS_PATH, encoding='utf-8') as f:
+            for line in f:
+                try:
+                    d = json.loads(line)
+                    done_idx.add(d['idx'])
+                except Exception:
+                    pass
+
+    todo = [(i, r[1].strip()) for i, r in enumerate(data) if r[1].strip() and i not in done_idx]
+    print(f'total={len(data)} todo={len(todo)} already_done={len(done_idx)}', flush=True)
+
+    with open(STATUS_PATH, 'a', encoding='utf-8') as out:
+        with ThreadPoolExecutor(max_workers=24) as ex:
+            futures = {ex.submit(fetch_one, idx, url): idx for idx, url in todo}
+            count = 0
+            for fut in as_completed(futures):
+                res = fut.result()
+                out.write(json.dumps(res, ensure_ascii=False) + '\n')
+                out.flush()
+                count += 1
+                if count % 200 == 0:
+                    print(f'progress: {count}/{len(todo)}', flush=True)
+    print('DONE', flush=True)
+
+if __name__ == '__main__':
+    main()

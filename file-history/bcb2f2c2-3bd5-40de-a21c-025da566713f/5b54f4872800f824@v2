@@ -1,0 +1,38 @@
+import csv, json, os, glob
+
+SRC = '/Users/rina/Downloads/営業リスト - 営業リスト - Sheet1.csv'
+OUT_DIR = '/private/tmp/claude-501/-Users-rina--claude/bcb2f2c2-3bd5-40de-a21c-025da566713f/scratchpad/batches_out'
+WORK_COPY = '/private/tmp/claude-501/-Users-rina--claude/bcb2f2c2-3bd5-40de-a21c-025da566713f/scratchpad/営業リスト_作業中.csv'
+
+with open(SRC, newline='', encoding='utf-8') as f:
+    reader = csv.reader(f)
+    rows = list(reader)
+
+results = {}
+bad_files = []
+for path in sorted(glob.glob(os.path.join(OUT_DIR, '*.json'))):
+    try:
+        with open(path, encoding='utf-8') as f:
+            arr = json.load(f)
+        for item in arr:
+            idx = item['idx']
+            cell = item['cell']
+            results[idx] = cell
+    except Exception as e:
+        bad_files.append((path, str(e)))
+
+filled = 0
+for i, r in enumerate(rows[1:]):
+    if i in results:
+        while len(r) < 5:
+            r.append('')
+        r[4] = results[i]
+        filled += 1
+
+with open(WORK_COPY, 'w', newline='', encoding='utf-8') as f:
+    writer = csv.writer(f)
+    writer.writerows(rows)
+
+print(f'merged={filled} total_data_rows={len(rows)-1} bad_files={len(bad_files)}')
+for p, e in bad_files:
+    print('BAD', p, e)

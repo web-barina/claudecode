@@ -1,0 +1,44 @@
+import json
+
+SRC = '/private/tmp/claude-501/-Users-rina--claude/bcb2f2c2-3bd5-40de-a21c-025da566713f/scratchpad/fetch_status.jsonl'
+BACKUP = SRC + '.orig'
+import shutil, os
+if not os.path.exists(BACKUP):
+    shutil.copy(SRC, BACKUP)
+
+def try_fix(s):
+    if not s:
+        return s
+    # heuristic: mojibake from utf-8 bytes decoded as latin-1
+    if any(c in s for c in ['ã', 'â', 'å', 'ï¼', 'Ã', 'Â']):
+        try:
+            fixed = s.encode('latin-1').decode('utf-8')
+            return fixed
+        except Exception:
+            pass
+    return s
+
+out_lines = []
+fixed_count = 0
+with open(BACKUP, encoding='utf-8') as f:
+    for line in f:
+        line = line.strip()
+        if not line:
+            continue
+        d = json.loads(line)
+        changed = False
+        for k in ('title', 'desc', 'body'):
+            if k in d and d[k]:
+                new = try_fix(d[k])
+                if new != d[k]:
+                    d[k] = new
+                    changed = True
+        if changed:
+            fixed_count += 1
+        out_lines.append(json.dumps(d, ensure_ascii=False))
+
+with open(SRC, 'w', encoding='utf-8') as f:
+    for l in out_lines:
+        f.write(l + '\n')
+
+print('total', len(out_lines), 'fixed', fixed_count)
