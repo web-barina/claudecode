@@ -46,17 +46,16 @@ body.page-horror a:hover { color: #9B2C22; }
 
 .btn-group { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; font-weight: 700; font-size: 14px; letter-spacing: 0.09em; padding: 20px 34px; border-radius: 999px; border: 3px solid transparent; cursor: pointer; transition: background .25s ease, border-color .25s ease, color .25s ease, transform .15s ease, box-shadow .15s ease; white-space: nowrap; }
-.btn:hover { transform: translate(3px,3px); }
-.btn:active { transform: translate(5px,5px); }
+.btn:hover { transform: translate(-1px,-1px); }
+.btn:active { transform: translate(2px,2px); }
 .btn--primary { background: #DC8541; color: #FFFFFF; box-shadow: 5px 5px 0 #172E4A; }
-.btn--primary:hover { background: #C06E2E; box-shadow: 2px 2px 0 #172E4A; }
-.btn--primary:active { box-shadow: 0 0 0 #172E4A; }
+.btn--primary:hover { background: #C06E2E; }
+.btn--primary:active { box-shadow: 1px 1px 0 #172E4A; }
 .btn--secondary { background: #FFFFFF; color: #172E4A; border-color: #172E4A; box-shadow: 5px 5px 0 #DC8541; }
-.btn--secondary:hover { background: #172E4A; color: #FFFFFF; box-shadow: 2px 2px 0 #DC8541; }
-.btn--secondary:active { box-shadow: 0 0 0 #DC8541; }
+.btn--secondary:hover { background: #172E4A; color: #FFFFFF; }
+.btn--secondary:active { box-shadow: 1px 1px 0 #DC8541; }
 .btn--sm { padding: 13px clamp(14px,1.6vw,22px); font-size: 12px; font-weight: 600; box-shadow: 4px 4px 0 #172E4A; }
-.btn--sm:hover { box-shadow: 1px 1px 0 #172E4A; }
-.btn--sm:active { box-shadow: 0 0 0 #172E4A; }
+.btn--sm:active { box-shadow: 1px 1px 0 #172E4A; }
 
 /* ============================================
    shell（各ページ共通の外枠カード／pianist・horrorと共有のため触らない）
@@ -232,16 +231,16 @@ body:has(.top-shell) ::selection { background: #F6D3B0; color: #172E4A; }
 .section__head { flex: 1 1 320px; min-width: 0; max-width: 760px; margin-bottom: clamp(32px,5vw,64px); }
 .section__head-row .section__head { margin-bottom: 0; }
 .section__head--center { margin-inline: auto; text-align: center; }
-.section__body { position: relative; padding-top: clamp(48px,9vw,84px); }
-.section__deco {
-  position: absolute; top: 0; right: 0; z-index: 2; pointer-events: none;
-  width: clamp(120px,17vw,200px); aspect-ratio: 1/1;
-  transform: translate(10%,-55%);
-}
-.section__deco img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 50%; border: 4px solid #FFFFFF; box-shadow: 0 12px 26px rgba(23,46,74,0.18); }
+.section__deco { flex: 0 0 auto; width: clamp(120px,17vw,200px); aspect-ratio: 1/1; }
+.section__deco img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 32px; }
 
-@media (max-width: 480px) {
-  .section__deco { width: clamp(84px,26vw,120px); }
+@media (max-width: 767px) {
+  .section__head-row { position: relative; flex-direction: column; padding-top: clamp(46px,20vw,72px); }
+  .section__deco {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: clamp(84px,26vw,120px); z-index: 2;
+  }
+  .section__deco img { border-radius: 50%; border: 4px solid #FFFFFF; box-shadow: 0 12px 26px rgba(23,46,74,0.22); }
 }
 .section__eyebrow {
   display: inline-block; margin: 0 0 18px; font-weight: 700; font-size: 11px; line-height: 1;
@@ -341,13 +340,18 @@ body:has(.top-shell) ::selection { background: #F6D3B0; color: #172E4A; }
 }
 
 /* ============================================
-   timeline（PROFILE経歴／カード積み上げ型のチェックリスト）
+   timeline（SCOPE / PROFILE経歴 共通／カード積み上げ型のチェックリスト）
    ============================================ */
 .timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .timeline__item { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 16px; padding: 16px 20px; border: 3px dashed #172E4A; border-radius: 18px; background: #FFFFFF; }
+.timeline__no { font-size: 12px; letter-spacing: 0.14em; color: #A7AFBC; flex: none; width: 22px; }
 .timeline__label { flex: 1; font-size: 15px; font-weight: 500; color: #172E4A; min-width: 120px; }
 .timeline__badge { flex: none; font-size: 11px; letter-spacing: 0.04em; color: #8A93A3; }
+.timeline__item--covered { border: 3px solid #172E4A; border-left-width: 10px; border-left-color: #DC8541; }
+.timeline__item--covered .timeline__no { color: #DC8541; }
+.timeline__item--covered .timeline__badge { color: #C06E2E; font-weight: 600; background: rgba(220,133,65,0.12); border-radius: 999px; padding: 6px 12px; }
 .timeline__item--highlight { border: 3px solid #172E4A; background: #A85A1E; }
+.timeline__item--highlight .timeline__no,
 .timeline__item--highlight .timeline__label,
 .timeline__item--highlight .timeline__badge { color: #FFFFFF; }
 
@@ -357,44 +361,6 @@ body:has(.top-shell) ::selection { background: #F6D3B0; color: #172E4A; }
 .timeline--profile .timeline__item--highlight { background: #A85A1E; }
 .timeline--profile .timeline__item--highlight .timeline__label,
 .timeline--profile .timeline__item--highlight .timeline__badge { color: #FFFFFF; }
-
-/* ============================================
-   flow-diagram（SCOPE／受注→要件定義→制作→公開のフロー図）
-   ============================================ */
-.flow-diagram { display: flex; flex-direction: column; gap: 14px; }
-.flow-diagram__node {
-  border: 2.5px solid #172E4A; border-radius: 16px; background: #FFFFFF;
-  display: flex; align-items: center; justify-content: center; text-align: center;
-  font-weight: 700; font-size: 15px; color: #172E4A; padding: 18px 16px;
-}
-.flow-diagram__group { border: 2.5px solid #172E4A; border-radius: 16px; background: #FFFFFF; overflow: hidden; }
-.flow-diagram__group--orange { border-color: #DC8541; }
-.flow-diagram__group-title {
-  margin: 0; padding: 13px 20px; text-align: center;
-  font-weight: 700; font-size: 14px; letter-spacing: 0.04em; color: #FFFFFF; background: #172E4A;
-}
-.flow-diagram__group--orange .flow-diagram__group-title { background: #DC8541; }
-.flow-diagram__list { list-style: none; margin: 0; padding: 18px 22px; display: grid; gap: 10px; }
-.flow-diagram__list li { position: relative; padding-left: 18px; font-size: 14px; line-height: 1.6; color: #172E4A; }
-.flow-diagram__list li::before { content: ""; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: #172E4A; }
-.flow-diagram__group--orange .flow-diagram__list li::before { background: #DC8541; }
-.flow-diagram__arrow { display: flex; align-items: center; justify-content: center; height: 22px; color: #172E4A; }
-.flow-diagram__arrow::after { content: "↓"; font-size: 16px; line-height: 1; }
-.flow-diagram__arrow--orange { color: #DC8541; }
-
-@media (min-width: 880px) {
-  .flow-diagram { flex-direction: row; align-items: stretch; gap: 0; }
-  .flow-diagram__node { flex: 0 0 112px; }
-  .flow-diagram__group { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; }
-  .flow-diagram__list { flex: 1; }
-  .flow-diagram__arrow {
-    flex: 0 0 44px; height: auto; margin-inline: -1px;
-    background: #172E4A; color: #FFFFFF;
-    clip-path: polygon(0 0, 55% 0, 100% 50%, 55% 100%, 0 100%);
-  }
-  .flow-diagram__arrow--orange { background: #DC8541; }
-  .flow-diagram__arrow::after { content: ""; }
-}
 
 /* ============================================
    philosophy（PHILOSOPHY）
@@ -463,8 +429,7 @@ body:has(.top-shell) ::selection { background: #F6D3B0; color: #172E4A; }
    ============================================ */
 .sample-grid { list-style: none; margin: 0 0 clamp(28px,4vw,40px); padding: 0; display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; }
 .sample-card { background: #FFFFFF; border: 3px solid #172E4A; border-radius: 20px; overflow: hidden; box-shadow: 6px 6px 0 #172E4A; }
-.sample-card__thumb { aspect-ratio: 4/3; background-image: repeating-linear-gradient(135deg,#FFE0BF 0 12px,#FFF3E6 12px 24px); display: flex; align-items: center; justify-content: center; overflow: hidden; }
-.sample-card__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.sample-card__thumb { aspect-ratio: 4/3; background-image: repeating-linear-gradient(135deg,#FFE0BF 0 12px,#FFF3E6 12px 24px); display: flex; align-items: center; justify-content: center; }
 .sample-card__thumb-label { font-family: ui-monospace,Menlo,monospace; font-size: 11px; letter-spacing: 0.14em; color: #8A93A3; background: #FFFFFF; padding: 6px 12px; border: 1px solid #E3E6EB; border-radius: 999px; }
 .sample-card__no { margin: 16px 18px 0; font-size: 11px; letter-spacing: 0.2em; color: #DC8541; }
 .sample-card__title { margin: 6px 18px 18px; font-size: 13.5px; font-weight: 700; color: #172E4A; line-height: 1.6; }

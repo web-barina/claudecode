@@ -242,32 +242,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </li>
           </ul>
 
-          <div data-reveal="" class="flow-diagram">
-            <div class="flow-diagram__node">受注</div>
-            <span class="flow-diagram__arrow" aria-hidden="true"></span>
-            <div class="flow-diagram__group">
-              <p class="flow-diagram__group-title">要件定義</p>
-              <ul class="flow-diagram__list">
-                <li>ヒアリング</li>
-                <li>要件整理</li>
-                <li>3C分析・業界調査</li>
-                <li>ワイヤーフレーム作成</li>
-              </ul>
-            </div>
-            <span class="flow-diagram__arrow" aria-hidden="true"></span>
-            <div class="flow-diagram__group flow-diagram__group--orange">
-              <p class="flow-diagram__group-title">制作</p>
-              <ul class="flow-diagram__list">
-                <li>お客様とのやり取り</li>
-                <li>デザイン進行</li>
-                <li>コーディング進行</li>
-                <li>制作進行管理</li>
-                <li>品質チェック</li>
-              </ul>
-            </div>
-            <span class="flow-diagram__arrow flow-diagram__arrow--orange" aria-hidden="true"></span>
-            <div class="flow-diagram__node">公開</div>
-          </div>
+          <ol data-reveal="" class="timeline timeline--scope">
+            <li class="timeline__item">
+              <span class="timeline__no">01</span><span class="timeline__label">受注</span><span class="timeline__badge">貴社対応</span>
+            </li>
+            <li class="timeline__item timeline__item--covered">
+              <span class="timeline__no">02</span><span class="timeline__label">ヒアリング</span><span class="timeline__badge">対応可能</span>
+            </li>
+            <li class="timeline__item timeline__item--covered">
+              <span class="timeline__no">03</span><span class="timeline__label">要件整理</span><span class="timeline__badge">対応可能</span>
+            </li>
+            <li class="timeline__item timeline__item--covered">
+              <span class="timeline__no">04</span><span class="timeline__label">3C分析・業界調査</span><span class="timeline__badge">対応可能</span>
+            </li>
+            <li class="timeline__item timeline__item--covered">
+              <span class="timeline__no">05</span><span class="timeline__label">ワイヤーフレーム</span><span class="timeline__badge">対応可能</span>
+            </li>
+            <li class="timeline__item timeline__item--covered">
+              <span class="timeline__no">06</span><span class="timeline__label">デザイン進行</span><span class="timeline__badge">対応可能</span>
+            </li>
+            <li class="timeline__item timeline__item--covered">
+              <span class="timeline__no">07</span><span class="timeline__label">コーディング進行</span><span class="timeline__badge">対応可能</span>
+            </li>
+            <li class="timeline__item timeline__item--covered">
+              <span class="timeline__no">08</span><span class="timeline__label">品質チェック</span><span class="timeline__badge">対応可能</span>
+            </li>
+            <li class="timeline__item timeline__item--highlight">
+              <span class="timeline__no">09</span><span class="timeline__label">公開</span><span class="timeline__badge">対応可能</span>
+            </li>
+          </ol>
 
           <ul data-reveal="" class="tag-row" style="margin-top:32px;">
             <li class="tag">WF完成後から</li>
@@ -451,6 +454,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <p class="sample-card__title">サイト構成 / ワイヤーフレーム</p>
             </li>
           </ul>
+
+          <ol data-reveal="" class="process-row">
+            <li class="process-row__item"><span class="process-row__no">01</span><span class="process-row__label">ヒアリング</span></li>
+            <li class="process-row__item"><span class="process-row__no">02</span><span class="process-row__label">業界調査</span></li>
+            <li class="process-row__item"><span class="process-row__no">03</span><span class="process-row__label">競合分析</span></li>
+            <li class="process-row__item"><span class="process-row__no">04</span><span class="process-row__label">SWOT</span></li>
+            <li class="process-row__item"><span class="process-row__no">05</span><span class="process-row__label">SEO・ユーザーニーズ調査</span></li>
+            <li class="process-row__item"><span class="process-row__no">06</span><span class="process-row__label">サイト構成</span></li>
+            <li class="process-row__item process-row__item--highlight"><span class="process-row__no">07</span><span class="process-row__label">ワイヤーフレーム</span></li>
+          </ol>
+
+          <div data-reveal="" class="btn-group" style="margin-top:36px;">
+            <a href="#contact" class="btn btn--secondary" data-track="contact_click" data-track-label="ディレクションサンプル">ディレクションサンプルを見る</a>
+          </div>
         </div>
       </div>
     </section>
