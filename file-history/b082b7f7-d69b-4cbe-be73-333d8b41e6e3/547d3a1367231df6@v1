@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js" defer></script>
+</head>
+<body class="page-privacy">
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>プライバシーポリシー｜RINA OBA Webディレクター</title>
+<meta name="description" content="Webディレクター大場李奈（RINA OBA）のWebサイトにおける、個人情報の取り扱いについて定めたプライバシーポリシーです。">
+<!-- TODO: 本番ドメインが決まったら、下記の https://your-domain.example/ をすべて実際のドメインに置換してください（sitemap.xml / robots.txt も同様です） -->
+<link rel="canonical" href="https://your-domain.example/privacy.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="プライバシーポリシー｜RINA OBA Webディレクター">
+<meta property="og:description" content="Webディレクター大場李奈（RINA OBA）のWebサイトにおける、個人情報の取り扱いについて定めたプライバシーポリシーです。">
+<meta property="og:url" content="https://your-domain.example/privacy.html">
+<meta property="og:image" content="https://your-domain.example/ogp.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="images/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "RINA OBA", "item": "https://your-domain.example/index.html" },
+    { "@type": "ListItem", "position": 2, "name": "プライバシーポリシー", "item": "https://your-domain.example/privacy.html" }
+  ]
+}
+</script>
+</helmet>
+
+<a href="#main" class="skip-link">本文へスキップ</a>
+
+<div lang="ja" class="top-shell">
+
+  <header class="hero-nav">
+    <p class="hero-nav__h1">
+      <a href="index.html" class="hero-nav__logo">
+        <span class="hero-nav__logo-main">RINA OBA</span>
+        <span class="hero-nav__logo-sub">WEB DIRECTOR</span>
+      </a>
+    </p>
+    <nav class="hero-nav__nav" aria-label="サイトメニュー">
+      <ul class="hero-nav__nav-list">
+        <li><a href="index.html#what">できること</a></li>
+        <li><a href="index.html#works">実績</a></li>
+        <li><a href="index.html#philosophy">仕事の進め方</a></li>
+        <li><a href="index.html#profile">プロフィール</a></li>
+        <li><a href="index.html#contact">お問い合わせ</a></li>
+      </ul>
+    </nav>
+    <div class="hero-nav__actions">
+      <a href="index.html#contact" class="btn btn--primary btn--sm hero-nav__cta hero-nav__cta--full">案件について相談する</a>
+      <a href="index.html#contact" class="btn btn--primary btn--sm hero-nav__cta hero-nav__cta--compact">相談する</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section">
+      <div class="container">
+        <div class="section__head section__head--center">
+          <p class="section__eyebrow" data-wobble="">PRIVACY POLICY</p>
+          <h1 class="section__heading">プライバシーポリシー</h1>
+          <p class="section__lead" style="max-width:56ch;margin:18px auto 0;">当サイト（以下「当サイト」）における個人情報の取り扱いについて、以下のとおり定めます。</p>
+        </div>
+
+        <div class="policy-doc">
+          <div class="policy-doc__section">
+            <span class="policy-doc__no">01</span>
+            <h2 class="policy-doc__heading">取得する情報</h2>
+            <p class="policy-doc__body">お問い合わせフォームを通じて、会社名・お名前、ふりがな、メールアドレス、お問い合わせジャンル（ご相談内容の分類）、お問い合わせ内容を取得します。</p>
+          </div>
+
+          <div class="policy-doc__section">
+            <span class="policy-doc__no">02</span>
+            <h2 class="policy-doc__heading">個人情報の利用目的</h2>
+            <p class="policy-doc__body">取得した個人情報は、お問い合わせへの回答、ご相談内容の確認、見積・契約・制作その他の業務上の連絡、およびこれらに付随する対応のために利用します。</p>
+          </div>
+
+          <div class="policy-doc__section">
+            <span class="policy-doc__no">03</span>
+            <h2 class="policy-doc__heading">第三者への提供</h2>
+            <p class="policy-doc__body">法令に基づく場合その他法令上認められる場合を除き、ご本人の同意なく個人情報を第三者へ提供することはありません。</p>
+          </div>
+
+          <div class="policy-doc__section">
+            <span class="policy-doc__no">04</span>
+            <h2 class="policy-doc__heading">外部サービス・業務委託について</h2>
+            <p class="policy-doc__body">当サイトでは、お問い合わせの受付にGoogleフォームを利用しています。入力・送信された情報は、Google LLCが提供するサービスを通じて処理・保存される場合があります。Googleによる情報の取り扱いについては、<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Googleのプライバシーポリシー</a>をご確認ください。</p>
+            <p class="policy-doc__body">また、制作やお問い合わせ対応など業務遂行に必要な範囲で、個人情報の取り扱いを外部事業者に委託する場合があります。</p>
+          </div>
+
+          <div class="policy-doc__section">
+            <span class="policy-doc__no">05</span>
+            <h2 class="policy-doc__heading">安全管理について</h2>
+            <p class="policy-doc__body">取得した個人情報について、漏えい、紛失、不正アクセス等を防止するため、必要かつ適切な安全管理に努めます。</p>
+          </div>
+
+          <div class="policy-doc__section">
+            <span class="policy-doc__no">06</span>
+            <h2 class="policy-doc__heading">開示・訂正・削除等について</h2>
+            <p class="policy-doc__body">ご本人から、ご自身の個人情報について開示・訂正・削除等のご希望があった場合は、ご本人であることを確認したうえで、法令に従い適切に対応します。ご希望の場合は、後述のお問い合わせ窓口までご連絡ください。</p>
+          </div>
+
+          <div class="policy-doc__section">
+            <span class="policy-doc__no">07</span>
+            <h2 class="policy-doc__heading">アクセス解析・Cookieについて</h2>
+            <p class="policy-doc__body">当サイトでは、Google Tag Manager（GTM）を利用しています。GTMはサイト内で使用するタグを管理するための仕組みであり、設定されているタグの内容によっては、Cookie等を用いてアクセス情報が取得される場合があります。<!-- TODO: GTMコンテナ内で実際に稼働しているタグ（Google Analytics / GA4、広告タグ等）の有無を確認し、該当するサービスがあれば具体的に追記してください --></p>
+            <p class="policy-doc__body">Google社の各サービスにおける情報の取り扱いについては、<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Googleのプライバシーポリシー</a>をご確認ください。</p>
+          </div>
+
+          <div class="policy-doc__section">
+            <span class="policy-doc__no">08</span>
+            <h2 class="policy-doc__heading">プライバシーポリシーの変更について</h2>
+            <p class="policy-doc__body">本ポリシーは、法令の変更やサービス内容の変更等に応じて、必要に応じて変更することがあります。変更後の内容は、当ページへの掲載その他適切な方法によりお知らせします。</p>
+          </div>
+
+          <div class="policy-doc__section">
+            <span class="policy-doc__no">09</span>
+            <h2 class="policy-doc__heading">お問い合わせ窓口</h2>
+            <p class="policy-doc__body">本ポリシーに関するお問い合わせは、下記までご連絡ください。</p>
+            <p class="policy-doc__body">運営者：大場 李奈（RINA OBA）<br>メール：<a href="mailto:ObaRina@barina-codescore.com">ObaRina@barina-codescore.com</a></p>
+            <p class="policy-doc__body"><a href="index.html#contact">お問い合わせフォーム</a>からもご連絡いただけます。</p>
+          </div>
+
+          <!-- TODO: 公開前に制定日・最終改定日を確定して入力してください -->
+          <div class="policy-doc__meta">
+            <p>制定日：未定（公開時に確定）</p>
+            <p>最終改定日：未定（公開時に確定）</p>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:clamp(40px,6vw,64px);">
+          <a href="index.html#contact" class="btn btn--primary">お問い合わせへ戻る →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__grid">
+      <div>
+        <p class="site-footer__name">RINA OBA</p>
+        <p class="site-footer__role">Webディレクター / 制作進行</p>
+      </div>
+      <ul class="site-footer__social">
+        <li><a href="https://www.instagram.com/barina_code/" target="_blank" rel="noopener" class="site-footer__social-link"><img src="images/icon-instagram.svg" alt="" aria-hidden="true" class="icon-slot icon-slot--social icon-slot--social-muted">Instagram</a></li>
+        <li><a href="https://x.com/web_nari_selfs" target="_blank" rel="noopener" class="site-footer__social-link"><img src="images/icon-x.svg" alt="" aria-hidden="true" class="icon-slot icon-slot--social icon-slot--social-muted">X</a></li>
+        <li><a href="https://note.com/barina_ccm" target="_blank" rel="noopener" class="site-footer__social-link"><img src="images/icon-note.svg" alt="" aria-hidden="true" class="icon-slot icon-slot--social icon-slot--social-muted">note</a></li>
+      </ul>
+    </div>
+    <p class="site-footer__copyright">© RINA OBA</p>
+  </footer>
+
+</div>
+
+</x-dc>
+</body>
+</html>

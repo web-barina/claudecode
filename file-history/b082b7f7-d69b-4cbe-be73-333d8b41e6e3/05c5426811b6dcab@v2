@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#FFF3E6"/>
+
+  <!-- browser window -->
+  <rect x="120" y="90" width="560" height="380" rx="22" fill="#FFFFFF" stroke="#172E4A" stroke-width="10"/>
+  <path d="M120,112 a22,22 0 0 1 22,-22 h516 a22,22 0 0 1 22,22 v48 h-560 Z" fill="#172E4A"/>
+  <circle cx="156" cy="136" r="9" fill="#FFFFFF"/>
+  <circle cx="186" cy="136" r="9" fill="#DC8541"/>
+  <circle cx="216" cy="136" r="9" fill="#FFE0BF"/>
+  <rect x="260" y="126" width="360" height="20" rx="10" fill="#2C4A72"/>
+
+  <!-- hero block -->
+  <rect x="150" y="192" width="500" height="96" rx="12" fill="#FFE0BF"/>
+  <rect x="176" y="216" width="220" height="18" rx="9" fill="#172E4A"/>
+  <rect x="176" y="246" width="300" height="12" rx="6" fill="#EFAF7B"/>
+  <rect x="176" y="266" width="120" height="12" rx="6" fill="#EFAF7B"/>
+
+  <!-- checklist (progress toward launch) -->
+  <g>
+    <circle cx="164" cy="322" r="10" fill="#172E4A"/>
+    <path d="M159,322 l4,4 l8,-9" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="186" y="316" width="200" height="12" rx="6" fill="#172E4A"/>
+
+    <circle cx="164" cy="354" r="10" fill="#172E4A"/>
+    <path d="M159,354 l4,4 l8,-9" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="186" y="348" width="240" height="12" rx="6" fill="#172E4A"/>
+
+    <circle cx="164" cy="386" r="10" fill="#DC8541"/>
+    <path d="M159,386 l4,4 l8,-9" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="186" y="380" width="180" height="12" rx="6" fill="#DC8541"/>
+  </g>
+
+  <!-- launch button -->
+  <rect x="464" y="336" width="162" height="52" rx="26" fill="#DC8541" stroke="#172E4A" stroke-width="6"/>
+  <text x="545" y="370" text-anchor="middle" font-family="sans-serif" font-weight="700" font-size="22" fill="#FFFFFF">公開</text>
+
+  <!-- rocket badge -->
+  <g transform="translate(608,432)">
+    <circle r="76" fill="#FFFFFF" stroke="#172E4A" stroke-width="10"/>
+    <g stroke="#172E4A" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M0,-52 C24,-30 24,14 13,38 L-13,38 C-24,14 -24,-30 0,-52 Z" fill="#DC8541"/>
+      <circle cx="0" cy="-14" r="12" fill="#FFFFFF"/>
+      <path d="M-13,18 L-36,44 L-13,40 Z" fill="#FFE0BF"/>
+      <path d="M13,18 L36,44 L13,40 Z" fill="#FFE0BF"/>
+      <path d="M-9,38 L0,58 L9,38 Z" fill="#DC8541"/>
+    </g>
+  </g>
+</svg>

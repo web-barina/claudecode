@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#FFF3E6"/>
+
+  <!-- browser window -->
+  <rect x="120" y="90" width="560" height="380" rx="22" fill="#FFFFFF" stroke="#172E4A" stroke-width="10"/>
+  <path d="M120,112 a22,22 0 0 1 22,-22 h516 a22,22 0 0 1 22,22 v48 h-560 Z" fill="#172E4A"/>
+  <circle cx="156" cy="136" r="9" fill="#FFFFFF"/>
+  <circle cx="186" cy="136" r="9" fill="#DC8541"/>
+  <circle cx="216" cy="136" r="9" fill="#FFE0BF"/>
+  <rect x="260" y="126" width="360" height="20" rx="10" fill="#2C4A72"/>
+
+  <!-- before (left, dashed/greyed = old site) -->
+  <g opacity="0.55">
+    <rect x="150" y="190" width="190" height="80" rx="8" fill="none" stroke="#8A93A3" stroke-width="4" stroke-dasharray="10 8"/>
+    <rect x="150" y="284" width="140" height="14" rx="7" fill="#D8DEE6"/>
+    <rect x="150" y="310" width="190" height="14" rx="7" fill="#D8DEE6"/>
+    <rect x="150" y="336" width="100" height="14" rx="7" fill="#D8DEE6"/>
+  </g>
+
+  <!-- arrow -->
+  <path d="M366,270 l40,0 l-14,-14 m14,14 l-14,14" fill="none" stroke="#172E4A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- after (right, solid on-brand = new site) -->
+  <g>
+    <rect x="432" y="186" width="196" height="92" rx="10" fill="#DC8541"/>
+    <rect x="432" y="290" width="150" height="16" rx="8" fill="#172E4A"/>
+    <rect x="432" y="318" width="196" height="16" rx="8" fill="#E7ECF3"/>
+    <rect x="432" y="346" width="130" height="16" rx="8" fill="#E7ECF3"/>
+    <rect x="432" y="386" width="118" height="36" rx="18" fill="#172E4A"/>
+  </g>
+
+  <!-- gear badge (industrial / rebuild) -->
+  <g transform="translate(608,432)">
+    <circle r="76" fill="#FFFFFF" stroke="#172E4A" stroke-width="10"/>
+    <g fill="#DC8541" stroke="#172E4A" stroke-width="6" stroke-linejoin="round">
+      <rect x="-11" y="-60" width="22" height="28" rx="7"/>
+      <rect x="-11" y="-60" width="22" height="28" rx="7" transform="rotate(45)"/>
+      <rect x="-11" y="-60" width="22" height="28" rx="7" transform="rotate(90)"/>
+      <rect x="-11" y="-60" width="22" height="28" rx="7" transform="rotate(135)"/>
+      <rect x="-11" y="-60" width="22" height="28" rx="7" transform="rotate(180)"/>
+      <rect x="-11" y="-60" width="22" height="28" rx="7" transform="rotate(225)"/>
+      <rect x="-11" y="-60" width="22" height="28" rx="7" transform="rotate(270)"/>
+      <rect x="-11" y="-60" width="22" height="28" rx="7" transform="rotate(315)"/>
+      <circle r="36" fill="#DC8541" stroke="#172E4A" stroke-width="6"/>
+    </g>
+    <circle r="16" fill="#172E4A"/>
+  </g>
+</svg>

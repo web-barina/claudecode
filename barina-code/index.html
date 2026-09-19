@@ -72,8 +72,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 </helmet>
 
-<a href="#first" class="skip-link">本文へスキップ</a>
-
 <div lang="ja" class="top-shell">
 
   <header class="{{ heroNavClass }}">
@@ -81,17 +79,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h1 class="hero-nav__h1">
         <a href="#first" class="hero-nav__logo" aria-hidden="{{ menuOpen }}">
           <img src="images/favicon.png" alt="" aria-hidden="true" class="hero-nav__logo-mark">
-          <span class="hero-nav__logo-text">
-            <span class="hero-nav__logo-main">RINA OBA</span>
-            <span class="hero-nav__logo-sub">WEB DIRECTOR</span>
-          </span>
+          <span class="hero-nav__logo-text">RINA OBA</span>
         </a>
       </h1>
       <nav class="hero-nav__nav" aria-label="サイトメニュー">
         <ul class="hero-nav__nav-list">
           <li><a href="#what" data-track="navigation_click" data-track-label="できること">できること</a></li>
-          <li><a href="#works" data-track="navigation_click" data-track-label="実績">実績</a></li>
+          <li><a href="#team" data-track="navigation_click" data-track-label="体制">体制</a></li>
           <li><a href="#philosophy" data-track="navigation_click" data-track-label="仕事の進め方">仕事の進め方</a></li>
+          <li><a href="#works" data-track="navigation_click" data-track-label="実績">実績</a></li>
           <li><a href="#profile" data-track="navigation_click" data-track-label="プロフィール">プロフィール</a></li>
           <li><a href="#contact" data-track="navigation_click" data-track-label="お問い合わせ">お問い合わせ</a></li>
         </ul>
@@ -109,32 +105,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <nav aria-label="サブメニュー" class="{{ menuClass }}">
     <div class="menu__inner">
-      <div>
+      <div class="menu__links">
         <ul class="menu__nav-list">
           <li><a href="#what" onClick="{{ closeMenu }}" data-track="navigation_click" data-track-label="できること">できること</a></li>
-          <li><a href="#works" onClick="{{ closeMenu }}" data-track="navigation_click" data-track-label="実績">実績</a></li>
+          <li><a href="#team" onClick="{{ closeMenu }}" data-track="navigation_click" data-track-label="体制">体制</a></li>
           <li><a href="#philosophy" onClick="{{ closeMenu }}" data-track="navigation_click" data-track-label="仕事の進め方">仕事の進め方</a></li>
+          <li><a href="#works" onClick="{{ closeMenu }}" data-track="navigation_click" data-track-label="実績">実績</a></li>
           <li><a href="#profile" onClick="{{ closeMenu }}" data-track="navigation_click" data-track-label="プロフィール">プロフィール</a></li>
           <li><a href="#contact" onClick="{{ closeMenu }}" data-track="navigation_click" data-track-label="お問い合わせ">お問い合わせ</a></li>
         </ul>
       </div>
-          <div class="menu__cta">
-      <a href="#contact" onClick="{{ closeMenu }}" class="btn btn--primary" style="width:100%;justify-content:center;" data-track="contact_click" data-track-label="メニュー">制作について相談する</a>
-    </div>
+
+      <div class="menu__cta">
+        <a href="#contact" onClick="{{ closeMenu }}" class="btn btn--primary" style="width:100%;justify-content:center;" data-track="contact_click" data-track-label="メニュー">制作について相談する</a>
+      </div>
+          <p class="menu__credit">RINA OBA — Webディレクター</p>
 
     </div>
-    <p class="menu__credit">RINA OBA — Webディレクター</p>
   </nav>
 
   <main>
     <!-- HERO -->
     <section id="first" data-screen-label="HERO" class="hero">
       <div class="container hero__inner">
-        <div>
+        <div class="hero__content">
           <p class="hero__audience"><span class="hero__audience-en">FOR WEB PRODUCTION TEAMS</span><span class="hero__audience-ja">制作会社・Web制作チームの皆さまへ</span></p>
           <h2 class="hero__heading">
-            <span class="hero__line">制作が立て込んだとき、</span>
-            <span class="hero__line">案件を途中から任せられる</span>
+            <span class="hero__line">制作が<wbr>立て込んだ<wbr>とき、</span>
+            <span class="hero__line">案件を<wbr>途中から<wbr>任せられる</span>
             <span class="hero__line"><span class="hero__highlight">Webディレクター。</span></span>
           </h2>
 
@@ -154,19 +152,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
 
-    <!-- PROBLEMS -->
+    <!-- FOR PRODUCTION COMPANIES -->
     <section id="problems" data-screen-label="PROBLEMS" class="section section--alt">
       <div class="container">
         <div data-reveal="" class="section__head-row">
           <div class="section__head">
             <p class="section__eyebrow" data-wobble="">FOR PRODUCTION COMPANIES</p>
-            <h2 class="section__heading">こんなとき、制作チームの一員として入れます。</h2>
+            <h2 class="section__heading">こんなとき、<wbr>制作チームの<wbr>一員として<wbr>入れます。</h2>
           </div>
         </div>
 
         <div class="section__body">
-          <div class="section__deco"><img src="images/deco-problems.png" alt="" aria-hidden="true" loading="lazy" width="640" height="640"></div>
-
           <ol data-reveal="" class="problem-list">
             <li class="problem-list__item">
               <span class="problem-list__no">01</span>
@@ -199,20 +195,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
 
-    <!-- SCOPE -->
+    <!-- SCOPE OF WORK -->
     <section id="what" data-screen-label="SCOPE" class="section">
       <div class="container">
         <div data-reveal="" class="section__head-row">
           <div class="section__head">
             <p class="section__eyebrow" data-wobble="">SCOPE OF WORK</p>
-            <h2 class="section__heading">必要なところから、お任せください。</h2>
+            <h2 class="section__heading">必要なところから、<wbr>お任せください。</h2>
             <p class="section__lead">すべてを任せていただく必要はありません。貴社の制作体制に合わせて、必要な工程から参加できます。</p>
           </div>
         </div>
 
         <div class="section__body">
-          <div class="section__deco"><img src="images/deco-scope.png" alt="" aria-hidden="true" loading="lazy" width="640" height="640"></div>
-
           <ul data-reveal="" class="scope-highlight">
             <li class="scope-highlight__item">
               <p class="scope-highlight__title">要件整理・ヒアリング</p>
@@ -252,14 +246,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             <div class="flow-diagram__node">公開</div>
           </div>
-
-          <ul data-reveal="" class="tag-row" style="margin-top:32px;">
-            <li class="tag">WF完成後から</li>
-            <li class="tag">制作進行だけ</li>
-            <li class="tag">品質チェックだけ</li>
-            <li class="tag">繁忙期だけ</li>
-            <li class="tag">制作チーム込み</li>
-          </ul>
         </div>
       </div>
     </section>
@@ -270,24 +256,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div data-reveal="" class="section__head-row">
           <div class="section__head">
             <p class="section__eyebrow" data-wobble="">TEAM</p>
-            <h2 class="section__heading">ディレクションだけでも、制作一式でも。</h2>
+            <h2 class="section__heading">ディレクションだけでも、<wbr>制作一式でも。</h2>
             <p class="section__lead">基本はWebディレクターとして制作に参加します。<br>デザイナー・コーダーとチームでも制作しているため、必要に応じて制作工程を含めたご相談にも対応できます。</p>
           </div>
         </div>
 
         <div class="section__body">
-          <div class="section__deco"><img src="images/deco-team.png" alt="" aria-hidden="true" loading="lazy" width="640" height="640"></div>
-
           <div data-reveal="" class="team-scope">
-            <div class="team-scope__primary">
-              <span class="tile__icon"><img src="images/illustrations/plan.png" alt="" aria-hidden="true" loading="lazy" width="368" height="368"></span>
-              <p class="team-scope__primary-label">Web Direction</p>
-              <p class="team-scope__primary-tag">基本の担当領域</p>
-            </div>
             <ul class="team-scope__secondary">
+              <li><span class="tile__icon"><img src="images/illustrations/plan.png" alt="" aria-hidden="true" loading="lazy" width="275" height="275"></span><span class="tile__label">ディレクション</span></li>
               <li><span class="tile__icon"><img src="images/illustrations/palette.png" alt="" aria-hidden="true" loading="lazy" width="275" height="275"></span><span class="tile__label">デザイン</span></li>
-              <li><span class="tile__icon"><img src="images/illustrations/coding.png" alt="" aria-hidden="true" loading="lazy" width="328" height="328"></span><span class="tile__label">コーディング</span></li>
-              <li><span class="tile__icon"><img src="images/illustrations/ec.png" alt="" aria-hidden="true" loading="lazy" width="309" height="309"></span><span class="tile__label">EC、STUDIO</span></li>
+              <li><span class="tile__icon"><img src="images/illustrations/coding.png" alt="" aria-hidden="true" loading="lazy" width="328" height="328"></span><span class="tile__label">WordPress<br>STUDIO</span></li>
+              <li><span class="tile__icon"><img src="images/illustrations/ec.png" alt="" aria-hidden="true" loading="lazy" width="309" height="309"></span><span class="tile__label">EC</span></li>
               <li><span class="tile__icon"><img src="images/illustrations/qa.png" alt="" aria-hidden="true" loading="lazy" width="307" height="307"></span><span class="tile__label">品質チェック</span></li>
             </ul>
           </div>
@@ -295,12 +275,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div id="overseas" data-reveal="" class="team-note">
             <p class="team-note__title">海外開発チームとの連携にも対応</p>
             <p class="team-note__text">海外（ネパール）の開発チームと、AIを活用しながら英語でテキストコミュニケーションを行い、仕様確認・翻訳・QA・品質管理を担当。日本側と海外開発側の認識を整理する橋渡し役として参加しています。</p>
-            <ul class="tag-row">
-              <li class="tag">仕様確認</li>
-              <li class="tag">翻訳</li>
-              <li class="tag">QA</li>
-              <li class="tag">品質管理</li>
-            </ul>
           </div>
         </div>
       </div>
@@ -312,8 +286,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div data-reveal="" class="section__head-row">
           <div class="section__head">
             <p class="section__eyebrow" data-wobble="">PHILOSOPHY</p>
-            <p class="section__pretitle">案件を"伝言ゲーム"にしません。</p>
-            <h2 class="section__heading">伝言係ではなく、<br>整理して渡すディレクション。</h2>
+            <h2 class="section__heading">伝言係ではなく、<br>整理して渡す<wbr>ディレクション。</h2>
             <p class="section__lead">クライアントから届いた要望を、そのまま制作者へ転送するだけではありません。</p>
             <ul class="philosophy__points">
               <li>何を変更したいのか。</li>
@@ -321,22 +294,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <li>優先順位はどこか。</li>
               <li>他ページや実装への影響はないか。</li>
             </ul>
-            <p class="section__lead">内容を整理したうえで、デザイナー・エンジニアへ共有します。クライアントと制作側の認識のズレを減らし、修正の往復をできるだけ増やさない進行を大切にしています。</p>
+            <p class="section__lead">内容を整理したうえで、デザイナー・エンジニアへ共有します。</p>
+                        <p class="section__lead">クライアントと制作側の認識のズレを減らし、修正の往復をできるだけ増やさない進行を大切にしています。</p>
+
           </div>
         </div>
 
         <div class="section__body">
-          <div class="section__deco"><img src="images/deco-philosophy.png" alt="" aria-hidden="true" loading="lazy" width="640" height="640"></div>
-
           <div data-reveal="" class="chain">
             <div class="chain__flow" aria-hidden="true"></div>
             <div class="chain__node">
               <span class="chain__icon"><img src="images/illustrations/client.png" alt="" aria-hidden="true" loading="lazy" width="299" height="299"></span>
-              <p class="chain__role">Client</p>
+              <p class="chain__role">お客様t</p>
             </div>
             <div class="chain__node chain__node--accent">
               <span class="chain__icon"><img src="images/illustrations/call.png" alt="" aria-hidden="true" loading="lazy" width="335" height="335"></span>
-              <p class="chain__role">Director</p>
+              <p class="chain__role">ディレクター</p>
               <ul class="chain__points">
                 <li class="tag">整理</li>
                 <li class="tag">優先順位</li>
@@ -346,7 +319,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             <div class="chain__node">
               <span class="chain__icon"><img src="images/illustrations/pair.png" alt="" aria-hidden="true" loading="lazy" width="407" height="407"></span>
-              <p class="chain__role">Designer / Engineer</p>
+              <p class="chain__role">デザイナー・コーダー</p>
             </div>
           </div>
         </div>
@@ -359,14 +332,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div data-reveal="" class="section__head-row">
           <div class="section__head">
             <p class="section__eyebrow" data-wobble="">WORKS</p>
-            <h2 class="section__heading">これまでの制作・ディレクション</h2>
+            <h2 class="section__heading">これまでの<wbr>制作・<wbr>ディレクション</h2>
+            <p class="section__lead">詳しい内容は面談の時にお話しします。</p>
           </div>
         </div>
 
         <div class="section__body">
           <div class="work-grid">
           <article data-reveal="" role="button" tabIndex="0" onClick="{{ openCase1 }}" onKeyDown="{{ keyCase1 }}" class="work-card" data-track="portfolio_click" data-track-label="工業系サイトリニューアル">
-            <div class="work-card__media"><img src="images/23412740.webp" alt="工業系サイトリニューアル案件のプロジェクト画像" width="1600" height="1200" loading="lazy"></div>
+            <div class="work-card__media"><img src="images/works/case01-renewal.svg" alt="工業系サイトリニューアル案件のイメージ" width="800" height="600" loading="lazy"></div>
             <div class="work-card__body">
               <h3 class="work-card__title">工業系サイトリニューアル</h3>
               <p class="work-card__more">詳細を見る →</p>
@@ -374,23 +348,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </article>
 
           <article data-reveal="" role="button" tabIndex="0" onClick="{{ openCase2 }}" onKeyDown="{{ keyCase2 }}" class="work-card" data-track="portfolio_click" data-track-label="外国人エンジニア派遣サイト">
-            <div class="work-card__media"><img src="images/1575828.webp" alt="外国人エンジニア派遣サイト制作案件のプロジェクト画像" width="1200" height="1600" loading="lazy"></div>
+            <div class="work-card__media"><img src="images/works/case02-global-engineer.svg" alt="外国人エンジニア派遣サイト制作案件のイメージ" width="800" height="600" loading="lazy"></div>
             <div class="work-card__body">
-              <h3 class="work-card__title">外国人エンジニア派遣サイト</h3>
+              <h3 class="work-card__title">外国人エンジニア派遣LP</h3>
               <p class="work-card__more">詳細を見る →</p>
             </div>
           </article>
 
           <article data-reveal="" role="button" tabIndex="0" onClick="{{ openCase3 }}" onKeyDown="{{ keyCase3 }}" class="work-card" data-track="portfolio_click" data-track-label="大規模サイトコーディング">
-            <div class="work-card__media work-card__media--placeholder"><img src="images/illustrations/coding.png" alt="大規模サイトコーディング案件のイメージ" width="328" height="328" loading="lazy"></div>
+            <div class="work-card__media"><img src="images/works/case03-launch.svg" alt="Webサイト制作・公開ディレクション案件のイメージ" width="800" height="600" loading="lazy"></div>
             <div class="work-card__body">
-              <h3 class="work-card__title">大規模サイトコーディング</h3>
+              <h3 class="work-card__title">サーバートラブルがあっても冷静に対応</h3>
               <p class="work-card__more">詳細を見る →</p>
             </div>
           </article>
           </div>
 
-          <p data-reveal="" class="work-midcta"><a href="#contact" class="work-midcta__link" data-track="contact_click" data-track-label="WORKS中間CTA">似たような案件について相談する →</a></p>
+          <p data-reveal="" class="work-midcta"><a href="#contact" class="btn btn--primary" data-track="contact_click" data-track-label="WORKS中間CTA">案件について相談する</a></p>
         </div>
       </div>
     </section>
@@ -401,7 +375,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div data-reveal="" class="section__head-row">
           <div class="section__head">
             <p class="section__eyebrow" data-wobble="">DIRECTION SAMPLE</p>
-            <h2 class="section__heading">サイトを作る前の<br>"整理"から対応します。</h2>
+            <h2 class="section__heading">サイトを作る前の<wbr>整理から対応します。</h2>
             <p class="section__lead">なんとなく構成を作るのではなく、ヒアリング・業界調査・競合分析・ユーザーニーズを整理したうえで、サイト構成やワイヤーフレームへ落とし込みます。</p>
           </div>
         </div>
@@ -436,114 +410,90 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- PROFILE -->
     <section id="profile" data-screen-label="PROFILE" class="section">
       <div class="container">
+        <div class="profile__content">
+          <p class="section__eyebrow" data-wobble="">PROFILE</p>
+          <h2 class="section__heading">一度作って終わりではなく、<wbr>信頼され続けるものをつくる。</h2>
+        </div>
+
         <div data-reveal="" class="profile__grid">
           <div class="profile__photo"><img src="images/profile/rina-profile.jpg" alt="大場李奈" width="700" height="466" loading="lazy"></div>
           <div class="profile__content">
-            <p class="section__eyebrow" data-wobble="">PROFILE</p>
-            <h2 class="section__heading">人と人の間に入り、<br>物事を前へ進める。</h2>
             <p class="profile__name">大場 李奈<span class="profile__name-en">RINA OBA</span></p>
-            <p class="profile__role">Web Director / Coder</p>
             <p class="profile__bio">学校教員・学童指導員など、教育・保育の現場でイベント企画・進行を多数経験。そこで培った調整力・進行力を活かし、現在はクライアントと制作者の間に立つWebディレクターとして活動しています。</p>
             <ul class="profile__skills">
-              <li>LP / Webサイト制作 20件以上</li>
-              <li>Webディレクション経験</li>
-              <li>HTML / CSS / JavaScript / WordPress</li>
-              <li>制作進行 / 品質チェック</li>
+              <li>LP / Webサイト制作 20件以上コーディング</li>
+              <li>Webディレクター歴2年目</li>
+              <li>Googleアナリティクス認定資格取得</li>
+              <li>ウェブ解析士取得を目指して学習中</li>
             </ul>
           </div>
         </div>
-
-        <p data-reveal="" class="pull-quote" style="margin-inline:auto;">一度作って終わりではなく、<br>信頼され続けるものをつくる。</p>
       </div>
     </section>
-
-    <!-- WORK STYLE -->
-    <section id="workstyle" data-screen-label="WORK STYLE" class="section section--alt">
-      <div class="container">
-        <div data-reveal="" class="section__head-row">
-          <div class="section__head">
-            <p class="section__eyebrow" data-wobble="">WORK STYLE</p>
-            <h2 class="section__heading">ご依頼について</h2>
-            <p class="section__lead">スポットのご相談から継続的な制作進行まで、貴社の状況に合わせて柔軟に対応します。</p>
-          </div>
-        </div>
-
-        <div class="section__body">
-          <div class="section__deco"><img src="images/deco-workstyle.png" alt="" aria-hidden="true" loading="lazy" width="640" height="640"></div>
-
-          <ul data-reveal="" class="tile-grid tile-grid--3 tile-grid--dot">
-            <li class="tile tile--row"><span class="tile__dot" aria-hidden="true"></span><span class="tile__label">スポット対応 OK</span></li>
-            <li class="tile tile--row"><span class="tile__dot" aria-hidden="true"></span><span class="tile__label">ディレクションのみ OK</span></li>
-            <li class="tile tile--row"><span class="tile__dot" aria-hidden="true"></span><span class="tile__label">制作チーム込み OK</span></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
     <!-- CONTACT FORM -->
-    <section id="contact" data-screen-label="CONTACT FORM" class="section">
+    <section id="contact" data-screen-label="CONTACT FORM" class="section section--alt">
       <div data-reveal="" class="container">
         <div class="section__head-row">
           <div class="section__head">
             <p class="section__eyebrow" data-wobble="">CONTACT FORM</p>
-            <h2 class="section__heading">まずは1案件、スポットからでも大丈夫です。</h2>
-            <p class="contact__lead">まだ依頼範囲が固まっていなくても問題ありません。現在の制作体制や案件状況を伺ったうえで、どの工程をお手伝いできるかご提案します。</p>
+            <h2 class="section__heading">まずは1案件、<wbr>スポットからでも<wbr>大丈夫です。</h2>
+            <p class="contact__lead">まだ依頼範囲が固まっていなくても問題ありません。</p>
+            <p class="contact__lead">現在の制作体制や案件状況を伺ったうえで、どの工程をお手伝いできるかご提案します。</p>
           </div>
         </div>
 
         <div class="section__body">
-          <div class="section__deco"><img src="images/illustrations/ideate.png" alt="" aria-hidden="true" loading="lazy" width="410" height="410"></div>
-        <iframe name="gform_target" title="送信処理" class="contact__frame"></iframe>
+          <iframe name="gform_target" title="送信処理" class="contact__frame"></iframe>
 
-        <form action="https://docs.google.com/forms/d/e/1FAIpQLSd_tqw3Udx5gUcjrpyCAiLxmVcdXuKvOtEsIsNzSSi53dqvwQ/formResponse" method="POST" target="gform_target" onSubmit="{{ onSubmit }}" class="{{ formClass }}">
-          <div class="form__fields">
-            <label class="form__field">
-              <span class="form__label">会社名・お名前 <span class="form__required">*</span></span>
-              <span class="form__hint">例）株式会社◯◯　山田 太郎</span>
-              <input type="text" name="entry.1506871634" required="required" autoComplete="name" class="form__input">
-            </label>
-            <label class="form__field">
-              <span class="form__label">ふりがな <span class="form__required">*</span></span>
-              <input type="text" name="entry.1183705674" required="required" class="form__input">
-            </label>
-            <label class="form__field">
-              <span class="form__label">メールアドレス <span class="form__required">*</span></span>
-              <span class="form__hint">こちらにご入力いただいたメールアドレスに返信いたします。</span>
-              <input type="email" name="entry.147453066" required="required" autoComplete="email" class="form__input">
-            </label>
-            <fieldset class="{{ formFieldsetClass }}">
-              <legend class="form__legend">お問い合わせジャンル <span class="form__required">*</span></legend>
-              <label class="form__radio-label">
-                <input type="radio" name="entry.1576637996" value="Webディレクションについて" required="required" onChange="{{ pickGenre }}" class="form__radio">
-                Webディレクションについて
+          <form action="https://docs.google.com/forms/d/e/1FAIpQLSd_tqw3Udx5gUcjrpyCAiLxmVcdXuKvOtEsIsNzSSi53dqvwQ/formResponse" method="POST" target="gform_target" onSubmit="{{ onSubmit }}" class="{{ formClass }}">
+            <div class="form__fields">
+              <label class="form__field">
+                <span class="form__label">会社名・お名前 <span class="form__required">*</span></span>
+                <span class="form__hint">例）株式会社◯◯　山田 太郎</span>
+                <input type="text" name="entry.1506871634" required="required" autoComplete="name" class="form__input">
               </label>
-              <label class="form__radio-label">
-                <input type="radio" name="entry.1576637996" value="制作一式について" onChange="{{ pickGenre }}" class="form__radio">
-                制作一式について
+              <label class="form__field">
+                <span class="form__label">ふりがな <span class="form__required">*</span></span>
+                <input type="text" name="entry.1183705674" required="required" class="form__input">
               </label>
-              <label class="form__radio-label">
-                <input type="radio" name="entry.1576637996" value="__other_option__" onChange="{{ pickOther }}" class="form__radio">
-                その他
+              <label class="form__field">
+                <span class="form__label">メールアドレス <span class="form__required">*</span></span>
+                <span class="form__hint">こちらにご入力いただいたメールアドレスに返信いたします。</span>
+                <input type="email" name="entry.147453066" required="required" autoComplete="email" class="form__input">
               </label>
-              <input type="text" name="entry.1576637996.other_option_response" aria-label="その他の内容" placeholder="その他の内容" class="form__other-input">
-            </fieldset>
-            <label class="form__field">
-              <span class="form__label">お問い合わせ内容 <span class="form__required">*</span></span>
-              <textarea name="entry.2071656823" required="required" rows="5" placeholder="まだ依頼内容が固まっていなくても大丈夫です。現在の状況やお困りごとをご記入ください。" class="form__textarea"></textarea>
-            </label>
-            <label class="form__checkbox-label">
-              <input type="checkbox" name="entry.884731574" value="同意します" required="required" class="form__checkbox">
-              <span><a href="privacy.html" target="_blank" rel="noopener" class="form__privacy-link">プライバシーポリシー</a>に同意します</span>
-            </label>
-            <button type="submit" class="form__submit">相談内容を送信する →</button>
+              <fieldset class="{{ formFieldsetClass }}">
+                <legend class="form__legend">お問い合わせジャンル <span class="form__required">*</span></legend>
+                <label class="form__radio-label">
+                  <input type="radio" name="entry.1576637996" value="Webディレクションについて" required="required" onChange="{{ pickGenre }}" class="form__radio">
+                  Webディレクションについて
+                </label>
+                <label class="form__radio-label">
+                  <input type="radio" name="entry.1576637996" value="制作一式について" onChange="{{ pickGenre }}" class="form__radio">
+                  制作一式について
+                </label>
+                <label class="form__radio-label">
+                  <input type="radio" name="entry.1576637996" value="__other_option__" onChange="{{ pickOther }}" class="form__radio">
+                  その他
+                </label>
+                <input type="text" name="entry.1576637996.other_option_response" aria-label="その他の内容" placeholder="その他の内容" class="form__other-input">
+              </fieldset>
+              <label class="form__field">
+                <span class="form__label">お問い合わせ内容 <span class="form__required">*</span></span>
+                <textarea name="entry.2071656823" required="required" rows="5" placeholder="まだ依頼内容が固まっていなくても大丈夫です。現在の状況やお困りごとをご記入ください。" class="form__textarea"></textarea>
+              </label>
+              <label class="form__checkbox-label">
+                <input type="checkbox" name="entry.884731574" value="同意します" required="required" class="form__checkbox">
+                <span><a href="privacy.html" target="_blank" rel="noopener" class="form__privacy-link">プライバシーポリシー</a>に同意します</span>
+              </label>
+              <button type="submit" class="form__submit">相談内容を送信する →</button>
+            </div>
+          </form>
+
+          <div class="{{ thanksClass }}" role="status">
+            <p class="thanks__eyebrow">送信完了</p>
+            <p class="thanks__title">お問い合わせありがとうございます。</p>
+            <p class="thanks__message">1週間を目処にご返信いたします。<br>内容によってはお時間をいただく場合があります。</p>
           </div>
-        </form>
-
-        <div class="{{ thanksClass }}" role="status">
-          <p class="thanks__eyebrow">送信完了</p>
-          <p class="thanks__title">お問い合わせありがとうございます。</p>
-          <p class="thanks__message">1週間を目処にご返信いたします。<br>内容によってはお時間をいただく場合があります。</p>
-        </div>
         </div>
       </div>
     </section>
@@ -560,9 +510,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h3 class="modal__title">{{ modalTitle }}</h3>
 
         <div class="modal__highlight">
-          <span class="modal__highlight-icon" aria-hidden="true">★</span>
-          <div>
-            <p class="modal__highlight-label">推すポイント</p>
+          <div class="modal__highlight-body">
             <p class="modal__highlight-text">{{ modalHighlight }}</p>
           </div>
         </div>
@@ -588,7 +536,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <footer class="site-footer">
     <div class="site-footer__grid">
-      <div>
+      <div class="site-footer__brand">
         <p class="site-footer__name">RINA OBA</p>
         <p class="site-footer__role">Webディレクター / 制作進行</p>
       </div>
@@ -711,29 +659,31 @@ class Component extends DCLogic {
   }
 
   _lockScroll() {
+    // position:fixed も overflow:hidden も、背面ページの scrollY を 0 にリセットしたり
+    // backdrop-filter のサンプリングを壊したりするため使わない。
+    // wheel/touchmove/キー操作をモーダル外だけ preventDefault し、
+    // ページ自体は一切動かさずにスクロールだけを止める。
     if (document.body.dataset.scrollLocked === "1") return;
     document.body.dataset.scrollLocked = "1";
-    this._scrollY = window.scrollY || document.documentElement.scrollTop || 0;
-    document.documentElement.style.overflow = "hidden";
-    document.body.style.position = "fixed";
-    document.body.style.top = "-" + this._scrollY + "px";
-    document.body.style.left = "0";
-    document.body.style.right = "0";
-    document.body.style.width = "100%";
-    document.body.style.overflow = "hidden";
+    const isInsideModal = (target) => !!(target && target.closest && target.closest(".modal-overlay"));
+    const preventOutsideModal = (e) => { if (!isInsideModal(e.target)) e.preventDefault(); };
+    const scrollKeys = ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "];
+    const preventKeysOutsideModal = (e) => { if (scrollKeys.includes(e.key) && !isInsideModal(e.target)) e.preventDefault(); };
+    this._scrollLockHandlers = { preventOutsideModal, preventKeysOutsideModal };
+    window.addEventListener("wheel", preventOutsideModal, { passive: false });
+    window.addEventListener("touchmove", preventOutsideModal, { passive: false });
+    window.addEventListener("keydown", preventKeysOutsideModal);
   }
 
   _unlockScroll() {
     if (document.body.dataset.scrollLocked !== "1") return;
     delete document.body.dataset.scrollLocked;
-    document.documentElement.style.overflow = "";
-    document.body.style.position = "";
-    document.body.style.top = "";
-    document.body.style.left = "";
-    document.body.style.right = "";
-    document.body.style.width = "";
-    document.body.style.overflow = "";
-    window.scrollTo({ top: this._scrollY || 0, left: 0, behavior: "instant" });
+    if (this._scrollLockHandlers) {
+      window.removeEventListener("wheel", this._scrollLockHandlers.preventOutsideModal);
+      window.removeEventListener("touchmove", this._scrollLockHandlers.preventOutsideModal);
+      window.removeEventListener("keydown", this._scrollLockHandlers.preventKeysOutsideModal);
+      this._scrollLockHandlers = null;
+    }
   }
 
   openModal(i) {
@@ -748,9 +698,33 @@ class Component extends DCLogic {
 
   cases() {
     return [
-      { no: "CASE 01", title: "工業系サイトリニューアル", image: "images/23412740.webp", media: "photo", roles: ["ヒアリング〜公開"], point: "クライアントのお考えや要望を整理しながら仕様を確定。制作進行・確認・公開まで担当。", highlight: "当初予定より4日前倒しで公開。" },
-      { no: "CASE 02", title: "外国人エンジニア派遣サイト", image: "images/1575828.webp", media: "photo", roles: ["3C分析", "業界調査", "ワイヤーフレーム", "英語版ワイヤーフレーム"], point: "サービス・競合・ターゲットを整理し、企業の強みが伝わるサイト構成を設計。", highlight: "サービスの強みを整理したサイト構成を評価いただいた。" },
-      { no: "CASE 03", title: "大規模サイトコーディング", image: "images/illustrations/coding.png", media: "illustration", roles: ["静的コーディング20ページ", "制作進行", "体制：3名"], point: "GitHub未経験メンバーへの共有・教育と制作進行を並行。", highlight: "2か月で第1弾公開。全体4か月で第3弾まで納品。" }
+      {
+        no: "CASE 01",
+        title: "工業系サイトリニューアル",
+        image: "images/works/case01-renewal.svg",
+        media: "photo",
+        roles: ["ワイヤーフレーム", "情報設計", "制作進行", "品質チェック", "公開"],
+        point: "ワイヤーフレームの作成から制作進行、品質チェック、公開まで担当しました。もともとは商品を並べることが中心だったサイトに対して、お客様が商品に持っている強いこだわりや魅力を整理。「どのような商品なのか」「どのような場面で使われるのか」といった背景までユーザーに伝わるよう、掲載する情報や文章の構成を見直しました。制作途中で「よくある質問を追加したい」というご要望が出た際には、ページを追加するだけでなく、公開後もお客様自身で継続的に情報を追加できるよう、WordPressのカスタム投稿で管理できる形を提案・実装へつなげました。追加要望にも対応しながら制作全体を管理し、公開まで進行しました。",
+        highlight: "追加要望にも対応しながら、当初予定より4日前倒しで公開。"
+      },
+      {
+        no: "CASE 02",
+        title: "外国人エンジニア派遣サイト",
+        image: "images/works/case02-global-engineer.svg",
+        media: "photo",
+        roles: ["3C分析", "市場・競合調査", "情報設計", "ワイヤーフレーム", "英語版対応"],
+        point: "ワイヤーフレームを作成する前に、AIも活用しながら3C分析や市場・競合調査を実施しました。AIの回答をそのまま使用するのではなく、提示された数値や事実について確認を行ったうえで、企業の特徴や競合との違いを整理。企業向けサービスであることを踏まえ、担当者がサービスを検討する際に「何が不安なのか」「何を知りたいのか」を洗い出し、それらをLP内で順番に解消できるよう情報の優先順位と導線を設計しました。調査結果とユーザーの感情の流れをもとにワイヤーフレームへ落とし込み、英語版の対応まで担当しました。",
+        highlight: "企業担当者の不安を整理し、検討時の疑問をLP内で解消できる情報設計を実施。"
+      },
+      {
+        no: "CASE 03",
+        title: "Webサイト制作・公開ディレクション",
+        image: "images/works/case03-launch.svg",
+        media: "photo",
+        roles: ["制作進行", "クライアント対応", "トラブル対応", "品質チェック", "公開"],
+        point: "制作進行から品質チェック、公開までを担当。制作途中でサーバー周辺のトラブルが発生した際には、技術的な情報をそのままお客様へ伝えるのではなく、現在の状況と確認が必要な内容を整理し、お客様側で対応していただきたいことを分かりやすく共有しました。想定外の事象が発生した場面でも、関係者それぞれが次に何をすればよいかを明確にし、必要な対応を一つずつ進めながら公開まで制作を管理しました。",
+        highlight: "想定外のトラブル時も、状況と対応事項を整理して公開まで進行。"
+      }
     ];
   }
 

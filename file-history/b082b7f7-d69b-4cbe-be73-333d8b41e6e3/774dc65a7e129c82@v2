@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#FFF3E6"/>
+
+  <!-- browser window -->
+  <rect x="120" y="90" width="560" height="380" rx="22" fill="#FFFFFF" stroke="#172E4A" stroke-width="10"/>
+  <path d="M120,112 a22,22 0 0 1 22,-22 h516 a22,22 0 0 1 22,22 v48 h-560 Z" fill="#172E4A"/>
+  <circle cx="156" cy="136" r="9" fill="#FFFFFF"/>
+  <circle cx="186" cy="136" r="9" fill="#DC8541"/>
+  <circle cx="216" cy="136" r="9" fill="#FFE0BF"/>
+  <rect x="260" y="126" width="360" height="20" rx="10" fill="#2C4A72"/>
+
+  <!-- staff / dispatch profile card grid -->
+  <g>
+    <rect x="150" y="196" width="220" height="16" rx="8" fill="#172E4A"/>
+    <rect x="150" y="222" width="150" height="12" rx="6" fill="#C3D0E0"/>
+  </g>
+
+  <g>
+    <!-- card 1 -->
+    <rect x="150" y="256" width="150" height="84" rx="12" fill="#F5F8FC" stroke="#172E4A" stroke-width="4"/>
+    <circle cx="182" cy="288" r="16" fill="#DC8541"/>
+    <rect x="206" y="280" width="70" height="10" rx="5" fill="#172E4A"/>
+    <rect x="206" y="298" width="50" height="8" rx="4" fill="#C3D0E0"/>
+    <!-- card 2 -->
+    <rect x="316" y="256" width="150" height="84" rx="12" fill="#F5F8FC" stroke="#172E4A" stroke-width="4"/>
+    <circle cx="348" cy="288" r="16" fill="#1E3A5C"/>
+    <rect x="372" y="280" width="70" height="10" rx="5" fill="#172E4A"/>
+    <rect x="372" y="298" width="50" height="8" rx="4" fill="#C3D0E0"/>
+    <!-- card 3 -->
+    <rect x="150" y="352" width="150" height="60" rx="12" fill="#F5F8FC" stroke="#172E4A" stroke-width="4"/>
+    <circle cx="182" cy="376" r="14" fill="#FFE0BF"/>
+    <rect x="204" y="370" width="70" height="9" rx="4.5" fill="#172E4A"/>
+    <!-- card 4 -->
+    <rect x="316" y="352" width="150" height="60" rx="12" fill="#F5F8FC" stroke="#172E4A" stroke-width="4"/>
+    <circle cx="348" cy="376" r="14" fill="#DC8541"/>
+    <rect x="370" y="370" width="70" height="9" rx="4.5" fill="#172E4A"/>
+  </g>
+
+  <!-- laptop hint bottom-right of screen -->
+  <rect x="500" y="352" width="128" height="70" rx="10" fill="#1E3A5C"/>
+  <rect x="512" y="362" width="104" height="50" rx="4" fill="#EAF0F6"/>
+
+  <!-- globe badge (international) -->
+  <g transform="translate(608,432)">
+    <circle r="76" fill="#FFFFFF" stroke="#172E4A" stroke-width="10"/>
+    <circle r="52" fill="#DC8541"/>
+    <ellipse rx="52" ry="20" fill="none" stroke="#172E4A" stroke-width="5"/>
+    <ellipse rx="20" ry="52" fill="none" stroke="#172E4A" stroke-width="5"/>
+    <line x1="-52" y1="0" x2="52" y2="0" stroke="#172E4A" stroke-width="5"/>
+    <line x1="0" y1="-52" x2="0" y2="52" stroke="#172E4A" stroke-width="5"/>
+    <circle r="52" fill="none" stroke="#172E4A" stroke-width="7"/>
+  </g>
+</svg>

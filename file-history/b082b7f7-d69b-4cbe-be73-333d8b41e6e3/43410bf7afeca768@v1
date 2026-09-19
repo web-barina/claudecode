@@ -312,12 +312,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div id="overseas" data-reveal="" class="team-note">
             <p class="team-note__title">海外開発チームとの連携にも対応</p>
             <p class="team-note__text">海外（ネパール）の開発チームと、AIを活用しながら英語でテキストコミュニケーションを行い、仕様確認・翻訳・QA・品質管理を担当。日本側と海外開発側の認識を整理する橋渡し役として参加しています。</p>
-            <ul class="tag-row">
-              <li class="tag">仕様確認</li>
-              <li class="tag">翻訳</li>
-              <li class="tag">QA</li>
-              <li class="tag">品質管理</li>
-            </ul>
           </div>
         </div>
       </div>
