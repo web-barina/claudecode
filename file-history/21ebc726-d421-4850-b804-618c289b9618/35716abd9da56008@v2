@@ -38,7 +38,7 @@ body.page-horror a:hover { color: #9B2C22; }
 /* ============================================
    共通ユーティリティ
    ============================================ */
-.container { max-width: 1180px; margin: 0 auto; padding-inline: clamp(20px,5vw,64px); }
+.container { max-width: 1000px; margin: 0 auto; padding-inline: clamp(20px,5vw,64px); }
 
 .tag-row { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
 .tag { display: inline-flex; align-items: center; font-size: 12px; letter-spacing: 0.01em; color: #3E4A5C; border: 2.5px solid #172E4A; border-radius: 999px; padding: 8px 16px; background: #FFFFFF; white-space: nowrap; }
